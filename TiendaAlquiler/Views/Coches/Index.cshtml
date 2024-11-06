@@ -1,0 +1,83 @@
+﻿@model IEnumerable<TiendaAlquiler.Models.Coche>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnioFabricacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioAlquiler)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstaAlquilado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carroceria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Decada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaisFabricacion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnioFabricacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioAlquiler)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstaAlquilado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carroceria.Tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Decada.DecadaId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaisFabricacion.Nombre)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CocheId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CocheId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CocheId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,94 @@
+﻿@model TiendaAlquiler.Models.Coche
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Coche</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AnioFabricacion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AnioFabricacion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PrecioAlquiler)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PrecioAlquiler)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EstaAlquilado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EstaAlquilado)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Carroceria)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Carroceria.Tipo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Color.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Decada)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Decada.DecadaId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PaisFabricacion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PaisFabricacion.Nombre)
+        </dd>
+    </dl>
+</div>
+
+
+<h3>Fotos del Coche</h3>
+<div class="fotos">
+    @if (Model.Fotos != null && Model.Fotos.Count > 0)
+    {
+        foreach (var foto in Model.Fotos)
+        {
+            <div class="foto">
+                <img src="~/@foto.RutaAcceso" alt="Foto del coche" style="width: auto; height: auto;" />
+                <!-- Puedes añadir más detalles de la foto aquí si es necesario -->
+            </div>
+        }
+    }
+    else
+    {
+        <p>No hay fotos disponibles para este coche.</p>
+    }
+</div>
+
+
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.CocheId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
