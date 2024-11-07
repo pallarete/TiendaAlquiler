@@ -12,12 +12,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioNombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rol)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.UserName)
             </th>
@@ -66,12 +61,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsuarioNombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rol)
-            </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>

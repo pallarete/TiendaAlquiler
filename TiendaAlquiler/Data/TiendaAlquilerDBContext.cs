@@ -140,6 +140,75 @@ public class TiendaAlquilerDBContext : IdentityDbContext<Usuario>
                 .HasMaxLength(50);
         });
 
+        modelBuilder.Entity<Decada>().HasData(
+
+            new Decada { DecadaId = 1, AnioInicio = 1930 },
+            new Decada { DecadaId = 2, AnioInicio = 1940 },
+            new Decada { DecadaId = 3, AnioInicio = 1950 },
+            new Decada { DecadaId = 4, AnioInicio = 1960 },
+            new Decada { DecadaId = 5, AnioInicio = 1970 },
+            new Decada { DecadaId = 6, AnioInicio = 1980 },
+            new Decada { DecadaId = 7, AnioInicio = 1990 },
+            new Decada { DecadaId = 8, AnioInicio = 2000 }
+            );
+
+
+        modelBuilder.Entity<Color>().HasData(
+            new Color { ColorId = 1, Nombre = "Rojo Ferrari" },
+            new Color { ColorId = 2, Nombre = "British Racing Green" },
+            new Color { ColorId = 3, Nombre = "Silver Ghost" },
+            new Color { ColorId = 4, Nombre = "Blue Subaru" },
+            new Color { ColorId = 5, Nombre = "Negro Medianoche" },
+            new Color { ColorId = 6, Nombre = "Amarillo" },
+            new Color { ColorId = 7, Nombre = "White Cream" },
+            new Color { ColorId = 8, Nombre = "Marron" }
+            );
+
+
+        modelBuilder.Entity<Carroceria>().HasData(
+            new Carroceria { CarroceriaId = 1, Tipo = "Coupe" },
+            new Carroceria { CarroceriaId = 2, Tipo = "Targa" },
+            new Carroceria { CarroceriaId = 3, Tipo = "Descapotable" },
+            new Carroceria { CarroceriaId = 4, Tipo = "Berlinetta" },
+            new Carroceria { CarroceriaId = 5, Tipo = "HacthBack" },
+            new Carroceria { CarroceriaId = 6, Tipo = "GT" },
+            new Carroceria { CarroceriaId = 7, Tipo = "Urbano" },
+            new Carroceria { CarroceriaId = 8, Tipo = "MicroCoche" }
+            );
+
+
+        modelBuilder.Entity<PaisFabricacion>().HasData(
+            new PaisFabricacion { PaisFabricacionId = 1, Nombre = "España" },
+            new PaisFabricacion { PaisFabricacionId = 2, Nombre = "Italia" },
+            new PaisFabricacion { PaisFabricacionId = 3, Nombre = "Francia" },
+            new PaisFabricacion { PaisFabricacionId = 4, Nombre = "Reino Unido" },
+            new PaisFabricacion { PaisFabricacionId = 5, Nombre = "Alemania" },
+            new PaisFabricacion { PaisFabricacionId = 6, Nombre = "Estados Unidos" },
+            new PaisFabricacion { PaisFabricacionId = 7, Nombre = "Japon" }
+            );
+
+
+        modelBuilder.Entity<Coche>().HasData(
+            new Coche { CocheId = 1, Marca = "Ferrari", Modelo = "F40", CarroceriaId = 4, ColorId = 1, PaisFabricacionId = 2, DecadaId = 6, PrecioAlquiler = 1500, EstaAlquilado = false },
+
+            new Coche { CocheId = 2, Marca = "Aston Martin", Modelo = "DB5", CarroceriaId = 6, ColorId = 3, PaisFabricacionId = 4, DecadaId = 4, PrecioAlquiler = 3000, EstaAlquilado = false },
+
+            new Coche { CocheId = 3, Marca = "Porsche", Modelo = "911", CarroceriaId = 6, ColorId = 6, PaisFabricacionId = 5, DecadaId = 5, PrecioAlquiler = 2000, EstaAlquilado = false },
+
+            new Coche { CocheId = 4, Marca = "Ferrari", Modelo = "250 GTO", CarroceriaId = 4, ColorId = 1, PaisFabricacionId = 2, DecadaId = 3, PrecioAlquiler = 300, EstaAlquilado = false },
+
+            new Coche { CocheId = 5, Marca = "Jaguar", Modelo = "E-Type", CarroceriaId = 3, ColorId = 2, PaisFabricacionId = 4, DecadaId = 4, PrecioAlquiler = 250, EstaAlquilado = false },
+
+            new Coche { CocheId = 6, Marca = "Rolls Royce", Modelo = "Silver Cloud", CarroceriaId = 3, ColorId = 3, PaisFabricacionId = 3, DecadaId = 5, PrecioAlquiler = 400, EstaAlquilado = false },
+
+            new Coche { CocheId = 7, Marca = "Subaru", Modelo = "Impreza WRX", CarroceriaId = 5, ColorId = 4, PaisFabricacionId = 7, DecadaId = 7, PrecioAlquiler = 120, EstaAlquilado = false },
+
+            new Coche { CocheId = 8, Marca = "Mercedes-Benz", Modelo = "300 SL", CarroceriaId = 2, ColorId = 5, PaisFabricacionId = 5, DecadaId = 6, PrecioAlquiler = 350, EstaAlquilado = false },
+
+            new Coche { CocheId = 9, Marca = "Austin", Modelo = "Mini Cooper", CarroceriaId = 7, ColorId = 8, PaisFabricacionId = 4, DecadaId = 6, PrecioAlquiler = 100, EstaAlquilado = false }
+
+            );
+
     }
 
 }

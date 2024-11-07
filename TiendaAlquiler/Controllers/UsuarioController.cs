@@ -17,12 +17,14 @@ namespace TiendaAlquiler.Controllers
         private readonly TiendaAlquilerDBContext _context;
         private readonly UserManager<Usuario> _userManager;
         private readonly SignInManager<Usuario> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UsuarioController(TiendaAlquilerDBContext context, UserManager<Usuario> userManager, SignInManager<Usuario> signInManager)
+        public UsuarioController(TiendaAlquilerDBContext context, UserManager<Usuario> userManager, SignInManager<Usuario> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
 
         // GET: Usuario
@@ -45,59 +47,13 @@ namespace TiendaAlquiler.Controllers
                 return NotFound();
             }
 
-            var model = new UsuarioViewModel
+            var model = new Usuario
             {
                 Id = usuario.Id ?? "",  // Asegúrate de que no sea nulo
-                UsuarioNombre = usuario.UsuarioNombre ?? "",
-                Rol = usuario.Rol ?? "",  // Si Rol es de tipo string, puedes usar el operador null-coalescente
                 UserName = usuario.UserName ?? "",
-                Email = usuario.Email ?? "" // Lo mismo con Email si es opcional
+                Email = usuario.Email ?? "", // Lo mismo con Email si es opcional
             };
 
-            return View(model);
-        }
-
-        // GET: Usuario/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-
-
-        // POST: Usuario/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UsuarioNombre,Rol,Email,Password,UserName")] UsuarioViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                //mapeamos los datos del view model al modelo de base de datos
-                var usuario = new Usuario
-                {
-                    UsuarioNombre = model.UsuarioNombre,//Asiganamos nombre desde el viewModel
-                    Rol = model.Rol,
-                    UserName = model.UserName,
-                    Email = model.Email,
-                    //SePueden asignar propiedades segun sea necesario
-                };
-
-                // Se recomienda en este caso usar UserManager para crear un usuario
-                var result = await _userManager.CreateAsync(usuario, model.Password);
-                if (result.Succeeded)
-                {
-                    // Si la creación es exitosa, redirigimos a la lista de usuarios
-                    return RedirectToAction(nameof(Index));
-                }
-
-                // Si hubo algún error, mostramos los errores en el modelo
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
-            }
             return View(model);
         }
 
@@ -122,39 +78,7 @@ namespace TiendaAlquiler.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("UsuarioNombre,Rol,Email,UserName")] UsuarioViewModel model)
-        {
-            if (id == null || !ModelState.IsValid)
-            {
-                return View(model);
-            }
 
-            var usuario = await _userManager.FindByIdAsync(id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-
-            //Actualizamos solo las propiedades permitidas
-            usuario.UsuarioNombre = model.UsuarioNombre;
-            usuario.Rol = model.Rol;
-            usuario.UserName = model.UserName;
-            usuario.Email = model.Email;
-
-            var result = await _userManager.UpdateAsync(usuario);
-
-            if (result.Succeeded)
-            {
-                return RedirectToAction(nameof(Index));
-            }
-
-            //agregamos errores al modelSatate si al actualizacion falla
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError(string.Empty, error.Description);
-            }
-            return View(model);
-        }
 
 
 
@@ -173,13 +97,12 @@ namespace TiendaAlquiler.Controllers
                 return NotFound();
             }
 
-            var model = new UsuarioViewModel
+            var model = new Usuario
             {
                 Id = usuario.Id ?? "",  // Usamos ?? para asegurarnos de que no sea null
-                UsuarioNombre = usuario.UsuarioNombre ?? "",  // Usamos ?? si la propiedad podría ser null
-                Rol = usuario.Rol ?? "",
                 UserName = usuario.UserName ?? "",
-                Email = usuario.Email ?? ""
+                Email = usuario.Email ?? "",
+
             };
 
             return View(model);
@@ -224,46 +147,37 @@ namespace TiendaAlquiler.Controllers
         {
             if (ModelState.IsValid)
             {
-                var usuario = new Usuario
-                {
-                    UsuarioNombre = model.UsuarioNombre,
-                    UserName = model.Email,
-                    Email = model.Email,
-                };
-                var totalUsuarios = await _userManager.Users.CountAsync();
-
-                usuario.Rol = totalUsuarios == 0 ? "Admin" : "User";
-
+                var usuario = new Usuario { UserName = model.UserName, Email = model.Email };
                 var result = await _userManager.CreateAsync(usuario, model.Password);
 
                 if (result.Succeeded)
                 {
-                    var addRoleResult = await _userManager.AddToRoleAsync(usuario, usuario.Rol);
-
-                    if (!addRoleResult.Succeeded)
+                    // Verificar si es el primer usuario
+                    if (!await _userManager.Users.AnyAsync()) // Si es el primer usuario
                     {
-                        //manejamos los errores
-                        foreach (var error in addRoleResult.Errors)
+                        // Verificar si el rol Admin existe, si no, crear el rol
+                        var roleExists = await _roleManager.RoleExistsAsync("Admin");
+                        if (!roleExists)
                         {
-                            ModelState.AddModelError(string.Empty, error.Description);
+                            await _roleManager.CreateAsync(new IdentityRole("Admin"));
                         }
-                    }
-                    else
-                    {
-                        //Redirigimos al login si el registro es exitoso
-                        return RedirectToAction("Login", "Usuario");
+
+                        // Asignar el rol de Admin al primer usuario
+                        await _userManager.AddToRoleAsync(usuario, "Admin");
                     }
 
+                    // Iniciar sesión automáticamente
+                    await _signInManager.SignInAsync(usuario, isPersistent: false);
+                    return RedirectToAction("Index", "Home"); // Redirigir después de registro
                 }
 
-                //Mostrara errores si la creacion falla
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
-
             }
             return View(model);
+
         }
 
         // GET: Usuario/Login
@@ -281,25 +195,41 @@ namespace TiendaAlquiler.Controllers
             {
                 var usuario = await _userManager.FindByNameAsync(model.UsuarioNombre);
 
-                if (usuario != null)
+                if (usuario == null)
+                {
+                    ModelState.AddModelError(string.Empty, "El usuario no existe");
+
+                }
+                else
+
                 {
                     var result = await _signInManager.PasswordSignInAsync(usuario, model.Password, false, false);
 
                     if (result.Succeeded)
                     {
-
+                        // Redirigir dependiendo del rol, por ejemplo
+                        if (await _userManager.IsInRoleAsync(usuario, "Admin"))
+                        {
+                            return RedirectToAction("Index", "Admin"); // o lo que sea tu página de Admin
+                        }
                         return RedirectToAction("Index", "Home");
-                    }
 
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "La contraseña es incorrecta");
+
+                    }
                 }
             }
-
             return View(model);
+        }
+
+        //LOGOUT
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync(); //AQUI CIERRO LA SESION
+            return RedirectToAction("Index", "Home");//REDIRIGO AL PRINCIPIO
         }
 
 

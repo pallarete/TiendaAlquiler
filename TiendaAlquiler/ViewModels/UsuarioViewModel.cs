@@ -7,25 +7,19 @@ namespace TiendaAlquiler.ViewModels
         public string? Id { get; set; }
 
         [Required]
-        public string UsuarioNombre { get; set; }
-
-        [Required]
-        [RegularExpression(@"^(Administrador|Cliente)$", ErrorMessage = "Rol debe ser 'Administrador' o 'Cliente'")]
-        public string Rol { get; set; }
+        [RegularExpression(@"^(Admin|User)$", ErrorMessage = "Rol debe ser 'Admin' o 'User'")]
+        public required string Rol { get; set; }
 
         [Required]
         [EmailAddress]
-        public string Email { get; set; }
-
-        [Required]
-        public string UserName { get; set; }
+        public required string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public required string Password { get; set; }
 
         [Required]
         [Compare("Password", ErrorMessage = "Las contraseñas no coinciden.")]
-        public string ConfirmPassword { get; set; }
+        public required string ConfirmPassword { get; set; }
     }
 }

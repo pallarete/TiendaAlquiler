@@ -1,4 +1,4 @@
-@model TiendaAlquiler.ViewModels.UsuarioViewModel
+@model TiendaAlquiler.Models.Usuario
 
 @{
     ViewData["Title"] = "Create";
@@ -12,13 +12,9 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
-            <div class="form-group">
-                <label asp-for="UsuarioNombre" class="control-label"></label>
-                <input asp-for="UsuarioNombre" class="form-control" />
-                <span asp-validation-for="UsuarioNombre" class="text-danger"></span>
-            </div>
-            
+
+           
+
             <div class="form-group">
                 <label asp-for="UserName" class="control-label"></label>
                 <input asp-for="UserName" class="form-control" />
@@ -29,22 +25,11 @@
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            
-            <div class="form-group">
-                <label asp-for="Rol" class="control-label"></label>
-                <select asp-for="Rol" class="form-control">
-                    <option value="Administrador">Administrador</option>
-                    <option value="Cliente">Cliente</option>
-                </select>
-                <span asp-validation-for="Rol" class="text-danger"></span>
-            </div>
-           
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            
+
+          
+
+
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
                 <a asp-action="Index" class="btn btn-secondary">Cancelar</a>

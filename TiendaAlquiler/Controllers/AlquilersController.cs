@@ -51,12 +51,31 @@ namespace TiendaAlquiler.Controllers
         }
 
         // GET: Alquilers/Create
-        public async Task<IActionResult> CreateAsync()
+        [HttpGet]
+        public async Task<IActionResult> Create(int cocheId, string usuarioId)
         {
-            ViewData["CocheId"] = new SelectList(_context.Coches, "CocheId", "Marca");
-            ViewData["UsuarioId"] = new SelectList(await _userManager.Users.ToListAsync(), "Id", "Rol");
 
-            return View();
+            // Verificar si el coche y el usuario existen
+            var coche = await _context.Coches.FindAsync(cocheId);
+            var usuario = await _userManager.FindByIdAsync(usuarioId);
+
+            if (coche == null || usuario == null)
+            {
+                return NotFound();
+            }
+
+            // Crear una instancia de Alquiler prellenada con el coche y el usuario seleccionados
+            var alquiler = new Alquiler
+            {
+                CocheId = cocheId,
+                UsuarioId = usuarioId,
+            };
+
+            ViewData["CocheId"] = new SelectList(_context.Coches, "CocheId", "Marca", alquiler.CocheId);
+            ViewData["UsuarioId"] = new SelectList(await _userManager.Users.ToListAsync(), "Id", "UserName", alquiler.UsuarioId);
+
+            return View(alquiler);
+
         }
 
         // POST: Alquilers/Create
@@ -68,12 +87,34 @@ namespace TiendaAlquiler.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                //Obtener el coche desde la base de datos utilizando el CocheId
+                var coche = await _context.Coches.FindAsync(alquiler.CocheId);
+
+                if (coche != null)
+                {
+                    //Calcular el numero de dias de alquiler
+                    var diasAlquiler = (alquiler.FechaDevolucion?.ToDateTime(new TimeOnly()) ?? DateTime.Now) - alquiler.FechaAlquiler.ToDateTime(new TimeOnly());
+
+                    //Si la fecha de devolucion es valida, calculamos el precio Final
+                    if (diasAlquiler.Days > 0)
+                    {
+                        alquiler.PrecioFinal = coche.PrecioAlquiler * diasAlquiler.Days;
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "La fecha de devolucion debe ser posterior a la fecha de alquiler ");
+                        return View(alquiler);
+                    }
+                }
+                //Guardar el Alquiler en la base de datos
                 _context.Add(alquiler);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CocheId"] = new SelectList(_context.Coches, "CocheId", "Marca", alquiler.CocheId);
-            ViewData["UsuarioId"] = new SelectList(await _userManager.Users.ToListAsync(), "Id", "Rol");
+            ViewData["UsuarioId"] = new SelectList(await _userManager.Users.ToListAsync(), "Id", "UserName", alquiler.UsuarioId);
 
             return View(alquiler);
         }

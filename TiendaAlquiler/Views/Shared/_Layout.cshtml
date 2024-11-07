@@ -49,6 +49,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Login">Login</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Logout","Usuario")"  class="nav-link text-dark">Cerrar Sesion</a>
+                                </li>
+                        }
                     </ul>
                 </div>
             </div>

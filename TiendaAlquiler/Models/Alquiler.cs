@@ -16,6 +16,7 @@ public partial class Alquiler
     public int CocheId { get; set; }
     [Required]
     public string UsuarioId { get; set; }
+
     [Required]
     public DateOnly FechaAlquiler { get; set; }
 

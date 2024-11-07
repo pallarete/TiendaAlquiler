@@ -206,6 +206,48 @@ namespace TiendaAlquiler.Migrations
                         .HasName("PK__Carrocer__EBEFDD7F34F2C214");
 
                     b.ToTable("Carroceria");
+
+                    b.HasData(
+                        new
+                        {
+                            CarroceriaId = 1,
+                            Tipo = "Coupe"
+                        },
+                        new
+                        {
+                            CarroceriaId = 2,
+                            Tipo = "Targa"
+                        },
+                        new
+                        {
+                            CarroceriaId = 3,
+                            Tipo = "Descapotable"
+                        },
+                        new
+                        {
+                            CarroceriaId = 4,
+                            Tipo = "Berlinetta"
+                        },
+                        new
+                        {
+                            CarroceriaId = 5,
+                            Tipo = "HacthBack"
+                        },
+                        new
+                        {
+                            CarroceriaId = 6,
+                            Tipo = "GT"
+                        },
+                        new
+                        {
+                            CarroceriaId = 7,
+                            Tipo = "Urbano"
+                        },
+                        new
+                        {
+                            CarroceriaId = 8,
+                            Tipo = "MicroCoche"
+                        });
                 });
 
             modelBuilder.Entity("TiendaAlquiler.Models.Coche", b =>
@@ -259,6 +301,125 @@ namespace TiendaAlquiler.Migrations
                     b.HasIndex("PaisFabricacionId");
 
                     b.ToTable("Coche", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            CocheId = 1,
+                            AnioFabricacion = 0,
+                            CarroceriaId = 4,
+                            ColorId = 1,
+                            DecadaId = 6,
+                            EstaAlquilado = false,
+                            Marca = "Ferrari",
+                            Modelo = "F40",
+                            PaisFabricacionId = 2,
+                            PrecioAlquiler = 1500m
+                        },
+                        new
+                        {
+                            CocheId = 2,
+                            AnioFabricacion = 0,
+                            CarroceriaId = 6,
+                            ColorId = 3,
+                            DecadaId = 4,
+                            EstaAlquilado = false,
+                            Marca = "Aston Martin",
+                            Modelo = "DB5",
+                            PaisFabricacionId = 4,
+                            PrecioAlquiler = 3000m
+                        },
+                        new
+                        {
+                            CocheId = 3,
+                            AnioFabricacion = 0,
+                            CarroceriaId = 6,
+                            ColorId = 6,
+                            DecadaId = 5,
+                            EstaAlquilado = false,
+                            Marca = "Porsche",
+                            Modelo = "911",
+                            PaisFabricacionId = 5,
+                            PrecioAlquiler = 2000m
+                        },
+                        new
+                        {
+                            CocheId = 4,
+                            AnioFabricacion = 0,
+                            CarroceriaId = 4,
+                            ColorId = 1,
+                            DecadaId = 3,
+                            EstaAlquilado = false,
+                            Marca = "Ferrari",
+                            Modelo = "250 GTO",
+                            PaisFabricacionId = 2,
+                            PrecioAlquiler = 300m
+                        },
+                        new
+                        {
+                            CocheId = 5,
+                            AnioFabricacion = 0,
+                            CarroceriaId = 3,
+                            ColorId = 2,
+                            DecadaId = 4,
+                            EstaAlquilado = false,
+                            Marca = "Jaguar",
+                            Modelo = "E-Type",
+                            PaisFabricacionId = 4,
+                            PrecioAlquiler = 250m
+                        },
+                        new
+                        {
+                            CocheId = 6,
+                            AnioFabricacion = 0,
+                            CarroceriaId = 3,
+                            ColorId = 3,
+                            DecadaId = 5,
+                            EstaAlquilado = false,
+                            Marca = "Rolls Royce",
+                            Modelo = "Silver Cloud",
+                            PaisFabricacionId = 3,
+                            PrecioAlquiler = 400m
+                        },
+                        new
+                        {
+                            CocheId = 7,
+                            AnioFabricacion = 0,
+                            CarroceriaId = 5,
+                            ColorId = 4,
+                            DecadaId = 7,
+                            EstaAlquilado = false,
+                            Marca = "Subaru",
+                            Modelo = "Impreza WRX",
+                            PaisFabricacionId = 7,
+                            PrecioAlquiler = 120m
+                        },
+                        new
+                        {
+                            CocheId = 8,
+                            AnioFabricacion = 0,
+                            CarroceriaId = 2,
+                            ColorId = 5,
+                            DecadaId = 6,
+                            EstaAlquilado = false,
+                            Marca = "Mercedes-Benz",
+                            Modelo = "300 SL",
+                            PaisFabricacionId = 5,
+                            PrecioAlquiler = 350m
+                        },
+                        new
+                        {
+                            CocheId = 9,
+                            AnioFabricacion = 0,
+                            CarroceriaId = 7,
+                            ColorId = 8,
+                            DecadaId = 6,
+                            EstaAlquilado = false,
+                            Marca = "Austin",
+                            Modelo = "Mini Cooper",
+                            PaisFabricacionId = 4,
+                            PrecioAlquiler = 100m
+                        });
                 });
 
             modelBuilder.Entity("TiendaAlquiler.Models.Color", b =>
@@ -278,6 +439,48 @@ namespace TiendaAlquiler.Migrations
                         .HasName("PK__Color__8DA7674D8D39398E");
 
                     b.ToTable("Color", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ColorId = 1,
+                            Nombre = "Rojo Ferrari"
+                        },
+                        new
+                        {
+                            ColorId = 2,
+                            Nombre = "British Racing Green"
+                        },
+                        new
+                        {
+                            ColorId = 3,
+                            Nombre = "Silver Ghost"
+                        },
+                        new
+                        {
+                            ColorId = 4,
+                            Nombre = "Blue Subaru"
+                        },
+                        new
+                        {
+                            ColorId = 5,
+                            Nombre = "Negro Medianoche"
+                        },
+                        new
+                        {
+                            ColorId = 6,
+                            Nombre = "Amarillo"
+                        },
+                        new
+                        {
+                            ColorId = 7,
+                            Nombre = "White Cream"
+                        },
+                        new
+                        {
+                            ColorId = 8,
+                            Nombre = "Marron"
+                        });
                 });
 
             modelBuilder.Entity("TiendaAlquiler.Models.Decada", b =>
@@ -295,6 +498,48 @@ namespace TiendaAlquiler.Migrations
                         .HasName("PK__Decada__B60F61813E1A9096");
 
                     b.ToTable("Decada");
+
+                    b.HasData(
+                        new
+                        {
+                            DecadaId = 1,
+                            AnioInicio = 1930
+                        },
+                        new
+                        {
+                            DecadaId = 2,
+                            AnioInicio = 1940
+                        },
+                        new
+                        {
+                            DecadaId = 3,
+                            AnioInicio = 1950
+                        },
+                        new
+                        {
+                            DecadaId = 4,
+                            AnioInicio = 1960
+                        },
+                        new
+                        {
+                            DecadaId = 5,
+                            AnioInicio = 1970
+                        },
+                        new
+                        {
+                            DecadaId = 6,
+                            AnioInicio = 1980
+                        },
+                        new
+                        {
+                            DecadaId = 7,
+                            AnioInicio = 1990
+                        },
+                        new
+                        {
+                            DecadaId = 8,
+                            AnioInicio = 2000
+                        });
                 });
 
             modelBuilder.Entity("TiendaAlquiler.Models.Foto", b =>
@@ -338,6 +583,43 @@ namespace TiendaAlquiler.Migrations
                         .HasName("PK__PaisFabr__E30419353E3D377E");
 
                     b.ToTable("PaisFabricacion", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            PaisFabricacionId = 1,
+                            Nombre = "España"
+                        },
+                        new
+                        {
+                            PaisFabricacionId = 2,
+                            Nombre = "Italia"
+                        },
+                        new
+                        {
+                            PaisFabricacionId = 3,
+                            Nombre = "Francia"
+                        },
+                        new
+                        {
+                            PaisFabricacionId = 4,
+                            Nombre = "Reino Unido"
+                        },
+                        new
+                        {
+                            PaisFabricacionId = 5,
+                            Nombre = "Alemania"
+                        },
+                        new
+                        {
+                            PaisFabricacionId = 6,
+                            Nombre = "Estados Unidos"
+                        },
+                        new
+                        {
+                            PaisFabricacionId = 7,
+                            Nombre = "Japon"
+                        });
                 });
 
             modelBuilder.Entity("TiendaAlquiler.Models.Usuario", b =>
@@ -382,10 +664,6 @@ namespace TiendaAlquiler.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Rol")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -395,10 +673,6 @@ namespace TiendaAlquiler.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("UsuarioNombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

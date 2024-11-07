@@ -7,7 +7,6 @@
 <h2>@ViewData["Title"]</h2>
 
 <form asp-controller="Usuario" asp-action="Login" method="post">
-    @Html.AntiForgeryToken()
 
     <div class="form-group">
         <label asp-for="UsuarioNombre"></label>
@@ -22,3 +21,8 @@
     </div>
     <button type="submit" class="btn btn-primary">Login</button>
 </form>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

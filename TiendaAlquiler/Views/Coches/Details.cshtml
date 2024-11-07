@@ -1,4 +1,6 @@
 ﻿@model TiendaAlquiler.Models.Coche
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<Usuario> UserManager
 
 @{
     ViewData["Title"] = "Details";
@@ -86,7 +88,9 @@
     }
 </div>
 
-
+<a asp-controller="Alquilers" asp-action="Create" asp-route-cocheId="@Model.CocheId" asp-route-usuarioId="@UserManager.GetUserId(User)" class="btn btn-primary">
+    Alquilar este coche
+</a>
 
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.CocheId">Edit</a> |

@@ -5,7 +5,7 @@ namespace TiendaAlquiler.ViewModels
     public class RegisterViewModel
     {
         [Required]
-        public string UsuarioNombre { get; set; } // Agregar la propiedad UsuarioNombre
+        public string UserName { get; set; } // Agregar la propiedad UsuarioNombre
 
         [Required]
         [EmailAddress]

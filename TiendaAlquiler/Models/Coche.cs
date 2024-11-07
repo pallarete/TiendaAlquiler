@@ -25,7 +25,7 @@ public partial class Coche
     
     [Required]
     [Range(0.01, double.MaxValue, ErrorMessage = "El precio de alquiler debe ser mayor a cero.")]
-    [Column(TypeName = "decimal(18,2)")] 
+    [Column(TypeName = "decimal(18,2)")]
     public decimal PrecioAlquiler { get; set; }
 
     public bool EstaAlquilado { get; set; }
@@ -37,11 +37,11 @@ public partial class Coche
     public int CarroceriaId { get; set; }
     
     [Required]
-
     public int DecadaId { get; set; }
     [Required]
     public int PaisFabricacionId { get; set; }
-
+    
+    [Required]
     public virtual ICollection<Alquiler> Alquilers { get; set; } = new List<Alquiler>();
 
     public virtual Carroceria Carroceria { get; set; }

@@ -1,4 +1,4 @@
-@model TiendaAlquiler.ViewModels.UsuarioViewModel
+@model TiendaAlquiler.Models.Usuario
 
 
 @{
@@ -11,24 +11,14 @@
     <h4>Usuario</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.UsuarioNombre)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.UsuarioNombre)
-        </dd>
+      
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.UserName)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.UserName)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Rol)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Rol)
-        </dd>
+      
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Email)
         </dt>

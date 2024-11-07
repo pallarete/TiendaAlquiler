@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace TiendaAlquiler.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,8 +32,6 @@ namespace TiendaAlquiler.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    UsuarioNombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Rol = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -296,6 +296,81 @@ namespace TiendaAlquiler.Migrations
                         principalTable: "Coche",
                         principalColumn: "CocheId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Carroceria",
+                columns: new[] { "CarroceriaId", "Tipo" },
+                values: new object[,]
+                {
+                    { 1, "Coupe" },
+                    { 2, "Targa" },
+                    { 3, "Descapotable" },
+                    { 4, "Berlinetta" },
+                    { 5, "HacthBack" },
+                    { 6, "GT" },
+                    { 7, "Urbano" },
+                    { 8, "MicroCoche" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Color",
+                columns: new[] { "ColorId", "Nombre" },
+                values: new object[,]
+                {
+                    { 1, "Rojo Ferrari" },
+                    { 2, "British Racing Green" },
+                    { 3, "Silver Ghost" },
+                    { 4, "Blue Subaru" },
+                    { 5, "Negro Medianoche" },
+                    { 6, "Amarillo" },
+                    { 7, "White Cream" },
+                    { 8, "Marron" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Decada",
+                columns: new[] { "DecadaId", "AnioInicio" },
+                values: new object[,]
+                {
+                    { 1, 1930 },
+                    { 2, 1940 },
+                    { 3, 1950 },
+                    { 4, 1960 },
+                    { 5, 1970 },
+                    { 6, 1980 },
+                    { 7, 1990 },
+                    { 8, 2000 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "PaisFabricacion",
+                columns: new[] { "PaisFabricacionId", "Nombre" },
+                values: new object[,]
+                {
+                    { 1, "España" },
+                    { 2, "Italia" },
+                    { 3, "Francia" },
+                    { 4, "Reino Unido" },
+                    { 5, "Alemania" },
+                    { 6, "Estados Unidos" },
+                    { 7, "Japon" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Coche",
+                columns: new[] { "CocheId", "AnioFabricacion", "CarroceriaId", "ColorId", "DecadaId", "EstaAlquilado", "Marca", "Modelo", "PaisFabricacionId", "PrecioAlquiler" },
+                values: new object[,]
+                {
+                    { 1, 0, 4, 1, 6, false, "Ferrari", "F40", 2, 1500m },
+                    { 2, 0, 6, 3, 4, false, "Aston Martin", "DB5", 4, 3000m },
+                    { 3, 0, 6, 6, 5, false, "Porsche", "911", 5, 2000m },
+                    { 4, 0, 4, 1, 3, false, "Ferrari", "250 GTO", 2, 300m },
+                    { 5, 0, 3, 2, 4, false, "Jaguar", "E-Type", 4, 250m },
+                    { 6, 0, 3, 3, 5, false, "Rolls Royce", "Silver Cloud", 3, 400m },
+                    { 7, 0, 5, 4, 7, false, "Subaru", "Impreza WRX", 7, 120m },
+                    { 8, 0, 2, 5, 6, false, "Mercedes-Benz", "300 SL", 5, 350m },
+                    { 9, 0, 7, 8, 6, false, "Austin", "Mini Cooper", 4, 100m }
                 });
 
             migrationBuilder.CreateIndex(
