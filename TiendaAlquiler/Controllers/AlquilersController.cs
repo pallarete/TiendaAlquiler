@@ -83,40 +83,58 @@ namespace TiendaAlquiler.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AlquilerId,CocheId,UsuarioId,FechaAlquiler,FechaDevolucion,PrecioFinal")] Alquiler alquiler)
+        public async Task<IActionResult> Create([Bind("AlquilerId,CocheId,UsuarioId,FechaAlquiler,FechaDevolucion")] Alquiler alquiler)
         {
             if (ModelState.IsValid)
             {
-
-                //Obtener el coche desde la base de datos utilizando el CocheId
+                // Obtener el coche desde la base de datos utilizando el CocheId
                 var coche = await _context.Coches.FindAsync(alquiler.CocheId);
 
                 if (coche != null)
                 {
-                    //Calcular el numero de dias de alquiler
-                    var diasAlquiler = (alquiler.FechaDevolucion?.ToDateTime(new TimeOnly()) ?? DateTime.Now) - alquiler.FechaAlquiler.ToDateTime(new TimeOnly());
+                    // Convertir las fechas de DateOnly a DateTime para poder realizar la operación de días
+                    DateTime fechaAlquiler = alquiler.FechaAlquiler.ToDateTime(new TimeOnly());
+                    DateTime fechaDevolucion = alquiler.FechaDevolucion.ToDateTime(new TimeOnly());
 
-                    //Si la fecha de devolucion es valida, calculamos el precio Final
-                    if (diasAlquiler.Days > 0)
+                    // Calcular el número de días de alquiler
+                    var diasAlquiler = (fechaDevolucion - fechaAlquiler).Days;
+
+                    // Validar que la fecha de devolución es posterior a la fecha de alquiler
+                    if (diasAlquiler > 0)
                     {
-                        alquiler.PrecioFinal = coche.PrecioAlquiler * diasAlquiler.Days;
+                        // Si es válida, calcular el precio final
+                        alquiler.PrecioFinal = coche.PrecioAlquiler * diasAlquiler;
                     }
                     else
                     {
-                        ModelState.AddModelError("", "La fecha de devolucion debe ser posterior a la fecha de alquiler ");
+                        // Si la fecha de devolución no es válida, añadir error de validación
+                        ModelState.AddModelError("", "La fecha de devolución debe ser posterior a la fecha de alquiler.");
                         return View(alquiler);
                     }
                 }
-                //Guardar el Alquiler en la base de datos
+
+                // Si el coche no fue encontrado, agregar un error
+                else
+                {
+                    ModelState.AddModelError("", "El coche no existe.");
+                    return View(alquiler);
+                }
+
+                // Guardar el alquiler en la base de datos
                 _context.Add(alquiler);
                 await _context.SaveChangesAsync();
 
+                // Redirigir a la lista de alquileres o donde desees
                 return RedirectToAction(nameof(Index));
             }
+
+            // Si el modelo no es válido, devolver las listas de coches y usuarios para la vista
             ViewData["CocheId"] = new SelectList(_context.Coches, "CocheId", "Marca", alquiler.CocheId);
             ViewData["UsuarioId"] = new SelectList(await _userManager.Users.ToListAsync(), "Id", "UserName", alquiler.UsuarioId);
 
             return View(alquiler);
+
+
         }
 
         // GET: Alquilers/Edit/5

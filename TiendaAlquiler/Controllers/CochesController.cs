@@ -21,10 +21,34 @@ namespace TiendaAlquiler.Controllers
         }
 
         // GET: Coches
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? paisFabricacionId, int? carroceriaId)
         {
-            var tiendaAlquilerDBContext = _context.Coches.Include(c => c.Carroceria).Include(c => c.Color).Include(c => c.Decada).Include(c => c.PaisFabricacion);
-            return View(await tiendaAlquilerDBContext.ToListAsync());
+            var coches = _context.Coches
+                .Include(c => c.Carroceria)
+                .Include(c => c.Color)
+                .Include(c => c.Decada)
+                .Include(c => c.PaisFabricacion)
+                .AsQueryable(); //Convierto a una consulta que se puede modificar
+            if (paisFabricacionId.HasValue)
+            {
+                coches = coches.Where(c => c.PaisFabricacionId == paisFabricacionId);
+            }
+            if (carroceriaId.HasValue)
+            {
+                coches = coches.Where(c => c.CarroceriaId == carroceriaId);
+            }
+
+
+
+
+            //paso a la vista la lista de coches filtrada (Si es necesario)
+            //var cochesFiltrados = await coches.ToListAsync();
+
+            //Obtener los paises disponibles para el filtro (sin flitrar)
+            ViewData["PaisId"] = new SelectList(_context.PaisFabricacions, "PaisFabricacion", "Nombre");
+            ViewData["CarroceriaId"] = new SelectList(_context.Carroceria, "Carroceria", "Tipo");
+
+            return View(await coches.ToListAsync());
         }
 
         // GET: Coches/Details/5

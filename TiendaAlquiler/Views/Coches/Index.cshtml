@@ -9,6 +9,36 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<p>
+    <form  method="get" >
+        <label  for="PaisFabricacionId" >Filtrar por Pais</label>
+        <select id="PaisFabricacionId" name="paisFabricacionId" >
+            <option value="" >--Seleccione un pais--</option>
+            @foreach (var pais in ViewData["Paises"] as List<TiendaAlquiler.Models.PaisFabricacion>)
+            {
+                <option value="@pais.PaisFabricacionId" >@pais.Nombre</option>
+            }
+
+
+
+
+
+        </select>
+
+        <button type="" ></button>
+
+    </form>
+
+
+
+</p>
+
+
+
+
+
+
 <table class="table">
     <thead>
         <tr>
@@ -43,41 +73,42 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Marca)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Modelo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AnioFabricacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrecioAlquiler)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EstaAlquilado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Carroceria.Tipo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Decada.DecadaId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaisFabricacion.Nombre)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CocheId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CocheId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CocheId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnioFabricacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecioAlquiler)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstaAlquilado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Carroceria.Tipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Decada.DecadaId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaisFabricacion.Nombre)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CocheId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CocheId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CocheId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

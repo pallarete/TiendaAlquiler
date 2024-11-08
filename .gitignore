@@ -363,3 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 /TiendaAlquiler/Migrations/20241106162021_Initial.cs
 /TiendaAlquiler/Migrations/20241106162021_Initial.Designer.cs
+/TiendaAlquiler/Migrations/20241107154027_InitialCreate.cs
+/TiendaAlquiler/Migrations/20241107154027_InitialCreate.Designer.cs
+/TiendaAlquiler/Migrations/20241107154027_InitialCreate.cs

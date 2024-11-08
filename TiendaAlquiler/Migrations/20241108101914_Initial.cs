@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TiendaAlquiler.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -362,15 +362,15 @@ namespace TiendaAlquiler.Migrations
                 columns: new[] { "CocheId", "AnioFabricacion", "CarroceriaId", "ColorId", "DecadaId", "EstaAlquilado", "Marca", "Modelo", "PaisFabricacionId", "PrecioAlquiler" },
                 values: new object[,]
                 {
-                    { 1, 0, 4, 1, 6, false, "Ferrari", "F40", 2, 1500m },
-                    { 2, 0, 6, 3, 4, false, "Aston Martin", "DB5", 4, 3000m },
-                    { 3, 0, 6, 6, 5, false, "Porsche", "911", 5, 2000m },
-                    { 4, 0, 4, 1, 3, false, "Ferrari", "250 GTO", 2, 300m },
-                    { 5, 0, 3, 2, 4, false, "Jaguar", "E-Type", 4, 250m },
-                    { 6, 0, 3, 3, 5, false, "Rolls Royce", "Silver Cloud", 3, 400m },
-                    { 7, 0, 5, 4, 7, false, "Subaru", "Impreza WRX", 7, 120m },
-                    { 8, 0, 2, 5, 6, false, "Mercedes-Benz", "300 SL", 5, 350m },
-                    { 9, 0, 7, 8, 6, false, "Austin", "Mini Cooper", 4, 100m }
+                    { 1, 1984, 4, 1, 6, false, "Ferrari", "F40", 2, 1500m },
+                    { 2, 1963, 6, 3, 4, false, "Aston Martin", "DB5", 4, 3000m },
+                    { 3, 1970, 6, 6, 5, false, "Porsche", "911", 5, 2000m },
+                    { 4, 1955, 4, 1, 3, false, "Ferrari", "250 GTO", 2, 300m },
+                    { 5, 1958, 3, 2, 4, false, "Jaguar", "E-Type", 4, 250m },
+                    { 6, 1980, 3, 3, 5, false, "Rolls Royce", "Silver Cloud", 3, 400m },
+                    { 7, 1999, 5, 4, 7, false, "Subaru", "Impreza WRX", 7, 120m },
+                    { 8, 1955, 2, 5, 6, false, "Mercedes-Benz", "300 SL", 5, 350m },
+                    { 9, 1966, 7, 8, 6, false, "Austin", "Mini Cooper", 4, 100m }
                 });
 
             migrationBuilder.CreateIndex(

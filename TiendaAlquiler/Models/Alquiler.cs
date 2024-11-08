@@ -17,10 +17,13 @@ public partial class Alquiler
     [Required]
     public string UsuarioId { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "La fecha de inicio es obligatoria")]
+    [DataType(DataType.Date)]
     public DateOnly FechaAlquiler { get; set; }
 
-    public DateOnly? FechaDevolucion { get; set; }
+    [DataType(DataType.Date)]
+    [Required(ErrorMessage = "La fecha de devolucion es obligatoria")]
+    public DateOnly FechaDevolucion { get; set; }
 
     [Required]
     [Range(0, double.MaxValue, ErrorMessage = "El precio final debe ser un valor positivo.")]
@@ -29,4 +32,9 @@ public partial class Alquiler
     public virtual Coche Coche { get; set; }
 
     public virtual Usuario Usuario { get; set; }
+    public Alquiler()
+    {
+        FechaAlquiler = DateOnly.FromDateTime(DateTime.Now);
+        FechaDevolucion = DateOnly.FromDateTime(DateTime.Now);
+    }
 }

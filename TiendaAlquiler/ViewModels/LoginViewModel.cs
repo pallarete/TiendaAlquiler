@@ -1,14 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace TiendaAlquiler.ViewModels
 {
     public class LoginViewModel
     {
-        [Required]
-        public string UsuarioNombre { get; set; }
+        [DisplayName("Nombre")]
+        [Required(ErrorMessage = "Nombre obligatorio")]
+        public required string UsuarioNombre { get; set; }
 
-        [Required]
+        [DisplayName("Contraseña")]
+        [Required(ErrorMessage = "Este campo es obligatorio")]
+        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
+        ErrorMessage = "La contraseña debe contener al menos una letra mayúscula," +
+         " una letra minúscula, un número y un carácter especial.")]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public required string Password { get; set; }
     }
 }

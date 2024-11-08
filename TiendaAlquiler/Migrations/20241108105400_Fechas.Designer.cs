@@ -12,8 +12,8 @@ using TiendaAlquiler.Data;
 namespace TiendaAlquiler.Migrations
 {
     [DbContext(typeof(TiendaAlquilerDBContext))]
-    [Migration("20241107154027_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241108105400_Fechas")]
+    partial class Fechas
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -172,7 +172,7 @@ namespace TiendaAlquiler.Migrations
                     b.Property<DateOnly>("FechaAlquiler")
                         .HasColumnType("date");
 
-                    b.Property<DateOnly?>("FechaDevolucion")
+                    b.Property<DateOnly>("FechaDevolucion")
                         .HasColumnType("date");
 
                     b.Property<decimal>("PrecioFinal")
@@ -309,7 +309,7 @@ namespace TiendaAlquiler.Migrations
                         new
                         {
                             CocheId = 1,
-                            AnioFabricacion = 0,
+                            AnioFabricacion = 1984,
                             CarroceriaId = 4,
                             ColorId = 1,
                             DecadaId = 6,
@@ -322,7 +322,7 @@ namespace TiendaAlquiler.Migrations
                         new
                         {
                             CocheId = 2,
-                            AnioFabricacion = 0,
+                            AnioFabricacion = 1963,
                             CarroceriaId = 6,
                             ColorId = 3,
                             DecadaId = 4,
@@ -335,7 +335,7 @@ namespace TiendaAlquiler.Migrations
                         new
                         {
                             CocheId = 3,
-                            AnioFabricacion = 0,
+                            AnioFabricacion = 1970,
                             CarroceriaId = 6,
                             ColorId = 6,
                             DecadaId = 5,
@@ -348,7 +348,7 @@ namespace TiendaAlquiler.Migrations
                         new
                         {
                             CocheId = 4,
-                            AnioFabricacion = 0,
+                            AnioFabricacion = 1955,
                             CarroceriaId = 4,
                             ColorId = 1,
                             DecadaId = 3,
@@ -361,7 +361,7 @@ namespace TiendaAlquiler.Migrations
                         new
                         {
                             CocheId = 5,
-                            AnioFabricacion = 0,
+                            AnioFabricacion = 1958,
                             CarroceriaId = 3,
                             ColorId = 2,
                             DecadaId = 4,
@@ -374,7 +374,7 @@ namespace TiendaAlquiler.Migrations
                         new
                         {
                             CocheId = 6,
-                            AnioFabricacion = 0,
+                            AnioFabricacion = 1980,
                             CarroceriaId = 3,
                             ColorId = 3,
                             DecadaId = 5,
@@ -387,7 +387,7 @@ namespace TiendaAlquiler.Migrations
                         new
                         {
                             CocheId = 7,
-                            AnioFabricacion = 0,
+                            AnioFabricacion = 1999,
                             CarroceriaId = 5,
                             ColorId = 4,
                             DecadaId = 7,
@@ -400,7 +400,7 @@ namespace TiendaAlquiler.Migrations
                         new
                         {
                             CocheId = 8,
-                            AnioFabricacion = 0,
+                            AnioFabricacion = 1955,
                             CarroceriaId = 2,
                             ColorId = 5,
                             DecadaId = 6,
@@ -413,7 +413,7 @@ namespace TiendaAlquiler.Migrations
                         new
                         {
                             CocheId = 9,
-                            AnioFabricacion = 0,
+                            AnioFabricacion = 1966,
                             CarroceriaId = 7,
                             ColorId = 8,
                             DecadaId = 6,

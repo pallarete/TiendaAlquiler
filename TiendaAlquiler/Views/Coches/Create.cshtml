@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="PrecioAlquiler" class="control-label"></label>
-                <input asp-for="PrecioAlquiler" class="form-control" />
+                <input asp-for="PrecioAlquiler" class="form-control" type="number" step="0.01" />
                 <span asp-validation-for="PrecioAlquiler" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
@@ -39,19 +39,19 @@
             </div>
             <div class="form-group">
                 <label asp-for="ColorId" class="control-label"></label>
-                <select asp-for="ColorId" class ="form-control" asp-items="ViewBag.ColorId"></select>
+                <select asp-for="ColorId" class="form-control" asp-items="ViewBag.ColorId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="CarroceriaId" class="control-label"></label>
-                <select asp-for="CarroceriaId" class ="form-control" asp-items="ViewBag.CarroceriaId"></select>
+                <select asp-for="CarroceriaId" class="form-control" asp-items="ViewBag.CarroceriaId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="DecadaId" class="control-label"></label>
-                <select asp-for="DecadaId" class ="form-control" asp-items="ViewBag.DecadaId"></select>
+                <select asp-for="DecadaId" class="form-control" asp-items="ViewBag.DecadaId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="PaisFabricacionId" class="control-label"></label>
-                <select asp-for="PaisFabricacionId" class ="form-control" asp-items="ViewBag.PaisFabricacionId"></select>
+                <select asp-for="PaisFabricacionId" class="form-control" asp-items="ViewBag.PaisFabricacionId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -65,5 +65,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
