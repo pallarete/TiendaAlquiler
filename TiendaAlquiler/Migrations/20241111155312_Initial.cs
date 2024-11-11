@@ -92,16 +92,16 @@ namespace TiendaAlquiler.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PaisFabricacion",
+                name: "Pais",
                 columns: table => new
                 {
-                    PaisFabricacionId = table.Column<int>(type: "int", nullable: false)
+                    PaisId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__PaisFabr__E30419353E3D377E", x => x.PaisFabricacionId);
+                    table.PrimaryKey("PK__Pais__E30419353E3D377E", x => x.PaisId);
                 });
 
             migrationBuilder.CreateTable(
@@ -224,7 +224,7 @@ namespace TiendaAlquiler.Migrations
                     ColorId = table.Column<int>(type: "int", nullable: false),
                     CarroceriaId = table.Column<int>(type: "int", nullable: false),
                     DecadaId = table.Column<int>(type: "int", nullable: false),
-                    PaisFabricacionId = table.Column<int>(type: "int", nullable: false)
+                    PaisId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -245,10 +245,10 @@ namespace TiendaAlquiler.Migrations
                         principalTable: "Decada",
                         principalColumn: "DecadaId");
                     table.ForeignKey(
-                        name: "FK_Coche_PaisFabricacion",
-                        column: x => x.PaisFabricacionId,
-                        principalTable: "PaisFabricacion",
-                        principalColumn: "PaisFabricacionId");
+                        name: "FK_Coche_Pais",
+                        column: x => x.PaisId,
+                        principalTable: "Pais",
+                        principalColumn: "PaisId");
                 });
 
             migrationBuilder.CreateTable(
@@ -260,7 +260,7 @@ namespace TiendaAlquiler.Migrations
                     CocheId = table.Column<int>(type: "int", nullable: false),
                     UsuarioId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FechaAlquiler = table.Column<DateOnly>(type: "date", nullable: false),
-                    FechaDevolucion = table.Column<DateOnly>(type: "date", nullable: true),
+                    FechaDevolucion = table.Column<DateOnly>(type: "date", nullable: false),
                     PrecioFinal = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
                 },
                 constraints: table =>
@@ -344,8 +344,8 @@ namespace TiendaAlquiler.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "PaisFabricacion",
-                columns: new[] { "PaisFabricacionId", "Nombre" },
+                table: "Pais",
+                columns: new[] { "PaisId", "Nombre" },
                 values: new object[,]
                 {
                     { 1, "España" },
@@ -359,7 +359,7 @@ namespace TiendaAlquiler.Migrations
 
             migrationBuilder.InsertData(
                 table: "Coche",
-                columns: new[] { "CocheId", "AnioFabricacion", "CarroceriaId", "ColorId", "DecadaId", "EstaAlquilado", "Marca", "Modelo", "PaisFabricacionId", "PrecioAlquiler" },
+                columns: new[] { "CocheId", "AnioFabricacion", "CarroceriaId", "ColorId", "DecadaId", "EstaAlquilado", "Marca", "Modelo", "PaisId", "PrecioAlquiler" },
                 values: new object[,]
                 {
                     { 1, 1984, 4, 1, 6, false, "Ferrari", "F40", 2, 1500m },
@@ -438,9 +438,9 @@ namespace TiendaAlquiler.Migrations
                 column: "DecadaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Coche_PaisFabricacionId",
+                name: "IX_Coche_PaisId",
                 table: "Coche",
-                column: "PaisFabricacionId");
+                column: "PaisId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Foto_CocheId",
@@ -491,7 +491,7 @@ namespace TiendaAlquiler.Migrations
                 name: "Decada");
 
             migrationBuilder.DropTable(
-                name: "PaisFabricacion");
+                name: "Pais");
         }
     }
 }

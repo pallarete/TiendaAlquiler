@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TiendaAlquiler.Models;
 using TiendaAlquiler.Data;
+using TiendaAlquiler.Models;
 
 
 namespace TiendaAlquiler.Controllers
 {
-    public class PaisFabricacionsController : Controller
+    public class PaisesController : Controller
     {
         private readonly TiendaAlquilerDBContext _context;
 
-        public PaisFabricacionsController(TiendaAlquilerDBContext context)
+        public PaisesController(TiendaAlquilerDBContext context)
         {
             _context = context;
         }
@@ -23,7 +18,7 @@ namespace TiendaAlquiler.Controllers
         // GET: PaisFabricacions
         public async Task<IActionResult> Index()
         {
-            return View(await _context.PaisFabricacions.ToListAsync());
+            return View(await _context.Paises.ToListAsync());
         }
 
         // GET: PaisFabricacions/Details/5
@@ -34,14 +29,14 @@ namespace TiendaAlquiler.Controllers
                 return NotFound();
             }
 
-            var paisFabricacion = await _context.PaisFabricacions
-                .FirstOrDefaultAsync(m => m.PaisFabricacionId == id);
-            if (paisFabricacion == null)
+            var pais = await _context.Paises
+                .FirstOrDefaultAsync(m => m.PaisId == id);
+            if (pais == null)
             {
                 return NotFound();
             }
 
-            return View(paisFabricacion);
+            return View(pais);
         }
 
         // GET: PaisFabricacions/Create
@@ -55,15 +50,15 @@ namespace TiendaAlquiler.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PaisFabricacionId,Nombre")] PaisFabricacion paisFabricacion)
+        public async Task<IActionResult> Create([Bind("PaisId,Nombre")] Pais pais)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(paisFabricacion);
+                _context.Add(pais);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(paisFabricacion);
+            return View(pais);
         }
 
         // GET: PaisFabricacions/Edit/5
@@ -74,12 +69,12 @@ namespace TiendaAlquiler.Controllers
                 return NotFound();
             }
 
-            var paisFabricacion = await _context.PaisFabricacions.FindAsync(id);
-            if (paisFabricacion == null)
+            var pais = await _context.Paises.FindAsync(id);
+            if (pais == null)
             {
                 return NotFound();
             }
-            return View(paisFabricacion);
+            return View(pais);
         }
 
         // POST: PaisFabricacions/Edit/5
@@ -87,9 +82,9 @@ namespace TiendaAlquiler.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PaisFabricacionId,Nombre")] PaisFabricacion paisFabricacion)
+        public async Task<IActionResult> Edit(int id, [Bind("PaisId,Nombre")] Pais pais)
         {
-            if (id != paisFabricacion.PaisFabricacionId)
+            if (id != pais.PaisId)
             {
                 return NotFound();
             }
@@ -98,12 +93,12 @@ namespace TiendaAlquiler.Controllers
             {
                 try
                 {
-                    _context.Update(paisFabricacion);
+                    _context.Update(pais);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PaisFabricacionExists(paisFabricacion.PaisFabricacionId))
+                    if (!PaisFabricacionExists(pais.PaisId))
                     {
                         return NotFound();
                     }
@@ -114,7 +109,7 @@ namespace TiendaAlquiler.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(paisFabricacion);
+            return View(pais);
         }
 
         // GET: PaisFabricacions/Delete/5
@@ -125,14 +120,14 @@ namespace TiendaAlquiler.Controllers
                 return NotFound();
             }
 
-            var paisFabricacion = await _context.PaisFabricacions
-                .FirstOrDefaultAsync(m => m.PaisFabricacionId == id);
-            if (paisFabricacion == null)
+            var pais = await _context.Paises
+                .FirstOrDefaultAsync(m => m.PaisId == id);
+            if (pais == null)
             {
                 return NotFound();
             }
 
-            return View(paisFabricacion);
+            return View(pais);
         }
 
         // POST: PaisFabricacions/Delete/5
@@ -140,10 +135,10 @@ namespace TiendaAlquiler.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var paisFabricacion = await _context.PaisFabricacions.FindAsync(id);
-            if (paisFabricacion != null)
+            var pais = await _context.Paises.FindAsync(id);
+            if (pais != null)
             {
-                _context.PaisFabricacions.Remove(paisFabricacion);
+                _context.Paises.Remove(pais);
             }
 
             await _context.SaveChangesAsync();
@@ -152,7 +147,7 @@ namespace TiendaAlquiler.Controllers
 
         private bool PaisFabricacionExists(int id)
         {
-            return _context.PaisFabricacions.Any(e => e.PaisFabricacionId == id);
+            return _context.Paises.Any(e => e.PaisId == id);
         }
     }
 }

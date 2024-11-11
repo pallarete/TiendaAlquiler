@@ -4,10 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Listado de Decadas</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear Decada</a>
 </p>
 <table class="table">
     <thead>
@@ -19,17 +19,18 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AnioInicio)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.DecadaId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.DecadaId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.DecadaId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnioInicio)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.DecadaId">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.DecadaId">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.DecadaId">Borrar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

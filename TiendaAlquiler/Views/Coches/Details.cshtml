@@ -6,7 +6,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Detalles del coche</h1>
 
 <div>
     <h4>Coche</h4>
@@ -37,12 +37,6 @@
             @Html.DisplayFor(model => model.PrecioAlquiler)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.EstaAlquilado)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.EstaAlquilado)
-        </dd>
-        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Carroceria)
         </dt>
         <dd class="col-sm-10">
@@ -58,17 +52,32 @@
             @Html.DisplayNameFor(model => model.Decada)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Decada.DecadaId)
+            @Html.DisplayFor(model => model.Decada.AnioInicio)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PaisFabricacion)
+            @Html.DisplayNameFor(model => model.Pais)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PaisFabricacion.Nombre)
+            @Html.DisplayFor(model => model.Pais.Nombre)
         </dd>
     </dl>
 </div>
-
+<h3>Fechas de Alquiler</h3>
+<div>
+    @if (Model.Alquilers != null && Model.Alquilers.Any())
+    {
+        <ul>
+            @foreach (var alquiler in Model.Alquilers)
+            {
+                <li>Desde: @alquiler.FechaAlquiler.ToShortDateString() - Hasta: @alquiler.FechaDevolucion.ToShortDateString()</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>Este coche no está alquilado actualmente.</p>
+    }
+</div>
 
 <h3>Fotos del Coche</h3>
 <div class="fotos">
@@ -78,7 +87,6 @@
         {
             <div class="foto">
                 <img src="~/@foto.RutaAcceso" alt="Foto del coche" style="width: auto; height: auto;" />
-                <!-- Puedes añadir más detalles de la foto aquí si es necesario -->
             </div>
         }
     }
@@ -96,3 +104,10 @@
     <a asp-action="Edit" asp-route-id="@Model?.CocheId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+
+
+
+<!-- Vincula las dependencias necesarias de Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

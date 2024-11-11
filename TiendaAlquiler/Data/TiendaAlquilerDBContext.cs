@@ -30,7 +30,7 @@ public class TiendaAlquilerDBContext : IdentityDbContext<Usuario>
 
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
-    public virtual DbSet<PaisFabricacion> PaisFabricacions { get; set; }
+    public virtual DbSet<Pais> Paises { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -92,10 +92,10 @@ public class TiendaAlquilerDBContext : IdentityDbContext<Usuario>
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Coche_Decada");
 
-            entity.HasOne(d => d.PaisFabricacion).WithMany(p => p.Coches)
-                .HasForeignKey(d => d.PaisFabricacionId)
+            entity.HasOne(d => d.Pais).WithMany(p => p.Coches)
+                .HasForeignKey(d => d.PaisId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Coche_PaisFabricacion");
+                .HasConstraintName("FK_Coche_Pais");
         });
 
         modelBuilder.Entity<Color>(entity =>
@@ -129,11 +129,11 @@ public class TiendaAlquilerDBContext : IdentityDbContext<Usuario>
                 .HasConstraintName("FK_Foto_Coche");
         });
 
-        modelBuilder.Entity<PaisFabricacion>(entity =>
+        modelBuilder.Entity<Pais>(entity =>
         {
-            entity.HasKey(e => e.PaisFabricacionId).HasName("PK__PaisFabr__E30419353E3D377E");
+            entity.HasKey(e => e.PaisId).HasName("PK__Pais__E30419353E3D377E");
 
-            entity.ToTable("PaisFabricacion");
+            entity.ToTable("Pais");
 
             entity.Property(e => e.Nombre)
                 .IsRequired()
@@ -177,35 +177,35 @@ public class TiendaAlquilerDBContext : IdentityDbContext<Usuario>
             );
 
 
-        modelBuilder.Entity<PaisFabricacion>().HasData(
-            new PaisFabricacion { PaisFabricacionId = 1, Nombre = "España" },
-            new PaisFabricacion { PaisFabricacionId = 2, Nombre = "Italia" },
-            new PaisFabricacion { PaisFabricacionId = 3, Nombre = "Francia" },
-            new PaisFabricacion { PaisFabricacionId = 4, Nombre = "Reino Unido" },
-            new PaisFabricacion { PaisFabricacionId = 5, Nombre = "Alemania" },
-            new PaisFabricacion { PaisFabricacionId = 6, Nombre = "Estados Unidos" },
-            new PaisFabricacion { PaisFabricacionId = 7, Nombre = "Japon" }
+        modelBuilder.Entity<Pais>().HasData(
+            new Pais { PaisId= 1, Nombre = "España" },
+            new Pais { PaisId= 2, Nombre = "Italia" },
+            new Pais { PaisId= 3, Nombre = "Francia" },
+            new Pais { PaisId= 4, Nombre = "Reino Unido" },
+            new Pais { PaisId= 5, Nombre = "Alemania" },
+            new Pais { PaisId= 6, Nombre = "Estados Unidos" },
+            new Pais { PaisId= 7, Nombre = "Japon" }
             );
 
 
         modelBuilder.Entity<Coche>().HasData(
-            new Coche { CocheId = 1, Marca = "Ferrari", Modelo = "F40", AnioFabricacion = 1984, CarroceriaId = 4, ColorId = 1, PaisFabricacionId = 2, DecadaId = 6, PrecioAlquiler = 1500, EstaAlquilado = false },
+            new Coche { CocheId = 1, Marca = "Ferrari", Modelo = "F40", AnioFabricacion = 1984, CarroceriaId = 4, ColorId = 1, PaisId= 2, DecadaId = 6, PrecioAlquiler = 1500, EstaAlquilado = false },
 
-            new Coche { CocheId = 2, Marca = "Aston Martin", Modelo = "DB5", AnioFabricacion = 1963, CarroceriaId = 6, ColorId = 3, PaisFabricacionId = 4, DecadaId = 4, PrecioAlquiler = 3000, EstaAlquilado = false },
+            new Coche { CocheId = 2, Marca = "Aston Martin", Modelo = "DB5", AnioFabricacion = 1963, CarroceriaId = 6, ColorId = 3, PaisId= 4, DecadaId = 4, PrecioAlquiler = 3000, EstaAlquilado = false },
 
-            new Coche { CocheId = 3, Marca = "Porsche", Modelo = "911", AnioFabricacion = 1970, CarroceriaId = 6, ColorId = 6, PaisFabricacionId = 5, DecadaId = 5, PrecioAlquiler = 2000, EstaAlquilado = false },
+            new Coche { CocheId = 3, Marca = "Porsche", Modelo = "911", AnioFabricacion = 1970, CarroceriaId = 6, ColorId = 6, PaisId= 5, DecadaId = 5, PrecioAlquiler = 2000, EstaAlquilado = false },
 
-            new Coche { CocheId = 4, Marca = "Ferrari", Modelo = "250 GTO", AnioFabricacion = 1955, CarroceriaId = 4, ColorId = 1, PaisFabricacionId = 2, DecadaId = 3, PrecioAlquiler = 300, EstaAlquilado = false },
+            new Coche { CocheId = 4, Marca = "Ferrari", Modelo = "250 GTO", AnioFabricacion = 1955, CarroceriaId = 4, ColorId = 1, PaisId= 2, DecadaId = 3, PrecioAlquiler = 300, EstaAlquilado = false },
 
-            new Coche { CocheId = 5, Marca = "Jaguar", Modelo = "E-Type", AnioFabricacion = 1958, CarroceriaId = 3, ColorId = 2, PaisFabricacionId = 4, DecadaId = 4, PrecioAlquiler = 250, EstaAlquilado = false },
+            new Coche { CocheId = 5, Marca = "Jaguar", Modelo = "E-Type", AnioFabricacion = 1958, CarroceriaId = 3, ColorId = 2, PaisId= 4, DecadaId = 4, PrecioAlquiler = 250, EstaAlquilado = false },
 
-            new Coche { CocheId = 6, Marca = "Rolls Royce", Modelo = "Silver Cloud", AnioFabricacion = 1980, CarroceriaId = 3, ColorId = 3, PaisFabricacionId = 3, DecadaId = 5, PrecioAlquiler = 400, EstaAlquilado = false },
+            new Coche { CocheId = 6, Marca = "Rolls Royce", Modelo = "Silver Cloud", AnioFabricacion = 1980, CarroceriaId = 3, ColorId = 3, PaisId= 3, DecadaId = 5, PrecioAlquiler = 400, EstaAlquilado = false },
 
-            new Coche { CocheId = 7, Marca = "Subaru", Modelo = "Impreza WRX", AnioFabricacion = 1999, CarroceriaId = 5, ColorId = 4, PaisFabricacionId = 7, DecadaId = 7, PrecioAlquiler = 120, EstaAlquilado = false },
+            new Coche { CocheId = 7, Marca = "Subaru", Modelo = "Impreza WRX", AnioFabricacion = 1999, CarroceriaId = 5, ColorId = 4, PaisId= 7, DecadaId = 7, PrecioAlquiler = 120, EstaAlquilado = false },
 
-            new Coche { CocheId = 8, Marca = "Mercedes-Benz", Modelo = "300 SL", AnioFabricacion = 1955, CarroceriaId = 2, ColorId = 5, PaisFabricacionId = 5, DecadaId = 6, PrecioAlquiler = 350, EstaAlquilado = false },
+            new Coche { CocheId = 8, Marca = "Mercedes-Benz", Modelo = "300 SL", AnioFabricacion = 1955, CarroceriaId = 2, ColorId = 5, PaisId= 5, DecadaId = 6, PrecioAlquiler = 350, EstaAlquilado = false },
 
-            new Coche { CocheId = 9, Marca = "Austin", Modelo = "Mini Cooper", AnioFabricacion = 1966, CarroceriaId = 7, ColorId = 8, PaisFabricacionId = 4, DecadaId = 6, PrecioAlquiler = 100, EstaAlquilado = false }
+            new Coche { CocheId = 9, Marca = "Austin", Modelo = "Mini Cooper", AnioFabricacion = 1966, CarroceriaId = 7, ColorId = 8, PaisId= 4, DecadaId = 6, PrecioAlquiler = 100, EstaAlquilado = false }
 
             );
 

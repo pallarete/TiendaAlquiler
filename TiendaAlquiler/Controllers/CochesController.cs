@@ -21,32 +21,46 @@ namespace TiendaAlquiler.Controllers
         }
 
         // GET: Coches
-        public async Task<IActionResult> Index(int? paisFabricacionId, int? carroceriaId)
+        public async Task<IActionResult> Index(int? paisId, int? decadaId, int? colorId, int? carroceriaId)
         {
+            ViewBag.Paises = _context.Paises.Select(p => new SelectListItem { Value = p.PaisId.ToString(), Text = p.Nombre }).ToList();
+            ViewBag.Decadas = _context.Decada.Select(d => new SelectListItem { Value = d.DecadaId.ToString(), Text = d.AnioInicio.ToString() }).ToList();
+            ViewBag.Colores = _context.Colors.Select(c => new SelectListItem { Value = c.ColorId.ToString(), Text = c.Nombre }).ToList();
+            ViewBag.Carrocerias = _context.Carroceria.Select(car => new SelectListItem { Value = car.CarroceriaId.ToString(), Text = car.Tipo }).ToList();
+
+
             var coches = _context.Coches
-                .Include(c => c.Carroceria)
-                .Include(c => c.Color)
+                .Include(c => c.Pais)
                 .Include(c => c.Decada)
-                .Include(c => c.PaisFabricacion)
+                .Include(c => c.Color)
+                .Include(c => c.Carroceria)
                 .AsQueryable(); //Convierto a una consulta que se puede modificar
-            if (paisFabricacionId.HasValue)
+
+
+            if (paisId.HasValue)
             {
-                coches = coches.Where(c => c.PaisFabricacionId == paisFabricacionId);
+                coches = coches.Where(c => c.PaisId == paisId.Value);
+            }
+
+            if (decadaId.HasValue)
+            {
+                coches = coches.Where(c => c.DecadaId == decadaId.Value);
+            }
+            if (colorId.HasValue)
+            {
+                coches = coches.Where(c => c.ColorId == colorId.Value);
             }
             if (carroceriaId.HasValue)
             {
-                coches = coches.Where(c => c.CarroceriaId == carroceriaId);
+                coches = coches.Where(c => c.CarroceriaId == carroceriaId.Value);
             }
-
-
-
 
             //paso a la vista la lista de coches filtrada (Si es necesario)
             //var cochesFiltrados = await coches.ToListAsync();
 
             //Obtener los paises disponibles para el filtro (sin flitrar)
-            ViewData["PaisId"] = new SelectList(_context.PaisFabricacions, "PaisFabricacion", "Nombre");
-            ViewData["CarroceriaId"] = new SelectList(_context.Carroceria, "Carroceria", "Tipo");
+            //ViewData["PaisId"] = new SelectList(_context.Paises, "Pais", "Nombre");
+            //ViewData["CarroceriaId"] = new SelectList(_context.Carroceria, "Carroceria", "Tipo");
 
             return View(await coches.ToListAsync());
         }
@@ -63,8 +77,9 @@ namespace TiendaAlquiler.Controllers
                 .Include(c => c.Carroceria)
                 .Include(c => c.Color)
                 .Include(c => c.Decada)
-                .Include(c => c.PaisFabricacion)
+                .Include(c => c.Pais)
                 .Include(c => c.Fotos)
+                .Include(c => c.Alquilers)
                 .FirstOrDefaultAsync(m => m.CocheId == id);
             if (coche == null)
             {
@@ -79,8 +94,8 @@ namespace TiendaAlquiler.Controllers
         {
             ViewData["CarroceriaId"] = new SelectList(_context.Carroceria, "CarroceriaId", "Tipo");
             ViewData["ColorId"] = new SelectList(_context.Colors, "ColorId", "Nombre");
-            ViewData["DecadaId"] = new SelectList(_context.Decada, "DecadaId", "DecadaId");
-            ViewData["PaisFabricacionId"] = new SelectList(_context.PaisFabricacions, "PaisFabricacionId", "Nombre");
+            ViewData["DecadaId"] = new SelectList(_context.Decada, "DecadaId", "AnioInicio");
+            ViewData["PaisId"] = new SelectList(_context.Paises, "PaisId", "Nombre");
             return View();
         }
 
@@ -89,7 +104,7 @@ namespace TiendaAlquiler.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CocheId,Marca,Modelo,AnioFabricacion,PrecioAlquiler,EstaAlquilado,ColorId,CarroceriaId,DecadaId,PaisFabricacionId")] Coche coche)
+        public async Task<IActionResult> Create([Bind("CocheId,Marca,Modelo,AnioFabricacion,PrecioAlquiler,EstaAlquilado,ColorId,CarroceriaId,DecadaId,PaisId")] Coche coche)
         {
             if (ModelState.IsValid)
             {
@@ -99,8 +114,8 @@ namespace TiendaAlquiler.Controllers
             }
             ViewData["CarroceriaId"] = new SelectList(_context.Carroceria, "CarroceriaId", "Tipo", coche.CarroceriaId);
             ViewData["ColorId"] = new SelectList(_context.Colors, "ColorId", "Nombre", coche.ColorId);
-            ViewData["DecadaId"] = new SelectList(_context.Decada, "DecadaId", "DecadaId", coche.DecadaId);
-            ViewData["PaisFabricacionId"] = new SelectList(_context.PaisFabricacions, "PaisFabricacionId", "Nombre", coche.PaisFabricacionId);
+            ViewData["DecadaId"] = new SelectList(_context.Decada, "DecadaId", "AnioInicio", coche.DecadaId);
+            ViewData["PaisId"] = new SelectList(_context.Paises, "PaisId", "Nombre", coche.PaisId);
             return View(coche);
         }
 
@@ -119,8 +134,8 @@ namespace TiendaAlquiler.Controllers
             }
             ViewData["CarroceriaId"] = new SelectList(_context.Carroceria, "CarroceriaId", "Tipo", coche.CarroceriaId);
             ViewData["ColorId"] = new SelectList(_context.Colors, "ColorId", "Nombre", coche.ColorId);
-            ViewData["DecadaId"] = new SelectList(_context.Decada, "DecadaId", "DecadaId", coche.DecadaId);
-            ViewData["PaisFabricacionId"] = new SelectList(_context.PaisFabricacions, "PaisFabricacionId", "Nombre", coche.PaisFabricacionId);
+            ViewData["DecadaId"] = new SelectList(_context.Decada, "DecadaId", "AnioInicio", coche.DecadaId);
+            ViewData["PaisId"] = new SelectList(_context.Paises, "PaisId", "Nombre", coche.PaisId);
             return View(coche);
         }
 
@@ -129,7 +144,7 @@ namespace TiendaAlquiler.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CocheId,Marca,Modelo,AnioFabricacion,PrecioAlquiler,EstaAlquilado,ColorId,CarroceriaId,DecadaId,PaisFabricacionId")] Coche coche)
+        public async Task<IActionResult> Edit(int id, [Bind("CocheId,Marca,Modelo,AnioFabricacion,PrecioAlquiler,EstaAlquilado,ColorId,CarroceriaId,DecadaId,PaisId")] Coche coche)
         {
             if (id != coche.CocheId)
             {
@@ -159,7 +174,7 @@ namespace TiendaAlquiler.Controllers
             ViewData["CarroceriaId"] = new SelectList(_context.Carroceria, "CarroceriaId", "Tipo", coche.CarroceriaId);
             ViewData["ColorId"] = new SelectList(_context.Colors, "ColorId", "Nombre", coche.ColorId);
             ViewData["DecadaId"] = new SelectList(_context.Decada, "DecadaId", "DecadaId", coche.DecadaId);
-            ViewData["PaisFabricacionId"] = new SelectList(_context.PaisFabricacions, "PaisFabricacionId", "Nombre", coche.PaisFabricacionId);
+            ViewData["PaisId"] = new SelectList(_context.Paises, "PaisId", "Nombre", coche.PaisId);
             return View(coche);
         }
 
@@ -175,7 +190,7 @@ namespace TiendaAlquiler.Controllers
                 .Include(c => c.Carroceria)
                 .Include(c => c.Color)
                 .Include(c => c.Decada)
-                .Include(c => c.PaisFabricacion)
+                .Include(c => c.Pais)
                 .FirstOrDefaultAsync(m => m.CocheId == id);
             if (coche == null)
             {
@@ -203,6 +218,27 @@ namespace TiendaAlquiler.Controllers
         private bool CocheExists(int id)
         {
             return _context.Coches.Any(e => e.CocheId == id);
+        }
+
+        //Vamos a crear una accion para obtener la disponibilidad del coche
+        public async Task<IActionResult> ObtenerDisponibilidad(int cocheId)
+        {
+            // Obtener los alquileres para un coche específico
+            var alquileres = await _context.Alquilers
+                .Where(a => a.CocheId == cocheId)
+                .Select(a => new
+                {
+                    title = "Coche no disponible", // Puedes personalizar el título como desees
+                    start = a.FechaAlquiler.ToString("yyyy-MM-dd"), // Fecha de inicio
+                    end = a.FechaDevolucion.ToString("yyyy-MM-dd"), // Fecha de finalización
+                    description = "Alquiler del coche" // Puedes agregar más detalles si es necesario
+                })
+                .ToListAsync();
+
+            // Retornar los datos como JSON
+
+            return Json(alquileres);
+
         }
     }
 }

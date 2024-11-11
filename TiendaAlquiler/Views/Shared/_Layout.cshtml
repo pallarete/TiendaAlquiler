@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - TiendaAlquiler</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/TiendaAlquiler.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -35,7 +36,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Decadas" asp-action="Index">Decadas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="PaisFabricacions" asp-action="Index">Pais</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Paises" asp-action="Index">Pais</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Coches" asp-action="Index">Coches</a>
@@ -51,9 +52,9 @@
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Logout","Usuario")"  class="nav-link text-dark">Cerrar Sesion</a>
-                                </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("Logout","Usuario")" class="nav-link text-dark">Cerrar Sesion</a>
+                            </li>
                         }
                     </ul>
                 </div>
@@ -74,6 +75,8 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

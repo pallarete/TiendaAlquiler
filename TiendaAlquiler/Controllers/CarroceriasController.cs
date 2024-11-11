@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TiendaAlquiler.Models;
 using TiendaAlquiler.Data;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace TiendaAlquiler.Controllers
 {
+   
     public class CarroceriasController : Controller
     {
         private readonly TiendaAlquilerDBContext _context;

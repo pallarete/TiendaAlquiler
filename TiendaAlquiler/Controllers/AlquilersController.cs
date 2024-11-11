@@ -90,42 +90,58 @@ namespace TiendaAlquiler.Controllers
                 // Obtener el coche desde la base de datos utilizando el CocheId
                 var coche = await _context.Coches.FindAsync(alquiler.CocheId);
 
-                if (coche != null)
+
+                //Si el coche no fue encontrado
+                if (coche == null)
                 {
-                    // Convertir las fechas de DateOnly a DateTime para poder realizar la operación de días
-                    DateTime fechaAlquiler = alquiler.FechaAlquiler.ToDateTime(new TimeOnly());
-                    DateTime fechaDevolucion = alquiler.FechaDevolucion.ToDateTime(new TimeOnly());
 
-                    // Calcular el número de días de alquiler
-                    var diasAlquiler = (fechaDevolucion - fechaAlquiler).Days;
-
-                    // Validar que la fecha de devolución es posterior a la fecha de alquiler
-                    if (diasAlquiler > 0)
-                    {
-                        // Si es válida, calcular el precio final
-                        alquiler.PrecioFinal = coche.PrecioAlquiler * diasAlquiler;
-                    }
-                    else
-                    {
-                        // Si la fecha de devolución no es válida, añadir error de validación
-                        ModelState.AddModelError("", "La fecha de devolución debe ser posterior a la fecha de alquiler.");
-                        return View(alquiler);
-                    }
-                }
-
-                // Si el coche no fue encontrado, agregar un error
-                else
-                {
-                    ModelState.AddModelError("", "El coche no existe.");
+                    ModelState.AddModelError("", "El coche no existe");
                     return View(alquiler);
                 }
+
+                // Convertir las fechas de DateOnly a DateTime para poder realizar la operación de días
+                DateTime fechaAlquiler = alquiler.FechaAlquiler.ToDateTime(new TimeOnly());
+                DateTime fechaDevolucion = alquiler.FechaDevolucion.ToDateTime(new TimeOnly());
+
+                // Validar que la fecha de devolución es posterior a la fecha de alquiler
+                if (fechaDevolucion <= fechaAlquiler)
+                {
+                    ModelState.AddModelError("", "La fecha de devolución debe ser posterior a la fecha de alquiler.");
+                    return View(alquiler);
+
+                }
+
+                // Verificar si ya existe un alquiler para el mismo coche en el rango de fechas
+                var alquileresCoche = await _context.Alquilers
+                    .Where(a => a.CocheId == alquiler.CocheId)
+                    .ToListAsync();
+
+                bool fechasSolapadas = alquileresCoche
+                    .Any(a =>
+                        (fechaAlquiler >= a.FechaAlquiler.ToDateTime(new TimeOnly()) && fechaAlquiler < a.FechaDevolucion.ToDateTime(new TimeOnly())) ||
+                        (fechaDevolucion > a.FechaAlquiler.ToDateTime(new TimeOnly()) && fechaDevolucion <= a.FechaDevolucion.ToDateTime(new TimeOnly())) ||
+                        (fechaAlquiler <= a.FechaAlquiler.ToDateTime(new TimeOnly()) && fechaDevolucion >= a.FechaDevolucion.ToDateTime(new TimeOnly()))
+                    );
+
+                if (fechasSolapadas)
+                {
+                    ModelState.AddModelError("", "Este coche ya está alquilado en el rango de fechas seleccionado.");
+                    return View(alquiler);
+                }
+
+
+                //Calculo el numero de dias de alquiler
+                //Calculo el precio final del Alquiler
+                var diasAlquiler = (fechaDevolucion - fechaAlquiler).Days;
+                alquiler.PrecioFinal = coche.PrecioAlquiler * diasAlquiler;
 
                 // Guardar el alquiler en la base de datos
                 _context.Add(alquiler);
                 await _context.SaveChangesAsync();
 
-                // Redirigir a la lista de alquileres o donde desees
+                //Redirigo a la lista de alquileres o donde quiera
                 return RedirectToAction(nameof(Index));
+
             }
 
             // Si el modelo no es válido, devolver las listas de coches y usuarios para la vista
@@ -134,8 +150,11 @@ namespace TiendaAlquiler.Controllers
 
             return View(alquiler);
 
-
         }
+
+
+
+
 
         // GET: Alquilers/Edit/5
         public async Task<IActionResult> Edit(int? id)

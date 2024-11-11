@@ -366,3 +366,9 @@ FodyWeavers.xsd
 /TiendaAlquiler/Migrations/20241107154027_InitialCreate.cs
 /TiendaAlquiler/Migrations/20241107154027_InitialCreate.Designer.cs
 /TiendaAlquiler/Migrations/20241107154027_InitialCreate.cs
+/TiendaAlquiler/Controllers/PaisesControllers.cs
+/TiendaAlquiler/Controllers/PaisFabricacionsController.cs
+/TiendaAlquiler/Migrations/20241108101914_Initial.Designer.cs
+/TiendaAlquiler/Migrations/20241108101914_Initial.Designer.cs
+/TiendaAlquiler/Views/PaisFabricacions/Index.cshtml
+/TiendaAlquiler/Migrations/20241108105400_Fechas.cs

@@ -12,8 +12,8 @@ using TiendaAlquiler.Data;
 namespace TiendaAlquiler.Migrations
 {
     [DbContext(typeof(TiendaAlquilerDBContext))]
-    [Migration("20241108105400_Fechas")]
-    partial class Fechas
+    [Migration("20241111155312_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -286,7 +286,7 @@ namespace TiendaAlquiler.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("PaisFabricacionId")
+                    b.Property<int>("PaisId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("PrecioAlquiler")
@@ -301,7 +301,7 @@ namespace TiendaAlquiler.Migrations
 
                     b.HasIndex("DecadaId");
 
-                    b.HasIndex("PaisFabricacionId");
+                    b.HasIndex("PaisId");
 
                     b.ToTable("Coche", (string)null);
 
@@ -316,7 +316,7 @@ namespace TiendaAlquiler.Migrations
                             EstaAlquilado = false,
                             Marca = "Ferrari",
                             Modelo = "F40",
-                            PaisFabricacionId = 2,
+                            PaisId = 2,
                             PrecioAlquiler = 1500m
                         },
                         new
@@ -329,7 +329,7 @@ namespace TiendaAlquiler.Migrations
                             EstaAlquilado = false,
                             Marca = "Aston Martin",
                             Modelo = "DB5",
-                            PaisFabricacionId = 4,
+                            PaisId = 4,
                             PrecioAlquiler = 3000m
                         },
                         new
@@ -342,7 +342,7 @@ namespace TiendaAlquiler.Migrations
                             EstaAlquilado = false,
                             Marca = "Porsche",
                             Modelo = "911",
-                            PaisFabricacionId = 5,
+                            PaisId = 5,
                             PrecioAlquiler = 2000m
                         },
                         new
@@ -355,7 +355,7 @@ namespace TiendaAlquiler.Migrations
                             EstaAlquilado = false,
                             Marca = "Ferrari",
                             Modelo = "250 GTO",
-                            PaisFabricacionId = 2,
+                            PaisId = 2,
                             PrecioAlquiler = 300m
                         },
                         new
@@ -368,7 +368,7 @@ namespace TiendaAlquiler.Migrations
                             EstaAlquilado = false,
                             Marca = "Jaguar",
                             Modelo = "E-Type",
-                            PaisFabricacionId = 4,
+                            PaisId = 4,
                             PrecioAlquiler = 250m
                         },
                         new
@@ -381,7 +381,7 @@ namespace TiendaAlquiler.Migrations
                             EstaAlquilado = false,
                             Marca = "Rolls Royce",
                             Modelo = "Silver Cloud",
-                            PaisFabricacionId = 3,
+                            PaisId = 3,
                             PrecioAlquiler = 400m
                         },
                         new
@@ -394,7 +394,7 @@ namespace TiendaAlquiler.Migrations
                             EstaAlquilado = false,
                             Marca = "Subaru",
                             Modelo = "Impreza WRX",
-                            PaisFabricacionId = 7,
+                            PaisId = 7,
                             PrecioAlquiler = 120m
                         },
                         new
@@ -407,7 +407,7 @@ namespace TiendaAlquiler.Migrations
                             EstaAlquilado = false,
                             Marca = "Mercedes-Benz",
                             Modelo = "300 SL",
-                            PaisFabricacionId = 5,
+                            PaisId = 5,
                             PrecioAlquiler = 350m
                         },
                         new
@@ -420,7 +420,7 @@ namespace TiendaAlquiler.Migrations
                             EstaAlquilado = false,
                             Marca = "Austin",
                             Modelo = "Mini Cooper",
-                            PaisFabricacionId = 4,
+                            PaisId = 4,
                             PrecioAlquiler = 100m
                         });
                 });
@@ -569,58 +569,58 @@ namespace TiendaAlquiler.Migrations
                     b.ToTable("Foto", (string)null);
                 });
 
-            modelBuilder.Entity("TiendaAlquiler.Models.PaisFabricacion", b =>
+            modelBuilder.Entity("TiendaAlquiler.Models.Pais", b =>
                 {
-                    b.Property<int>("PaisFabricacionId")
+                    b.Property<int>("PaisId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaisFabricacionId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaisId"));
 
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("PaisFabricacionId")
-                        .HasName("PK__PaisFabr__E30419353E3D377E");
+                    b.HasKey("PaisId")
+                        .HasName("PK__Pais__E30419353E3D377E");
 
-                    b.ToTable("PaisFabricacion", (string)null);
+                    b.ToTable("Pais", (string)null);
 
                     b.HasData(
                         new
                         {
-                            PaisFabricacionId = 1,
+                            PaisId = 1,
                             Nombre = "España"
                         },
                         new
                         {
-                            PaisFabricacionId = 2,
+                            PaisId = 2,
                             Nombre = "Italia"
                         },
                         new
                         {
-                            PaisFabricacionId = 3,
+                            PaisId = 3,
                             Nombre = "Francia"
                         },
                         new
                         {
-                            PaisFabricacionId = 4,
+                            PaisId = 4,
                             Nombre = "Reino Unido"
                         },
                         new
                         {
-                            PaisFabricacionId = 5,
+                            PaisId = 5,
                             Nombre = "Alemania"
                         },
                         new
                         {
-                            PaisFabricacionId = 6,
+                            PaisId = 6,
                             Nombre = "Estados Unidos"
                         },
                         new
                         {
-                            PaisFabricacionId = 7,
+                            PaisId = 7,
                             Nombre = "Japon"
                         });
                 });
@@ -780,11 +780,11 @@ namespace TiendaAlquiler.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_Coche_Decada");
 
-                    b.HasOne("TiendaAlquiler.Models.PaisFabricacion", "PaisFabricacion")
+                    b.HasOne("TiendaAlquiler.Models.Pais", "Pais")
                         .WithMany("Coches")
-                        .HasForeignKey("PaisFabricacionId")
+                        .HasForeignKey("PaisId")
                         .IsRequired()
-                        .HasConstraintName("FK_Coche_PaisFabricacion");
+                        .HasConstraintName("FK_Coche_Pais");
 
                     b.Navigation("Carroceria");
 
@@ -792,7 +792,7 @@ namespace TiendaAlquiler.Migrations
 
                     b.Navigation("Decada");
 
-                    b.Navigation("PaisFabricacion");
+                    b.Navigation("Pais");
                 });
 
             modelBuilder.Entity("TiendaAlquiler.Models.Foto", b =>
@@ -829,7 +829,7 @@ namespace TiendaAlquiler.Migrations
                     b.Navigation("Coches");
                 });
 
-            modelBuilder.Entity("TiendaAlquiler.Models.PaisFabricacion", b =>
+            modelBuilder.Entity("TiendaAlquiler.Models.Pais", b =>
                 {
                     b.Navigation("Coches");
                 });

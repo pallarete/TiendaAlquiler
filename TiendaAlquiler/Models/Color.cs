@@ -14,6 +14,8 @@ public partial class Color
 
     [Required(ErrorMessage = "El nombre del color es obligatorio.")]
     [StringLength(50, ErrorMessage = "El nombre del color no puede tener más de 50 caracteres.")]
+    [RegularExpression(@"^[A-Za-zÁáÉéÍíÓóÚúÑñ\s]+$", ErrorMessage = "El tipo de color solo puede contener letras y espacios.")]
+
     public string Nombre { get; set; }
 
     public virtual ICollection<Coche> Coches { get; set; } = new List<Coche>();

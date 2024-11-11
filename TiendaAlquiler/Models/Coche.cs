@@ -21,12 +21,12 @@ public partial class Coche
     [Required(ErrorMessage = "Introduzca un Modelo")]
     public required string Modelo { get; set; }
 
-    [DisplayName("Año De Fabricacion")]
+    [DisplayName("Año")]
     [Required(ErrorMessage = "Introduzca un año de fabricacion")]
     public required int AnioFabricacion { get; set; }
 
     [DisplayName("Precio por dia")]
-    [Required]
+    [Required(ErrorMessage = "El precio por dia es obligatorio")]
     [Range(0.01, double.MaxValue, ErrorMessage = "El precio de alquiler debe ser mayor a cero.")]
     [Column(TypeName = "decimal(18,2)")]
     public required decimal PrecioAlquiler { get; set; }
@@ -47,7 +47,7 @@ public partial class Coche
 
     [DisplayName("Pais de Origen")]
     [Required]
-    public int PaisFabricacionId { get; set; }
+    public int PaisId { get; set; }
 
     [Required]
     public virtual ICollection<Alquiler> Alquilers { get; set; } = new List<Alquiler>();
@@ -55,7 +55,7 @@ public partial class Coche
     public virtual Carroceria Carroceria { get; set; }
     public virtual Color Color { get; set; }
     public virtual Decada Decada { get; set; }
-    public virtual PaisFabricacion PaisFabricacion { get; set; }
+    public virtual Pais Pais { get; set; }
 
     public virtual ICollection<Foto> Fotos { get; set; } = new List<Foto>();
 
