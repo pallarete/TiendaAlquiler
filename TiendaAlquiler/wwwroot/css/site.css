@@ -1,5 +1,7 @@
 html {
     font-size: 14px;
+    height: 100%;
+    margin: 0;
 }
 
 @media (min-width: 768px) {
@@ -7,8 +9,6 @@ html {
         font-size: 16px;
     }
 }
-
-
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
@@ -21,6 +21,31 @@ html {
 
 body {
     margin-bottom: 60px;
+    background-color: #f0f0f0; /*//Color de respaldo*/
+    background-image: url('/imagenes/Fondo.jpg');
+    background-size: cover; /* //Ajusta la imagen para que cubra toda la pantalla */
+    background-position: center center;
+    //Centra la imagen background-attachment: fixed; /*//Hace que la imagen de fondo se quede fija al hacer scroll */
+    background-repeat: no-repeat; /* //Evita que la imagen se repita */
+    height: 100%;
+    /*margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;*/ /* Fondo general, aunque el video cubre toda la página */
+    /*position: relative;*/
+}
+
+/*#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;*/ /* Asegura que el video cubra toda la pantalla */
+/*z-index: -1;*/ /* Coloca el video detrás del contenido */
+/*}*/
+.table {
+    background-color:white;
 }
 
 .fotos {
@@ -34,4 +59,28 @@ body {
     padding: 3px;
     margin: 3px;
     border: solid blue 3px;
+}
+
+.carousel-inner {
+    border: 3px solid red;
+    border-radius: 10px;
+    background-color: black;
+}
+
+.carousel-item img {
+    border: 3px solid black;
+    object-fit: contain;
+    height: 300px;
+    width: 100%;
+    /*object-fit: cover;*/ /* Esto ajusta las imágenes para que cubran el área sin deformarse */
+}
+
+.container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
 }

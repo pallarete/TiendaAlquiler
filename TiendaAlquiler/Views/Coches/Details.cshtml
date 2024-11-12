@@ -6,61 +6,82 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Detalles del coche</h1>
+<h1>Informacion del coche</h1>
 
 <div>
-    <h4>Coche</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Marca)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Marca)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Modelo)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Modelo)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.AnioFabricacion)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.AnioFabricacion)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PrecioAlquiler)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PrecioAlquiler)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Carroceria)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Carroceria.Tipo)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Color.Nombre)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Decada)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Decada.AnioInicio)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Pais)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Pais.Nombre)
-        </dd>
-    </dl>
+    <div>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Marca)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Marca)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Modelo)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Modelo)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.AnioFabricacion)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.AnioFabricacion)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PrecioAlquiler)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PrecioAlquiler)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Carroceria)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Carroceria.Tipo)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Color)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Color.Nombre)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Decada)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Decada.AnioInicio)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Pais)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Pais.Nombre)
+            </dd>
+        </dl>
+    </div>
+
+    @* Mostrar descripcion si existe *@
+    @if (!string.IsNullOrEmpty(Model.Description))
+    {
+        <h4>Descripcion</h4>
+        <P>@Model.Description</P>
+    }
+    @* Solo se mostrara si existe *@
+    @if (User.IsInRole("Admin"))
+    {
+        <h4>Agregar o Editar Descripción</h4>
+        <form asp-action="ActualizarDescripcion" method="post">
+            <input type="hidden" asp-for="CocheId" />
+            <div class="form-group">
+                <textarea name="Descripcion" class="form-control" placeholder="Escribe una descripción del coche">@Model.Description</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Descripción</button>
+        </form>
+
+    }
 </div>
 <h3>Fechas de Alquiler</h3>
 <div>
@@ -79,21 +100,36 @@
     }
 </div>
 
-<h3>Fotos del Coche</h3>
-<div class="fotos">
-    @if (Model.Fotos != null && Model.Fotos.Count > 0)
-    {
-        foreach (var foto in Model.Fotos)
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        @if (Model.Fotos != null && Model.Fotos.Count > 0)
         {
-            <div class="foto">
-                <img src="~/@foto.RutaAcceso" alt="Foto del coche" style="width: auto; height: auto;" />
+            bool isFirst = true;
+            foreach (var foto in Model.Fotos)
+            {
+                <div class="carousel-item @(isFirst ? "active" : "")">
+                    <img src="@Url.Content("~/" + foto.RutaAcceso.Replace("\\", "/"))" class="d-block w-100 img-fluid" alt="Foto del coche">
+                </div>
+                isFirst = false;  // Solo la primera imagen debe ser "active"
+            }
+        }
+        else
+        {
+            <div class="carousel-item active">
+                <p class="text-center">No hay fotos disponibles para este coche.</p>
             </div>
         }
-    }
-    else
-    {
-        <p>No hay fotos disponibles para este coche.</p>
-    }
+    </div>
+
+    <!-- Controles de navegación del carrusel -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </div>
 
 <a asp-controller="Alquilers" asp-action="Create" asp-route-cocheId="@Model.CocheId" asp-route-usuarioId="@UserManager.GetUserId(User)" class="btn btn-primary">

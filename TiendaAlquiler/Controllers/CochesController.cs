@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TiendaAlquiler.Data;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace TiendaAlquiler.Controllers
@@ -90,6 +91,7 @@ namespace TiendaAlquiler.Controllers
         }
 
         // GET: Coches/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["CarroceriaId"] = new SelectList(_context.Carroceria, "CarroceriaId", "Tipo");
@@ -104,6 +106,7 @@ namespace TiendaAlquiler.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("CocheId,Marca,Modelo,AnioFabricacion,PrecioAlquiler,EstaAlquilado,ColorId,CarroceriaId,DecadaId,PaisId")] Coche coche)
         {
             if (ModelState.IsValid)
@@ -120,6 +123,7 @@ namespace TiendaAlquiler.Controllers
         }
 
         // GET: Coches/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -144,6 +148,7 @@ namespace TiendaAlquiler.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("CocheId,Marca,Modelo,AnioFabricacion,PrecioAlquiler,EstaAlquilado,ColorId,CarroceriaId,DecadaId,PaisId")] Coche coche)
         {
             if (id != coche.CocheId)
@@ -179,6 +184,7 @@ namespace TiendaAlquiler.Controllers
         }
 
         // GET: Coches/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -203,6 +209,8 @@ namespace TiendaAlquiler.Controllers
         // POST: Coches/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var coche = await _context.Coches.FindAsync(id);
@@ -240,5 +248,21 @@ namespace TiendaAlquiler.Controllers
             return Json(alquileres);
 
         }
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> ActualizarDescripcion(int CocheId, string Descripcion)
+        {
+            var coche = await _context.Coches.FindAsync(CocheId);
+            if (coche == null)
+            {
+                return NotFound();
+            }
+
+            coche.Description = Descripcion;
+            _context.Update(coche);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Details", new { id = coche.CocheId });
+        }
+
     }
 }

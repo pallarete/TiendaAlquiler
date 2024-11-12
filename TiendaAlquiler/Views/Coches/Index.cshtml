@@ -5,10 +5,13 @@
 }
 
 <h1>Listado de Coches</h1>
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create">Crear nuevo coche</a>
+    </p>
+}
 
-<p>
-    <a asp-action="Create">Crear nuevo coche</a>
-</p>
 
 <!-- Formulario de Filtros -->
 <form asp-action="Index" method="get" class="d-flex flex-wrap align-items-end">
@@ -55,12 +58,6 @@
     <button type="submit" class="btn btn-primary">Filtrar</button>
 </form>
 
-
-
-
-
-
-
 <table class="table">
     <thead>
         <tr>
@@ -88,9 +85,18 @@
                 <td>@Html.DisplayFor(modelItem => item.Decada.AnioInicio)</td>
                 <td>@Html.DisplayFor(modelItem => item.Pais.Nombre)</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.CocheId">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.CocheId">Detalles</a> |
-                    <a asp-action="Delete" asp-route-id="@item.CocheId">Borrar Coche</a>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.CocheId">Editar</a>
+                    }
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Delete" asp-route-id="@item.CocheId">Borrar Coche</a>
+
+                    }
+
+
+                    <a asp-action="Details" asp-route-id="@item.CocheId">Detalles</a> 
                 </td>
             </tr>
         }

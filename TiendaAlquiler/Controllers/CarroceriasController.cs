@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace TiendaAlquiler.Controllers
 {
-   
+    [Authorize(Roles = "Admin")]
     public class CarroceriasController : Controller
     {
         private readonly TiendaAlquilerDBContext _context;

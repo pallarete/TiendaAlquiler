@@ -6,9 +6,19 @@
 
 <h1>Listado de Colores</h1>
 
-<p>
-    <a asp-action="Create">Crear nuevo Color</a>
-</p>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create">Crear nuevo Color</a>
+    </p>
+
+}
+else
+{
+    <div>
+        <p>No puedes acceder a la creacion de colores</p>
+    </div>
+}
 <table class="table">
     <thead>
         <tr>
@@ -19,17 +29,18 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ColorId">Editar Color</a> |
-                <a asp-action="Details" asp-route-id="@item.ColorId">Detalles del Color</a> |
-                <a asp-action="Delete" asp-route-id="@item.ColorId">Borrar Color</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ColorId">Editar Color</a> |
+                    <a asp-action="Details" asp-route-id="@item.ColorId">Detalles del Color</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ColorId">Borrar Color</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

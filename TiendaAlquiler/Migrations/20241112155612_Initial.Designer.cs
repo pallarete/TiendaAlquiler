@@ -12,7 +12,7 @@ using TiendaAlquiler.Data;
 namespace TiendaAlquiler.Migrations
 {
     [DbContext(typeof(TiendaAlquilerDBContext))]
-    [Migration("20241111155312_Initial")]
+    [Migration("20241112155612_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -272,6 +272,9 @@ namespace TiendaAlquiler.Migrations
 
                     b.Property<int>("DecadaId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("EstaAlquilado")
                         .HasColumnType("bit");

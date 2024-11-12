@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TiendaAlquiler.Data;
 using TiendaAlquiler.Models;
@@ -6,6 +7,7 @@ using TiendaAlquiler.Models;
 
 namespace TiendaAlquiler.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class PaisesController : Controller
     {
         private readonly TiendaAlquilerDBContext _context;

@@ -13,10 +13,12 @@ using TiendaAlquiler.Models;
 using System.Drawing; // Asegúrate de incluir este espacio de nombres
 using System.Drawing.Imaging;
 using TiendaAlquiler.Data;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace TiendaAlquiler.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class FotoesController : Controller
     {
         private readonly TiendaAlquilerDBContext _context;

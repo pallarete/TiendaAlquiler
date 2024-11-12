@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="~/TiendaAlquiler.styles.css" asp-append-version="true" />
 </head>
 <body>
+    <!-- Video de fondo (colocado al principio del body) -->
+   @*  <video autoplay muted loop id="background-video" class="video-background">
+        <source src="/videos/fondo-video.mp4" type="video/mp4">
+        <source src="/videos/fondo-video.webm" type="video/webm">
+        Tu navegador no soporta la etiqueta de video.
+    </video> *@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -27,22 +33,42 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Carrocerias" asp-action="Index">Carrocerias</a>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Carrocerias" asp-action="Index">Carrocerias</a>
+                            }
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Colors" asp-action="Index">Colores</a>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Colors" asp-action="Index">Colores</a>
+                            }
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Decadas" asp-action="Index">Decadas</a>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Decadas" asp-action="Index">Decadas</a>
+                            }
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Paises" asp-action="Index">Pais</a>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Paises" asp-action="Index">Pais</a>
+                            }
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Coches" asp-action="Index">Coches</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Fotoes" asp-action="Index">Fotos</a>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Fotoes" asp-action="Index">Fotos</a>
+                            }
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Register">Registro</a>
@@ -65,6 +91,9 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+    </div>
+    <div>
+
     </div>
 
     <footer class="border-top footer text-muted">

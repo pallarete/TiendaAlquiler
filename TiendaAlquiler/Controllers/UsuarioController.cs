@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -72,17 +73,7 @@ namespace TiendaAlquiler.Controllers
             }
             return View(usuario);
         }
-
-        // POST: Usuario/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-
-
-
-
-
+            
         // GET: Usuario/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
@@ -153,7 +144,9 @@ namespace TiendaAlquiler.Controllers
                 if (result.Succeeded)
                 {
                     // Verificar si es el primer usuario
-                    if (!await _userManager.Users.AnyAsync()) // Si es el primer usuario
+                    var usersCount = await _userManager.Users.CountAsync();
+
+                    if (usersCount ==1) // Si es el primer usuario
                     {
                         // Verificar si el rol Admin existe, si no, crear el rol
                         var roleExists = await _roleManager.RoleExistsAsync("Admin");
@@ -210,7 +203,7 @@ namespace TiendaAlquiler.Controllers
                         // Redirigir dependiendo del rol, por ejemplo
                         if (await _userManager.IsInRoleAsync(usuario, "Admin"))
                         {
-                            return RedirectToAction("Index", "Admin"); // o lo que sea tu página de Admin
+                            return RedirectToAction("Index", "Home"); // o lo que sea tu página de Admin
                         }
                         return RedirectToAction("Index", "Home");
 
@@ -237,5 +230,11 @@ namespace TiendaAlquiler.Controllers
         {
             return _context.Usuarios.Any(e => e.Id == id);
         }
+        // Acción para manejar el acceso denegado
+        public IActionResult AccessDenied()
+        {
+            return View(); // Asegúrate de tener una vista AccessDenied.cshtml
+        }
     }
+   
 }

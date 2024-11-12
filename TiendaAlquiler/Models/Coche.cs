@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Policy;
 
 
 namespace TiendaAlquiler.Models;
@@ -48,6 +49,9 @@ public partial class Coche
     [DisplayName("Pais de Origen")]
     [Required]
     public int PaisId { get; set; }
+
+    [DisplayName("Descripcion")]
+    public string Description { get; set; }
 
     [Required]
     public virtual ICollection<Alquiler> Alquilers { get; set; } = new List<Alquiler>();

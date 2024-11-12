@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TiendaAlquiler.Models;
 using TiendaAlquiler.Data;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace TiendaAlquiler.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DecadasController : Controller
     {
         private readonly TiendaAlquilerDBContext _context;

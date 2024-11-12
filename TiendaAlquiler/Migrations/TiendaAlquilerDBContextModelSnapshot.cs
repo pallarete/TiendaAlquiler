@@ -270,6 +270,9 @@ namespace TiendaAlquiler.Migrations
                     b.Property<int>("DecadaId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("EstaAlquilado")
                         .HasColumnType("bit");
 

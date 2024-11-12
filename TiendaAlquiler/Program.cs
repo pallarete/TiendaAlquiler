@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -18,6 +19,7 @@ builder.Services.AddIdentity<Usuario, IdentityRole>(options =>
    options.SignIn.RequireConfirmedAccount = false)
 .AddEntityFrameworkStores<TiendaAlquilerDBContext>()
 .AddDefaultTokenProviders();
+
 
 var app = builder.Build();
 
@@ -47,7 +49,7 @@ await CreateRolesAsync(app.Services);
 
 await app.RunAsync();
 
-async Task CreateRolesAsync(IServiceProvider services)
+static async Task CreateRolesAsync(IServiceProvider services)
 {
     // Crear un scope para la resolución de servicios scoped
     using var scope = services.CreateScope();
