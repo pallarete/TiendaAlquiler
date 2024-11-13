@@ -1,35 +1,34 @@
 ﻿@model IEnumerable<TiendaAlquiler.Models.Carroceria>
-
 @{
     ViewData["Title"] = "Index";
 }
-
 <h1>Listado de carrocerias</h1>
-
-<p>
-    <a asp-action="Create">Dar de alta una nueva carroceria</a>
-</p>
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <th colspan="4">
                 @Html.DisplayNameFor(model => model.Tipo)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tipo)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CarroceriaId">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.CarroceriaId">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.CarroceriaId">Borrar</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo)
+                </td>
+                <td class="actions-column">
+                    @*  <a asp-action="Edit" asp-route-id="@item.CarroceriaId">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.CarroceriaId">Detalles</a> | *@
+                    <a asp-action="Delete" asp-route-id="@item.CarroceriaId">Borrar Carroceria</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<div class="d-flex justify-content-center mt-4" >
+
+    <a asp-action="Create" class="btn btn-primary btn-custom">Crear una nueva carroceria</a>
+</div>
+

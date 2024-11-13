@@ -6,26 +6,12 @@
 
 <h1>Listado de Colores</h1>
 
-@if (User.IsInRole("Admin"))
-{
-    <p>
-        <a asp-action="Create">Crear nuevo Color</a>
-    </p>
-
-}
-else
-{
-    <div>
-        <p>No puedes acceder a la creacion de colores</p>
-    </div>
-}
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <th colspan="4">
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -35,12 +21,30 @@ else
                 <td>
                     @Html.DisplayFor(modelItem => item.Nombre)
                 </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.ColorId">Editar Color</a> |
-                    <a asp-action="Details" asp-route-id="@item.ColorId">Detalles del Color</a> |
+                <td class="actions-column">
+                    @* <a asp-action="Edit" asp-route-id="@item.ColorId">Editar Color</a> |
+                    <a asp-action="Details" asp-route-id="@item.ColorId">Detalles del Color</a> | *@
                     <a asp-action="Delete" asp-route-id="@item.ColorId">Borrar Color</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="d-flex justify-content-center mt-4">
+        
+        <a asp-action="Create" class="btn btn-primary btn-custom">Crear nuevo color</a>
+
+    </div>
+   
+
+}
+else
+{
+    <div>
+        <p>No puedes acceder a la creacion de colores</p>
+    </div>
+}
+

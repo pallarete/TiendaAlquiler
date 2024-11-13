@@ -12,7 +12,7 @@ using TiendaAlquiler.Data;
 namespace TiendaAlquiler.Migrations
 {
     [DbContext(typeof(TiendaAlquilerDBContext))]
-    [Migration("20241112155612_Initial")]
+    [Migration("20241113155809_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -425,6 +425,279 @@ namespace TiendaAlquiler.Migrations
                             Modelo = "Mini Cooper",
                             PaisId = 4,
                             PrecioAlquiler = 100m
+                        },
+                        new
+                        {
+                            CocheId = 10,
+                            AnioFabricacion = 1960,
+                            CarroceriaId = 4,
+                            ColorId = 6,
+                            DecadaId = 4,
+                            EstaAlquilado = false,
+                            Marca = "Chevrolet",
+                            Modelo = "Corvette",
+                            PaisId = 1,
+                            PrecioAlquiler = 1500m
+                        },
+                        new
+                        {
+                            CocheId = 11,
+                            AnioFabricacion = 1965,
+                            CarroceriaId = 5,
+                            ColorId = 2,
+                            DecadaId = 4,
+                            EstaAlquilado = false,
+                            Marca = "Ford",
+                            Modelo = "Mustang",
+                            PaisId = 1,
+                            PrecioAlquiler = 2000m
+                        },
+                        new
+                        {
+                            CocheId = 12,
+                            AnioFabricacion = 1986,
+                            CarroceriaId = 6,
+                            ColorId = 1,
+                            DecadaId = 5,
+                            EstaAlquilado = false,
+                            Marca = "BMW",
+                            Modelo = "M3",
+                            PaisId = 3,
+                            PrecioAlquiler = 2200m
+                        },
+                        new
+                        {
+                            CocheId = 13,
+                            AnioFabricacion = 1966,
+                            CarroceriaId = 4,
+                            ColorId = 8,
+                            DecadaId = 5,
+                            EstaAlquilado = false,
+                            Marca = "Lamborghini",
+                            Modelo = "Miura",
+                            PaisId = 2,
+                            PrecioAlquiler = 3500m
+                        },
+                        new
+                        {
+                            CocheId = 14,
+                            AnioFabricacion = 1985,
+                            CarroceriaId = 5,
+                            ColorId = 3,
+                            DecadaId = 5,
+                            EstaAlquilado = false,
+                            Marca = "Porsche",
+                            Modelo = "944",
+                            PaisId = 5,
+                            PrecioAlquiler = 1800m
+                        },
+                        new
+                        {
+                            CocheId = 15,
+                            AnioFabricacion = 2010,
+                            CarroceriaId = 2,
+                            ColorId = 4,
+                            DecadaId = 8,
+                            EstaAlquilado = false,
+                            Marca = "Mercedes-Benz",
+                            Modelo = "SLS AMG",
+                            PaisId = 5,
+                            PrecioAlquiler = 5000m
+                        },
+                        new
+                        {
+                            CocheId = 16,
+                            AnioFabricacion = 2015,
+                            CarroceriaId = 4,
+                            ColorId = 2,
+                            DecadaId = 8,
+                            EstaAlquilado = false,
+                            Marca = "Jaguar",
+                            Modelo = "F-Type",
+                            PaisId = 4,
+                            PrecioAlquiler = 4000m
+                        },
+                        new
+                        {
+                            CocheId = 17,
+                            AnioFabricacion = 2007,
+                            CarroceriaId = 6,
+                            ColorId = 5,
+                            DecadaId = 7,
+                            EstaAlquilado = false,
+                            Marca = "Maserati",
+                            Modelo = "GranTurismo",
+                            PaisId = 3,
+                            PrecioAlquiler = 4500m
+                        },
+                        new
+                        {
+                            CocheId = 18,
+                            AnioFabricacion = 2013,
+                            CarroceriaId = 4,
+                            ColorId = 1,
+                            DecadaId = 8,
+                            EstaAlquilado = false,
+                            Marca = "Ferrari",
+                            Modelo = "LaFerrari",
+                            PaisId = 2,
+                            PrecioAlquiler = 12000m
+                        },
+                        new
+                        {
+                            CocheId = 19,
+                            AnioFabricacion = 2017,
+                            CarroceriaId = 5,
+                            ColorId = 3,
+                            DecadaId = 8,
+                            EstaAlquilado = false,
+                            Marca = "Aston Martin",
+                            Modelo = "Vantage",
+                            PaisId = 4,
+                            PrecioAlquiler = 6500m
+                        },
+                        new
+                        {
+                            CocheId = 20,
+                            AnioFabricacion = 2010,
+                            CarroceriaId = 6,
+                            ColorId = 8,
+                            DecadaId = 8,
+                            EstaAlquilado = false,
+                            Marca = "Lotus",
+                            Modelo = "Evora",
+                            PaisId = 7,
+                            PrecioAlquiler = 3200m
+                        },
+                        new
+                        {
+                            CocheId = 21,
+                            AnioFabricacion = 1969,
+                            CarroceriaId = 4,
+                            ColorId = 7,
+                            DecadaId = 5,
+                            EstaAlquilado = false,
+                            Marca = "Chevrolet",
+                            Modelo = "Camaro",
+                            PaisId = 1,
+                            PrecioAlquiler = 2500m
+                        },
+                        new
+                        {
+                            CocheId = 22,
+                            AnioFabricacion = 1970,
+                            CarroceriaId = 3,
+                            ColorId = 5,
+                            DecadaId = 5,
+                            EstaAlquilado = false,
+                            Marca = "Dodge",
+                            Modelo = "Charger",
+                            PaisId = 1,
+                            PrecioAlquiler = 2300m
+                        },
+                        new
+                        {
+                            CocheId = 23,
+                            AnioFabricacion = 2003,
+                            CarroceriaId = 6,
+                            ColorId = 4,
+                            DecadaId = 7,
+                            EstaAlquilado = false,
+                            Marca = "BMW",
+                            Modelo = "Z4",
+                            PaisId = 3,
+                            PrecioAlquiler = 2800m
+                        },
+                        new
+                        {
+                            CocheId = 24,
+                            AnioFabricacion = 1995,
+                            CarroceriaId = 4,
+                            ColorId = 6,
+                            DecadaId = 7,
+                            EstaAlquilado = false,
+                            Marca = "Ferrari",
+                            Modelo = "F50",
+                            PaisId = 2,
+                            PrecioAlquiler = 10000m
+                        },
+                        new
+                        {
+                            CocheId = 25,
+                            AnioFabricacion = 2007,
+                            CarroceriaId = 5,
+                            ColorId = 3,
+                            DecadaId = 7,
+                            EstaAlquilado = false,
+                            Marca = "Nissan",
+                            Modelo = "GT-R",
+                            PaisId = 6,
+                            PrecioAlquiler = 3500m
+                        },
+                        new
+                        {
+                            CocheId = 26,
+                            AnioFabricacion = 2015,
+                            CarroceriaId = 2,
+                            ColorId = 1,
+                            DecadaId = 8,
+                            EstaAlquilado = false,
+                            Marca = "Subaru",
+                            Modelo = "WRX STI",
+                            PaisId = 7,
+                            PrecioAlquiler = 2700m
+                        },
+                        new
+                        {
+                            CocheId = 27,
+                            AnioFabricacion = 2009,
+                            CarroceriaId = 4,
+                            ColorId = 2,
+                            DecadaId = 7,
+                            EstaAlquilado = false,
+                            Marca = "Audi",
+                            Modelo = "R8",
+                            PaisId = 3,
+                            PrecioAlquiler = 8000m
+                        },
+                        new
+                        {
+                            CocheId = 28,
+                            AnioFabricacion = 2012,
+                            CarroceriaId = 6,
+                            ColorId = 5,
+                            DecadaId = 8,
+                            EstaAlquilado = false,
+                            Marca = "Pagani",
+                            Modelo = "Huayra",
+                            PaisId = 8,
+                            PrecioAlquiler = 15000m
+                        },
+                        new
+                        {
+                            CocheId = 29,
+                            AnioFabricacion = 2015,
+                            CarroceriaId = 5,
+                            ColorId = 7,
+                            DecadaId = 8,
+                            EstaAlquilado = false,
+                            Marca = "McLaren",
+                            Modelo = "P1",
+                            PaisId = 9,
+                            PrecioAlquiler = 20000m
+                        },
+                        new
+                        {
+                            CocheId = 30,
+                            AnioFabricacion = 2015,
+                            CarroceriaId = 4,
+                            ColorId = 8,
+                            DecadaId = 8,
+                            EstaAlquilado = false,
+                            Marca = "Koenigsegg",
+                            Modelo = "Agera RS",
+                            PaisId = 10,
+                            PrecioAlquiler = 25000m
                         });
                 });
 
@@ -625,6 +898,26 @@ namespace TiendaAlquiler.Migrations
                         {
                             PaisId = 7,
                             Nombre = "Japon"
+                        },
+                        new
+                        {
+                            PaisId = 8,
+                            Nombre = "Holanda"
+                        },
+                        new
+                        {
+                            PaisId = 9,
+                            Nombre = "Belgica"
+                        },
+                        new
+                        {
+                            PaisId = 10,
+                            Nombre = "Portugal"
+                        },
+                        new
+                        {
+                            PaisId = 11,
+                            Nombre = "Korea"
                         });
                 });
 

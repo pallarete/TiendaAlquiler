@@ -6,16 +6,14 @@
 
 <h1>Listado de Decadas</h1>
 
-<p>
-    <a asp-action="Create">Crear Decada</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <th colspan="4F">
                 @Html.DisplayNameFor(model => model.AnioInicio)
             </th>
-            <th></th>
+
         </tr>
     </thead>
     <tbody>
@@ -25,12 +23,19 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.AnioInicio)
                 </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.DecadaId">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.DecadaId">Detalles</a> |
-                    <a asp-action="Delete" asp-route-id="@item.DecadaId">Borrar</a>
+                <td class="actions-column">
+                    @*  <a asp-action="Edit" asp-route-id="@item.DecadaId">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.DecadaId">Detalles</a> | *@
+                    <a asp-action="Delete" asp-route-id="@item.DecadaId">Borrar Decada</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<div class="d-flex justify-content-center mt-4">
+
+    <a asp-action="Create" class="btn btn-primary btn-custom">Crear decada</a>
+
+</div>
+

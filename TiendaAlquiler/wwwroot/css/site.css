@@ -1,17 +1,18 @@
-html {
+/* Configuración básica */
+html, body {
     font-size: 14px;
-    height: 100%;
     margin: 0;
-}
-
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    padding: 0;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: seagreen;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 html {
@@ -19,35 +20,127 @@ html {
     min-height: 100%;
 }
 
+/* Cuerpo de la página */
 body {
-    margin-bottom: 60px;
-    background-color: #f0f0f0; /*//Color de respaldo*/
-    background-image: url('/imagenes/Fondo.jpg');
-    background-size: cover; /* //Ajusta la imagen para que cubra toda la pantalla */
-    background-position: center center;
-    //Centra la imagen background-attachment: fixed; /*//Hace que la imagen de fondo se quede fija al hacer scroll */
-    background-repeat: no-repeat; /* //Evita que la imagen se repita */
-    height: 100%;
-    /*margin: 0;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f4;*/ /* Fondo general, aunque el video cubre toda la página */
-    /*position: relative;*/
+    display: flex;
+    flex-direction: column;
 }
 
-/*#background-video {
+/* Contenedor principal */
+.container {
+    flex-grow: 1;
+    padding-bottom: 100px; /* Asegura espacio para el footer */
+}
+
+/* Contenido principal */
+main {
+    flex: 1;
+    margin-top: 60px; /* Ajuste para compensar la navbar fija */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Encabezados */
+h1, h2 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Estilos de la navbar */
+.navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    object-fit: cover;*/ /* Asegura que el video cubra toda la pantalla */
-/*z-index: -1;*/ /* Coloca el video detrás del contenido */
-/*}*/
-.table {
-    background-color:white;
+    z-index: 1000;
 }
 
+/* Botones */
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+.btn-custom {
+    color: white;
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-custom:hover {
+        background-color: #0056b3;
+    }
+
+/* Columnas de acciones */
+.actions-column {
+    text-align: right;
+    color: #555;
+    padding: 8px;
+}
+
+    .actions-column a {
+        color: #007bff;
+        margin-left: 10px;
+        text-decoration: none;
+    }
+
+        .actions-column a:hover {
+            text-decoration: underline;
+        }
+
+/* Estilos generales de las tablas */
+.table {
+    width: 80%;
+    margin: auto;
+    font-size: 1em;
+    margin-top: 10px;
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 20px;
+}
+
+    .table tr th {
+        text-align: center;
+    }
+
+    .table tr td {
+        text-align: start;
+    }
+
+    .table tr:hover {
+        background-color: aqua;
+    }
+
+/* Tabla de coches */
+.table-cars {
+    width: 1300px;
+    text-align: center;
+}
+
+    .table-cars th, .table-cars td {
+        text-align: center;
+        background-color: #f8f9fa;
+    }
+
+        .table-cars td:last-child {
+            text-align: center;
+            white-space: nowrap;
+        }
+
+    .table-cars tbody tr:hover {
+        background-color: #e9ecef;
+    }
+
+/* Tabla de detalles de coche */
+.table-details, .table-details th, .table-details td {
+    text-align: center;
+}
+
+/* Galería de fotos */
 .fotos {
     justify-content: flex-start;
     display: flex;
@@ -61,6 +154,7 @@ body {
     border: solid blue 3px;
 }
 
+/* Carousel */
 .carousel-inner {
     border: 3px solid red;
     border-radius: 10px;
@@ -72,15 +166,35 @@ body {
     object-fit: contain;
     height: 300px;
     width: 100%;
-    /*object-fit: cover;*/ /* Esto ajusta las imágenes para que cubran el área sin deformarse */
 }
 
-.container {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
+/* Tarjeta de detalles */
+.detail-card {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
 }
 
+    .detail-card h4 {
+        font-weight: bold;
+    }
+
+    .detail-card .table th, .detail-card .table td {
+        width: 50%;
+    }
+
+/* Footer al final de la página */
 footer {
     margin-top: auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    text-align: center;
+    position: relative; /* Quitar cualquier posición fija */
+    width: 100%;
+    z-index: 1; /* En caso de solapamiento */
 }
+/* Footer */
+
+
+  

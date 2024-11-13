@@ -1,21 +1,15 @@
 ﻿@model IEnumerable<TiendaAlquiler.Models.Pais>
-
 @{
     ViewData["Title"] = "Index";
 }
-
 <h1>Lista de Paises</h1>
 
-<p>
-    <a asp-action="Create">Crear un nuevo pais</a>
-</p>
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <th colspan="4">
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -25,12 +19,16 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Nombre)
                 </td>
-                <td>
+                <td class="actions-column">
                     <a asp-action="Edit" asp-route-id="@item.PaisId">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.PaisId">Detalles</a> |
-                    <a asp-action="Delete" asp-route-id="@item.PaisId">Borrar</a>
+                    @* <a asp-action="Details" asp-route-id="@item.PaisId">Detalles</a> | *@
+                    <a asp-action="Delete" asp-route-id="@item.PaisId">Borrar Pais</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<div class="d-flex justify-content-center mt-4">
+    <a asp-action="Create" class="btn btn-primary btn-custom">Crear un nuevo pais</a>
+</div>

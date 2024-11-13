@@ -3,25 +3,29 @@
 @{
     ViewData["Title"] = "Delete";
 }
+<h1>Seguro que quiere borrar este pais?</h1>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-4 detail-card">
+            <h4 class="text-center">Pais</h4>
+            <hr />
 
-<h1>Borrar</h1>
+            <!-- Tabla de detalles con columnas del mismo ancho -->
+            <table class="table table-borderless text-center">
+                <tr>
+                    <th>Nombre:</th>
+                    <td>@Html.DisplayFor(model => model.Nombre)</td>
+                </tr>
+            </table>
 
-<h3>Quiere borar este pais?</h3>
-<div>
-    <h4>Pais</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="PaisId" />
-        <input type="submit" value="Borrar" class="btn btn-danger" /> |
-        <a asp-action="Index">Volver al Listado</a>
-    </form>
+            <!-- Formulario de eliminación y acciones -->
+            <div class="d-flex justify-content-between mt-3">
+                <form asp-action="Delete" class="w-100 d-flex justify-content-between">
+                    <input type="hidden" asp-for="PaisId" />
+                    <button type="submit" class="btn btn-danger w-50 me-2">Eliminar</button>
+                    <a asp-action="Index" class="btn btn-secondary w-50">Volver</a>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

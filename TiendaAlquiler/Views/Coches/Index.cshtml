@@ -4,101 +4,101 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Listado de Coches</h1>
 @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 {
-    <p>
-        <a asp-action="Create">Crear nuevo coche</a>
-    </p>
+    <div class="d-flex justify-content-center mt-4">
+        <a asp-action="Create" class="btn btn-primary btn-custom">Crear nuevo coche</a>
+    </div>
 }
 
-
 <!-- Formulario de Filtros -->
-<form asp-action="Index" method="get" class="d-flex flex-wrap align-items-end">
-    <div class="form-group me-2">
-        <label for="paisId">País</label>
-        <select id="paisId" name="paisId" class="form-control">
-            <option value="">Todos</option>
-            @foreach (var pais in ViewBag.Paises)
-            {
-                <option value="@pais.Value">@pais.Text</option>
-            }
-        </select>
-    </div>
-    <div class="form-group me-2">
-        <label for="decadaId">Década</label>
-        <select id="decadaId" name="decadaId" class="form-control">
-            <option value="">Todas</option>
-            @foreach (var decada in ViewBag.Decadas)
-            {
-                <option value="@decada.Value">@decada.Text</option>
-            }
-        </select>
-    </div>
-    <div class="form-group me-2">
-        <label for="colorId">Color</label>
-        <select id="colorId" name="colorId" class="form-control">
-            <option value="">Todos</option>
-            @foreach (var color in ViewBag.Colores)
-            {
-                <option value="@color.Value">@color.Text</option>
-            }
-        </select>
-    </div>
-    <div class="form-group me-2">
-        <label for="carroceriaId">Tipo de Carrocería</label>
-        <select id="carroceriaId" name="carroceriaId" class="form-control">
-            <option value="">Todas</option>
-            @foreach (var carroceria in ViewBag.Carrocerias)
-            {
-                <option value="@carroceria.Value">@carroceria.Text</option>
-            }
-        </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Filtrar</button>
-</form>
+<div class="d-flex justify-content-center" style="margin-top: 20px" >
+    <form asp-action="Index" method="get" class="d-flex flex-wrap align-items-end">
+        <div class="form-group me-2">
+            <label for="paisId">País</label>
+            <select id="paisId" name="paisId" class="form-control">
+                <option value="">Todos</option>
+                @foreach (var pais in ViewBag.Paises)
+                {
+                    <option value="@pais.Value">@pais.Text</option>
+                }
+            </select>
+        </div>
+        <div class="form-group me-2">
+            <label for="decadaId">Década</label>
+            <select id="decadaId" name="decadaId" class="form-control">
+                <option value="">Todas</option>
+                @foreach (var decada in ViewBag.Decadas)
+                {
+                    <option value="@decada.Value">@decada.Text</option>
+                }
+            </select>
+        </div>
+        <div class="form-group me-2">
+            <label for="colorId">Color</label>
+            <select id="colorId" name="colorId" class="form-control">
+                <option value="">Todos</option>
+                @foreach (var color in ViewBag.Colores)
+                {
+                    <option value="@color.Value">@color.Text</option>
+                }
+            </select>
+        </div>
+        <div class="form-group me-2">
+            <label for="carroceriaId">Tipo de Carrocería</label>
+            <select id="carroceriaId" name="carroceriaId" class="form-control">
+                <option value="">Todas</option>
+                @foreach (var carroceria in ViewBag.Carrocerias)
+                {
+                    <option value="@carroceria.Value">@carroceria.Text</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+    </form>
+</div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Marca)</th>
-            <th>@Html.DisplayNameFor(model => model.Modelo)</th>
-            <th>@Html.DisplayNameFor(model => model.AnioFabricacion)</th>
-            <th>@Html.DisplayNameFor(model => model.PrecioAlquiler)</th>
-            <th>@Html.DisplayNameFor(model => model.Carroceria)</th>
-            <th>@Html.DisplayNameFor(model => model.Color)</th>
-            <th>@Html.DisplayNameFor(model => model.Decada)</th>
-            <th>@Html.DisplayNameFor(model => model.Pais)</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+
+<div class="container-fluid" style="margin-top: 20px;">
+    <table class="table table-cars">
+        <thead>
             <tr>
-                <td>@Html.DisplayFor(modelItem => item.Marca)</td>
-                <td>@Html.DisplayFor(modelItem => item.Modelo)</td>
-                <td>@Html.DisplayFor(modelItem => item.AnioFabricacion)</td>
-                <td>@Html.DisplayFor(modelItem => item.PrecioAlquiler)</td>
-                <td>@Html.DisplayFor(modelItem => item.Carroceria.Tipo)</td>
-                <td>@Html.DisplayFor(modelItem => item.Color.Nombre)</td>
-                <td>@Html.DisplayFor(modelItem => item.Decada.AnioInicio)</td>
-                <td>@Html.DisplayFor(modelItem => item.Pais.Nombre)</td>
-                <td>
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                    {
-                        <a asp-action="Edit" asp-route-id="@item.CocheId">Editar</a>
-                    }
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                    {
-                        <a asp-action="Delete" asp-route-id="@item.CocheId">Borrar Coche</a>
-
-                    }
-
-
-                    <a asp-action="Details" asp-route-id="@item.CocheId">Detalles</a> 
-                </td>
+                <th>@Html.DisplayNameFor(model => model.Marca)</th>
+                <th>@Html.DisplayNameFor(model => model.Modelo)</th>
+                <th>@Html.DisplayNameFor(model => model.AnioFabricacion)</th>
+                <th>@Html.DisplayNameFor(model => model.PrecioAlquiler)</th>
+                <th>@Html.DisplayNameFor(model => model.Carroceria)</th>
+                <th>@Html.DisplayNameFor(model => model.Color)</th>
+                <th>@Html.DisplayNameFor(model => model.Decada)</th>
+                <th>@Html.DisplayNameFor(model => model.Pais)</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Marca)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Modelo)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AnioFabricacion)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PrecioAlquiler)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Carroceria.Tipo)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Color.Nombre)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Decada.AnioInicio)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Pais.Nombre)</td>
+                    <td>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.CocheId">Editar</a>
+                        }
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.CocheId">Borrar Coche</a>
+                        }
+                        <a asp-action="Details" asp-route-id="@item.CocheId">Detalles</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,38 +1,42 @@
 ﻿@model TiendaAlquiler.Models.Decada
-
 @{
     ViewData["Title"] = "Create";
 }
+<h1>Crear decada</h1>
+<<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-4 detail-card">
+            <!-- Formulario de creación -->
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-<h1>Crear</h1>
+                <!-- Campo Año de Inicio -->
+                <div class="form-group mb-3">
+                    <label asp-for="AnioInicio" class="control-label font-weight-bold text-center w-100"></label>
+                    <select asp-for="AnioInicio" class="form-control">
+                        <option value="" disabled selected>Seleccione un año</option>
+                        @for (int year = 1900; year <= 2100; year += 10)
+                        {
+                            <option value="@year">@year</option>
+                        }
+                    </select>
+                    <span asp-validation-for="AnioInicio" class="text-danger"></span>
+                </div>
 
-<h4>Decada</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <!-- Botón de creación -->
+                <div class="form-group mb-3">
+                    <button type="submit" class="btn btn-primary w-100">Crear</button>
+                </div>
+            </form>
+
+            <!-- Botón para volver al listado -->
             <div class="form-group">
-                <label asp-for="AnioInicio" class="control-label"></label>
-                <select asp-for="AnioInicio" class="form-control">
-                    <option value="" disabled selected>Seleccione un año</option>
-                    @for (int year = 1900; year <= 2100; year += 10)
-                    {
-                        <option value="@year" placeholder="Pinche aqui">@year</option>
-                    }
-                </select>
-                <span asp-validation-for="AnioInicio" class="text-danger"></span>
+                <a asp-action="Index" class="btn btn-secondary w-100">Volver al listado de años</a>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Volver al listado</a>
-</div>
 
 @section Scripts {
     @{

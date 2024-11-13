@@ -405,3 +405,5 @@ FodyWeavers.xsd
 /TiendaAlquiler/wwwroot/imagenes/bc0289ad-584e-411d-8a90-e8294572d3a1_F403.jpg
 /TiendaAlquiler/Migrations/20241112120206_Initial.cs
 /TiendaAlquiler/Migrations/20241112120206_Initial.Designer.cs
+/TiendaAlquiler/Migrations/20241112155612_Initial.cs
+/TiendaAlquiler/Migrations/20241112155612_Initial.Designer.cs

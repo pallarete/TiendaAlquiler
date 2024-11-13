@@ -178,34 +178,80 @@ public class TiendaAlquilerDBContext : IdentityDbContext<Usuario>
 
 
         modelBuilder.Entity<Pais>().HasData(
-            new Pais { PaisId= 1, Nombre = "España" },
-            new Pais { PaisId= 2, Nombre = "Italia" },
-            new Pais { PaisId= 3, Nombre = "Francia" },
-            new Pais { PaisId= 4, Nombre = "Reino Unido" },
-            new Pais { PaisId= 5, Nombre = "Alemania" },
-            new Pais { PaisId= 6, Nombre = "Estados Unidos" },
-            new Pais { PaisId= 7, Nombre = "Japon" }
+            new Pais { PaisId = 1, Nombre = "España" },
+            new Pais { PaisId = 2, Nombre = "Italia" },
+            new Pais { PaisId = 3, Nombre = "Francia" },
+            new Pais { PaisId = 4, Nombre = "Reino Unido" },
+            new Pais { PaisId = 5, Nombre = "Alemania" },
+            new Pais { PaisId = 6, Nombre = "Estados Unidos" },
+            new Pais { PaisId = 7, Nombre = "Japon" } ,
+            new Pais { PaisId = 8, Nombre = "Holanda" },
+            new Pais { PaisId = 9, Nombre = "Belgica" },
+            new Pais { PaisId = 10, Nombre = "Portugal" },
+            new Pais { PaisId = 11, Nombre = "Korea" }
             );
 
 
         modelBuilder.Entity<Coche>().HasData(
-            new Coche { CocheId = 1, Marca = "Ferrari", Modelo = "F40", AnioFabricacion = 1984, CarroceriaId = 4, ColorId = 1, PaisId= 2, DecadaId = 6, PrecioAlquiler = 1500, EstaAlquilado = false },
+            new Coche { CocheId = 1, Marca = "Ferrari", Modelo = "F40", AnioFabricacion = 1984, CarroceriaId = 4, ColorId = 1, PaisId = 2, DecadaId = 6, PrecioAlquiler = 1500, EstaAlquilado = false },
 
-            new Coche { CocheId = 2, Marca = "Aston Martin", Modelo = "DB5", AnioFabricacion = 1963, CarroceriaId = 6, ColorId = 3, PaisId= 4, DecadaId = 4, PrecioAlquiler = 3000, EstaAlquilado = false },
+            new Coche { CocheId = 2, Marca = "Aston Martin", Modelo = "DB5", AnioFabricacion = 1963, CarroceriaId = 6, ColorId = 3, PaisId = 4, DecadaId = 4, PrecioAlquiler = 3000, EstaAlquilado = false },
 
-            new Coche { CocheId = 3, Marca = "Porsche", Modelo = "911", AnioFabricacion = 1970, CarroceriaId = 6, ColorId = 6, PaisId= 5, DecadaId = 5, PrecioAlquiler = 2000, EstaAlquilado = false },
+            new Coche { CocheId = 3, Marca = "Porsche", Modelo = "911", AnioFabricacion = 1970, CarroceriaId = 6, ColorId = 6, PaisId = 5, DecadaId = 5, PrecioAlquiler = 2000, EstaAlquilado = false },
 
-            new Coche { CocheId = 4, Marca = "Ferrari", Modelo = "250 GTO", AnioFabricacion = 1955, CarroceriaId = 4, ColorId = 1, PaisId= 2, DecadaId = 3, PrecioAlquiler = 300, EstaAlquilado = false },
+            new Coche { CocheId = 4, Marca = "Ferrari", Modelo = "250 GTO", AnioFabricacion = 1955, CarroceriaId = 4, ColorId = 1, PaisId = 2, DecadaId = 3, PrecioAlquiler = 300, EstaAlquilado = false },
 
-            new Coche { CocheId = 5, Marca = "Jaguar", Modelo = "E-Type", AnioFabricacion = 1958, CarroceriaId = 3, ColorId = 2, PaisId= 4, DecadaId = 4, PrecioAlquiler = 250, EstaAlquilado = false },
+            new Coche { CocheId = 5, Marca = "Jaguar", Modelo = "E-Type", AnioFabricacion = 1958, CarroceriaId = 3, ColorId = 2, PaisId = 4, DecadaId = 4, PrecioAlquiler = 250, EstaAlquilado = false },
 
-            new Coche { CocheId = 6, Marca = "Rolls Royce", Modelo = "Silver Cloud", AnioFabricacion = 1980, CarroceriaId = 3, ColorId = 3, PaisId= 3, DecadaId = 5, PrecioAlquiler = 400, EstaAlquilado = false },
+            new Coche { CocheId = 6, Marca = "Rolls Royce", Modelo = "Silver Cloud", AnioFabricacion = 1980, CarroceriaId = 3, ColorId = 3, PaisId = 3, DecadaId = 5, PrecioAlquiler = 400, EstaAlquilado = false },
 
-            new Coche { CocheId = 7, Marca = "Subaru", Modelo = "Impreza WRX", AnioFabricacion = 1999, CarroceriaId = 5, ColorId = 4, PaisId= 7, DecadaId = 7, PrecioAlquiler = 120, EstaAlquilado = false },
+            new Coche { CocheId = 7, Marca = "Subaru", Modelo = "Impreza WRX", AnioFabricacion = 1999, CarroceriaId = 5, ColorId = 4, PaisId = 7, DecadaId = 7, PrecioAlquiler = 120, EstaAlquilado = false },
 
-            new Coche { CocheId = 8, Marca = "Mercedes-Benz", Modelo = "300 SL", AnioFabricacion = 1955, CarroceriaId = 2, ColorId = 5, PaisId= 5, DecadaId = 6, PrecioAlquiler = 350, EstaAlquilado = false },
+            new Coche { CocheId = 8, Marca = "Mercedes-Benz", Modelo = "300 SL", AnioFabricacion = 1955, CarroceriaId = 2, ColorId = 5, PaisId = 5, DecadaId = 6, PrecioAlquiler = 350, EstaAlquilado = false },
 
-            new Coche { CocheId = 9, Marca = "Austin", Modelo = "Mini Cooper", AnioFabricacion = 1966, CarroceriaId = 7, ColorId = 8, PaisId= 4, DecadaId = 6, PrecioAlquiler = 100, EstaAlquilado = false }
+            new Coche { CocheId = 9, Marca = "Austin", Modelo = "Mini Cooper", AnioFabricacion = 1966, CarroceriaId = 7, ColorId = 8, PaisId = 4, DecadaId = 6, PrecioAlquiler = 100, EstaAlquilado = false },
+
+            new Coche { CocheId = 10, Marca = "Chevrolet", Modelo = "Corvette", AnioFabricacion = 1960, CarroceriaId = 4, ColorId = 6, PaisId = 1, DecadaId = 4, PrecioAlquiler = 1500, EstaAlquilado = false },
+
+            new Coche { CocheId = 11, Marca = "Ford", Modelo = "Mustang", AnioFabricacion = 1965, CarroceriaId = 5, ColorId = 2, PaisId = 1, DecadaId = 4, PrecioAlquiler = 2000, EstaAlquilado = false },
+
+            new Coche { CocheId = 12, Marca = "BMW", Modelo = "M3", AnioFabricacion = 1986, CarroceriaId = 6, ColorId = 1, PaisId = 3, DecadaId = 5, PrecioAlquiler = 2200, EstaAlquilado = false },
+
+            new Coche { CocheId = 13, Marca = "Lamborghini", Modelo = "Miura", AnioFabricacion = 1966, CarroceriaId = 4, ColorId = 8, PaisId = 2, DecadaId = 5, PrecioAlquiler = 3500, EstaAlquilado = false },
+
+            new Coche { CocheId = 14, Marca = "Porsche", Modelo = "944", AnioFabricacion = 1985, CarroceriaId = 5, ColorId = 3, PaisId = 5, DecadaId = 5, PrecioAlquiler = 1800, EstaAlquilado = false },
+
+            new Coche { CocheId = 15, Marca = "Mercedes-Benz", Modelo = "SLS AMG", AnioFabricacion = 2010, CarroceriaId = 2, ColorId = 4, PaisId = 5, DecadaId = 8, PrecioAlquiler = 5000, EstaAlquilado = false },
+
+            new Coche { CocheId = 16, Marca = "Jaguar", Modelo = "F-Type", AnioFabricacion = 2015, CarroceriaId = 4, ColorId = 2, PaisId = 4, DecadaId = 8, PrecioAlquiler = 4000, EstaAlquilado = false },
+
+            new Coche { CocheId = 17, Marca = "Maserati", Modelo = "GranTurismo", AnioFabricacion = 2007, CarroceriaId = 6, ColorId = 5, PaisId = 3, DecadaId = 7, PrecioAlquiler = 4500, EstaAlquilado = false },
+
+            new Coche { CocheId = 18, Marca = "Ferrari", Modelo = "LaFerrari", AnioFabricacion = 2013, CarroceriaId = 4, ColorId = 1, PaisId = 2, DecadaId = 8, PrecioAlquiler = 12000, EstaAlquilado = false },
+
+            new Coche { CocheId = 19, Marca = "Aston Martin", Modelo = "Vantage", AnioFabricacion = 2017, CarroceriaId = 5, ColorId = 3, PaisId = 4, DecadaId = 8, PrecioAlquiler = 6500, EstaAlquilado = false },
+
+            new Coche { CocheId = 20, Marca = "Lotus", Modelo = "Evora", AnioFabricacion = 2010, CarroceriaId = 6, ColorId = 8, PaisId = 7, DecadaId = 8, PrecioAlquiler = 3200, EstaAlquilado = false },
+
+            new Coche { CocheId = 21, Marca = "Chevrolet", Modelo = "Camaro", AnioFabricacion = 1969, CarroceriaId = 4, ColorId = 7, PaisId = 1, DecadaId = 5, PrecioAlquiler = 2500, EstaAlquilado = false },
+
+            new Coche { CocheId = 22, Marca = "Dodge", Modelo = "Charger", AnioFabricacion = 1970, CarroceriaId = 3, ColorId = 5, PaisId = 1, DecadaId = 5, PrecioAlquiler = 2300, EstaAlquilado = false },
+
+            new Coche { CocheId = 23, Marca = "BMW", Modelo = "Z4", AnioFabricacion = 2003, CarroceriaId = 6, ColorId = 4, PaisId = 3, DecadaId = 7, PrecioAlquiler = 2800, EstaAlquilado = false },
+
+            new Coche { CocheId = 24, Marca = "Ferrari", Modelo = "F50", AnioFabricacion = 1995, CarroceriaId = 4, ColorId = 6, PaisId = 2, DecadaId = 7, PrecioAlquiler = 10000, EstaAlquilado = false },
+
+            new Coche { CocheId = 25, Marca = "Nissan", Modelo = "GT-R", AnioFabricacion = 2007, CarroceriaId = 5, ColorId = 3, PaisId = 6, DecadaId = 7, PrecioAlquiler = 3500, EstaAlquilado = false },
+
+            new Coche { CocheId = 26, Marca = "Subaru", Modelo = "WRX STI", AnioFabricacion = 2015, CarroceriaId = 2, ColorId = 1, PaisId = 7, DecadaId = 8, PrecioAlquiler = 2700, EstaAlquilado = false },
+
+            new Coche { CocheId = 27, Marca = "Audi", Modelo = "R8", AnioFabricacion = 2009, CarroceriaId = 4, ColorId = 2, PaisId = 3, DecadaId = 7, PrecioAlquiler = 8000, EstaAlquilado = false },
+
+            new Coche { CocheId = 28, Marca = "Pagani", Modelo = "Huayra", AnioFabricacion = 2012, CarroceriaId = 6, ColorId = 5, PaisId = 8, DecadaId = 8, PrecioAlquiler = 15000, EstaAlquilado = false },
+
+            new Coche { CocheId = 29, Marca = "McLaren", Modelo = "P1", AnioFabricacion = 2015, CarroceriaId = 5, ColorId = 7, PaisId = 9, DecadaId = 8, PrecioAlquiler = 20000, EstaAlquilado = false },
+
+            new Coche { CocheId = 30, Marca = "Koenigsegg", Modelo = "Agera RS", AnioFabricacion = 2015, CarroceriaId = 4, ColorId = 8, PaisId = 10, DecadaId = 8, PrecioAlquiler = 25000, EstaAlquilado = false }
 
             );
 
