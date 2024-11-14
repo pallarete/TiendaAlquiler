@@ -375,28 +375,7 @@ namespace TiendaAlquiler.Migrations
                     { 6, 1980, 3, 3, 5, null, false, "Rolls Royce", "Silver Cloud", 3, 400m },
                     { 7, 1999, 5, 4, 7, null, false, "Subaru", "Impreza WRX", 7, 120m },
                     { 8, 1955, 2, 5, 6, null, false, "Mercedes-Benz", "300 SL", 5, 350m },
-                    { 9, 1966, 7, 8, 6, null, false, "Austin", "Mini Cooper", 4, 100m },
-                    { 10, 1960, 4, 6, 4, null, false, "Chevrolet", "Corvette", 1, 1500m },
-                    { 11, 1965, 5, 2, 4, null, false, "Ford", "Mustang", 1, 2000m },
-                    { 12, 1986, 6, 1, 5, null, false, "BMW", "M3", 3, 2200m },
-                    { 13, 1966, 4, 8, 5, null, false, "Lamborghini", "Miura", 2, 3500m },
-                    { 14, 1985, 5, 3, 5, null, false, "Porsche", "944", 5, 1800m },
-                    { 15, 2010, 2, 4, 8, null, false, "Mercedes-Benz", "SLS AMG", 5, 5000m },
-                    { 16, 2015, 4, 2, 8, null, false, "Jaguar", "F-Type", 4, 4000m },
-                    { 17, 2007, 6, 5, 7, null, false, "Maserati", "GranTurismo", 3, 4500m },
-                    { 18, 2013, 4, 1, 8, null, false, "Ferrari", "LaFerrari", 2, 12000m },
-                    { 19, 2017, 5, 3, 8, null, false, "Aston Martin", "Vantage", 4, 6500m },
-                    { 20, 2010, 6, 8, 8, null, false, "Lotus", "Evora", 7, 3200m },
-                    { 21, 1969, 4, 7, 5, null, false, "Chevrolet", "Camaro", 1, 2500m },
-                    { 22, 1970, 3, 5, 5, null, false, "Dodge", "Charger", 1, 2300m },
-                    { 23, 2003, 6, 4, 7, null, false, "BMW", "Z4", 3, 2800m },
-                    { 24, 1995, 4, 6, 7, null, false, "Ferrari", "F50", 2, 10000m },
-                    { 25, 2007, 5, 3, 7, null, false, "Nissan", "GT-R", 6, 3500m },
-                    { 26, 2015, 2, 1, 8, null, false, "Subaru", "WRX STI", 7, 2700m },
-                    { 27, 2009, 4, 2, 7, null, false, "Audi", "R8", 3, 8000m },
-                    { 28, 2012, 6, 5, 8, null, false, "Pagani", "Huayra", 8, 15000m },
-                    { 29, 2015, 5, 7, 8, null, false, "McLaren", "P1", 9, 20000m },
-                    { 30, 2015, 4, 8, 8, null, false, "Koenigsegg", "Agera RS", 10, 25000m }
+                    { 9, 1966, 7, 8, 6, null, false, "Austin", "Mini Cooper", 4, 100m }
                 });
 
             migrationBuilder.CreateIndex(

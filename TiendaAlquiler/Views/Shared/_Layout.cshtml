@@ -6,6 +6,29 @@
     <title>@ViewData["Title"] - TiendaAlquiler</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg-RAkBxdrQNSJap_mqLOgWC9e1gyLNLU&callback=initMap" async defer>
+    </script>
+   @*  <script>
+        function initMap() {
+            // Ubicación: Ajusta la latitud y longitud a la ubicación deseada
+            const location = { lat: 40.712776, lng: -74.005974 }; // Ejemplo: Nueva York
+
+            // Crea el mapa centrado en la ubicación
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 12,
+                center: location,
+            });
+
+            // Agrega un marcador en la ubicación
+            const marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                title: "Lugar de recogida de coches",
+            });
+        }
+
+    </script> *@
+
     <link rel="stylesheet" href="~/TiendaAlquiler.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -75,6 +98,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Login">Login</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Pago" asp-action="CrearPago">Pago</a>
+                        </li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
@@ -92,14 +118,19 @@
         </main>
     </div>
 
+    <div id="map" style="height: 400px; width: 100%;"></div>
 
 
 
 
 
 
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
 
     @await RenderSectionAsync("Scripts", required: false)
     <footer class="border-top footer text-muted">

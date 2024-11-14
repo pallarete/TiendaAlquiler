@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TiendaAlquiler.Data;
 using Microsoft.AspNetCore.Authorization;
+using System.Drawing.Imaging;
+using System.Drawing;
 
 
 namespace TiendaAlquiler.Controllers
@@ -107,14 +109,59 @@ namespace TiendaAlquiler.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("CocheId,Marca,Modelo,AnioFabricacion,PrecioAlquiler,EstaAlquilado,ColorId,CarroceriaId,DecadaId,PaisId")] Coche coche)
+        public async Task<IActionResult> Create([Bind("CocheId,Marca,Modelo,AnioFabricacion,PrecioAlquiler,EstaAlquilado,ColorId,CarroceriaId,DecadaId,PaisId")] Coche coche, IFormFile[] archivos)
         {
             if (ModelState.IsValid)
             {
+                //Guardamos el coche en la base de datos
                 _context.Add(coche);
                 await _context.SaveChangesAsync();
+
+                //Procesamos las fotos solo si se han cargado archivos
+                if (archivos != null && archivos.Any())
+                {
+
+                    foreach (var archivo in archivos)
+                    {
+                        if (archivo.Length > 0)
+                        {
+                            //ruta para guardar el archivo
+                            var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(archivo.FileName);
+                            var filePath = Path.Combine("wwwroot/imagenes", uniqueFileName);
+
+                            //Creamos una imagen redimensionada
+                            using (var image = Image.FromStream(archivo.OpenReadStream()))
+                            {
+                                //Establecemos el tamaño
+                                int width = 500;
+                                int height = 250;
+                                using (var resizedImage = new Bitmap(image, new Size(width, height)))
+                                {
+                                    //guarda la imagen redimensionada
+                                    resizedImage.Save(filePath, ImageFormat.Jpeg);
+                                }
+                            }
+
+                            //Creamos una nueva foto y la asociamos al coche
+
+                            Foto foto = new Foto
+                            {
+                                CocheId = coche.CocheId, //Asigno el CocheId a la foto
+                                RutaAcceso = Path.Combine("imagenes", uniqueFileName)
+                            };
+                            //Agrego la foto al contexto
+                            _context.Fotos.Add(foto);
+                        }
+                    }
+                    //Guardo las fotos en la base de datos
+                    await _context.SaveChangesAsync();
+                }
+                //Redirigo al listado de cohes
                 return RedirectToAction(nameof(Index));
             }
+
+            //En caso de error muestro formulario de creacion
+
             ViewData["CarroceriaId"] = new SelectList(_context.Carroceria, "CarroceriaId", "Tipo", coche.CarroceriaId);
             ViewData["ColorId"] = new SelectList(_context.Colors, "ColorId", "Nombre", coche.ColorId);
             ViewData["DecadaId"] = new SelectList(_context.Decada, "DecadaId", "AnioInicio", coche.DecadaId);

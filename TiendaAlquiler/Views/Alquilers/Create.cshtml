@@ -4,50 +4,86 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1 class="mb-4">Alquilar este coche</h1>
+<h4>Por favor introduzca sus datos:</h4>
 
-<h4>Alquiler</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <!-- Formulario de Alquiler -->
+    <div class="col-md-6">
+        <form asp-action="Create" class="alquiler-form">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
+
+            <!-- Coche -->
             <div class="form-group">
-                <label asp-for="CocheId" class="control-label"></label>
+                <label asp-for="CocheId" class="control-label">Coche</label>
                 <select asp-for="CocheId" class="form-control" asp-items="ViewBag.CocheId"></select>
             </div>
+
+            <!-- Usuario -->
             <div class="form-group">
-                <label asp-for="UsuarioId" class="control-label"></label>
+                <label asp-for="UsuarioId" class="control-label">Usuario</label>
                 <select asp-for="UsuarioId" class="form-control" asp-items="ViewBag.UsuarioId"></select>
             </div>
+
+            <!-- Fechas -->
             <div class="form-group">
-                <label asp-for="FechaAlquiler" class="control-label"></label>
+                <label asp-for="FechaAlquiler" class="control-label">Fecha de Alquiler</label>
                 <input asp-for="FechaAlquiler" class="form-control" type="date" />
                 <span asp-validation-for="FechaAlquiler" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="FechaDevolucion" class="control-label"></label>
+                <label asp-for="FechaDevolucion" class="control-label">Fecha de Devolución</label>
                 <input asp-for="FechaDevolucion" class="form-control" type="date" />
                 <span asp-validation-for="FechaDevolucion" class="text-danger"></span>
             </div>
-            @*   <div class="form-group">
-            <label asp-for="PrecioFinal" class="control-label"></label>
-            <input asp-for="PrecioFinal" class="form-control" />
-            <span asp-validation-for="PrecioFinal" class="text-danger"></span>
-            </div> *@
+
+            <!-- Tarjeta de Crédito -->
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="NumeroTarjeta" class="control-label">Número de Tarjeta</label>
+                <input asp-for="NumeroTarjeta" class="form-control" type="text" maxlength="16" />
+                <span asp-validation-for="NumeroTarjeta" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="FechaExpiracion" class="control-label">Fecha de Expiración (MM/AA)</label>
+                <input asp-for="FechaExpiracion" class="form-control" type="text" maxlength="5" placeholder="MM/AA" />
+                <span asp-validation-for="FechaExpiracion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CVC" class="control-label">CVC</label>
+                <input asp-for="CVC" class="form-control" type="text" maxlength="3" />
+                <span asp-validation-for="CVC" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Crear Alquiler</button>
             </div>
         </form>
     </div>
+
+    <!-- Fechas de alquiler previas -->
+    <div class="col-md-6">
+        @if (ViewData["Alquilers"] != null && ((List<TiendaAlquiler.Models.Alquiler>)ViewData["Alquilers"]).Any())
+        {
+            <div class="rental-dates mt-4">
+                <h3>Fechas de Alquiler Anteriores</h3>
+                <ul class="list-group">
+                    @foreach (var alquiler in (List<TiendaAlquiler.Models.Alquiler>)ViewData["Alquilers"])
+                    {
+                        <li class="list-group-item">Desde: @alquiler.FechaAlquiler.ToShortDateString() - Hasta: @alquiler.FechaDevolucion.ToShortDateString()</li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="mt-4">
+    <a asp-action="Index" class="btn btn-link">Volver al Listado</a>
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    @Html.RenderPartialAsync("_ValidationScriptsPartial")
 }

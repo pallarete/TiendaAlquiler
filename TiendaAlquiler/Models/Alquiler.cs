@@ -25,9 +25,25 @@ public partial class Alquiler
     [Required(ErrorMessage = "La fecha de devolucion es obligatoria")]
     public DateOnly FechaDevolucion { get; set; }
 
-    [Required]
+    
     [Range(0, double.MaxValue, ErrorMessage = "El precio final debe ser un valor positivo.")]
     public decimal PrecioFinal { get; set; }
+
+    // Campos para el pago simulado
+    [NotMapped]
+    [Required(ErrorMessage = "El número de tarjeta es obligatorio")]
+    [StringLength(16, MinimumLength = 16, ErrorMessage = "El número de tarjeta debe tener 16 dígitos")]
+    public string NumeroTarjeta { get; set; }
+
+    [NotMapped]
+    [Required(ErrorMessage = "La fecha de expiración es obligatoria")]
+    [RegularExpression(@"^(0[1-9]|1[0-2])\/([0-9]{2})$", ErrorMessage = "Formato inválido. Utilice MM/AA")]
+    public string FechaExpiracion { get; set; }
+
+    [NotMapped]
+    [Required(ErrorMessage = "El código CVV es obligatorio")]
+    [StringLength(3, MinimumLength = 3, ErrorMessage = "El código CVV debe tener 3 dígitos")]
+    public string CVC { get; set; }
 
     public virtual Coche Coche { get; set; }
 

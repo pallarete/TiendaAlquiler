@@ -9,7 +9,7 @@
         <div class="col-md-6 col-lg-4">
 
 
-            <form asp-action="Create">
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
                 <div class="form-group">
                     <label asp-for="Marca" class="control-label"></label>
@@ -51,6 +51,10 @@
                 <div class="form-group mb-3">
                     <label asp-for="PaisId" class="control-label"></label>
                     <select asp-for="PaisId" class="form-control" asp-items="ViewBag.PaisId"></select>
+                </div>
+                <div class="form-group">
+                    <label for="archivos">Seleccionar fotos del coche</label>
+                    <input type="file" name="archivos" multiple class="form-control" />
                 </div>
                 <div class="form-group mb-3">
                     <input type="submit" value="Crear" class="btn btn-primary w-100 " />

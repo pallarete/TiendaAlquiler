@@ -111,19 +111,30 @@ h1, h2 {
         text-align: start;
     }
 
+        .table tr td:last-child {
+            text-align: end;
+        }
+
     .table tr:hover {
         background-color: aqua;
     }
 
 /* Tabla de coches */
 .table-cars {
-    width: 1300px;
+    width: 100%;
+    max-width: 100%;
     text-align: center;
+    border: 3px solid brown;
+    border-radius: 50px;
 }
 
     .table-cars th, .table-cars td {
-        text-align: center;
         background-color: #f8f9fa;
+        padding: 10px;
+        text-align: center;
+        vertical-align: middle;
+        box-sizing: border-box;
+        border: 1px solid black;
     }
 
         .table-cars td:last-child {
@@ -132,12 +143,39 @@ h1, h2 {
         }
 
     .table-cars tbody tr:hover {
-        background-color: #e9ecef;
+        background-color: red;
     }
+        /* Opcional: cambiar el color de la fila seleccionada al hacer hover sobre un td */
+        .table-cars tbody tr:hover td {
+            background-color: cornflowerblue; /* Cambiar el color de cada celda al hacer hover */
+        }
 
 /* Tabla de detalles de coche */
-.table-details, .table-details th, .table-details td {
-    text-align: center;
+.table-details {
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    .table-details th, .table-details td {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .table-details th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+
+.description-section h4 {
+    font-size: 1.25rem;
+    color: #333;
+}
+
+textarea.form-control {
+    height: 120px;
 }
 
 /* Galería de fotos */
@@ -155,18 +193,23 @@ h1, h2 {
 }
 
 /* Carousel */
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+}
+
 .carousel-inner {
+    margin-top: 30px;
     border: 3px solid red;
     border-radius: 10px;
     background-color: black;
+    position: relative;
+    overflow: hidden;
+    height: 500px; /* Esto permite que el contenedor se ajuste al tamaño de las imágenes */
 }
 
-.carousel-item img {
-    border: 3px solid black;
-    object-fit: contain;
-    height: 300px;
-    width: 100%;
-}
 
 /* Tarjeta de detalles */
 .detail-card {
@@ -187,7 +230,7 @@ h1, h2 {
 /* Footer al final de la página */
 footer {
     margin-top: auto;
-    padding: 20px;
+    /*padding: 20px;*/
     background-color: #f8f9fa;
     text-align: center;
     position: relative; /* Quitar cualquier posición fija */
@@ -197,4 +240,251 @@ footer {
 /* Footer */
 
 
-  
+
+/* Contenedor de los botones */
+.button-container {
+    display: flex; /* Coloca los botones en línea */
+    justify-content: space-between; /* Espacio entre los botones */
+    align-items: center; /* Alinea verticalmente los elementos */
+    gap: 15px; /* Espacio entre los botones */
+    margin-top: 20px; /* Separación del contenido superior */
+}
+
+    /* Botón "Alquilar este coche" */
+    .button-container .btn-primary {
+        background-color: #007bff;
+        color: #ffffff;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+    }
+
+        .button-container .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    /* Enlace "Volver al listado" */
+    .button-container .back-link {
+        background-color: #ffc107; /* Un color alegre! */
+        color: #000;
+        font-size: 15px;
+        padding: 8px 15px;
+        border-radius: 5px;
+        border: 2px solid #ffc107;
+        font-weight: bold;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+        .button-container .back-link:hover {
+            background-color: #ffeb3b; /* Más brillante al pasar el ratón */
+            color: #000;
+            border-color: #ffeb3b;
+            transform: scale(1.05); /* Un pequeño zoom al pasar el ratón */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Un poco de sombra para resaltar */
+        }
+/* Estilos para la sección de fechas de alquiler */
+.rental-dates {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f1f8ff; /* Color de fondo suave */
+    border: 2px solid #007bff; /* Borde azul para resaltar */
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+    /* Título de la sección */
+    .rental-dates h3 {
+        color: #007bff;
+        font-weight: bold;
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    /* Lista de fechas de alquiler */
+    .rental-dates ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .rental-dates li {
+        background-color: #e6f3ff;
+        color: #0056b3;
+        margin: 5px 0;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 16px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    /* Texto de "no alquilado" */
+    .rental-dates .not-rented {
+        color: #dc3545;
+        font-style: italic;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+/* Contenedor general de la descripción */
+.description-section {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff7e6; /* Fondo cálido */
+    border: 2px solid #ffc107; /* Borde amarillo */
+    border-radius: 8px;
+}
+
+    /* Título de la descripción */
+    .description-section h4 {
+        color: #fd7e14; /* Color del título */
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    /* Texto de la descripción */
+    .description-section p {
+        font-size: 16px;
+        color: #6c757d;
+        padding: 10px;
+        background-color: #fff3cd;
+        border-radius: 5px;
+    }
+
+    /* Estilo del formulario de edición */
+    .description-section .form-group {
+        margin-top: 15px;
+    }
+
+    .description-section textarea {
+        resize: vertical;
+        padding: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    /* Botón para guardar la descripción */
+    .description-section button {
+        background-color: #fd7e14;
+        border-color: #fd7e14;
+    }
+
+        .description-section button:hover {
+            background-color: #e8590c;
+            border-color: #e8590c;
+        }
+
+/* Estilo general para el formulario con la clase alquiler-form */
+.alquiler-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+    /* Estilo para cada grupo de campos */
+    .alquiler-form .form-group {
+        margin-bottom: 15px;
+    }
+
+    /* Estilo para las etiquetas dentro del formulario */
+    .alquiler-form label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* Estilo para los campos de texto y selección dentro del formulario */
+    .alquiler-form input[type="text"],
+    .alquiler-form input[type="date"],
+    .alquiler-form select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    /* Estilo para el botón de envío dentro del formulario */
+    .alquiler-form input[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+        .alquiler-form input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+    /* Estilo para los mensajes de error de validación */
+    .alquiler-form .text-danger {
+        color: #e74c3c;
+    }
+
+    /* Estilo para el contenedor de fechas previas de alquiler */
+    .alquiler-form .rental-dates {
+        background-color: #f1f1f1;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+        /* Estilo para la lista de fechas de alquiler previas */
+        .alquiler-form .rental-dates ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .alquiler-form .rental-dates li {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+    /* Estilo para el enlace "Back to List" */
+    .alquiler-form a {
+        text-decoration: none;
+        color: #007bff;
+        font-size: 16px;
+        margin-top: 20px;
+        display: inline-block;
+    }
+
+        .alquiler-form a:hover {
+            color: #0056b3;
+        }
+
+    /* Estilo del contenedor que muestra el formulario y las fechas al lado */
+    .alquiler-form .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .alquiler-form .col-md-4 {
+        flex: 0 0 48%;
+    }
+
+    .alquiler-form .col-md-8 {
+        flex: 0 0 48%;
+    }
+
+
+/* Estilo para móviles: ajusta la fuente y el tamaño de las celdas */
+@media (max-width: 768px) {
+    .table-cars th, .table-cars td {
+        font-size: 12px; /* Disminuye el tamaño de fuente */
+        padding: 8px;
+    }
+}

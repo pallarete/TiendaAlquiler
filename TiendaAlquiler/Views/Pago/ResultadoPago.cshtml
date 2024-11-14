@@ -1,0 +1,24 @@
+﻿@model TiendaAlquiler.Models.Pago
+
+@{
+    ViewData["Title"] = "Resultado del Pago";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p><strong>@ViewBag.Mensaje</strong></p>
+
+<p><strong>Detalles del Pago:</strong></p>
+<ul>
+    <li><strong>Tarjeta:</strong> @Model.NumeroTarjeta</li>
+    <li><strong>Nombre del Titular:</strong> @Model.NombreTitular</li>
+    <li><strong>Fecha de Vencimiento:</strong> @Model.FechaVencimiento.ToString("MM/yyyy")</li>
+    <li><strong>Monto:</strong> @Model.Monto</li>
+</ul>
+
+<a href="@Url.Action("CrearPago", "Pago")" class="btn btn-secondary">Volver al formulario</a>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
