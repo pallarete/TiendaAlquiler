@@ -2,7 +2,75 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<header>
+    <h1>Alquiler de Coches Clásicos</h1>
+    <p>Vive la elegancia del pasado al volante de un clásico</p>
+</header>
+<section class="publicidad-video">
+      <video autoplay muted loop id="background-video" class="video-background">
+    <source src="/videos/fondo-video.mp4" type="video/mp4">
+    <source src="/videos/fondo-video.webm" type="video/webm">
+    Tu navegador no soporta la etiqueta de video.
+    </video> 
+</section>
+
+<section class="publicidad1">
+
+    <div class="publicidad1-texto">
+        <p>
+            ¡Revive la historia del automovilismo con nuestro alquiler de coches clásicos!
+
+            En TiendaAlquiler, te ofrecemos una flota exclusiva de vehículos antiguos, restaurados y en perfecto estado para que puedas disfrutar de una experiencia única al volante. Ya sea para un evento especial, una sesión de fotos o simplemente para sentir la emoción de conducir un clásico, tenemos el coche ideal para ti.
+
+            ¿Por qué elegirnos?
+
+            Variedad de modelos: Desde los años 50 hasta los 80, encuentra el coche que siempre soñaste conducir.
+            Excelentes condiciones: Todos nuestros coches son restaurados con atención al detalle para garantizarte una experiencia cómoda y segura.
+            Flexibilidad de alquiler: Alquiler por día o por periodos extendidos, ¡tú eliges!
+            Precios competitivos: Disfruta de un coche clásico sin que tu bolsillo sufra.
+            ¡Reserva tu coche clásico hoy y vive una experiencia inolvidable!
+        </p>
+    </div>
+    <div class="publicidad1-foto">
+        <picture>
+            <source media="(min-width: 650px)" srcset="/imagenes/F401.jpg" />
+            <img src="/imagenes/F401.jpg" alt="Coche Clasico" />
+        </picture>
+    </div>
+
+</section>
+
+<section class="publicidad2">
+
+    <div class="publicidad2-foto">
+        <picture>
+            <source media="(min-width: 650px)" srcset="/imagenes/F402.jpg" />
+            <img src="/imagenes/F402.jpg" alt="Coche Clasico" />
+        </picture>
+    </div>
+
+    <div class="publicidad2-texto">
+        <p>
+            ¡Descubre el placer de conducir coches clásicos con TiendaAlquiler!
+
+            En nuestra flota exclusiva, encontrarás autos de épocas doradas, restaurados con dedicación y listos para ser disfrutados en cualquier ocasión. Ya sea para bodas, aniversarios, o un simple paseo por la ciudad, un coche clásico de TiendaAlquiler te hará sentir como en otra época.
+
+            ¿Por qué elegirnos?
+
+            **Variedad única**: Desde los icónicos modelos de los 60 hasta los emblemáticos de los 80.
+            **Calidad garantizada**: Cada coche es restaurado para ofrecerte la mejor experiencia.
+            **Alquiler flexible**: Puedes alquilar por un día, un fin de semana, o lo que necesites.
+            **Precios accesibles**: Disfruta de lujo sin que el precio sea un problema.
+
+            ¡Haz tu reserva ahora y revive los momentos más especiales con un coche clásico!
+
+            Visítanos en www.tiendaalquiler.com o contacta con nosotros para más detalles.
+        </p>
+    </div>
+
+</section>
+
+<div id="map" style="height: 400px; width: 100%;"></div>
+
+
+

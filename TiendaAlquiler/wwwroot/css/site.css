@@ -1,3 +1,20 @@
+:root {
+    --color-primario: #2C3E50; /* Azul Marino */
+    --color-secundario: #F1C40F; /* Dorado Suave */
+    --color-blanco: #FFFFFF; /* Blanco */
+    --color-fondo: #ECF0F1; /* Gris Claro */
+    --color-acento: #C0392B; /* Rojo Oscuro */
+}
+
+/*:root {
+    --color-primario: #BDC581;*/ /* Verde Oliva */
+/*--color-secundario: #F5E6CA;*/ /* Beige */
+/*--color-acento: #85C1E9;*/ /* Azul Celeste */
+/*--color-texto: #8E735B;*/ /* Marrón Madera */
+/*--color-destacado: #F7DC6F;*/ /* Amarillo Mostaza */
+/*}*/
+
+
 /* Configuración básica */
 html, body {
     font-size: 14px;
@@ -22,14 +39,60 @@ html {
 
 /* Cuerpo de la página */
 body {
-    display: flex;
-    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-primario);
+    margin: 0;
+    padding: 0;
 }
 
-/* Contenedor principal */
-.container {
-    flex-grow: 1;
-    padding-bottom: 100px; /* Asegura espacio para el footer */
+/* Estilo para el encabezado */
+header {
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    padding: 20px;
+    text-align: center;
+}
+
+/*Botones*/
+button {
+    background-color: var(--color-secundario);
+    color: var(--color-primario);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+    button:hover {
+        background-color: var(--color-acento);
+        color: var(--color-blanco);
+    }
+
+/* Estilo para secciones de contenido */
+section {
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: var(--color-blanco);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+/* Estilo para enlaces */
+a {
+    color: var(--color-secundario);
+    text-decoration: none;
+    font-weight: bold;
+}
+    a:hover {
+        color: var(--color-acento);
+    }
+container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 /* Contenido principal */
@@ -42,13 +105,19 @@ main {
 }
 
 /* Encabezados */
-h1, h2 {
+h1, h2, h3 {
+    font-family: 'Roboto', sans-serif;
     text-align: center;
     margin-top: 50px;
 }
 
+p, label, button {
+    font-family: 'Roboto', sans-serif;
+}
+
 /* Estilos de la navbar */
 .navbar {
+    align-items: center;
     position: fixed;
     top: 0;
     left: 0;
@@ -92,63 +161,96 @@ h1, h2 {
             text-decoration: underline;
         }
 
-/* Estilos generales de las tablas */
+/* ESTILOS GENERALES DE LAS TABLAS */
 .table {
     width: 80%;
     margin: auto;
     font-size: 1em;
     margin-top: 10px;
-    background-color: white;
-    border: 3px solid black;
-    border-radius: 20px;
+    border-collapse: separate; /* Separar filas */
+    border-spacing: 0 20px; /* Espacio entre filas (solo vertical) */
 }
 
-    .table tr th {
+    .table thead tr {
+        background-color: white; /* Fondo blanco */
+        border: 5px solid black; /* Borde negro */
+        border-radius: 10px; /* Bordes redondeados */
+        box-shadow: 0 0 0 6px black; /* Borde adicional que resalta la separación entre filas */
+    }
+
+    .table th, .table td {
+        padding: 10px;
         text-align: center;
+        vertical-align: middle;
+        border: none; /* Sin bordes internos */
     }
 
-    .table tr td {
-        text-align: start;
+    /* Estilo para las filas (tr) con borde negro y separación */
+    .table tbody tr {
+        background-color: white; /* Fondo blanco para cada fila */
+        border: 5px solid black; /* Borde negro alrededor de cada fila */
+        border-radius: 10px;
+        box-shadow: 0 0 0 6px black; /* Borde adicional que resalta la separación entre filas */
     }
 
-        .table tr td:last-child {
-            text-align: end;
+        /* Efecto hover para las filas */
+        .table tbody tr:hover {
+            background-color: #f1f1f1; /* Fondo gris claro al pasar el ratón */
         }
 
-    .table tr:hover {
-        background-color: aqua;
-    }
 
-/* Tabla de coches */
+
+
+/* INDICE DE COCHES */
+/* Estilos generales para la clase .table-cars */
 .table-cars {
     width: 100%;
     max-width: 100%;
     text-align: center;
-    border: 3px solid brown;
-    border-radius: 50px;
+    border-collapse: separate; /* Asegura que cada fila esté separada */
+    border-spacing: 0 20px; /* Espacio entre las filas */
+    background-color: transparent; /* Fondo transparente */
+    font-size: 0.95em;
 }
 
-    .table-cars th, .table-cars td {
-        background-color: #f8f9fa;
+    .table-cars th {
         padding: 10px;
         text-align: center;
         vertical-align: middle;
-        box-sizing: border-box;
-        border: 1px solid black;
+        background-color: #f8f9fa;
+        text-transform: uppercase;
     }
 
-        .table-cars td:last-child {
-            text-align: center;
-            white-space: nowrap;
-        }
+    .table-cars tr {
+        background-color: white; /* Fondo blanco para las filas */
+        border: 3px solid black; /* Borde negro alrededor de cada fila */
+        border-radius: 10px; /* Bordes redondeados en las filas */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil para las filas */
+    }
 
+    .table-cars td {
+        padding: 10px;
+        text-align: center;
+        vertical-align: middle;
+        border: none; /* No hay borde en las celdas */
+    }
+
+    /* Añadir sombra cuando se pasa el ratón sobre una fila */
     .table-cars tbody tr:hover {
-        background-color: red;
+        background-color: #f1f1f1; /* Color de fondo al pasar el ratón sobre la fila */
+        /*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);*/ /* Sombra más intensa al pasar el ratón */
     }
-        /* Opcional: cambiar el color de la fila seleccionada al hacer hover sobre un td */
-        .table-cars tbody tr:hover td {
-            background-color: cornflowerblue; /* Cambiar el color de cada celda al hacer hover */
-        }
+
+    /* Añadir color a las celdas de la columna de acciones */
+    .table-cars td.actions-column {
+        background-color: #f1f1f1; /* Fondo claro para la columna de acciones */
+    }
+
+    .table-cars td:last-child {
+        text-align: center;
+        white-space: nowrap;
+    }
+
 
 /* Tabla de detalles de coche */
 .table-details {
@@ -227,20 +329,6 @@ textarea.form-control {
         width: 50%;
     }
 
-/* Footer al final de la página */
-footer {
-    margin-top: auto;
-    /*padding: 20px;*/
-    background-color: #f8f9fa;
-    text-align: center;
-    position: relative; /* Quitar cualquier posición fija */
-    width: 100%;
-    z-index: 1; /* En caso de solapamiento */
-}
-/* Footer */
-
-
-
 /* Contenedor de los botones */
 .button-container {
     display: flex; /* Coloca los botones en línea */
@@ -248,6 +336,7 @@ footer {
     align-items: center; /* Alinea verticalmente los elementos */
     gap: 15px; /* Espacio entre los botones */
     margin-top: 20px; /* Separación del contenido superior */
+    margin-bottom: 200px; /* Separación del contenido superior */
 }
 
     /* Botón "Alquilar este coche" */
@@ -287,6 +376,7 @@ footer {
             transform: scale(1.05); /* Un pequeño zoom al pasar el ratón */
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Un poco de sombra para resaltar */
         }
+
 /* Estilos para la sección de fechas de alquiler */
 .rental-dates {
     margin-top: 20px;
@@ -329,6 +419,7 @@ footer {
         font-size: 16px;
         margin-top: 10px;
     }
+
 /* Contenedor general de la descripción */
 .description-section {
     margin-top: 20px;
@@ -479,6 +570,194 @@ footer {
     .alquiler-form .col-md-8 {
         flex: 0 0 48%;
     }
+/*ESTILO FORMULARIO FILTRADO*/
+.d-flex .btn {
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+    .d-flex .btn:hover {
+        background-color: #0056b3;
+        color: #fff;
+    }
+
+.d-flex .form-select, form .form-label {
+    font-size: 0.9rem;
+}
+
+/* Estilo para centrar las etiquetas y darles bordes redondeados */
+.label-rounded {
+    display: inline-block; /* Asegura que el fondo se ajuste al contenido */
+    padding: 0.4rem 0.8rem; /* Añade espacio interno */
+    background-color: #f8f9fa; /* Color de fondo claro */
+    border: 1px solid #ddd; /* Borde ligero */
+    border-radius: 12px; /* Bordes redondeados */
+    font-size: 0.9rem; /* Tamaño de texto reducido */
+    text-align: center; /* Centra el texto dentro del label */
+    color: #333; /* Color del texto */
+    margin-bottom: 5px; /* Espaciado entre el label y el select */
+    width: 120px; /* Ancho fijo */
+}
+
+
+.publicidad-video {
+    width: 66.66%; /* Dos tercios del ancho de la pantalla */
+    margin: 50px auto; /* Centrar horizontalmente el div */
+    position: relative; /* Para posicionamiento interno */
+    border: 5px solid #3498db; /* Borde color azul */
+    border-radius: 15px; /* Bordes redondeados */
+    overflow: hidden; /* Evita que el video sobresalga de los bordes */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para un efecto elegante */
+}
+
+/* Estilo del video */
+.video-background {
+    width: 100%; /* Ajusta el ancho del video al contenedor */
+    height: auto; /* Mantén la proporción del video */
+    display: block; /* Evita espacios blancos en línea */
+}
+
+
+
+/* PUBLICIDAD2 */
+.publicidad1 {
+    display: flex;
+    justify-content: space-between; /* Separar los elementos a ambos lados */
+    align-items: center; /* Alineación vertical centrada */
+    padding: 20px;
+    background-color: #f5f5f5;
+    max-height: 400px; /* Limitar la altura máxima del contenedor */
+    max-width: 1000px;
+    border-radius: 10px;
+    margin-left: auto;
+}
+
+/* Contenedor principal con flexbox */
+.publicidad1 {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between; /* Separar los elementos */
+    align-items: center; /* Alineación vertical centrada */
+    padding: 20px;
+    background-color: #f5f5f5;
+    max-height: 400px;
+    border-radius: 10px;
+}
+
+/* Estilo para el texto */
+.publicidad1-texto {
+    flex: 1; /* Cada div ocupa la mitad del espacio */
+    padding-right: 20px; /* Espacio entre el texto y la imagen */
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+}
+
+    .publicidad1-texto p {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .publicidad1-texto ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .publicidad1-texto li {
+        margin-bottom: 10px;
+    }
+/* Estilo para la imagen */
+.publicidad1-foto {
+    flex: 1; /* Cada div ocupa la mitad del espacio */
+    max-height: 100%; /* Limitar la altura máxima al 100% del contenedor */
+    overflow: hidden; /* Evita que la imagen se desborde */
+}
+
+.publicidad1 img {
+    width: 100%; /* La imagen ocupa el 100% del espacio disponible */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 10px;
+    max-height: 300px; /* Limitar la altura de la imagen */
+    object-fit: cover; /* Asegura que la imagen se recorte adecuadamente */
+}
+
+/* CONTENEDOR PUBLICIDAD 2 */
+.publicidad2 {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between; /* Separar los elementos */
+    align-items: center; /* Alineación vertical centrada */
+    padding: 20px;
+    background-color: #f5f5f5;
+    max-height: 400px; /* Limitar la altura máxima del contenedor */
+    max-width: 1000px;
+    border-radius: 10px;
+    margin-right: auto;
+}
+
+/* Estilo para la imagen */
+.publicidad2-foto {
+    flex: 1; /* La foto ocupa la mitad del espacio */
+    max-height: 100%; /* Limitar la altura máxima al 100% del contenedor */
+    overflow: hidden; /* Evita que la imagen se desborde */
+}
+
+/* Ajustar la imagen */
+.publicidad2 img {
+    width: 100%; /* La imagen ocupa el 100% del espacio disponible */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 10px;
+    max-height: 300px; /* Limitar la altura de la imagen */
+    object-fit: cover; /* Asegura que la imagen se recorte adecuadamente */
+}
+
+/* Estilo para el texto */
+.publicidad2-texto {
+    flex: 1; /* El texto ocupa la mitad del espacio */
+    padding-left: 20px; /* Espacio entre la imagen y el texto */
+    font-family: 'Arial', sans-serif;
+    overflow: hidden; /* Evita que el texto se desborde */
+    max-height: 100%; /* Limita la altura al máximo permitido por el contenedor */
+}
+
+    /* Ajustar el tamaño del texto */
+    .publicidad2-texto p {
+        font-size: 14px; /* Reducir el tamaño de la fuente */
+        line-height: 1.4;
+    }
+
+#map {
+    height: 400px; /* Altura del mapa */
+    width: 100%; /* Ancho del mapa */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+    margin-top: 20px; /* Espacio superior */
+    margin-bottom: 20px; /* Espacio inferior */
+    background-color: #f0f0f0; /* Fondo suave en caso de que el mapa no se cargue */
+    margin-bottom: 100px;
+}
+
+/* Si el mapa está en un contenedor, asegúrate de que no se deforme */
+#map-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 0 auto;
+    max-width: 1200px; /* Opcional: Limitar el tamaño máximo */
+    box-sizing: border-box;
+}
+
+
+/* Footer */
+footer {
+    position: relative; /*Asegura que el footer no se quede fijo */
+    width: 100%; /*Asegura que el footer ocupe todo el ancho */
+    background-color: #333; /*Ejemplo de color de fondo */
+    color: white; /*Color del texto */
+    padding: 10px; /*Espaciado del footer*/
+    margin-top: 20px; /*Espaciado por encima del footer */
+}
 
 
 /* Estilo para móviles: ajusta la fuente y el tamaño de las celdas */

@@ -12,11 +12,12 @@
 }
 
 <!-- Formulario de Filtros -->
-<div class="d-flex justify-content-center" style="margin-top: 20px" >
-    <form asp-action="Index" method="get" class="d-flex flex-wrap align-items-end">
-        <div class="form-group me-2">
-            <label for="paisId">País</label>
-            <select id="paisId" name="paisId" class="form-control">
+
+<div class="d-flex justify-content-center" style="margin-top: 20px;">
+    <form asp-action="Index" method="get" class="row g-3 align-items-end">
+        <div class="col-md-3 text-center ">
+            <label for="paisId" class="form-label label-rounded">País</label>
+            <select id="paisId" name="paisId" class="form-select">
                 <option value="">Todos</option>
                 @foreach (var pais in ViewBag.Paises)
                 {
@@ -24,9 +25,9 @@
                 }
             </select>
         </div>
-        <div class="form-group me-2">
-            <label for="decadaId">Década</label>
-            <select id="decadaId" name="decadaId" class="form-control">
+        <div class="col-md-3 text-center ">
+            <label for="decadaId" class="form-label label-rounded">Década</label>
+            <select id="decadaId" name="decadaId" class="form-select">
                 <option value="">Todas</option>
                 @foreach (var decada in ViewBag.Decadas)
                 {
@@ -34,9 +35,9 @@
                 }
             </select>
         </div>
-        <div class="form-group me-2">
-            <label for="colorId">Color</label>
-            <select id="colorId" name="colorId" class="form-control">
+        <div class="col-md-3 text-center ">
+            <label for="colorId" class="form-label label-rounded">Color</label>
+            <select id="colorId" name="colorId" class="form-select">
                 <option value="">Todos</option>
                 @foreach (var color in ViewBag.Colores)
                 {
@@ -44,9 +45,9 @@
                 }
             </select>
         </div>
-        <div class="form-group me-2">
-            <label for="carroceriaId">Tipo de Carrocería</label>
-            <select id="carroceriaId" name="carroceriaId" class="form-control">
+        <div class="col-md-3 text-center ">
+            <label for="carroceriaId" class="form-label label-rounded">Carrocería</label>
+            <select id="carroceriaId" name="carroceriaId" class="form-select">
                 <option value="">Todas</option>
                 @foreach (var carroceria in ViewBag.Carrocerias)
                 {
@@ -54,12 +55,13 @@
                 }
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Filtrar</button>
+        <div class="col-md-12 d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary px-4">Filtrar</button>
+        </div>
     </form>
 </div>
 
-
-<div class="container-fluid" style="margin-top: 20px;">
+<div class="table">
     <table class="table-cars">
         <thead>
             <tr>

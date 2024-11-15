@@ -6,8 +6,8 @@
     ViewData["Title"] = "Details";
 }
 <h1>Informacion del coche</h1>
-<div>
-    <table class=" table-details ">
+<div class="table" >
+    <table class="table-details">
         <thead>
             <tr>
                 <th>@Html.DisplayNameFor(model => model.Marca)</th>
@@ -37,7 +37,7 @@
 
 @* SECCION DE LA DESCRIPCION*@
 
-<div class="description-section" >
+<div class="description-section">
     @* Mostrar descripcion si existe *@
     @if (!string.IsNullOrEmpty(Model.Description))
     {
