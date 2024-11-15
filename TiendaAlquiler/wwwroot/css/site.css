@@ -108,7 +108,7 @@ main {
 h1, h2, h3 {
     font-family: 'Roboto', sans-serif;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 5px;
 }
 
 p, label, button {
@@ -164,7 +164,7 @@ p, label, button {
 /* ESTILOS GENERALES DE LAS TABLAS */
 .table {
     width: 80%;
-    margin: auto;
+    margin: 90px auto;
     font-size: 1em;
     margin-top: 10px;
     border-collapse: separate; /* Separar filas */
