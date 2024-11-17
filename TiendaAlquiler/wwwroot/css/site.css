@@ -4,6 +4,7 @@
     --color-blanco: #FFFFFF; /* Blanco */
     --color-fondo: #ECF0F1; /* Gris Claro */
     --color-acento: #C0392B; /* Rojo Oscuro */
+    --carousel-bg-color: black; /* Negro */
 }
 
 /*:root {
@@ -23,28 +24,20 @@ html, body {
     min-height: 100%;
     display: flex;
     flex-direction: column;
-    font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: seagreen;
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-primario);
 }
 
 html {
     position: relative;
-    min-height: 100%;
 }
 
-/* Cuerpo de la página */
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: var(--color-fondo);
-    color: var(--color-primario);
-    margin: 0;
-    padding: 0;
-}
 
 /* Estilo para el encabezado */
 header {
@@ -87,10 +80,12 @@ a {
     text-decoration: none;
     font-weight: bold;
 }
+
     a:hover {
         color: var(--color-acento);
     }
-container-fluid {
+
+.container-fluid {
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -99,6 +94,7 @@ container-fluid {
 main {
     flex: 1;
     margin-top: 60px; /* Ajuste para compensar la navbar fija */
+    margin-bottom: 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -124,6 +120,17 @@ p, label, button {
     width: 100%;
     z-index: 1000;
 }
+
+    .navbar li {
+        background-color: #ffffff; /* Color inicial */
+        transform: scale(1); /* Tamaño inicial */
+        transition: background-color 0.3s ease, transform 0.3s ease; /* Transiciones */
+    }
+
+        .navbar li:hover {
+            background-color: #f1c40f; /* Ejemplo de un color más destacado */
+            transform: scale(1.1);
+        }
 
 /* Botones */
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
@@ -162,31 +169,40 @@ p, label, button {
         }
 
 /* ESTILOS GENERALES DE LAS TABLAS */
-.table {
+.table-m {
     width: 80%;
-    margin: 90px auto;
+    margin: 30px auto;
     font-size: 1em;
     margin-top: 10px;
     border-collapse: separate; /* Separar filas */
     border-spacing: 0 20px; /* Espacio entre filas (solo vertical) */
 }
 
-    .table thead tr {
+    .table-m thead tr {
         background-color: white; /* Fondo blanco */
         border: 5px solid black; /* Borde negro */
         border-radius: 10px; /* Bordes redondeados */
         box-shadow: 0 0 0 6px black; /* Borde adicional que resalta la separación entre filas */
     }
 
-    .table th, .table td {
+    .table-m th, .table-m td {
         padding: 10px;
         text-align: center;
         vertical-align: middle;
         border: none; /* Sin bordes internos */
     }
 
+        .table-m td:first-child {
+            text-align: left;
+        }
+
+        .table-m td:not(:first-child) {
+            text-align: right;
+        }
+
+
     /* Estilo para las filas (tr) con borde negro y separación */
-    .table tbody tr {
+    .table-m tbody tr {
         background-color: white; /* Fondo blanco para cada fila */
         border: 5px solid black; /* Borde negro alrededor de cada fila */
         border-radius: 10px;
@@ -194,12 +210,9 @@ p, label, button {
     }
 
         /* Efecto hover para las filas */
-        .table tbody tr:hover {
+        .table-m tbody tr:hover {
             background-color: #f1f1f1; /* Fondo gris claro al pasar el ratón */
         }
-
-
-
 
 /* INDICE DE COCHES */
 /* Estilos generales para la clase .table-cars */
@@ -252,7 +265,7 @@ p, label, button {
     }
 
 
-/* Tabla de detalles de coche */
+/* TABALA DE DETALLES DEL COCHE*/
 .table-details {
     width: 100%;
     margin-bottom: 20px;
@@ -280,7 +293,7 @@ textarea.form-control {
     height: 120px;
 }
 
-/* Galería de fotos */
+/* GALERIA DE FOTOS */
 .fotos {
     justify-content: flex-start;
     display: flex;
@@ -294,7 +307,7 @@ textarea.form-control {
     border: solid blue 3px;
 }
 
-/* Carousel */
+/* CARRUSEL */
 .carousel-item img {
     width: 100%;
     height: auto;
@@ -306,7 +319,7 @@ textarea.form-control {
     margin-top: 30px;
     border: 3px solid red;
     border-radius: 10px;
-    background-color: black;
+    background-color: var(--carousel-bg-color);
     position: relative;
     overflow: hidden;
     height: 500px; /* Esto permite que el contenedor se ajuste al tamaño de las imágenes */
@@ -329,7 +342,7 @@ textarea.form-control {
         width: 50%;
     }
 
-/* Contenedor de los botones */
+/*CONTENEDOR DE LOS BOTONES*/
 .button-container {
     display: flex; /* Coloca los botones en línea */
     justify-content: space-between; /* Espacio entre los botones */
@@ -617,8 +630,6 @@ textarea.form-control {
     height: auto; /* Mantén la proporción del video */
     display: block; /* Evita espacios blancos en línea */
 }
-
-
 
 /* PUBLICIDAD2 */
 .publicidad1 {

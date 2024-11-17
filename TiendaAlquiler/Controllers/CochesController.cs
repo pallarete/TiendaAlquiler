@@ -169,7 +169,7 @@ namespace TiendaAlquiler.Controllers
             return View(coche);
         }
 
-        // GET: Coches/Edit/5
+        // EDIT: Coches/Edit/5
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -190,13 +190,12 @@ namespace TiendaAlquiler.Controllers
             return View(coche);
         }
 
+        // EDITO LOS COCHES EN EL POST
         // POST: Coches/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(int id, [Bind("CocheId,Marca,Modelo,AnioFabricacion,PrecioAlquiler,EstaAlquilado,ColorId,CarroceriaId,DecadaId,PaisId")] Coche coche)
+        public async Task<IActionResult> Edit(int id, [Bind("CocheId,Marca,Modelo,AnioFabricacion,PrecioAlquiler,EstaAlquilado,ColorId,CarroceriaId,DecadaId,PaisId")] Coche coche, IFormFile[] archivos)
         {
             if (id != coche.CocheId)
             {
@@ -207,8 +206,48 @@ namespace TiendaAlquiler.Controllers
             {
                 try
                 {
+                    // Actualizamos los datos del coche en la base de datos
                     _context.Update(coche);
                     await _context.SaveChangesAsync();
+
+                    // Procesamos las fotos solo si se han cargado archivos
+                    if (archivos != null && archivos.Any())
+                    {
+                        foreach (var archivo in archivos)
+                        {
+                            if (archivo.Length > 0)
+                            {
+                                // Generamos un nombre único para el archivo
+                                var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(archivo.FileName);
+                                var filePath = Path.Combine("wwwroot/imagenes", uniqueFileName);
+
+                                // Creamos una imagen redimensionada
+                                using (var image = Image.FromStream(archivo.OpenReadStream()))
+                                {
+                                    int width = 500;
+                                    int height = 250;
+                                    using (var resizedImage = new Bitmap(image, new Size(width, height)))
+                                    {
+                                        // Guardamos la imagen redimensionada
+                                        resizedImage.Save(filePath, ImageFormat.Jpeg);
+                                    }
+                                }
+
+                                // Creamos una nueva foto y la asociamos al coche
+                                Foto foto = new Foto
+                                {
+                                    CocheId = coche.CocheId,
+                                    RutaAcceso = Path.Combine("imagenes", uniqueFileName)
+                                };
+
+                                // Agregamos la foto al contexto
+                                _context.Fotos.Add(foto);
+                            }
+                        }
+
+                        // Guardamos las fotos en la base de datos
+                        await _context.SaveChangesAsync();
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -223,12 +262,16 @@ namespace TiendaAlquiler.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            // Si hay errores, volvemos a cargar los datos relacionados
             ViewData["CarroceriaId"] = new SelectList(_context.Carroceria, "CarroceriaId", "Tipo", coche.CarroceriaId);
             ViewData["ColorId"] = new SelectList(_context.Colors, "ColorId", "Nombre", coche.ColorId);
-            ViewData["DecadaId"] = new SelectList(_context.Decada, "DecadaId", "DecadaId", coche.DecadaId);
+            ViewData["DecadaId"] = new SelectList(_context.Decada, "DecadaId", "AnioInicio", coche.DecadaId);
             ViewData["PaisId"] = new SelectList(_context.Paises, "PaisId", "Nombre", coche.PaisId);
             return View(coche);
         }
+
+
 
         // GET: Coches/Delete/5
         [Authorize(Roles = "Admin")]

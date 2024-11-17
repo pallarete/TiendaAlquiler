@@ -53,6 +53,10 @@
                     <select asp-for="PaisId" class="form-control" asp-items="ViewBag.PaisId"></select>
                     <span asp-validation-for="PaisId" class="text-danger"></span>
                 </div>
+                <div class="form-group">
+                    <label for="archivos">Seleccionar fotos del coche</label>
+                    <input type="file" name="archivos" multiple class="form-control" />
+                </div>
                 <div class="form-group mb-3">
                     <input type="submit" value="Guardar" class="btn btn-primary w-100" />
                 </div>
