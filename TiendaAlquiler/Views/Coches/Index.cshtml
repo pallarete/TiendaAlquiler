@@ -57,7 +57,7 @@
             </select>
         </div>
         <div class="col-md-12 d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary px-4">Filtrar</button>
+            <button type="submit" class="btn btn-primary btn-custom">Filtrar</button>
         </div>
     </form>
 </div>
@@ -92,7 +92,7 @@
                     <td>
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
-                            <a asp-action="Edit" asp-route-id="@item.CocheId" class="btn btn-primary btn-custom">Editar</a>
+                            <a asp-action="Edit" asp-route-id="@item.CocheId" class="btn btn-primary btn-custom"   >Editar</a>
                         }
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {

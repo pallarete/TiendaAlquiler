@@ -54,22 +54,7 @@ header {
     margin-top: 90px;
 }
 
-/*Botones*/
-button {
-    background-color: var(--color-secundario);
-    color: var(--color-texto);
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
 
-    button:hover {
-        background-color: var(--color-acento);
-        color: var(--color-blanco);
-    }
 
 /* Estilo para secciones de contenido */
 section {
@@ -84,13 +69,14 @@ section {
 
 /* Estilo para enlaces */
 a {
-    color: var(--color-acento);
+    color: var(--color-acento); /* Rojo suave y accesible */
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s ease; /* Transición suave al cambiar de color */
 }
 
     a:hover {
-        color: var(--color-destacado);
+        color: var(--color-destacado); /* Rosa-rojo suave */
     }
 
 .container-fluid {
@@ -123,44 +109,57 @@ p, label, button {
 .navbar {
     background-color: var(--color-primario); /* Fondo verde suave */
     color: var(--color-blanco);
-    align-items: center;
+    align-items: center; /* Asegura que los elementos estén alineados verticalmente al centro */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
+    padding: 10px 0; /* Espaciado vertical para la navbar */
 }
 
-    .navbar li {
-        background-color: var(--color-secundario);
-        transform: scale(1); /* Tamaño inicial */
-        transition: background-color 0.3s ease, transform 0.3s ease; /* Transiciones */
-        margin: 10px 0;
+.navbar-nav {
+    display: flex;
+    gap: 30px; /* Ajusta el espacio horizontal entre los elementos */
+    align-items: center; /* Alineación vertical de los elementos */
+}
+
+.navbar li {
+    background-color: var(--color-secundario);
+    transform: scale(1); /* Tamaño inicial */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transiciones */
+}
+
+    .navbar li:hover {
+        background-color: var(--color-destacado); /* Ejemplo de un color más destacado */
+        transform: scale(1.1);
     }
 
-        .navbar li:hover {
-            background-color: var(--color-destacado); /* Ejemplo de un color más destacado */
-            transform: scale(1.1);
-        }
 
 /* Botones */
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem var(--color-fondo), 0 0 0 0.25rem var(--color-secundario);
 }
 
 .btn-custom {
-    background-color: var(--color-primario); /* Verde suave */
-    color: var(--color-blanco);
+    background-color: var(--color-primario); /* Gris oscuro */
+    color: var(--color-fondo); /* Texto blanco */
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
     .btn-custom:hover {
-        background-color: var(--color-acento); /* Azul brillante */
+        background-color: var(--color-acento); /* Rojo suave */
+        transform: scale(1.05); /* Efecto sutil al pasar el cursor */
     }
+
 
 /* Columnas de acciones */
 .actions-column {
@@ -364,52 +363,54 @@ textarea.form-control {
         width: 50%;
     }
 
-/*CONTENEDOR DE LOS BOTONES*/
 .button-container {
     display: flex; /* Coloca los botones en línea */
     justify-content: space-between; /* Espacio entre los botones */
     align-items: center; /* Alinea verticalmente los elementos */
     gap: 15px; /* Espacio entre los botones */
     margin-top: 20px; /* Separación del contenido superior */
-    margin-bottom: 200px; /* Separación del contenido superior */
+    margin-bottom: 200px; /* Separación del contenido inferior */
 }
 
     /* Botón "Alquilar este coche" */
     .button-container .btn-primary {
-        background-color: #007bff;
-        color: #ffffff;
+        background-color: var(--color-primario); /* Gris oscuro */
+        color: var(--color-fondo); /* Blanco para el texto */
         padding: 10px 20px;
         font-size: 16px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease, transform 0.2s ease;
         text-decoration: none;
     }
 
         .button-container .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: var(--color-acento); /* Rojo suave */
+            transform: scale(1.05); /* Efecto sutil al pasar el ratón */
         }
 
     /* Enlace "Volver al listado" */
     .button-container .back-link {
-        background-color: var(--color-destacado); /* Amarillo brillante */
-        color: var(--color-texto); /* Marrón */
+        background-color: var(--color-destacado); /* Rosa-rojo suave */
+        color: var(--color-fondo); /* Blanco para el texto */
         font-size: 15px;
         padding: 8px 15px;
         border-radius: 5px;
-        border: 2px solid #ffc107;
+        border: 2px solid var(--color-destacado); /* Misma base que el fondo */
         font-weight: bold;
         text-decoration: none;
         transition: all 0.3s ease;
     }
 
         .button-container .back-link:hover {
-            background-color: var(--color-secundario); /* Beige claro */
-            color: #000;
-            border-color: #ffeb3b;
-            transform: scale(1.05); /* Un pequeño zoom al pasar el ratón */
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Un poco de sombra para resaltar */
+            background-color: var(--color-secundario); /* Naranja suave */
+            color: var(--color-texto); /* Gris oscuro para el texto */
+            border-color: var(--color-secundario); /* Misma base que el fondo */
+            transform: scale(1.05); /* Pequeño zoom al pasar el ratón */
+            text-shadow: 1px 1px 2px var(--color-sombra); /* Sombra sutil para resaltar */
+        }
+
         }
 
 /* Estilos para la sección de fechas de alquiler */
@@ -798,5 +799,30 @@ footer {
     .table-cars th, .table-cars td {
         font-size: 12px; /* Disminuye el tamaño de fuente */
         padding: 8px;
+    }
+}
+/* Media Queries para pantallas grandes */
+@media (min-width: 1200px) {
+    .publicidad-video {
+        width: 50%;
+        margin: 100px auto;
+    }
+
+    .video-background {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 768px) {
+    .publicidad-video {
+        width: 100%;
+        margin: 20px auto;
+    }
+
+    .video-background {
+        width: 100%;
+        height: auto;
     }
 }
