@@ -33,9 +33,8 @@
     <link rel="stylesheet" href="~/TiendaAlquiler.styles.css" asp-append-version="true" />
 </head>
 <body>
-
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 text-center ">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 text-center">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TiendaAlquiler</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -47,48 +46,38 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">INICIO</a>
                         </li>
-                        <li class="nav-item">
-                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                            {
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Carrocerias" asp-action="Index">CARROCERIAS</a>
-                            }
-                        </li>
-
-                        <li class="nav-item">
-                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                            {
-
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Colors" asp-action="Index">COLORES</a>
-                            }
-                        </li>
-
-                        <li class="nav-item">
-                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                            {
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Decadas" asp-action="Index">DECADAS</a>
-                            }
-                        </li>
-
-                        <li class="nav-item">
-                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                            {
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Paises" asp-action="Index">PAIS</a>
-                            }
-                        </li>
+                            </li>
+                        }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Coches" asp-action="Index">COCHES</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Register">REGISTRO</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Login">LOGIN</a>
-                        </li>
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Register">REGISTRO</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Login">LOGIN</a>
+                            </li>
+                        }
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a href="@Url.Action("Logout","Usuario")" class="nav-link text-dark">LOG OUT</a>
+                                <a href="@Url.Action("Logout", "Usuario")" class="nav-link text-dark">LOG OUT</a>
                             </li>
                         }
                     </ul>
@@ -96,6 +85,7 @@
             </div>
         </nav>
     </header>
+
     <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()

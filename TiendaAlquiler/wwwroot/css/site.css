@@ -1,4 +1,8 @@
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 :root {
     --color-primario: #6c757d; /* Gris oscuro para el color principal */
@@ -33,12 +37,11 @@ html {
 }
 
 
-/* Estilo para el encabezado */
+/* ESTILO HEADER*/
 header {
     background-color: var(--color-primario);
     color: var(--color-texto);
     padding: 20px;
-    text-align: center;
 }
 /*ENCABEZADO HOME*/
 .encabezado {
@@ -53,8 +56,6 @@ header {
 .locate {
     margin-top: 90px;
 }
-
-
 
 /* Estilo para secciones de contenido */
 section {
@@ -78,11 +79,6 @@ a {
     a:hover {
         color: var(--color-destacado); /* Rosa-rojo suave */
     }
-
-.container-fluid {
-    padding-left: 15px;
-    padding-right: 15px;
-}
 
 /* Contenido principal */
 main {
@@ -118,16 +114,35 @@ p, label, button {
     padding: 10px 0; /* Espaciado vertical para la navbar */
 }
 
+.container-fluid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0; /* Elimina el padding interno */
+    margin: 0 auto; /* Centra el contenedor */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+}
+
+.navbar-collapse {
+    padding: 0;
+    margin: 0;
+}
+
 .navbar-nav {
     display: flex;
-    gap: 30px; /* Ajusta el espacio horizontal entre los elementos */
+    justify-content: center;
     align-items: center; /* Alineación vertical de los elementos */
+    margin: 0 auto;
+    padding: 0;
+    gap: 30px; /* Ajusta el espacio horizontal entre los elementos */
 }
 
 .navbar li {
     background-color: var(--color-secundario);
     transform: scale(1); /* Tamaño inicial */
     transition: background-color 0.3s ease, transform 0.3s ease; /* Transiciones */
+    margin: 0;
+    padding: 0;
 }
 
     .navbar li:hover {
@@ -135,6 +150,13 @@ p, label, button {
         transform: scale(1.1);
     }
 
+.navbar-brand {
+    margin-right: auto; /* Empuja el logo hacia la izquierda */
+}
+
+.navbar-toggler {
+    margin-left: auto; /* Asegura que el botón esté alineado a la derecha */
+}
 
 /* Botones */
 .btn:focus,
@@ -424,7 +446,7 @@ textarea.form-control {
             text-shadow: 1px 1px 2px var(--color-sombra); /* Sombra sutil para resaltar */
         }
 
-        }
+}
 
 /* Estilos para la sección de fechas de alquiler */
 .rental-dates {
