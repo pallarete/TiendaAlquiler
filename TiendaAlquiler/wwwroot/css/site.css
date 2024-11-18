@@ -180,49 +180,62 @@ p, label, button {
 
 /* ESTILOS GENERALES DE LAS TABLAS */
 .table-m {
-    width: 80%;
+    width: 90%;
     margin: 30px auto;
     font-size: 1em;
-    margin-top: 10px;
     border-collapse: separate; /* Separar filas */
-    border-spacing: 0 20px; /* Espacio entre filas (solo vertical) */
+    border-spacing: 0 15px; /* Espacio entre filas (vertical) */
+    color: var(--color-texto); /* Color del texto */
 }
 
     .table-m thead tr {
         background-color: var(--color-secundario);
-        border: 5px solid black; /* Borde negro */
-        border-radius: 10px; /* Bordes redondeados */
-        box-shadow: 0 0 0 6px black; /* Borde adicional que resalta la separación entre filas */
+        border-radius: 8px; /* Bordes redondeados */
+        box-shadow: 0 4px 6px var(--color-sombra); /* Sombra ligera */
+        color: white; /* Texto blanco para contraste */
     }
 
-    .table-m th, .table-m td {
-        padding: 10px;
-        text-align: center;
+    .table-m th,
+    .table-m td {
+        padding: 15px 20px; /* Espaciado interno */
+        text-align: left; /* Alineación del texto */
         vertical-align: middle;
         border: none; /* Sin bordes internos */
     }
 
-        .table-m td:first-child {
-            text-align: left;
-        }
-
-        .table-m td:not(:first-child) {
-            text-align: right;
-        }
-
-
-    /* Estilo para las filas (tr) con borde negro y separación */
     .table-m tbody tr {
         background-color: var(--color-fondo);
-        border: 5px solid black; /* Borde negro alrededor de cada fila */
-        border-radius: 10px;
-        box-shadow: 0 0 0 6px black; /* Borde adicional que resalta la separación entre filas */
+        border-radius: 8px; /* Bordes redondeados */
+        box-shadow: 0 2px 4px var(--color-sombra); /* Sombra ligera */
+        transition: background-color 0.3s, transform 0.2s; /* Transición suave */
     }
 
-        /* Efecto hover para las filas */
         .table-m tbody tr:hover {
-            background-color: var(--color-destacado);
+            background-color: var(--color-destacado); /* Color destacado */
+            transform: scale(1.02); /* Efecto de "elevación" al pasar el mouse */
+            box-shadow: 0 4px 8px var(--color-sombra); /* Sombra más marcada */
         }
+
+    .table-m td:first-child {
+        font-weight: bold; /* Resaltar la primera columna */
+    }
+
+    .table-m thead th:first-child {
+        border-top-left-radius: 8px; /* Redondear esquina superior izquierda */
+    }
+
+    .table-m thead th:last-child {
+        border-top-right-radius: 8px; /* Redondear esquina superior derecha */
+    }
+
+    .table-m tbody tr:first-child td:first-child {
+        border-bottom-left-radius: 8px; /* Redondear esquina inferior izquierda */
+    }
+
+    .table-m tbody tr:first-child td:last-child {
+        border-bottom-right-radius: 8px; /* Redondear esquina inferior derecha */
+    }
+
 
 /* INDICE DE COCHES */
 /* Estilos generales para la clase .table-cars */
