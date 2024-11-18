@@ -2,16 +2,16 @@
     ViewData["Title"] = "Home Page";
 }
 
-<header>
+<header class="encabezado">
     <h1>Alquiler de Coches Clásicos</h1>
     <p>Vive la elegancia del pasado al volante de un clásico</p>
 </header>
 <section class="publicidad-video">
-      <video autoplay muted loop id="background-video" class="video-background">
-    <source src="/videos/fondo-video.mp4" type="video/mp4">
-    <source src="/videos/fondo-video.webm" type="video/webm">
-    Tu navegador no soporta la etiqueta de video.
-    </video> 
+    <video autoplay muted loop id="background-video" class="video-background">
+        <source src="/videos/fondo-video.mp4" type="video/mp4">
+        <source src="/videos/fondo-video.webm" type="video/webm">
+        Tu navegador no soporta la etiqueta de video.
+    </video>
 </section>
 
 <section class="publicidad1">
@@ -69,8 +69,11 @@
     </div>
 
 </section>
+<div class="locate">
+    <h3>Visitanos en:</h3>
+    <div id="map" style="height: 400px; width: 100%;"></div>
+</div>
 
-<div id="map" style="height: 400px; width: 100%;"></div>
 
 
 

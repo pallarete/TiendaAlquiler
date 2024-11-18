@@ -52,10 +52,13 @@
                     <label asp-for="PaisId" class="control-label"></label>
                     <select asp-for="PaisId" class="form-control" asp-items="ViewBag.PaisId"></select>
                 </div>
+
                 <div class="form-group">
                     <label for="archivos">Seleccionar fotos del coche</label>
-                    <input type="file" name="archivos" multiple class="form-control" />
+                    <input type="file" name="archivos" multiple />
                 </div>
+
+
                 <div class="form-group mb-3">
                     <input type="submit" value="Crear" class="btn btn-primary w-100 " />
                 </div>

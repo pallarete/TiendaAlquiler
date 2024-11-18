@@ -195,7 +195,7 @@ namespace TiendaAlquiler.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(int id, [Bind("CocheId,Marca,Modelo,AnioFabricacion,PrecioAlquiler,EstaAlquilado,ColorId,CarroceriaId,DecadaId,PaisId")] Coche coche, IFormFile[] archivos)
+        public async Task<IActionResult> Edit(int id, [Bind("CocheId,Marca,Modelo,AnioFabricacion,PrecioAlquiler,EstaAlquilado,ColorId,CarroceriaId,DecadaId,PaisId,Description")] Coche coche, IFormFile[] archivos)
         {
             if (id != coche.CocheId)
             {
@@ -208,6 +208,11 @@ namespace TiendaAlquiler.Controllers
                 {
                     // Actualizamos los datos del coche en la base de datos
                     _context.Update(coche);
+                    await _context.SaveChangesAsync();
+
+                    // Eliminar fotos anteriores si es necesario
+                    var fotosExistentes = _context.Fotos.Where(f => f.CocheId == coche.CocheId).ToList();
+                    _context.Fotos.RemoveRange(fotosExistentes);
                     await _context.SaveChangesAsync();
 
                     // Procesamos las fotos solo si se han cargado archivos
@@ -270,8 +275,6 @@ namespace TiendaAlquiler.Controllers
             ViewData["PaisId"] = new SelectList(_context.Paises, "PaisId", "Nombre", coche.PaisId);
             return View(coche);
         }
-
-
 
         // GET: Coches/Delete/5
         [Authorize(Roles = "Admin")]

@@ -9,7 +9,7 @@
     <div class="row justify-content-center table">
 
         <div class="col-md-6 col-lg-4 detail-card">
-            <form asp-action="Edit">
+            <form asp-action="Edit" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="CocheId" />
                 <div class="form-group mb-3">
@@ -53,12 +53,17 @@
                     <select asp-for="PaisId" class="form-control" asp-items="ViewBag.PaisId"></select>
                     <span asp-validation-for="PaisId" class="text-danger"></span>
                 </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
                 <div class="form-group">
                     <label for="archivos">Seleccionar fotos del coche</label>
-                    <input type="file" name="archivos" multiple class="form-control" />
+                    <input type="file" name="archivos" multiple />
                 </div>
                 <div class="form-group mb-3">
-                    <input type="submit" value="Guardar" class="btn btn-primary w-100" />
+                    <input type="submit" value="Guardar" class="btn btn-primary btn-custom w-100"/>
                 </div>
                 <div class="form-group mb-3">
                     <a asp-action="Index" class="btn btn-secondary  w-100">Volver al listado</a>

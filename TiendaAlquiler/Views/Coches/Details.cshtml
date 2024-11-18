@@ -7,7 +7,7 @@
 }
 <h1>Informacion del coche</h1>
 <div>
-    <table class="table table-details">
+    <table class="table-details">
         <thead>
             <tr>
                 <th>@Html.DisplayNameFor(model => model.Marca)</th>
@@ -53,28 +53,11 @@
             <div class="form-group  mb-3 ">
                 <textarea name="Descripcion" class="form-control" placeholder="Escribe una descripción del coche">@Model.Description</textarea>
             </div>
-            <button type="submit" class="btn btn-primary mb-3">Guardar Descripción</button>
+            <button type="submit" class="btn btn-primary btn-custom">Guardar Descripción</button>
         </form>
     }
 </div>
-@* @* SECCION DE FECHAS*@
 
-@* <div class="rental-dates">
-    <h3>Fechas de Alquiler</h3>
-    @if (Model.Alquilers != null && Model.Alquilers.Any())
-    {
-        <ul>
-            @foreach (var alquiler in Model.Alquilers)
-            {
-                <li>Desde: @alquiler.FechaAlquiler.ToShortDateString() - Hasta: @alquiler.FechaDevolucion.ToShortDateString()</li>
-            }
-        </ul>
-    }
-    else
-    {
-        <p class="not-rented">Este coche no está alquilado actualmente.</p>
-    }
-</div>  *@
 
 @* SECCION DE LAS FOTOS*@
 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
@@ -111,11 +94,11 @@
 
 @* SECCION DE ALQUILER Y VUELTA AL LISTADO*@
 <div class="button-container">
-    <a asp-controller="Alquilers" asp-action="Create" asp-route-cocheId="@Model.CocheId" asp-route-usuarioId="@UserManager.GetUserId(User)" class="btn btn-primary">
+    <a asp-controller="Alquilers" asp-action="Create" asp-route-cocheId="@Model.CocheId" asp-route-usuarioId="@UserManager.GetUserId(User)" class="btn btn-primary btn-custom"  >
         Alquilar este coche
     </a>
 
-    <a asp-action="Index" class="back-link">
+    <a asp-action="Index"  class="btn btn-primary btn-custom">
         Volver al listado
     </a>
 </div>

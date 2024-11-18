@@ -92,13 +92,13 @@
                     <td>
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
-                            <a asp-action="Edit" asp-route-id="@item.CocheId">Editar</a>
+                            <a asp-action="Edit" asp-route-id="@item.CocheId" class="btn btn-primary btn-custom">Editar</a>
                         }
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
-                            <a asp-action="Delete" asp-route-id="@item.CocheId">Borrar Coche</a>
+                            <a asp-action="Delete" asp-route-id="@item.CocheId" class="btn btn-primary btn-custom">Borrar Coche</a>
                         }
-                        <a asp-action="Details" asp-route-id="@item.CocheId">Detalles</a>
+                        <a asp-action="Details" asp-route-id="@item.CocheId" class="btn btn-primary btn-custom">Detalles</a>
                     </td>
                 </tr>
             }

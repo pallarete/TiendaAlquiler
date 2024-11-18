@@ -86,6 +86,7 @@ namespace TiendaAlquiler.Controllers
         // POST: Alquilers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AlquilerId,CocheId,UsuarioId,FechaAlquiler,FechaDevolucion,NumeroTarjeta,FechaExpiracion,CVC")] Alquiler alquiler)
@@ -99,6 +100,7 @@ namespace TiendaAlquiler.Controllers
                 if (coche == null)
                 {
                     ModelState.AddModelError("", "El coche no existe");
+                    CargarListas(alquiler); // Método para recargar los datos necesarios en caso de error
                     return View(alquiler);
                 }
 
@@ -110,6 +112,7 @@ namespace TiendaAlquiler.Controllers
                 if (fechaDevolucion <= fechaAlquiler)
                 {
                     ModelState.AddModelError("", "La fecha de devolución debe ser posterior a la fecha de alquiler.");
+                    CargarListas(alquiler);
                     return View(alquiler);
                 }
 
@@ -128,6 +131,7 @@ namespace TiendaAlquiler.Controllers
                 if (fechasSolapadas)
                 {
                     ModelState.AddModelError("", "Este coche ya está alquilado en el rango de fechas seleccionado.");
+                    CargarListas(alquiler);
                     return View(alquiler);
                 }
 
@@ -135,6 +139,7 @@ namespace TiendaAlquiler.Controllers
                 if (!ValidarTarjeta(alquiler))
                 {
                     ModelState.AddModelError("", "Los datos de la tarjeta no son válidos.");
+                    CargarListas(alquiler);
                     return View(alquiler);
                 }
 
@@ -148,16 +153,22 @@ namespace TiendaAlquiler.Controllers
 
                 // Redirigir a la lista de alquileres o donde se desee
                 return RedirectToAction(nameof(Index));
-
             }
 
-
-            // Si el modelo no es válido, devolver las listas de coches y usuarios para la vista
-            ViewData["CocheId"] = new SelectList(_context.Coches, "CocheId", "Marca", alquiler.CocheId);
-            ViewData["UsuarioId"] = new SelectList(await _userManager.Users.ToListAsync(), "Id", "UserName", alquiler.UsuarioId);
-
+            // Si el modelo no es válido, recargar las listas y devolver la vista
+            CargarListas(alquiler);
             return View(alquiler);
         }
+
+        // Método para cargar las listas necesarias para la vista
+        private void CargarListas(Alquiler alquiler)
+        {
+            // Obtener el coche y usuario previamente seleccionado
+            ViewData["CocheId"] = new SelectList(_context.Coches, "CocheId", "Marca", alquiler.CocheId);
+            ViewData["UsuarioId"] = new SelectList(_userManager.Users, "Id", "UserName", alquiler.UsuarioId);
+        }
+
+
 
         // Método para simular la validación de la tarjeta
         private bool ValidarTarjeta(Alquiler alquiler)
@@ -195,9 +206,6 @@ namespace TiendaAlquiler.Controllers
 
             return false;
         }
-
-
-
 
         // GET: Alquilers/Edit/5
         public async Task<IActionResult> Edit(int? id)
