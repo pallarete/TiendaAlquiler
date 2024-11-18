@@ -1,56 +1,14 @@
-/*:root {
-    --color-primario: #BDC581;*/ /* Verde suave */
-    /*--color-secundario: #F5E6CA;*/ /* Beige claro */
-    /*--color-acento: #85C1E9;*/ /* Azul brillante */
-    /*--color-texto: #8E735B;*/ /* Marrón para texto */
-    /*--color-destacado: #F7DC6F;*/ /* Amarillo brillante */
-    /*--color-fondo: #FFFDF7;*/ /* Un blanco cálido */
-    /*--color-sombra: rgba(0, 0, 0, 0.1);*/ /* Sombras suaves */
-/*}*/
 
-/*BASADO EN GRISES*/
-/*:root { 
-    --color-primario: #B0B0B0;*/ /* Gris suave */
-    /*--color-secundario: #D3D3D3;*/ /* Gris claro */
-    /*--color-acento: #A9A9A9;*/ /* Gris medio */
-    /*--color-texto: #808080;*/ /* Gris oscuro para texto */
-    /*--color-destacado: #C0C0C0;*/ /* Gris claro brillante */
-    /*--color-fondo: #F5F5F5;*/ /* Gris cálido */
-    /*--color-sombra: rgba(128, 128, 128, 0.1);*/ /* Sombras grises suaves */
-/*}*/
 
-/*BASADO EN ALEGRIA*/
-/*:root {
-    --color-primario: #B0C4DE;*/ /* Azul grisáceo suave */
-    /*--color-secundario: #E6E6FA;*/ /* Lavanda claro */
-    /*--color-acento: #ADD8E6;*/ /* Azul pastel */
-    /*--color-texto: #6B8E23;*/ /* Verde oliva suave */
-    /*--color-destacado: #FFD700;*/ /* Amarillo dorado brillante */
-    /*--color-fondo: #FAF0E6;*/ /* Beige cálido */
-    /*--color-sombra: rgba(105, 105, 105, 0.1);*/ /* Sombras grises suaves con un toque cálido */
-/*}*/
-/*BASADO EN AZULES Y DORADOS*/
-/*:root {
-    --color-primario: #1E90FF;*/ /* Azul brillante */
-    /*--color-secundario: #FFD700;*/ /* Dorado vibrante */
-    /*--color-acento: #4682B4;*/ /* Azul acero */
-    /*--color-texto: #DAA520;*/ /* Dorado oscuro para el texto */
-    /*--color-destacado: #B0C4DE;*/ /* Azul claro pastel */
-    /*--color-fondo: #F5F5F5;*/ /* Blanco con un toque gris */
-    /*--color-sombra: rgba(0, 0, 139, 0.1);*/ /* Sombra azul oscuro suave */
-/*}*/
-/*ACCESIBILIDAD*/
 :root {
-    --color-primario: #0A84FF; /* Azul brillante accesible */
-    --color-secundario: #FFD60A; /* Amarillo brillante y contrastante */
-    --color-acento: #FF453A; /* Rojo accesible */
-    --color-texto: #000000; /* Negro puro para texto */
-    --color-destacado: #34C759; /* Verde brillante y claro */
-    --color-fondo: #FFFFFF; /* Blanco puro */
-    --color-sombra: rgba(0, 0, 0, 0.2); /* Sombras oscuras y definidas */
+    --color-primario: #6c757d; /* Gris oscuro para el color principal */
+    --color-secundario: #f5a623; /* Naranja suave con un toque de rojo para contraste */
+    --color-acento: #d9534f; /* Rojo suave, accesible y elegante */
+    --color-texto: #333333; /* Gris muy oscuro para el texto */
+    --color-destacado: #e83e8c; /* Rosa-rojo suave para elementos destacados */
+    --color-fondo: #f1f3f5; /* Fondo gris claro, cercano al blanco, pero con un toque cálido */
+    --color-sombra: rgba(0, 0, 0, 0.1); /* Sombra ligera y sutil */
 }
-
-
 
 /* Configuración básica */
 html, body {
