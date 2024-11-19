@@ -56,11 +56,16 @@
                 <input asp-for="CVC" class="form-control" type="text" maxlength="3" />
                 <span asp-validation-for="CVC" class="text-danger"></span>
             </div>
+            <div class="botones">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-custom">Crear Alquiler</button>
+                </div>
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-custom">Crear Alquiler</button>
             </div>
         </form>
+        <div class="mt-4 w-100 ">
+            <a asp-action="Index" class="btn btn-primary btn-custom">Volver al Listado</a>
+        </div>
     </div>
 
     <!-- Fechas de alquiler previas -->
@@ -80,9 +85,6 @@
     </div>
 </div>
 
-<div class="mt-4">
-    <a asp-action="Index" class="btn btn-primary btn-custom">Volver al Listado</a>
-</div>
 
 @section Scripts {
     @Html.RenderPartialAsync("_ValidationScriptsPartial")

@@ -5,15 +5,17 @@
 }
 
 :root {
-    --color-primario: #6c757d;/* Gris oscuro para el color principal */
-    --color-secundario: #f5a623;/* Naranja suave con un toque de rojo para contraste */
-    --color-acento: #d9534f;/* Rojo suave, accesible y elegante */
-    --color-texto: #333333;/* Gris muy oscuro para el texto */
-    --color-destacado: #e83e8c;/* Rosa-rojo suave para elementos destacados */
-    --color-fondo: #f1f3f5;/* Fondo gris claro, cercano al blanco, pero con un toque cálido */
-    --color-sombra: rgba(0, 0, 0, 0.1);/* Sombra ligera y sutil */
+    --color-primario: #6c757d; /* Gris oscuro para el color principal */
+    --color-secundario: #f5a623; /* Naranja suave con un toque de rojo para contraste */
+    --color-acento: #d9534f; /* Rojo suave, accesible y elegante */
+    --color-texto: #333333; /* Gris muy oscuro para el texto */
+    --color-destacado: #e83e8c; /* Rosa-rojo suave para elementos destacados */
+    --color-fondo: #f1f3f5; /* Fondo gris claro, cercano al blanco, pero con un toque cálido */
+    --color-acciones: #007bff;
+    --color-sombra: rgba(0, 0, 0, 0.1); /* Sombra ligera y sutil */
 }
-/* Configuración básica */
+
+/* CONFIGURACION BASICA */
 html, body {
     font-size: 14px;
     margin: 0;
@@ -26,9 +28,9 @@ html, body {
     background-position: center center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    font-family: 'Roboto', sans-serif;
     background-color: var(--color-fondo);
     color: var(--color-primario);
+    font-family: 'Roboto', sans-serif;
 }
 
 html {
@@ -56,7 +58,7 @@ header {
     margin-top: 90px;
 }
 
-/* Estilo para secciones de contenido */
+/* ESTILO PARA SECCIONES DE CONTENIDO */
 section {
     margin: 20px auto;
     max-width: 1200px;
@@ -67,19 +69,19 @@ section {
     border-radius: 10px;
 }
 
-/* Estilo para enlaces */
+/* ESTILO PARA ENLACES EN GENERAL*/
 a {
     color: var(--color-acento); /* Rojo suave y accesible */
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s ease; /* Transición suave al cambiar de color */
+    transition: color 0.5s ease; /* Transición suave al cambiar de color */
 }
 
     a:hover {
         color: var(--color-destacado); /* Rosa-rojo suave */
     }
 
-/* Contenido principal */
+/* CONTENEDOR PRINCIPAL*/
 main {
     flex: 1;
     margin-top: 60px; /* Ajuste para compensar la navbar fija */
@@ -89,7 +91,7 @@ main {
     justify-content: space-between;
 }
 
-/* Encabezados */
+/*ENCABEZADOS*/
 h1, h2, h3 {
     font-family: 'Roboto', sans-serif;
     text-align: center;
@@ -100,7 +102,7 @@ p, label, button {
     font-family: 'Roboto', sans-serif;
 }
 
-/* Estilos de la navbar */
+/*ESTILOS DE LA NAVBAR*/
 .navbar {
     background-color: var(--color-primario); /* Fondo verde suave */
     color: var(--color-blanco);
@@ -112,6 +114,7 @@ p, label, button {
     z-index: 1000;
     padding: 10px 0; /* Espaciado vertical para la navbar */
 }
+
 
 .container-fluid {
     display: flex;
@@ -139,7 +142,7 @@ p, label, button {
 .navbar li {
     background-color: var(--color-secundario);
     transform: scale(1); /* Tamaño inicial */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Transiciones */
+    transition: background-color 0.5s ease, transform 0.5s ease; /* Transiciones */
     margin: 0;
     padding: 0;
 }
@@ -157,7 +160,7 @@ p, label, button {
     margin-left: auto; /* Asegura que el botón esté alineado a la derecha */
 }
 
-/* Botones */
+/* BOTONES */
 .btn:focus,
 .btn:active:focus,
 .btn-link.nav-link:focus,
@@ -173,33 +176,34 @@ p, label, button {
     padding: 10px 20px;
     border-radius: 5px;
     font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.5s ease, transform 0.5s ease;
 }
 
     .btn-custom:hover {
-        background-color: var(--color-acento); /* Rojo suave */
+        background-color: var(--color-acciones); /* Rojo suave */
         transform: scale(1.05); /* Efecto sutil al pasar el cursor */
     }
 
 
-/* Columnas de acciones */
+/* COLUMNAS DE ACCIONES */
 .actions-column {
     text-align: right;
-    color: #555;
+    color: var(--color-acciones);
     padding: 8px;
 }
 
     .actions-column a {
-        color: #007bff;
+        color: var(--color-acciones);
         margin-left: 10px;
         text-decoration: none;
     }
 
         .actions-column a:hover {
             text-decoration: underline;
+            color: var(--color-destacado); /* Color al hacer hover */
         }
 
-/* ESTILOS GENERALES DE LAS TABLAS */
+/* ESTILOS GENERALES DE LAS TABLAS MAESTRAS*/
 .table-m {
     width: 90%;
     margin: 30px auto;
@@ -228,7 +232,7 @@ p, label, button {
         background-color: var(--color-fondo);
         border-radius: 8px; /* Bordes redondeados */
         box-shadow: 0 2px 4px var(--color-sombra); /* Sombra ligera */
-        transition: background-color 0.3s, transform 0.2s; /* Transición suave */
+        transition: background-color 0.5s, transform 0.5s; /* Transición suave */
     }
 
         .table-m tbody tr:hover {
@@ -262,8 +266,7 @@ p, label, button {
         padding-right: 15px; /* Ajusta el espaciado interno si lo necesitas */
     }
 
-/* INDICE DE COCHES */
-/* Estilos generales para la clase .table-cars */
+/* ESTILO PARA LA TABLA DE COCHES */
 .table-cars {
     width: 100%;
     max-width: 100%;
@@ -299,7 +302,7 @@ p, label, button {
     /* Añadir sombra cuando se pasa el ratón sobre una fila */
     .table-cars tbody tr:hover {
         background-color: #f1f1f1; /* Color de fondo al pasar el ratón sobre la fila */
-        /*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);*/ /* Sombra más intensa al pasar el ratón */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /*Sombra más intensa al pasar el ratón*/
     }
 
     /* Añadir color a las celdas de la columna de acciones */
@@ -332,6 +335,7 @@ p, label, button {
         font-weight: bold;
     }
 
+/*DESCRIPCION DEL COCHE*/
 .description-section {
     background-color: var(--color-fondo); /* Fondo gris claro */
     padding: 2rem;
@@ -366,26 +370,25 @@ textarea.form-control {
         box-shadow: 0 0 8px var(--color-secundario); /* Sombra suave naranja */
     }
 
-button.btn-custom {
+.btn-custom {
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
     background-color: var(--color-secundario); /* Naranja suave */
     border-radius: 5px;
     color: white;
     border: none;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.5s ease, transform 0.5s ease; /* Añadida transición para transform */
 }
 
-    button.btn-custom:hover {
-        background-color: var(--color-destacado); /* Rosa-rojo en hover */
-    }
+button.btn-custom:hover {
+    background-color: var(--color-destacado); /* Rosa-rojo en hover */
+    transform: scale(1.05); /* Efecto de agrandamiento suave */
+}
 
-    button.btn-custom:focus {
-        outline: none;
-        box-shadow: 0 0 5px var(--color-acento); /* Resaltar el botón con un borde de color acento */
-    }
-
-
+button.btn-custom:focus {
+    outline: none;
+    box-shadow: 0 0 5px var(--color-acento); /* Resaltar el botón con un borde de color acento */
+}
 
 /* CARRUSEL */
 #carouselExampleAutoplaying {
@@ -424,7 +427,7 @@ button.btn-custom {
 }
 
 
-/* Contenedor de botones */
+/* BOTENES FINALES DETALLES DEL COCHE*/
 .button-container {
     margin-top: 20px; /* Añadir espacio entre los botones y el contenido previo */
     display: flex;
@@ -443,7 +446,7 @@ button.btn-custom {
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.2s ease;
+        transition: background-color 0.5s ease, transform 0.5s ease;
         text-decoration: none;
         margin-bottom: 10px; /* Añadir separación entre los botones */
         width: 100%; /* Hacer que los botones ocupen el 100% del ancho disponible */
@@ -473,7 +476,7 @@ button.btn-custom {
         border: 2px solid var(--color-destacado); /* Misma base que el fondo */
         font-weight: bold;
         text-decoration: none;
-        transition: all 0.3s ease;
+        transition: all 0.5s ease;
         margin-top: 10px; /* Añadir separación entre los botones */
         width: 100%; /* Hacer que los botones ocupen el 100% del ancho disponible */
         max-width: 300px; /* Limitar el ancho máximo del botón */
@@ -499,12 +502,7 @@ button.btn-custom {
         margin-top: 10px;
     }
 
-
-
-
-
-
-/* Estilos para la sección de fechas de alquiler */
+/* ESTILOS PARA LA SECCION DE FECHAS DE COCHE ALQUILADO */
 .rental-dates {
     margin-top: 20px;
     padding: 15px;
@@ -547,12 +545,12 @@ button.btn-custom {
         margin-top: 10px;
     }
 
-/* Contenedor general de la descripción */
+/* CONTENEDOR GENERALDE LA DESCRIPCION */
 .description-section {
     margin-top: 20px;
     padding: 15px;
-    background-color: #fff7e6; /* Fondo cálido */
-    border: 2px solid #ffc107; /* Borde amarillo */
+    background-color: #f8f9fa; /* Gris suave*/
+    border: 2px solid var(--color-primario); /* Borde amarillo */
     border-radius: 8px;
 }
 
@@ -597,7 +595,7 @@ button.btn-custom {
             border-color: #e8590c;
         }
 
-/* Estilo general para el formulario con la clase alquiler-form */
+/* ESTILO GENERAL DEL FORMULARIO DE ALQUILAR */
 .alquiler-form {
     background-color: #f9f9f9;
     padding: 20px;
@@ -630,18 +628,19 @@ button.btn-custom {
 
     /* Estilo para el botón de envío dentro del formulario */
     .alquiler-form input[type="submit"] {
-        background-color: #007bff;
+        background-color: var(--color-primario); /* Usamos el gris de la paleta */
         color: white;
         border: none;
         padding: 10px 20px;
         border-radius: 4px;
         cursor: pointer;
         font-size: 16px;
-        transition: background-color 0.3s ease;
+        transition: background-color 0.5s ease;
     }
 
+        /* Efecto al pasar el mouse por encima del botón */
         .alquiler-form input[type="submit"]:hover {
-            background-color: #0056b3;
+            background-color: var(--color-acciones); /* Hover usa el color de acción */
         }
 
     /* Estilo para los mensajes de error de validación */
@@ -673,15 +672,16 @@ button.btn-custom {
     /* Estilo para el enlace "Back to List" */
     .alquiler-form a {
         text-decoration: none;
-        color: #007bff;
+        color: var(--color-acciones); /* Enlace con el color de acción */
         font-size: 16px;
         margin-top: 20px;
         display: inline-block;
     }
 
-        .alquiler-form a:hover {
-            color: #0056b3;
-        }
+    /* Estilo del botón "Back to List" */
+    .alquiler-form button {
+        color: var(--color-acciones); /* Usamos el color de acción */
+    }
 
     /* Estilo del contenedor que muestra el formulario y las fechas al lado */
     .alquiler-form .row {
@@ -697,23 +697,29 @@ button.btn-custom {
     .alquiler-form .col-md-8 {
         flex: 0 0 48%;
     }
+
 /*ESTILO FORMULARIO FILTRADO*/
 .d-flex .btn {
     font-size: 1rem;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.5s ease;
+    background-color: var(--color-primario); /* Gris oscuro */
+    color: white; /* Texto blanco */
+    border: none;
+    border-radius: 5px;
+    padding: 0.7rem 1.5rem; /* Ajustado el padding */
 }
 
     .d-flex .btn:hover {
-        background-color: #0056b3;
-        color: #fff;
+        background-color: var(--color-acciones); /* Color de hover */
+        color: white; /* Mantener el texto blanco en hover */
     }
 
 .d-flex .form-select, form .form-label {
     font-size: 0.9rem;
 }
 
-/* Estilo para centrar las etiquetas y darles bordes redondeados */
+/* ESTILO PARA REDONDEAR ETIQUETAS DE FILTRADO*/
 .label-rounded {
     display: inline-block; /* Asegura que el fondo se ajuste al contenido */
     padding: 0.4rem 0.8rem; /* Añade espacio interno */
@@ -727,7 +733,7 @@ button.btn-custom {
     width: 120px; /* Ancho fijo */
 }
 
-
+/*PAGINA DE HOME INICIO*/
 .publicidad-video {
     width: 66.66%; /* Dos tercios del ancho de la pantalla */
     margin: 50px auto; /* Centrar horizontalmente el div */
@@ -745,7 +751,7 @@ button.btn-custom {
     display: block; /* Evita espacios blancos en línea */
 }
 
-/*PUBLICIDAD 1 */
+/*Publicidad 1 */
 .publicidad1 {
     display: flex;
     justify-content: space-between; /* Separar los elementos */
@@ -757,7 +763,7 @@ button.btn-custom {
     border-radius: 10px;
 }
 
-/*PUBLICIDAD 2 */
+/*Publicidad 2 */
 .publicidad2 {
     display: flex;
     justify-content: space-between; /* Separar los elementos */
@@ -780,12 +786,14 @@ button.btn-custom {
         font-size: 20px;
         line-height: 1.4;
     }
+
 /* Estilo para la imagen */
 .publicidad1 img,
 .publicidad2 img {
     border-radius: 10px;
 }
 
+/*GOOGLE MAPS*/
 #map {
     height: 400px; /* Altura del mapa */
     width: 100%; /* Ancho del mapa */
@@ -807,9 +815,102 @@ button.btn-custom {
     max-width: 1200px; /* Opcional: Limitar el tamaño máximo */
     box-sizing: border-box;
 }
+/* Contenedor principal de la página */
+.delete-container {
+    background-color: #f4f4f4;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 3rem auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+}
 
+/* PAGINA DE BORRAR COCHE */
+.page-title {
+    font-size: 2.5rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
 
-/* Footer */
+/* Texto de confirmación */
+.confirmation-text {
+    font-size: 1.5rem;
+    color: #444;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Estilo para el detalle del coche */
+.car-details {
+    margin-bottom: 2rem;
+}
+
+/* Título de detalles del coche */
+.car-detail-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+/* Lista de detalles */
+.car-detail-list dt {
+    font-weight: bold;
+    color: #555;
+}
+
+.car-detail-list dd {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+/* Estilo del boton de borrar */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+}
+/* Estilo unificado para todos los botones */
+button.btn, a.btn {
+    background-color: var(--color-primario); /* Gris oscuro */
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    padding: 0.7rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    /* Efecto al pasar el mouse por encima de los botones */
+    button.btn:hover, a.btn:hover {
+        background-color: var(--color-acciones); /* Color de hover */
+    }
+
+/* Estilo específico para el botón "Borrar" */
+button.btn-danger {
+    background-color: #d9534f; /* Rojo */
+}
+
+    /* Efecto al pasar el mouse por encima del botón "Borrar" */
+    button.btn-danger:hover {
+        background-color: #c9302c;
+    }
+
+/* Estilo específico para el botón "Volver al listado" */
+a.btn-secondary {
+    background-color: var(--color-primario); /* Gris oscuro */
+}
+
+    a.btn-secondary:hover {
+        background-color: var(--color-acciones); /* Color de hover */
+    }
+
+/* FOOTER */
 footer {
     position: relative; /*Asegura que el footer no se quede fijo */
     width: 100%; /*Asegura que el footer ocupe todo el ancho */

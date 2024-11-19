@@ -27,8 +27,18 @@ namespace TiendaAlquiler.Controllers
         // GET: Alquilers
         public async Task<IActionResult> Index()
         {
-            var tiendaAlquilerDBContext = _context.Alquilers.Include(a => a.Coche).Include(a => a.Usuario);
-            return View(await tiendaAlquilerDBContext.ToListAsync());
+            var ultimoAlquiler = await _context.Alquilers
+                .Include(a => a.Coche)
+                .Include(a => a.Usuario)
+                .OrderByDescending(a => a.FechaAlquiler) // Ordena por fecha más reciente
+                .FirstOrDefaultAsync(); // Obtiene el último alquiler
+
+            if (ultimoAlquiler == null)
+            {
+                return View(new List<Alquiler>()); // Devuelve una lista vacía si no hay alquileres
+            }
+
+            return View(new List<Alquiler> { ultimoAlquiler }); // Envía el alquiler como una lista
         }
 
         // GET: Alquilers/Details/5
