@@ -258,6 +258,10 @@ p, label, button {
         border-bottom-right-radius: 8px; /* Redondear esquina inferior derecha */
     }
 
+    .table-m .actions-column {
+        text-align: right; /* Alinea el contenido a la derecha */
+        padding-right: 15px; /* Ajusta el espaciado interno si lo necesitas */
+    }
 
 /* INDICE DE COCHES */
 /* Estilos generales para la clase .table-cars */
@@ -310,8 +314,8 @@ p, label, button {
     }
 
 
-/* TABALA DE DETALLES DEL COCHE*/
-.table-details {
+/* TABLA DE DETALLES DEL COCHE*/
+.table {
     width: 100%;
     margin-bottom: 20px;
     border: 1px solid #ddd;
@@ -319,56 +323,97 @@ p, label, button {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-    .table-details th, .table-details td {
+    .table th, .table td {
         text-align: center;
         padding: 10px;
     }
 
-    .table-details th {
+    .table th {
         background-color: #f8f9fa;
         font-weight: bold;
     }
 
-.description-section h4 {
-    font-size: 1.25rem;
-    color: #333;
+.description-section {
+    background-color: var(--color-fondo); /* Fondo gris claro */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--color-sombra); /* Sombra suave */
 }
+
+    .description-section h4 {
+        font-size: 1.25rem;
+        color: var(--color-texto); /* Gris oscuro para los títulos */
+        margin-bottom: 1rem; /* Espaciado inferior */
+    }
+
+    .description-section .text-muted {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: var(--color-primario); /* Gris oscuro para la descripción */
+    }
 
 textarea.form-control {
     height: 120px;
+    resize: vertical;
+    border-radius: 8px;
+    border: 1px solid var(--color-primario); /* Borde gris oscuro */
+    background-color: var(--color-fondo); /* Fondo gris claro */
+    box-shadow: 0 2px 5px var(--color-sombra); /* Sombra suave */
+    color: var(--color-texto); /* Gris muy oscuro para el texto */
 }
 
-/* GALERIA DE FOTOS */
-.fotos {
-    justify-content: flex-start;
-    display: flex;
-    align-content: center;
-    border: 3px solid var(--color-acento); /* Azul brillante */
+    textarea.form-control:focus {
+        border-color: var(--color-secundario); /* Borde naranja al hacer focus */
+        box-shadow: 0 0 8px var(--color-secundario); /* Sombra suave naranja */
+    }
+
+button.btn-custom {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    background-color: var(--color-secundario); /* Naranja suave */
+    border-radius: 5px;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
 }
 
-.foto {
-    padding: 3px;
-    margin: 3px;
-    border: 3px solid var(--color-primario); /* Verde suave */
-}
+    button.btn-custom:hover {
+        background-color: var(--color-destacado); /* Rosa-rojo en hover */
+    }
+
+    button.btn-custom:focus {
+        outline: none;
+        box-shadow: 0 0 5px var(--color-acento); /* Resaltar el botón con un borde de color acento */
+    }
+
+
 
 /* CARRUSEL */
+#carouselExampleAutoplaying {
+    margin-left: auto; /* Centra el carrusel */
+    margin-right: auto; /* Centra el carrusel */
+    padding: 0 20px; /* Espacio de 20px solo en los márgenes izquierdo y derecho */
+    max-width: 100%; /* Asegura que el carrusel no exceda el ancho de su contenedor */
+}
+
 .carousel-item img {
-    width: 100%;
-    height: auto;
-    max-height: 500px; /* Limitar la altura máxima */
+    width: 700px;
+    height: 400px;
+    /*max-height: 500px;*/ /* Limitar la altura máxima */
     object-fit: cover;
     object-position: center;
 }
 
 .carousel-inner {
     margin-top: 30px;
-    border: 3px solid red; /* Puedes quitar o ajustar el borde */
+    border: 3px solid var(--color-destacado); /* Puedes quitar o ajustar el borde */
     border-radius: 10px;
-    background-color: var(--color-secundario); /* Beige claro */
+    background-color: var(--color-fondo); /* Beige claro */
     position: relative;
     overflow: hidden;
-    height: 500px; /* Mantén la altura fija o cámbiala según sea necesario */
+    width: 700px;
+    height: 400px; /* Mantén la altura fija o cámbiala según sea necesario */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
 }
 
 .carousel-control-prev-icon, .carousel-control-next-icon {
@@ -379,24 +424,6 @@ textarea.form-control {
     filter: invert(100%); /* Si el fondo es oscuro, los íconos se verán blancos */
 }
 
-
-
-/* Tarjeta de detalles */
-.detail-card {
-    background-color: var(--color-secundario); /* Beige claro */
-    color: var(--color-texto); /* Marrón */
-    padding: 20px;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-}
-
-    .detail-card h4 {
-        font-weight: bold;
-    }
-
-    .detail-card .table th, .detail-card .table td {
-        width: 50%;
-    }
 
 .button-container {
     display: flex; /* Coloca los botones en línea */
@@ -689,111 +716,46 @@ textarea.form-control {
     display: block; /* Evita espacios blancos en línea */
 }
 
-/* PUBLICIDAD2 */
+/*PUBLICIDAD 1 */
 .publicidad1 {
-    display: flex;
-    justify-content: space-between; /* Separar los elementos a ambos lados */
-    align-items: center; /* Alineación vertical centrada */
-    padding: 20px;
-    background-color: #f5f5f5;
-    max-height: 400px; /* Limitar la altura máxima del contenedor */
-    max-width: 100%;
-    border-radius: 10px;
-    margin-left: auto;
-}
-
-/* Contenedor principal con flexbox */
-.publicidad1 {
-    margin-top: 100px;
     display: flex;
     justify-content: space-between; /* Separar los elementos */
-    align-items: center; /* Alineación vertical centrada */
+    margin-top: 100px;
     padding: 20px;
+    justify-content: space-between; /* Separar los elementos a ambos lados */
     background-color: #f5f5f5;
-    max-height: 400px;
+    max-width: 100%;
     border-radius: 10px;
-    gap: 20px; /* Añadido para separación entre los elementos */
+}
+
+/*PUBLICIDAD 2 */
+.publicidad2 {
+    display: flex;
+    justify-content: space-between; /* Separar los elementos */
+    padding: 20px;
+    margin-top: 30px;
+    background-color: #f5f5f5;
+    max-width: 100%;
+    border-radius: 10px;
 }
 
 /* Estilo para el texto */
-.publicidad1-texto {
-    flex: 1; /* Cada div ocupa la mitad del espacio */
-    padding-right: 20px; /* Espacio entre el texto y la imagen */
-    font-family: 'Roboto', sans-serif;
+.publicidad1-texto,
+.publicidad2-texto {
     overflow: hidden;
+    font-family: 'Roboto', sans-serif;
 }
 
-    .publicidad1-texto p {
+    .publicidad1-texto p,
+    .publicidad2-texto p {
         font-size: 20px;
         line-height: 1.4;
     }
-
-    .publicidad1-texto li {
-        margin-bottom: 10px;
-    }
 /* Estilo para la imagen */
-.publicidad1-foto {
-    flex: 1; /* Cada div ocupa la mitad del espacio */
-    max-height: 100%; /* Limitar la altura máxima al 100% del contenedor */
-    overflow: hidden; /* Evita que la imagen se desborde */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.publicidad1 img {
-    width: 100%; /* La imagen ocupa el 100% del espacio disponible */
-    height: auto; /* Mantiene la proporción de la imagen */
-    border-radius: 10px;
-    object-fit: contain; /* Asegura que la imagen se recorte adecuadamente */
-}
-
-/* CONTENEDOR PUBLICIDAD 2 */
-.publicidad2 {
-    margin-top: 30px;
-    display: flex;
-    justify-content: space-between; /* Separar los elementos */
-    align-items: center; /* Alineación vertical centrada */
-    padding: 20px;
-    background-color: #f5f5f5;
-    max-height: 400px; /* Limitar la altura máxima del contenedor */
-    max-width: 100%;
-    border-radius: 10px;
-    margin-right: auto;
-}
-
-/* Estilo para la imagen */
-.publicidad2-foto {
-    flex: 1; /* Cada div ocupa la mitad del espacio */
-    max-height: 100%; /* Limitar la altura máxima al 100% del contenedor */
-    overflow: hidden; /* Evita que la imagen se desborde */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Ajustar la imagen */
+.publicidad1 img,
 .publicidad2 img {
-    width: 100%; /* La imagen ocupa el 100% del espacio disponible */
-    height: auto; /* Mantiene la proporción de la imagen */
     border-radius: 10px;
-    object-fit: contain; /* Asegura que la imagen se recorte adecuadamente */
 }
-
-/* Estilo para el texto */
-.publicidad2-texto {
-    flex: 1; /* El texto ocupa la mitad del espacio */
-    padding-left: 20px; /* Espacio entre la imagen y el texto */
-    font-family: 'Roboto', sans-serif;
-    overflow: hidden; /* Evita que el texto se desborde */
-    max-height: 100%; /* Limita la altura al máximo permitido por el contenedor */
-}
-
-    /* Ajustar el tamaño del texto */
-    .publicidad2-texto p {
-        font-size: 20px; /* Reducir el tamaño de la fuente */
-        line-height: 1.4;
-    }
 
 #map {
     height: 400px; /* Altura del mapa */
