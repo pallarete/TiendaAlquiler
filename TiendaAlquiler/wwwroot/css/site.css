@@ -5,15 +5,14 @@
 }
 
 :root {
-    --color-primario: #6c757d; /* Gris oscuro para el color principal */
-    --color-secundario: #f5a623; /* Naranja suave con un toque de rojo para contraste */
-    --color-acento: #d9534f; /* Rojo suave, accesible y elegante */
-    --color-texto: #333333; /* Gris muy oscuro para el texto */
-    --color-destacado: #e83e8c; /* Rosa-rojo suave para elementos destacados */
-    --color-fondo: #f1f3f5; /* Fondo gris claro, cercano al blanco, pero con un toque cálido */
-    --color-sombra: rgba(0, 0, 0, 0.1); /* Sombra ligera y sutil */
+    --color-primario: #6c757d;/* Gris oscuro para el color principal */
+    --color-secundario: #f5a623;/* Naranja suave con un toque de rojo para contraste */
+    --color-acento: #d9534f;/* Rojo suave, accesible y elegante */
+    --color-texto: #333333;/* Gris muy oscuro para el texto */
+    --color-destacado: #e83e8c;/* Rosa-rojo suave para elementos destacados */
+    --color-fondo: #f1f3f5;/* Fondo gris claro, cercano al blanco, pero con un toque cálido */
+    --color-sombra: rgba(0, 0, 0, 0.1);/* Sombra ligera y sutil */
 }
-
 /* Configuración básica */
 html, body {
     font-size: 14px;
@@ -341,7 +340,7 @@ p, label, button {
 }
 
     .description-section h4 {
-        font-size: 1.25rem;
+        font-size: 2rem;
         color: var(--color-texto); /* Gris oscuro para los títulos */
         margin-bottom: 1rem; /* Espaciado inferior */
     }
@@ -425,17 +424,18 @@ button.btn-custom {
 }
 
 
+/* Contenedor de botones */
 .button-container {
-    display: flex; /* Coloca los botones en línea */
-    justify-content: space-between; /* Espacio entre los botones */
-    align-items: center; /* Alinea verticalmente los elementos */
-    gap: 15px; /* Espacio entre los botones */
-    margin-top: 20px; /* Separación del contenido superior */
-    margin-bottom: 200px; /* Separación del contenido inferior */
+    margin-top: 20px; /* Añadir espacio entre los botones y el contenido previo */
+    display: flex;
+    flex-direction: column; /* Colocar los botones en una columna */
+    align-items: center; /* Centrar los elementos en el eje horizontal */
+    justify-content: center; /* Centrar los elementos en el eje vertical */
+    text-align: center; /* Centrar el texto dentro de los botones */
 }
 
     /* Botón "Alquilar este coche" */
-    .button-container .btn-primary {
+    .button-container .btn-custom {
         background-color: var(--color-primario); /* Gris oscuro */
         color: var(--color-fondo); /* Blanco para el texto */
         padding: 10px 20px;
@@ -445,11 +445,22 @@ button.btn-custom {
         cursor: pointer;
         transition: background-color 0.3s ease, transform 0.2s ease;
         text-decoration: none;
+        margin-bottom: 10px; /* Añadir separación entre los botones */
+        width: 100%; /* Hacer que los botones ocupen el 100% del ancho disponible */
+        max-width: 300px; /* Limitar el ancho máximo del botón */
     }
 
-        .button-container .btn-primary:hover {
+        .button-container .btn-custom:hover {
             background-color: var(--color-acento); /* Rojo suave */
             transform: scale(1.05); /* Efecto sutil al pasar el ratón */
+        }
+
+        /* Botón "Alquilar este coche" cuando está deshabilitado */
+        .button-container .btn-custom.disabled,
+        .button-container .btn-custom:disabled {
+            background-color: var(--color-primario); /* Gris oscuro */
+            color: var(--color-fondo); /* Blanco */
+            cursor: not-allowed;
         }
 
     /* Enlace "Volver al listado" */
@@ -463,6 +474,9 @@ button.btn-custom {
         font-weight: bold;
         text-decoration: none;
         transition: all 0.3s ease;
+        margin-top: 10px; /* Añadir separación entre los botones */
+        width: 100%; /* Hacer que los botones ocupen el 100% del ancho disponible */
+        max-width: 300px; /* Limitar el ancho máximo del botón */
     }
 
         .button-container .back-link:hover {
@@ -473,7 +487,22 @@ button.btn-custom {
             text-shadow: 1px 1px 2px var(--color-sombra); /* Sombra sutil para resaltar */
         }
 
-}
+    /* Botón "Alquilar este coche" para usuarios no autenticados */
+    .button-container .btn-custom.disabled {
+        cursor: not-allowed;
+        opacity: 0.5; /* Añadido para mayor indicación de que el botón está inactivo */
+    }
+
+    /* Mensaje de advertencia cuando no está autenticado */
+    .button-container .text-danger {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+
+
+
+
 
 /* Estilos para la sección de fechas de alquiler */
 .rental-dates {

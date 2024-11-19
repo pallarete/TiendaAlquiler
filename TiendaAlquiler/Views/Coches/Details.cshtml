@@ -93,9 +93,6 @@
 
 @* SECCION DE ALQUILER Y VUELTA AL LISTADO*@
 <div class="button-container">
-    @* <a asp-controller="Alquilers" asp-action="Create" asp-route-cocheId="@Model.CocheId" asp-route-usuarioId="@UserManager.GetUserId(User)" class="btn btn-primary btn-custom">
-        Alquilar este coche
-    </a> *@
     @if (User.Identity.IsAuthenticated)
     {
         <a asp-controller="Alquilers"
@@ -115,10 +112,11 @@
         <p class="text-danger mt-2">Debes iniciar sesión o registrarte para alquilar este coche.</p>
     }
 
-    <a asp-action="Index" class="btn btn-primary btn-custom">
+    <a asp-action="Index" class="back-link">
         Volver al listado
     </a>
 </div>
+
 
 
 
