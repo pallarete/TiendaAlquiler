@@ -14,7 +14,7 @@
 
 <!-- Formulario de Filtros -->
 
-<div class="d-flex justify-content-center" style="margin-top: 20px;">
+<div class="d-flex-select justify-content-center">
     <form asp-action="Index" method="get" class="row g-3 align-items-end">
         <div class="col-md-3 text-center ">
             <label for="paisId" class="form-label label-rounded">País</label>
@@ -62,7 +62,7 @@
     </form>
 </div>
 
-<div class="table">
+<div class="table-m">
     <table class="table-cars">
         <thead>
             <tr>
@@ -92,7 +92,7 @@
                     <td>
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
-                            <a asp-action="Edit" asp-route-id="@item.CocheId" class="btn btn-primary btn-custom"   >Editar</a>
+                            <a asp-action="Edit" asp-route-id="@item.CocheId" class="btn btn-primary btn-custom">Editar</a>
                         }
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {

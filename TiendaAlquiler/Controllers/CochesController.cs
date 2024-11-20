@@ -58,12 +58,8 @@ namespace TiendaAlquiler.Controllers
                 coches = coches.Where(c => c.CarroceriaId == carroceriaId.Value);
             }
 
-            //paso a la vista la lista de coches filtrada (Si es necesario)
-            //var cochesFiltrados = await coches.ToListAsync();
-
-            //Obtener los paises disponibles para el filtro (sin flitrar)
-            //ViewData["PaisId"] = new SelectList(_context.Paises, "Pais", "Nombre");
-            //ViewData["CarroceriaId"] = new SelectList(_context.Carroceria, "Carroceria", "Tipo");
+            // Ordenar por marca alfabéticamente
+            coches = coches.OrderBy(c => c.Marca);
 
             return View(await coches.ToListAsync());
         }

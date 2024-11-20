@@ -105,8 +105,6 @@ p, label, button {
 }
 
 /*ESTILOS DE LA NAVBAR*/
-
-
 .navbar {
     color: var(--color-blanco);
     align-items: center;
@@ -114,11 +112,9 @@ p, label, button {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
-    padding: 10px 0; /* Espaciado vertical para la navbar */
+    /*z-index: 1000;*/
+    /*padding: 10px 0;  Espaciado vertical para la navbar*/ 
 }
-
-
 .container-fluid {
     display: flex;
     justify-content: center;
@@ -127,8 +123,6 @@ p, label, button {
     margin: 0 auto; /* Centra el contenedor */
     width: 100%; /* Asegura que ocupe todo el ancho */
 }
-
-
 
 .navbar-nav {
     display: flex;
@@ -214,74 +208,76 @@ p, label, button {
 
         .actions-column a:hover {
             text-decoration: underline;
-            color: var(--color-destacado); /* Color al hacer hover */
+            /*color: var(--color-destacado);*/ /* Color al hacer hover */
         }
 
-/* ESTILOS GENERALES DE LAS TABLAS MAESTRAS*/
+/* ESTILOS GENERALES DE LAS TABLAS MAESTRAS */
 .table-m {
     width: 90%;
     margin: 30px auto;
     font-size: 1em;
     border-collapse: separate; /* Separar filas */
-    border-spacing: 0 15px; /* Espacio entre filas (vertical) */
+    border-spacing: 0 15px; /* Espaciado vertical entre filas */
     color: var(--color-texto); /* Color del texto */
 }
 
     .table-m thead tr {
-        background-color: var(--color-secundario);
+        background-color: var(--color-secundario); /* Fondo del encabezado */
         border-radius: 8px; /* Bordes redondeados */
-        box-shadow: 0 4px 6px var(--color-sombra); /* Sombra ligera */
-        color: white; /* Texto blanco para contraste */
+        box-shadow: 0 4px 6px var(--color-sombra); /* Sombra del encabezado */
+        color: white; /* Texto blanco */
     }
 
     .table-m th,
     .table-m td {
         padding: 15px 20px; /* Espaciado interno */
-        text-align: left; /* Alineación del texto */
-        vertical-align: middle;
+        text-align: left; /* Texto alineado a la izquierda */
+        vertical-align: middle; /* Centra verticalmente el texto */
         border: none; /* Sin bordes internos */
     }
 
     .table-m tbody tr {
-        background-color: var(--color-fondo);
-        border-radius: 8px; /* Bordes redondeados */
-        box-shadow: 0 2px 4px var(--color-sombra); /* Sombra ligera */
-        transition: background-color 0.5s, transform 0.5s; /* Transición suave */
+        background-color: var(--color-fondo); /* Fondo de las filas */
+        border-radius: 8px; /* Bordes redondeados en filas */
+        box-shadow: 0 2px 4px var(--color-sombra); /* Sombra de filas */
+        transition: background-color 0.3s ease, transform 0.3s ease; /* Transición más rápida */
     }
 
         .table-m tbody tr:hover {
-            background-color: var(--color-destacado); /* Color destacado */
-            transform: scale(1.02); /* Efecto de "elevación" al pasar el mouse */
+            background-color: var(--color-destacado); /* Fondo destacado al pasar el mouse */
+            transform: scale(1.02); /* Efecto de "elevación" */
             box-shadow: 0 4px 8px var(--color-sombra); /* Sombra más marcada */
         }
 
     .table-m td:first-child {
-        font-weight: bold; /* Resaltar la primera columna */
+        font-weight: bold; /* Resalta la primera columna */
     }
 
     .table-m thead th:first-child {
-        border-top-left-radius: 8px; /* Redondear esquina superior izquierda */
+        border-top-left-radius: 8px; /* Esquina superior izquierda */
     }
 
     .table-m thead th:last-child {
-        border-top-right-radius: 8px; /* Redondear esquina superior derecha */
+        border-top-right-radius: 8px; /* Esquina superior derecha */
     }
 
-    .table-m tbody tr:first-child td:first-child {
-        border-bottom-left-radius: 8px; /* Redondear esquina inferior izquierda */
+    .table-m tbody tr:last-child td:first-child {
+        border-bottom-left-radius: 8px; /* Esquina inferior izquierda */
     }
 
-    .table-m tbody tr:first-child td:last-child {
-        border-bottom-right-radius: 8px; /* Redondear esquina inferior derecha */
+    .table-m tbody tr:last-child td:last-child {
+        border-bottom-right-radius: 8px; /* Esquina inferior derecha */
     }
 
     .table-m .actions-column {
-        text-align: right; /* Alinea el contenido a la derecha */
-        padding-right: 15px; /* Ajusta el espaciado interno si lo necesitas */
+        text-align: right; /* Contenido alineado a la derecha */
+        padding-right: 15px; /* Espaciado interno */
     }
+
 
 /* ESTILO PARA LA TABLA DE COCHES */
 .table-cars {
+    margin-top: 30px;
     width: 100%;
     max-width: 100%;
     text-align: center;
@@ -292,14 +288,16 @@ p, label, button {
 }
 
     .table-cars th {
+        color: white;
         padding: 10px;
         text-align: center;
         vertical-align: middle;
-        background-color: #f8f9fa;
+        background-color: var(--color-secundario);
         text-transform: uppercase;
     }
 
     .table-cars tr {
+        font-weight: bold; /* Resaltar la primera columna */
         background-color: white; /* Fondo blanco para las filas */
         border: 3px solid black; /* Borde negro alrededor de cada fila */
         border-radius: 10px; /* Bordes redondeados en las filas */
@@ -315,7 +313,7 @@ p, label, button {
 
     /* Añadir sombra cuando se pasa el ratón sobre una fila */
     .table-cars tbody tr:hover {
-        background-color: #f1f1f1; /* Color de fondo al pasar el ratón sobre la fila */
+        background-color: var(--color-acento); /* Color de fondo al pasar el ratón sobre la fila */
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /*Sombra más intensa al pasar el ratón*/
     }
 
@@ -325,29 +323,81 @@ p, label, button {
     }
 
     .table-cars td:last-child {
-        text-align: center;
+        text-align: end;
         white-space: nowrap;
     }
 
 
 /* TABLA DE DETALLES DEL COCHE*/
-.table {
-    width: 100%;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.table-details {
+    width: 90%; /* Ancho de la tabla */
+    margin: 30px auto; /* Centrado horizontal */
+    font-size: 1em; /* Tamaño de fuente estándar */
+    border-collapse: separate; /* Separar filas */
+    border-spacing: 0 15px; /* Espaciado vertical entre filas */
+    color: var(--color-texto); /* Color del texto */
 }
 
-    .table th, .table td {
-        text-align: center;
-        padding: 10px;
+    /* Estilo para el encabezado */
+    .table-details thead tr {
+        background-color: var(--color-secundario); /* Fondo del encabezado */
+        border-radius: 8px; /* Bordes redondeados */
+        box-shadow: 0 4px 6px var(--color-sombra); /* Sombra del encabezado */
+        color: white; /* Texto blanco */
     }
 
-    .table th {
-        background-color: #f8f9fa;
-        font-weight: bold;
+    /* Estilo de celdas del encabezado y contenido */
+    .table-details th,
+    .table-details td {
+        padding: 15px 20px; /* Espaciado interno */
+        text-align: left; /* Alineación del texto a la izquierda */
+        vertical-align: middle; /* Centrado vertical del texto */
+        border: none; /* Sin bordes internos */
     }
+
+    /* Estilo de las filas del cuerpo */
+    .table-details tbody tr {
+        background-color: var(--color-fondo); /* Fondo de las filas */
+        border-radius: 8px; /* Bordes redondeados en filas */
+        box-shadow: 0 2px 4px var(--color-sombra); /* Sombra de filas */
+        transition: background-color 0.3s ease, transform 0.3s ease; /* Transición rápida */
+    }
+
+        /* Efecto hover en las filas */
+        .table-details tbody tr:hover {
+            background-color: var(--color-destacado); /* Fondo destacado al pasar el mouse */
+            transform: scale(1.02); /* Efecto de "elevación" */
+            box-shadow: 0 4px 8px var(--color-sombra); /* Sombra más marcada */
+        }
+
+    /* Resaltar la primera columna */
+    .table-details td:first-child {
+        font-weight: bold; /* Resaltar la primera columna */
+    }
+
+    /* Bordes redondeados para las esquinas de la tabla */
+    .table-details thead th:first-child {
+        border-top-left-radius: 8px; /* Esquina superior izquierda */
+    }
+
+    .table-details thead th:last-child {
+        border-top-right-radius: 8px; /* Esquina superior derecha */
+    }
+
+    .table-details tbody tr:last-child td:first-child {
+        border-bottom-left-radius: 8px; /* Esquina inferior izquierda */
+    }
+
+    .table-details tbody tr:last-child td:last-child {
+        border-bottom-right-radius: 8px; /* Esquina inferior derecha */
+    }
+
+    /* Estilo para la columna de acciones (si la tienes) */
+    .table-details .actions-column {
+        text-align: right; /* Alineación a la derecha */
+        padding-right: 15px; /* Espaciado a la derecha */
+    }
+
 
 /*DESCRIPCION DEL COCHE*/
 .description-section {
@@ -559,7 +609,7 @@ button.btn-custom:focus {
         margin-top: 10px;
     }
 
-/* CONTENEDOR GENERALDE LA DESCRIPCION */
+/* CONTENEDOR GENERAL DE LA DESCRIPCION */
 .description-section {
     margin-top: 20px;
     padding: 15px;
@@ -712,40 +762,73 @@ button.btn-custom:focus {
         flex: 0 0 48%;
     }
 
-/*ESTILO FORMULARIO FILTRADO*/
-.d-flex .btn {
+.d-flex-select {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items:center;
+    align-items: center;
+    width: 90%;
+    margin:auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--color-primario);
+}
+
+/* Estilos para el formulario */
+form {
+    width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+/* Estilo para las columnas dentro del formulario */
+.d-flex-select .col-md-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px; /* Espacio entre columnas */
+}
+
+/* Estilo para los labels */
+.d-flex-select label {
+    padding:8px;
+    background-color: white;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    text-align: center; /* Centrado del texto */
+    width: 100%; /* Los labels ocupan todo el ancho disponible */
+    border-radius: 5px;
+}
+
+/* Estilo para los selects */
+.d-flex-select .form-select {
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    max-width: 390px; /* Limita el ancho máximo */
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-top: 5px; /* Espacio entre el select y el label */
+}
+
+/* Estilo para el botón */
+.d-flex-select .btn {
     font-size: 1rem;
     font-weight: bold;
-    transition: background-color 0.5s ease;
-    background-color: var(--color-primario); /* Gris oscuro */
+    background-color: darkred; /* Color de fondo */
     color: white; /* Texto blanco */
     border: none;
     border-radius: 5px;
-    padding: 0.7rem 1.5rem; /* Ajustado el padding */
+    padding: 0.7rem 1.5rem;
+    transition: background-color 0.5s ease;
+    width:80%;
 }
 
-    .d-flex .btn:hover {
-        background-color: var(--color-acciones); /* Color de hover */
-        color: white; /* Mantener el texto blanco en hover */
+    /* Efecto hover del botón */
+    .d-flex-select .btn:hover {
+        background-color: var(--color-acciones); /* Color cuando pasa el ratón */
+        
     }
 
-.d-flex .form-select, form .form-label {
-    font-size: 0.9rem;
-}
-
-/* ESTILO PARA REDONDEAR ETIQUETAS DE FILTRADO*/
-.label-rounded {
-    display: inline-block; /* Asegura que el fondo se ajuste al contenido */
-    padding: 0.4rem 0.8rem; /* Añade espacio interno */
-    background-color: #f8f9fa; /* Color de fondo claro */
-    border: 1px solid #ddd; /* Borde ligero */
-    border-radius: 12px; /* Bordes redondeados */
-    font-size: 0.9rem; /* Tamaño de texto reducido */
-    text-align: center; /* Centra el texto dentro del label */
-    color: #333; /* Color del texto */
-    margin-bottom: 5px; /* Espaciado entre el label y el select */
-    width: 120px; /* Ancho fijo */
-}
 
 /*PAGINA DE HOME INICIO*/
 .publicidad-video {
@@ -978,5 +1061,21 @@ footer {
     .video-background {
         width: 100%;
         height: auto;
+    }
+}
+/* Responsividad: ajustar a pantallas pequeñas */
+@media (max-width: 768px) {
+    .d-flex-select .col-md-3 {
+        flex: 1 1 100%; /* Los elementos ocupan todo el ancho en pantallas pequeñas */
+        max-width: 100%; /* Asegura que no haya un ancho máximo */
+        margin-bottom: 15px; /* Menos margen entre columnas */
+    }
+
+    .d-flex-select .form-select {
+        max-width: 100%; /* Los selects se adaptan al 100% */
+    }
+
+    .d-flex-select .btn {
+        width: 100%; /* El botón ocupa todo el ancho en pantallas pequeñas */
     }
 }
