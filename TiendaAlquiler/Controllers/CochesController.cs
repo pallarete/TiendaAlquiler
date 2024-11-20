@@ -26,11 +26,26 @@ namespace TiendaAlquiler.Controllers
         // GET: Coches
         public async Task<IActionResult> Index(int? paisId, int? decadaId, int? colorId, int? carroceriaId)
         {
-            ViewBag.Paises = _context.Paises.Select(p => new SelectListItem { Value = p.PaisId.ToString(), Text = p.Nombre }).ToList();
-            ViewBag.Decadas = _context.Decada.Select(d => new SelectListItem { Value = d.DecadaId.ToString(), Text = d.AnioInicio.ToString() }).ToList();
-            ViewBag.Colores = _context.Colors.Select(c => new SelectListItem { Value = c.ColorId.ToString(), Text = c.Nombre }).ToList();
-            ViewBag.Carrocerias = _context.Carroceria.Select(car => new SelectListItem { Value = car.CarroceriaId.ToString(), Text = car.Tipo }).ToList();
+            // Ordena los filtros alfabéticamente
+            ViewBag.Paises = _context.Paises
+                .OrderBy(p => p.Nombre) // Ordena los países alfabéticamente
+                .Select(p => new SelectListItem { Value = p.PaisId.ToString(), Text = p.Nombre })
+                .ToList();
 
+            ViewBag.Decadas = _context.Decada
+                .OrderBy(d => d.AnioInicio) // Ordena las décadas alfabéticamente por el año de inicio
+                .Select(d => new SelectListItem { Value = d.DecadaId.ToString(), Text = d.AnioInicio.ToString() })
+                .ToList();
+
+            ViewBag.Colores = _context.Colors
+                .OrderBy(c => c.Nombre) // Ordena los colores alfabéticamente
+                .Select(c => new SelectListItem { Value = c.ColorId.ToString(), Text = c.Nombre })
+                .ToList();
+
+            ViewBag.Carrocerias = _context.Carroceria
+                .OrderBy(car => car.Tipo) // Ordena las carrocerías alfabéticamente
+                .Select(car => new SelectListItem { Value = car.CarroceriaId.ToString(), Text = car.Tipo })
+                .ToList();
 
             var coches = _context.Coches
                 .Include(c => c.Pais)
@@ -38,7 +53,6 @@ namespace TiendaAlquiler.Controllers
                 .Include(c => c.Color)
                 .Include(c => c.Carroceria)
                 .AsQueryable(); //Convierto a una consulta que se puede modificar
-
 
             if (paisId.HasValue)
             {

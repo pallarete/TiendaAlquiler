@@ -35,29 +35,6 @@
     </table>
 </div>
 
-@* SECCION DE LA DESCRIPCION*@
-<div class="description-section container my-4">
-    @* Mostrar descripcion si existe *@
-    @if (!string.IsNullOrEmpty(Model.Description))
-    {
-        <h4 class="mb-3">Descripcion</h4>
-        <P class="text-muted">@Model.Description</P>
-    }
-    @* Solo se mostrara si existe *@
-    @if (User.IsInRole("Admin"))
-    {
-        <h4 class="mt-4">Agregar o Editar Descripción</h4>
-        <form asp-action="ActualizarDescripcion" method="post" class="mt-3">
-            <input type="hidden" asp-for="CocheId" />
-            <div class="form-group mb-3 ">
-                <textarea name="Descripcion" class="form-control" placeholder="Escribe una descripción del coche">@Model.Description</textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-custom">Guardar Descripción</button>
-        </form>
-    }
-</div>
-
-
 @* SECCION DE LAS FOTOS*@
 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
@@ -116,6 +93,31 @@
         Volver al listado
     </a>
 </div>
+
+@* SECCION DE LA DESCRIPCION*@
+<div class="description-section container my-4">
+    @* Mostrar descripcion si existe *@
+    @if (!string.IsNullOrEmpty(Model.Description))
+    {
+        <h4 class="mb-3">Descripcion</h4>
+        <P class="text-muted">@Model.Description</P>
+    }
+    @* Solo se mostrara si existe *@
+    @if (User.IsInRole("Admin"))
+    {
+        <h4 class="mt-4">Agregar o Editar Descripción</h4>
+        <form asp-action="ActualizarDescripcion" method="post" class="mt-3">
+            <input type="hidden" asp-for="CocheId" />
+            <div class="form-group mb-3 ">
+                <textarea name="Descripcion" class="form-control" placeholder="Escribe una descripción del coche">@Model.Description</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-custom">Guardar Descripción</button>
+        </form>
+    }
+</div>
+
+
+
 
 
 

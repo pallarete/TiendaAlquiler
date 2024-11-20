@@ -1066,7 +1066,24 @@ footer {
     padding: 10px; /*Espaciado del footer*/
     margin-top: 20px; /*Espaciado por encima del footer */
 }
+/* Media query a partir de 1054px */
+@media (min-width: 1054px) {
+    .navbar-nav {
+        gap: 150px; /* Aumenta el espacio horizontal entre los elementos para pantallas más grandes */
+    }
 
+        .navbar-nav li {
+            transform: scale(1); /* Mantiene el tamaño original, sin cambio al hacer hover */
+        }
+
+        .navbar-nav a {
+            padding: 12px 20px; /* Aumenta el área clicable en pantallas más grandes */
+        }
+
+    .navbar-toggler {
+        display: none; /* Oculta el botón de menú en pantallas grandes */
+    }
+}
 
 /* Estilo para móviles: ajusta la fuente y el tamaño de las celdas */
 @media (max-width: 768px) {
