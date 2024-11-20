@@ -5,20 +5,22 @@
 }
 
 :root {
-    --color-primario: #6c757d; /* Gris oscuro para el color principal */
-    --color-secundario: #f5a623; /* Naranja suave con un toque de rojo para contraste */
-    --color-acento: #d9534f; /* Rojo suave, accesible y elegante */
-    --color-texto: #333333; /* Gris muy oscuro para el texto */
-    --color-destacado: #e83e8c; /* Rosa-rojo suave para elementos destacados */
-    --color-fondo: #f1f3f5; /* Fondo gris claro, cercano al blanco, pero con un toque cálido */
-    --color-acciones: #007bff;
-    --color-sombra: rgba(0, 0, 0, 0.1); /* Sombra ligera y sutil */
+    --color-primario: #6c757d; /* Gris oscuro para encabezados y navegación */
+    --color-secundario: #f5a623; /* Naranja suave para botones destacados */
+    --color-acento: #D81B60; /* Rosa profundo para elementos interactivos */
+    --color-texto: #333333; /* Gris oscuro para el texto */
+    --color-destacado: #D81B60; /* Reutilizado para coherencia */
+    --color-fondo: #C2C2C2; /* Fondo gris cálido más oscuro */
+    --color-acciones: #4A90E2; /* Azul suave para botones secundarios */
+    --color-sombra: rgba(0, 0, 0, 0.15); /* Sombra un poco más definida */
 }
+
+
 
 /* CONFIGURACION BASICA */
 html, body {
-    font-size: 14px;
-    margin: 0;
+    font-size: 16px;
+    margin: 0 10px;
     padding: 0;
     min-height: 100%;
     display: flex;
@@ -40,7 +42,7 @@ html {
 
 /* ESTILO HEADER*/
 header {
-    background-color: var(--color-primario);
+    background-color: var(--color-fondo);
     color: var(--color-texto);
     padding: 20px;
 }
@@ -103,10 +105,11 @@ p, label, button {
 }
 
 /*ESTILOS DE LA NAVBAR*/
+
+
 .navbar {
-    background-color: var(--color-primario); /* Fondo verde suave */
     color: var(--color-blanco);
-    align-items: center; /* Asegura que los elementos estén alineados verticalmente al centro */
+    align-items: center;
     position: fixed;
     top: 0;
     left: 0;
@@ -125,10 +128,7 @@ p, label, button {
     width: 100%; /* Asegura que ocupe todo el ancho */
 }
 
-.navbar-collapse {
-    padding: 0;
-    margin: 0;
-}
+
 
 .navbar-nav {
     display: flex;
@@ -136,21 +136,35 @@ p, label, button {
     align-items: center; /* Alineación vertical de los elementos */
     margin: 0 auto;
     padding: 0;
-    gap: 30px; /* Ajusta el espacio horizontal entre los elementos */
+    gap: 100px; /* Ajusta el espacio horizontal entre los elementos */
 }
 
-.navbar li {
-    background-color: var(--color-secundario);
-    transform: scale(1); /* Tamaño inicial */
-    transition: background-color 0.5s ease, transform 0.5s ease; /* Transiciones */
-    margin: 0;
-    padding: 0;
-}
-
-    .navbar li:hover {
-        background-color: var(--color-destacado); /* Ejemplo de un color más destacado */
-        transform: scale(1.1);
+    .navbar-nav li {
+        list-style: none;
+        transform: scale(1); /* Tamaño inicial */
+        transition: background-color 0.5s ease, transform 0.5s ease; /* Transiciones */
+        margin: 0;
+        padding: 0;
     }
+
+        .navbar-nav li:hover {
+            background-color: var(--color-destacado); /* Ejemplo de un color más destacado */
+            transform: scale(1.4);
+            border-radius: 5px; /* Da bordes redondeados al elemento hover */
+        }
+
+    .navbar-nav a {
+        color: var(--color-blanco); /* Color del texto para contraste */
+        text-decoration: none; /* Quita el subrayado */
+        padding: 10px 15px; /* Amplía el área clicable */
+        display: block; /* Asegura que el relleno sea efectivo */
+        font-weight: bold; /* Resalta los enlaces */
+        transition: color 0.5s ease;
+    }
+
+        .navbar-nav a:hover {
+            color: var(--color-primario); /* Cambia el color del texto al pasar el cursor */
+        }
 
 .navbar-brand {
     margin-right: auto; /* Empuja el logo hacia la izquierda */
@@ -399,8 +413,8 @@ button.btn-custom:focus {
 }
 
 .carousel-item img {
-    width: 700px;
-    height: 400px;
+    width: 800px;
+    height: 500px;
     /*max-height: 500px;*/ /* Limitar la altura máxima */
     object-fit: cover;
     object-position: center;
@@ -413,8 +427,8 @@ button.btn-custom:focus {
     background-color: var(--color-fondo); /* Beige claro */
     position: relative;
     overflow: hidden;
-    width: 700px;
-    height: 400px; /* Mantén la altura fija o cámbiala según sea necesario */
+    width: 800px;
+    height: 500px; /* Mantén la altura fija o cámbiala según sea necesario */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
 }
 
@@ -787,11 +801,24 @@ button.btn-custom:focus {
         line-height: 1.4;
     }
 
-/* Estilo para la imagen */
+/* Contenedores de imagen */
+.publicidad1-foto,
+.publicidad2-foto {
+    display: flex; /* Habilita el modelo flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100%; /* Ajusta el alto del contenedor si es necesario */
+}
+
+/* Imágenes */
 .publicidad1 img,
 .publicidad2 img {
     border-radius: 10px;
+    max-width: 100%; /* Escala la imagen sin salir del contenedor */
+    height: auto; /* Mantiene la proporción */
+    object-fit: contain; /* Asegura que la imagen se ajuste dentro del contenedor */
 }
+
 
 /*GOOGLE MAPS*/
 #map {
