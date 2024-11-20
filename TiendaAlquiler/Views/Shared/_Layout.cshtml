@@ -7,8 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg-RAkBxdrQNSJap_mqLOgWC9e1gyLNLU&callback=initMap" async defer>
-    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg-RAkBxdrQNSJap_mqLOgWC9e1gyLNLU&callback=initMap" async defer>  </script>
     <script>
         function initMap() {
         // Ubicación: Ajusta la latitud y longitud a la ubicación deseada
@@ -29,12 +28,49 @@
         }
 
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const navbar = document.querySelector(".navbar");
+
+            window.addEventListener("scroll", function () {
+                if (window.scrollY > 100) { // Cambia el valor según cuándo quieres que se active
+                    navbar.classList.add("scrolled");
+                } else {
+                    navbar.classList.remove("scrolled");
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const backToTopButton = document.getElementById("backToTop");
+
+            // Mostrar/ocultar el botón al hacer scroll
+            window.addEventListener("scroll", function () {
+                if (window.scrollY > 200) { // Umbral para mostrar el botón
+                    backToTopButton.style.display = "block";
+                } else {
+                    backToTopButton.style.display = "none";
+                }
+            });
+
+            // Scroll suave hacia arriba al hacer clic
+            backToTopButton.addEventListener("click", function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth" // Scroll animado
+                });
+            });
+        });
+    </script>
+
+
 
     <link rel="stylesheet" href="~/TiendaAlquiler.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 text-center">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 text-center scrolled">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TiendaAlquiler</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -91,6 +127,8 @@
             @RenderBody()
         </main>
     </div>
+    <button id="backToTop" class="back-to-top" title="Volver arriba">⬆</button>
+
 
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>

@@ -25,7 +25,10 @@ namespace TiendaAlquiler.Controllers
         // GET: Carrocerias
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Carroceria.ToListAsync());
+            var carroceriasOrdenadas = await _context.Carroceria
+                .OrderBy(c => c.Tipo)
+                .ToListAsync();
+            return View(carroceriasOrdenadas);
         }
 
         // GET: Carrocerias/Details/5

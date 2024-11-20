@@ -92,10 +92,12 @@ namespace TiendaAlquiler.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
-            ViewData["CarroceriaId"] = new SelectList(_context.Carroceria, "CarroceriaId", "Tipo");
-            ViewData["ColorId"] = new SelectList(_context.Colors, "ColorId", "Nombre");
-            ViewData["DecadaId"] = new SelectList(_context.Decada, "DecadaId", "AnioInicio");
-            ViewData["PaisId"] = new SelectList(_context.Paises, "PaisId", "Nombre");
+            // Ordenar por el campo correspondiente para cada lista desplegable
+            ViewData["CarroceriaId"] = new SelectList(_context.Carroceria.OrderBy(c => c.Tipo), "CarroceriaId", "Tipo");
+            ViewData["ColorId"] = new SelectList(_context.Colors.OrderBy(c => c.Nombre), "ColorId", "Nombre");
+            ViewData["DecadaId"] = new SelectList(_context.Decada.OrderBy(c => c.AnioInicio), "DecadaId", "AnioInicio");
+            ViewData["PaisId"] = new SelectList(_context.Paises.OrderBy(c => c.Nombre), "PaisId", "Nombre");
+
             return View();
         }
 
@@ -158,10 +160,11 @@ namespace TiendaAlquiler.Controllers
 
             //En caso de error muestro formulario de creacion
 
-            ViewData["CarroceriaId"] = new SelectList(_context.Carroceria, "CarroceriaId", "Tipo", coche.CarroceriaId);
-            ViewData["ColorId"] = new SelectList(_context.Colors, "ColorId", "Nombre", coche.ColorId);
-            ViewData["DecadaId"] = new SelectList(_context.Decada, "DecadaId", "AnioInicio", coche.DecadaId);
-            ViewData["PaisId"] = new SelectList(_context.Paises, "PaisId", "Nombre", coche.PaisId);
+            ViewBag.CarroceriaId = new SelectList(_context.Carroceria.OrderBy(c => c.Tipo), "CarroceriaId", "Tipo", coche.CarroceriaId);
+            ViewBag.ColorId = new SelectList(_context.Colors.OrderBy(c => c.Nombre), "ColorId", "Nombre", coche.ColorId);
+            ViewBag.DecadaId = new SelectList(_context.Decada.OrderBy(c => c.AnioInicio), "DecadaId", "AnioInicio", coche.DecadaId);
+            ViewBag.PaisId = new SelectList(_context.Paises.OrderBy(c => c.Nombre), "PaisId", "Nombre", coche.PaisId);
+
             return View(coche);
         }
 
@@ -179,10 +182,11 @@ namespace TiendaAlquiler.Controllers
             {
                 return NotFound();
             }
-            ViewData["CarroceriaId"] = new SelectList(_context.Carroceria, "CarroceriaId", "Tipo", coche.CarroceriaId);
-            ViewData["ColorId"] = new SelectList(_context.Colors, "ColorId", "Nombre", coche.ColorId);
-            ViewData["DecadaId"] = new SelectList(_context.Decada, "DecadaId", "AnioInicio", coche.DecadaId);
-            ViewData["PaisId"] = new SelectList(_context.Paises, "PaisId", "Nombre", coche.PaisId);
+            ViewBag.CarroceriaId = new SelectList(_context.Carroceria.OrderBy(c => c.Tipo), "CarroceriaId", "Tipo", coche.CarroceriaId);
+            ViewBag.ColorId = new SelectList(_context.Colors.OrderBy(c => c.Nombre), "ColorId", "Nombre", coche.ColorId);
+            ViewBag.DecadaId = new SelectList(_context.Decada.OrderBy(c => c.AnioInicio), "DecadaId", "AnioInicio", coche.DecadaId);
+            ViewBag.PaisId = new SelectList(_context.Paises.OrderBy(c => c.Nombre), "PaisId", "Nombre", coche.PaisId);
+
             return View(coche);
         }
 
@@ -265,10 +269,11 @@ namespace TiendaAlquiler.Controllers
             }
 
             // Si hay errores, volvemos a cargar los datos relacionados
-            ViewData["CarroceriaId"] = new SelectList(_context.Carroceria, "CarroceriaId", "Tipo", coche.CarroceriaId);
-            ViewData["ColorId"] = new SelectList(_context.Colors, "ColorId", "Nombre", coche.ColorId);
-            ViewData["DecadaId"] = new SelectList(_context.Decada, "DecadaId", "AnioInicio", coche.DecadaId);
-            ViewData["PaisId"] = new SelectList(_context.Paises, "PaisId", "Nombre", coche.PaisId);
+            ViewBag.CarroceriaId = new SelectList(_context.Carroceria.OrderBy(c => c.Tipo), "CarroceriaId", "Tipo", coche.CarroceriaId);
+            ViewBag.ColorId = new SelectList(_context.Colors.OrderBy(c => c.Nombre), "ColorId", "Nombre", coche.ColorId);
+            ViewBag.DecadaId = new SelectList(_context.Decada.OrderBy(c => c.AnioInicio), "DecadaId", "AnioInicio", coche.DecadaId);
+            ViewBag.PaisId = new SelectList(_context.Paises.OrderBy(c => c.Nombre), "PaisId", "Nombre", coche.PaisId);
+
             return View(coche);
         }
 

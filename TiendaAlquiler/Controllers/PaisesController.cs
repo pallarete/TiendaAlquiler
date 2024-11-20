@@ -20,7 +20,10 @@ namespace TiendaAlquiler.Controllers
         // GET: PaisFabricacions
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Paises.ToListAsync());
+            var paisesOrdenados = await _context.Paises
+                .OrderBy(c => c.Nombre)
+                .ToListAsync();
+            return View(paisesOrdenados);
         }
 
         // GET: PaisFabricacions/Details/5

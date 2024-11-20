@@ -24,7 +24,10 @@ namespace TiendaAlquiler.Controllers
         // GET: Colors
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Colors.ToListAsync());
+            var coloresOrdenados = await _context.Colors
+                 .OrderBy(c => c.Nombre)
+                 .ToListAsync();
+            return View(coloresOrdenados);
         }
 
         // GET: Colors/Details/5

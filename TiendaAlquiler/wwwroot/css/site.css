@@ -16,7 +16,6 @@
 }
 
 
-
 /* CONFIGURACION BASICA */
 html, body {
     font-size: 16px;
@@ -76,7 +75,7 @@ a {
     color: var(--color-acento); /* Rojo suave y accesible */
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.5s ease; /* Transición suave al cambiar de color */
+    transition: color 0.8s ease; /* Transición suave al cambiar de color */
 }
 
     a:hover {
@@ -112,9 +111,9 @@ p, label, button {
     top: 0;
     left: 0;
     width: 100%;
-    /*z-index: 1000;*/
-    /*padding: 10px 0;  Espaciado vertical para la navbar*/ 
+    z-index: 1000;
 }
+
 .container-fluid {
     display: flex;
     justify-content: center;
@@ -136,7 +135,7 @@ p, label, button {
     .navbar-nav li {
         list-style: none;
         transform: scale(1); /* Tamaño inicial */
-        transition: background-color 0.5s ease, transform 0.5s ease; /* Transiciones */
+        transition: background-color 0.8s ease, transform 0.8s ease; /* Transiciones */
         margin: 0;
         padding: 0;
     }
@@ -153,7 +152,7 @@ p, label, button {
         padding: 10px 15px; /* Amplía el área clicable */
         display: block; /* Asegura que el relleno sea efectivo */
         font-weight: bold; /* Resalta los enlaces */
-        transition: color 0.5s ease;
+        transition: color 0.8s ease;
     }
 
         .navbar-nav a:hover {
@@ -166,6 +165,11 @@ p, label, button {
 
 .navbar-toggler {
     margin-left: auto; /* Asegura que el botón esté alineado a la derecha */
+}
+
+.navbar.scrolled {
+    background-color: var(--color-primario); /* Cambia a un color sólido */
+    transition: background-color 0.8s ease; /* Transición suave */
 }
 
 /* BOTONES */
@@ -184,7 +188,7 @@ p, label, button {
     padding: 10px 20px;
     border-radius: 5px;
     font-weight: bold;
-    transition: background-color 0.5s ease, transform 0.5s ease;
+    transition: background-color 0.8s ease, transform 0.8s ease;
 }
 
     .btn-custom:hover {
@@ -240,7 +244,7 @@ p, label, button {
         background-color: var(--color-fondo); /* Fondo de las filas */
         border-radius: 8px; /* Bordes redondeados en filas */
         box-shadow: 0 2px 4px var(--color-sombra); /* Sombra de filas */
-        transition: background-color 0.3s ease, transform 0.3s ease; /* Transición más rápida */
+        transition: background-color 0.8s ease, transform 0.8s ease; /* Transición más rápida */
     }
 
         .table-m tbody tr:hover {
@@ -360,7 +364,7 @@ p, label, button {
         background-color: var(--color-fondo); /* Fondo de las filas */
         border-radius: 8px; /* Bordes redondeados en filas */
         box-shadow: 0 2px 4px var(--color-sombra); /* Sombra de filas */
-        transition: background-color 0.3s ease, transform 0.3s ease; /* Transición rápida */
+        transition: background-color 0.8s ease, transform 0.8s ease; /* Transición rápida */
     }
 
         /* Efecto hover en las filas */
@@ -419,6 +423,15 @@ p, label, button {
         color: var(--color-primario); /* Gris oscuro para la descripción */
     }
 
+    .description-section .btn {
+        background-color: var(--color-fondo);
+        transition: background-color 0.8s ease, transform 0.8s ease; /* Transición más rápida */
+    }
+
+        .description-section .btn:hover {
+            background-color: var(--color-acciones);
+        }
+
 textarea.form-control {
     height: 120px;
     resize: vertical;
@@ -441,7 +454,7 @@ textarea.form-control {
     border-radius: 5px;
     color: white;
     border: none;
-    transition: background-color 0.5s ease, transform 0.5s ease; /* Añadida transición para transform */
+    transition: background-color 0.8s ease, transform 0.8s ease; /* Añadida transición para transform */
 }
 
 button.btn-custom:hover {
@@ -764,12 +777,12 @@ button.btn-custom:focus {
 
 .d-flex-select {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     align-items: center;
     width: 90%;
-    margin:auto;
+    margin: auto;
     padding: 20px;
     border-radius: 10px;
     background-color: var(--color-primario);
@@ -791,7 +804,7 @@ form {
 
 /* Estilo para los labels */
 .d-flex-select label {
-    padding:8px;
+    padding: 8px;
     background-color: white;
     font-size: 1rem;
     margin-bottom: 5px;
@@ -820,13 +833,12 @@ form {
     border-radius: 5px;
     padding: 0.7rem 1.5rem;
     transition: background-color 0.5s ease;
-    width:80%;
+    width: 80%;
 }
 
     /* Efecto hover del botón */
     .d-flex-select .btn:hover {
         background-color: var(--color-acciones); /* Color cuando pasa el ratón */
-        
     }
 
 
@@ -1020,6 +1032,31 @@ a.btn-secondary {
         background-color: var(--color-acciones); /* Color de hover */
     }
 
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index:1000;
+    display: none; /* Oculto inicialmente */
+    background-color: var(--color-primario); /* Cambia al color que prefieras */
+    color: var(--color-blanco);
+    border: none;
+    border-radius: 50%; /* Hace que sea redondo */
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px var(--color-sombra); /* Añade una sombra */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
+
+    .back-to-top:hover {
+        background-color: var(--color-secundario); /* Color más destacado al pasar el ratón */
+        transform: scale(1.1); /* Efecto de zoom al hacer hover */
+    }
+
+
 /* FOOTER */
 footer {
     position: relative; /*Asegura que el footer no se quede fijo */
@@ -1038,7 +1075,7 @@ footer {
         padding: 8px;
     }
 }
-/* Media Queries para pantallas grandes */
+/* Media Queries VIDEO */
 @media (min-width: 1200px) {
     .publicidad-video {
         width: 50%;
@@ -1050,8 +1087,6 @@ footer {
         height: auto;
     }
 }
-
-/* Media Queries para pantallas pequeñas */
 @media (max-width: 768px) {
     .publicidad-video {
         width: 100%;
