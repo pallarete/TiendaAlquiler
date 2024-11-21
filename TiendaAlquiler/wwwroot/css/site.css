@@ -854,7 +854,7 @@ form {
 
 /*PAGINA DE HOME INICIO*/
 .publicidad-video {
-    width: 66.66%; /* Dos tercios del ancho de la pantalla */
+    width: 50%; /* Dos tercios del ancho de la pantalla */
     margin: 50px auto; /* Centrar horizontalmente el div */
     position: relative; /* Para posicionamiento interno */
     border: 5px solid #3498db; /* Borde color azul */
