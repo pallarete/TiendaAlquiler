@@ -22,8 +22,8 @@
                     @Html.DisplayFor(modelItem => item.Nombre)
                 </td>
                 <td class="actions-column">
-                    @* <a asp-action="Edit" asp-route-id="@item.ColorId">Editar Color</a> |
-                    <a asp-action="Details" asp-route-id="@item.ColorId">Detalles del Color</a> | *@
+                    <a asp-action="Edit" asp-route-id="@item.ColorId">Editar Color</a> |
+                    <a asp-action="Details" asp-route-id="@item.ColorId">Detalles del Color</a> |
                     <a asp-action="Delete" asp-route-id="@item.ColorId">Borrar Color</a>
                 </td>
             </tr>
@@ -34,11 +34,11 @@
 @if (User.IsInRole("Admin"))
 {
     <div class="d-flex justify-content-center mt-4">
-        
+
         <a asp-action="Create" class="btn btn-primary btn-custom">Crear nuevo color</a>
 
     </div>
-   
+
 
 }
 else

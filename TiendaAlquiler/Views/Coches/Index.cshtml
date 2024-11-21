@@ -13,57 +13,59 @@
 <h1>¿Que coche buscas? Aqui los tienes todos...</h1>
 
 <!-- Formulario de Filtros -->
-
-<div class="d-flex-select justify-content-center">
-    <form asp-action="Index" method="get" class="row g-3 align-items-end">
-        <div class="col-md-3 text-center ">
-            <label for="paisId" class="form-label label-rounded">País</label>
-            <select id="paisId" name="paisId" class="form-select">
-                <option value="">Todos</option>
-                @foreach (var pais in ViewBag.Paises)
-                {
-                    <option value="@pais.Value">@pais.Text</option>
-                }
-            </select>
-        </div>
-        <div class="col-md-3 text-center ">
-            <label for="decadaId" class="form-label label-rounded">Década</label>
-            <select id="decadaId" name="decadaId" class="form-select">
-                <option value="">Todas</option>
-                @foreach (var decada in ViewBag.Decadas)
-                {
-                    <option value="@decada.Value">@decada.Text</option>
-                }
-            </select>
-        </div>
-        <div class="col-md-3 text-center ">
-            <label for="colorId" class="form-label label-rounded">Color</label>
-            <select id="colorId" name="colorId" class="form-select">
-                <option value="">Todos</option>
-                @foreach (var color in ViewBag.Colores)
-                {
-                    <option value="@color.Value">@color.Text</option>
-                }
-            </select>
-        </div>
-        <div class="col-md-3 text-center ">
-            <label for="carroceriaId" class="form-label label-rounded">Carrocería</label>
-            <select id="carroceriaId" name="carroceriaId" class="form-select">
-                <option value="">Todas</option>
-                @foreach (var carroceria in ViewBag.Carrocerias)
-                {
-                    <option value="@carroceria.Value">@carroceria.Text</option>
-                }
-            </select>
-        </div>
-        <div class="col-md-12 d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary btn-custom">Filtrar</button>
-        </div>
-    </form>
+<div class="container">
+    <div class="d-flex-select justify-content-center">
+        <form asp-action="Index" method="get" class="row g-3 align-items-end">
+            <div class="col-md-3 col-sm-6 col-12 text-center">
+                <label for="paisId" class="form-label label-rounded">País</label>
+                <select id="paisId" name="paisId" class="form-select">
+                    <option value="">Todos</option>
+                    @foreach (var pais in ViewBag.Paises)
+                    {
+                        <option value="@pais.Value">@pais.Text</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-3 col-sm-6 col-12 text-center">
+                <label for="decadaId" class="form-label label-rounded">Década</label>
+                <select id="decadaId" name="decadaId" class="form-select">
+                    <option value="">Todas</option>
+                    @foreach (var decada in ViewBag.Decadas)
+                    {
+                        <option value="@decada.Value">@decada.Text</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-3 col-sm-6 col-12 text-center">
+                <label for="colorId" class="form-label label-rounded">Color</label>
+                <select id="colorId" name="colorId" class="form-select">
+                    <option value="">Todos</option>
+                    @foreach (var color in ViewBag.Colores)
+                    {
+                        <option value="@color.Value">@color.Text</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-3 col-sm-6 col-12 text-center">
+                <label for="carroceriaId" class="form-label label-rounded">Carrocería</label>
+                <select id="carroceriaId" name="carroceriaId" class="form-select">
+                    <option value="">Todas</option>
+                    @foreach (var carroceria in ViewBag.Carrocerias)
+                    {
+                        <option value="@carroceria.Value">@carroceria.Text</option>
+                    }
+                </select>
+            </div>
+            <div class="d-grid gap-2 col-md-12 col-sm-12">
+                <button type="submit" class="btn btn-primary btn-custom">Filtrar</button>
+            </div>
+        </form>
+    </div>
 </div>
 
-<div class="table-m">
-    <table class="table-cars">
+
+<div class="table-m table-responsive">
+    <table class="table table-striped table-bordered table-cars">
         <thead>
             <tr>
                 <th>@Html.DisplayNameFor(model => model.Marca)</th>

@@ -19,8 +19,9 @@
 /* CONFIGURACION BASICA */
 html, body {
     font-size: 16px;
-    margin: 0 10px;
+    margin: 0;
     padding: 0;
+    overflow-x: hidden;
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -85,13 +86,18 @@ a {
 /* CONTENEDOR PRINCIPAL*/
 main {
     flex: 1;
-    margin-top: 60px; /* Ajuste para compensar la navbar fija */
+    margin: 0 auto; /* Ajuste para compensar la navbar fija */
+    max-width: 100%;
+    padding: 0 10px;
     margin-bottom: 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-
+/* Si Falla se quita!!!!!!!!! */
+form {
+    width: 100%; /* Asegúrate de que el formulario se adapte al contenedor */
+}
 /*ENCABEZADOS*/
 h1, h2, h3 {
     font-family: 'Roboto', sans-serif;
@@ -115,12 +121,13 @@ p, label, button {
 }
 
 .container-fluid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 0; /* Elimina el padding interno */
     margin: 0 auto; /* Centra el contenedor */
     width: 100%; /* Asegura que ocupe todo el ancho */
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .navbar-nav {
@@ -249,7 +256,7 @@ p, label, button {
 
         .table-m tbody tr:hover {
             background-color: var(--color-destacado); /* Fondo destacado al pasar el mouse */
-            transform: scale(1.02); /* Efecto de "elevación" */
+            transform: scale(1.01); /* Efecto de "elevación" */
             box-shadow: 0 4px 8px var(--color-sombra); /* Sombra más marcada */
         }
 
@@ -330,7 +337,11 @@ p, label, button {
         text-align: end;
         white-space: nowrap;
     }
-
+    
+/* Hacer la tabla responsiva */
+.table-m {
+    overflow-x: auto; /* Habilita desplazamiento horizontal en pantallas pequeñas */
+}
 
 /* TABLA DE DETALLES DEL COCHE*/
 .table-details {
@@ -775,11 +786,11 @@ button.btn-custom:focus {
         flex: 0 0 48%;
     }
 
+/*ESTILOS DE FILTRADO Y MAESTROS*/
 .d-flex-select {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     align-items: center;
     width: 90%;
     margin: auto;
@@ -833,7 +844,6 @@ form {
     border-radius: 5px;
     padding: 0.7rem 1.5rem;
     transition: background-color 0.5s ease;
-    width: 80%;
 }
 
     /* Efecto hover del botón */
@@ -1036,7 +1046,7 @@ a.btn-secondary {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index:1000;
+    z-index: 1000;
     display: none; /* Oculto inicialmente */
     background-color: var(--color-primario); /* Cambia al color que prefieras */
     color: var(--color-blanco);
@@ -1066,68 +1076,150 @@ footer {
     padding: 10px; /*Espaciado del footer*/
     margin-top: 20px; /*Espaciado por encima del footer */
 }
-/* Media query a partir de 1054px */
-@media (min-width: 1054px) {
-    .navbar-nav {
-        gap: 150px; /* Aumenta el espacio horizontal entre los elementos para pantallas más grandes */
+
+
+/*EMPIEZO LAS MEDIA QUERYS*/
+/*TABLA DE FILTRADO*/
+@media (max-width: 576px) {
+    /* Ajuste para el contenedor general */
+    .d-flex-select {
+        width: 100%;
+        padding: 10px;
+        margin: 0 auto; /* Centra el contenedor */
+        overflow-x: hidden; /* Evita desbordamiento horizontal */
     }
 
-        .navbar-nav li {
-            transform: scale(1); /* Mantiene el tamaño original, sin cambio al hacer hover */
+        /* Asegurarse de que los selects y columnas ocupen todo el espacio disponible */
+        .d-flex-select .col-md-3 {
+            flex: 1 1 auto;
+            width: 100%;
+            padding-left: 0;
+            padding-right: 0; /* Evita márgenes internos */
+            box-sizing: border-box; /* Incluye padding y bordes en el cálculo del ancho */
         }
 
-        .navbar-nav a {
-            padding: 12px 20px; /* Aumenta el área clicable en pantallas más grandes */
+        /* Ajuste de los selects */
+        .d-flex-select .form-select {
+            width: 100%;
+            padding: 0.4rem;
+            box-sizing: border-box;
         }
 
-    .navbar-toggler {
-        display: none; /* Oculta el botón de menú en pantallas grandes */
-    }
+        /* Ajuste del botón */
+        .d-flex-select .btn {
+            width: 100%;
+            padding: 0.6rem;
+        }
+
+        /* Ajuste de los labels */
+        .d-flex-select label {
+            font-size: 0.9rem;
+            text-align: center;
+            width: 100%;
+            margin: 0 auto;
+        }
 }
 
-/* Estilo para móviles: ajusta la fuente y el tamaño de las celdas */
-@media (max-width: 768px) {
+/*AQUI ES DONDE EMPIEZA A DAR PROBLEMAS*/
+/* Media query para anchos de pantalla entre 768px y 1310px */
+@media (max-width: 1309px) and (min-width: 768px) {
+    .table-cars {
+        width: 100%; /* La tabla ocupa el 100% del contenedor */
+        max-width: 100%; /* Asegura que no haya recortes */
+        font-size: 0.70em; /* Reducir el tamaño de la fuente en pantallas medianas */
+        overflow: visible; /* Evitar que el contenido se recorte */
+    }
+
+    .table-m {
+        overflow-x: auto; /* Añadir scroll horizontal cuando sea necesario */
+    }
+
+    /* Reducir el padding de las celdas y encabezados */
     .table-cars th, .table-cars td {
-        font-size: 12px; /* Disminuye el tamaño de fuente */
-        padding: 8px;
-    }
-}
-/* Media Queries VIDEO */
-@media (min-width: 1200px) {
-    .publicidad-video {
-        width: 50%;
-        margin: 100px auto;
+        padding: 6px 4px; /* Reducir el padding en las celdas */
     }
 
-    .video-background {
-        width: 100%;
-        height: auto;
+    /* Hacer los encabezados más pequeños */
+    .table-cars th {
+        font-size: 0.9em; /* Reducir el tamaño de los encabezados */
     }
+
+    /* Ajustar el espaciado entre filas */
+    .table-cars {
+        border-spacing: 0 10px; /* Menos espacio entre filas */
+    }
+
+        /* Ajustar la alineación de las celdas */
+        .table-cars td, .table-cars th {
+            text-align: center; /* Alinear a la izquierda para mayor legibilidad */
+        }
+
+            /* Ajustar enlaces en el último <td> */
+            .table-cars td:last-child a {
+                font-size: 0.7em; /* Reducir el tamaño de la fuente de los enlaces */
+                padding: 4px 8px; /* Reducir el padding interno */
+                margin: 2px; /* Espaciado entre botones */
+            }
+
+            /* Evitar recortes y asegurar que los enlaces no afecten el layout */
+            .table-cars td:last-child {
+                display: flex; /* Cambiar a block para asegurar que los enlaces no se apilen horizontalmente */
+                justify-content: space-evenly;
+                text-align: center; /* Alinear los enlaces al centro */
+                width: 100%; /* Asegurar que la celda ocupe todo el ancho disponible */
+            }
+                /* Evitar que los botones se suban */
+                .table-cars td:last-child a {
+                    flex: 1 1 30%; /* Permitir que los botones crezcan hasta un 30% del ancho disponible, pero sin ocupar más espacio */
+                    text-align: center; /* Asegura que los botones estén centrados */
+                }
+
+        /* Sombra al hacer hover, sin afectar el layout */
+        .table-cars tbody tr:hover {
+            background-color: var(--color-acento); /* Color de fondo al pasar el ratón sobre la fila */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra más intensa al pasar el ratón */
+        }
 }
+
+/* Hacer que las celdas se comporten correctamente en pantallas pequeñas */
 @media (max-width: 768px) {
-    .publicidad-video {
-        width: 100%;
-        margin: 20px auto;
+    .table-cars {
+        font-size: 0.8em; /* Reducir el tamaño de fuente en pantallas pequeñas */
     }
 
-    .video-background {
-        width: 100%;
-        height: auto;
-    }
-}
-/* Responsividad: ajustar a pantallas pequeñas */
-@media (max-width: 768px) {
-    .d-flex-select .col-md-3 {
-        flex: 1 1 100%; /* Los elementos ocupan todo el ancho en pantallas pequeñas */
-        max-width: 100%; /* Asegura que no haya un ancho máximo */
-        margin-bottom: 15px; /* Menos margen entre columnas */
-    }
+        .table-cars th, .table-cars td {
+            display: block; /* Las celdas se convierten en bloques */
+            width: 100%; /* Las celdas ocupan todo el ancho disponible */
+            text-align: left; /* Alineación izquierda para mejor legibilidad */
+            padding: 12px 10px; /* Aumentar el padding en pantallas pequeñas */
+        }
 
-    .d-flex-select .form-select {
-        max-width: 100%; /* Los selects se adaptan al 100% */
-    }
+            .table-cars td:last-child {
+                text-align: left; /* Alineación a la izquierda en la última celda */
+                white-space: normal; /* Permite el salto de línea en las celdas */
+            }
 
-    .d-flex-select .btn {
-        width: 100%; /* El botón ocupa todo el ancho en pantallas pequeñas */
-    }
+            /* Ajuste para la columna de acciones */
+            .table-cars td.actions-column {
+                background-color: #fff;
+            }
+
+        .table-cars tbody tr {
+            display: block; /* Las filas se comportan como bloques */
+            margin-bottom: 10px; /* Espacio entre filas */
+            border-radius: 5px; /* Redondear bordes de filas */
+        }
+
+        .table-cars th {
+            font-size: 0.85em; /* Reducir el tamaño de la fuente en los encabezados */
+            text-align: left; /* Alineación izquierda para los encabezados */
+        }
+
+        .table-cars td a {
+            display: inline-block; /* Hacer los botones más fáciles de tocar */
+            width: 100%; /* Los botones ocupan el 100% del ancho */
+            padding: 10px;
+            margin-top: 5px;
+            text-align: center;
+        }
 }
