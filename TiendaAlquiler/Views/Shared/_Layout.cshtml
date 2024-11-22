@@ -41,7 +41,7 @@
             });
         });
     </script>
-   @*  <script>
+    @*  <script>
         document.addEventListener("DOMContentLoaded", function () {
             const backToTopButton = document.getElementById("backToTop");
 
@@ -70,51 +70,36 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 text-center scrolled">
+        <nav class="navbar navbar-expand-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TiendaAlquiler</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Menu de navegacion">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Menu de navegacion">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav text-center">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <!-- ms-auto para alinear a la derecha -->
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">INICIO</a>
                         </li>
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Carrocerias" asp-action="Index">CARROCERIAS</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Colors" asp-action="Index">COLORES</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Decadas" asp-action="Index">DECADAS</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Paises" asp-action="Index">PAIS</a>
-                            </li>
+                            <li class="nav-item"><a class="nav-link text-dark" asp-controller="Carrocerias" asp-action="Index">CARROCERIAS</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" asp-controller="Colors" asp-action="Index">COLORES</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" asp-controller="Decadas" asp-action="Index">DECADAS</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" asp-controller="Paises" asp-action="Index">PAIS</a></li>
                         }
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Coches" asp-action="Index">COCHES</a>
+                            <a class="nav-link text-dark" asp-controller="Coches" asp-action="Index">COCHES</a>
                         </li>
-
                         @if (!User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Register">REGISTRO</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Login">LOGIN</a>
-                            </li>
+                            <li class="nav-item"><a class="nav-link text-dark" asp-controller="Usuario" asp-action="Register">REGISTRO</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" asp-controller="Usuario" asp-action="Login">LOGIN</a></li>
                         }
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a href="@Url.Action("Logout", "Usuario")" class="nav-link text-dark">LOG OUT</a>
-                            </li>
+                            <li class="nav-item"><a href="@Url.Action("Logout", "Usuario")" class="nav-link text-dark">LOG OUT</a></li>
                         }
                     </ul>
                 </div>
