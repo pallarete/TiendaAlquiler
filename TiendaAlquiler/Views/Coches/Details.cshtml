@@ -89,10 +89,11 @@
         <p class="text-danger mt-2">Debes iniciar sesión o registrarte para alquilar este coche.</p>
     }
 
-    <a asp-action="Index" class="btn-secondary">
+    <a asp-action="Index" class="btn btn-secondary">
         Volver al listado
     </a>
 </div>
+
 
 @* SECCION DE LA DESCRIPCION*@
 <div class="description-section container my-4">
@@ -111,7 +112,9 @@
             <div class="form-group mb-3 ">
                 <textarea name="Descripcion" class="form-control" placeholder="Escribe una descripción del coche">@Model.Description</textarea>
             </div>
-            <button type="submit" class="btn btn-highlight">Guardar Descripción</button>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-highlight">Guardar Descripción</button>
+            </div>
         </form>
     }
 </div>

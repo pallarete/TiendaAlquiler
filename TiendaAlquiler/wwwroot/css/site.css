@@ -93,6 +93,14 @@ p, label, button {
 }
 
 /* ESTILOS BOTONES------------------------------------------------ */
+.button-container {
+    display: flex;
+    flex-direction: column; /* Coloca los botones en una columna */
+    align-items: center; /* Centra los botones horizontalmente */
+    gap: 20px; /* Espaciado entre los elementos dentro del contenedor */
+    margin-top: 20px; /* Separación superior del contenedor respecto a los elementos de arriba */
+}
+
 .btn {
     padding: 10px 15px;
     border-radius: 6px;
@@ -160,12 +168,12 @@ p, label, button {
 
 
 /* ESTILOS DE LA NAVBAR ------------------------------------------------------------------------*/
-/* Barra de navegación */
+/* Estilos para el header */
 header {
-    font-family: 'Roboto',sans-serif;
-    font-weight:bold;
-    background-color: var(--color-primario); /* Puedes ajustar el color de fondo */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil para el header */
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    background-color: var(--color-primario); /* Ajusta el color de fondo */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Sombra sutil para el header */
 }
 
 /* Estilos de la barra de navegación */
@@ -174,26 +182,46 @@ header {
     padding: 1rem 2rem;
 }
 
-    .navbar .navbar-brand {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: var(--color-secundario); /* Color para el nombre de la marca */
-    }
+/* Contenedor centrado */
+.container-fluid {
+    display: flex;
+    justify-content: center; /* Centra la barra de navegación horizontalmente */
+}
 
-    .navbar .navbar-toggler {
-        border-color: var(--color-secundario); /* Toggler (hamburguesa) */
-    }
+/* El menú de navegación debe estar centrado */
+.navbar-nav {
+    display: flex;
+    justify-content: center; /* Centra los elementos dentro de la barra */
+}
 
+/* Estilos de la marca */
+.navbar .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-secundario); /* Color para el nombre de la marca */
+}
+
+/* Estilos para el toggler (hamburguesa) */
+.navbar .navbar-toggler {
+    border-color: var(--color-secundario); /* Toggler (hamburguesa) */
+}
+
+/* Estilos de los enlaces de la barra de navegación */
 .navbar-nav .nav-item .nav-link {
     color: var(--color-texto);
     font-size: 1rem;
     padding: 0.75rem 1rem;
     text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease, border-radius 0.3s ease; /* Suaviza la transición */
 }
 
+    /* Efecto hover en los enlaces */
     .navbar-nav .nav-item .nav-link:hover {
         background-color: var(--color-secundario);
         color: white;
+        border-radius: 20px; /* Borde redondeado */
+        padding-left: 1rem; /* Ajuste de padding para no "salir" del borde */
+        padding-right: 1rem; /* Ajuste de padding para no "salir" del borde */
     }
 
 /* Navbar en estado activo (resaltado al pasar el ratón o estar seleccionado) */
@@ -202,10 +230,16 @@ header {
     color: white;
 }
 
+/* Espaciado entre los elementos de la navbar */
+.navbar-nav .nav-item {
+    margin-right: 1rem; /* Espacio entre los elementos */
+}
 
-
-
-
+/* Toggler en móviles */
+.navbar-toggler-icon {
+    width: 2rem;
+    height: 2rem;
+}
 
 /* ESTILOS GENERALES */
 .table {
@@ -244,12 +278,14 @@ header {
 
     .table th:first-child,
     .table td:first-child {
-        border-left-radius: 8px;
+        border-left: 2px solid #ddd; /* Aseguramos que haya un borde */
+        border-radius: 8px 0 0 0; /* Redondeamos solo la esquina izquierda */
     }
 
     .table th:last-child,
     .table td:last-child {
-        border-right-radius: 8px;
+        border-right: 2px solid #ddd; /* Asegúrate de que haya un borde */
+        border-radius: 0 8px 0 0; /* Redondear solo la esquina derecha */
     }
 
 /* COLUMNAS DE ACCIÓN */
@@ -833,6 +869,33 @@ footer {
 
 
 /*EMPIEZO LAS MEDIA QUERYS*/
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.5rem 1rem; /* Reducir el padding en pantallas pequeñas */
+    }
+
+        .navbar .navbar-toggler {
+            border: none;
+            background-color: var(--color-secundario);
+        }
+
+    /* El menú de navegación debe ocupar toda la pantalla en móvil */
+    .navbar-collapse {
+        text-align: center;
+    }
+
+    .navbar-nav {
+        flex-direction: column; /* Apilar los enlaces en dispositivos móviles */
+    }
+
+        .navbar-nav .nav-item {
+            margin-right: 0; /* Eliminar el margen entre elementos */
+            margin-bottom: 0.5rem; /* Añadir margen entre los elementos */
+        }
+}
+
+
 /*TABLA DE FILTRADO*/
 @media (max-width: 576px) {
     /* Ajuste para el contenedor general */
@@ -999,8 +1062,8 @@ footer {
 
 
 /* Navbar para dispositivos pequeños */
-@media (max-width: 576px) {
+/*@media (max-width: 576px) {
     .navbar-nav .nav-item {
         text-align: center;
     }
-}
+}*/
