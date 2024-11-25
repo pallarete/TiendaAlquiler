@@ -5,16 +5,15 @@
 }
 
 :root {
-    --color-primario: #6c757d; /* Gris oscuro para encabezados y navegación */
-    --color-secundario: #f5a623; /* Naranja suave para botones destacados */
-    --color-acento: #D81B60; /* Rosa profundo para elementos interactivos */
-    --color-texto: #333333; /* Gris oscuro para el texto */
-    --color-destacado: #D81B60; /* Reutilizado para coherencia */
-    --color-fondo: #C2C2C2; /* Fondo gris cálido más oscuro */
-    --color-acciones: #4A90E2; /* Azul suave para botones secundarios */
-    --color-sombra: rgba(0, 0, 0, 0.15); /* Sombra un poco más definida */
+    --color-primario: #6c757d;
+    --color-secundario: #f5a623;
+    --color-acento: #D81B60;
+    --color-texto: #333333;
+    --color-destacado: #D81B60;
+    --color-fondo: #C2C2C2;
+    --color-acciones: #4A90E2;
+    --color-sombra: rgba(0, 0, 0, 0.15);
 }
-
 
 /* CONFIGURACION BASICA */
 html, body {
@@ -146,7 +145,7 @@ p, label, button {
 
 /* Botón de peligro */
 .btn-danger {
-    background-color: #d9534f; /* Rojo */
+    background-color: var(--color-acento); /* Rojo */
     color: white;
 }
 
@@ -955,7 +954,7 @@ footer {
     }
 
     .table th {
-        background-color: #f5a623; /* Amarillo para las cabeceras */
+        background-color: var(--color-secundario); /* Amarillo para las cabeceras */
         color: white; /* Texto blanco en las cabeceras */
     }
 
