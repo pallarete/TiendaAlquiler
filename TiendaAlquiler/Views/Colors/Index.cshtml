@@ -6,25 +6,22 @@
 
 <h1>Listado de Colores</h1>
 
-<table class="table-m">
+<table class="table">
     <thead>
         <tr>
-            <th colspan="4">
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
+            <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+            <th class="text-end">Acciones</th> <!-- Alineamos la cabecera de "Acciones" a la derecha -->
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td class="actions-column">
-                    <a asp-action="Edit" asp-route-id="@item.ColorId">Editar Color</a> |
-                    <a asp-action="Details" asp-route-id="@item.ColorId">Detalles del Color</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ColorId">Borrar Color</a>
+                <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                <td class="text-end">
+                    <a asp-action="Edit" asp-route-id="@item.ColorId" class="btn btn-primary">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.ColorId" class="btn btn-secondary">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@item.ColorId" class="btn btn-danger">Borrar</a>
                 </td>
             </tr>
         }
@@ -34,17 +31,12 @@
 @if (User.IsInRole("Admin"))
 {
     <div class="d-flex justify-content-center mt-4">
-
-        <a asp-action="Create" class="btn btn-primary btn-custom">Crear nuevo color</a>
-
+        <a asp-action="Create" class="btn btn-highlight">Crear nuevo color</a>
     </div>
-
-
 }
 else
 {
-    <div>
-        <p>No puedes acceder a la creacion de colores</p>
+    <div class="mt-4">
+        <p>No puedes acceder a la creación de colores.</p>
     </div>
 }
-

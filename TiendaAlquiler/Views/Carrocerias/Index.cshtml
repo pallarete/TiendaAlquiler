@@ -1,33 +1,35 @@
 ﻿@model IEnumerable<TiendaAlquiler.Models.Carroceria>
+
 @{
     ViewData["Title"] = "Index";
 }
-<h1>Listado de carrocerias</h1>
-<table class="table-m">
+
+<h1>Listado de carrocerías</h1>
+
+<table class="table">
     <thead>
         <tr>
-            <th colspan="4">
-                @Html.DisplayNameFor(model => model.Tipo)
-            </th>
+            <th>@Html.DisplayNameFor(model => model.Tipo)</th>
+            <th class="text-end">Acciones</th> <!-- Alineamos la cabecera de "Acciones" a la derecha -->
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Tipo)
-                </td>
-                <td class="actions-column">
-                    <a asp-action="Edit" asp-route-id="@item.CarroceriaId">Editar</a>
-                    <a asp-action="Details" asp-route-id="@item.CarroceriaId">Detalles</a> 
-                    <a asp-action="Delete" asp-route-id="@item.CarroceriaId">Borrar Carroceria</a>
+                <td>@Html.DisplayFor(modelItem => item.Tipo)</td>
+                <td class="text-end">
+                    <!-- Alineamos las acciones a la derecha -->
+                    <a asp-action="Edit" asp-route-id="@item.CarroceriaId"    class="btn btn-primary">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.CarroceriaId" class="btn btn-secondary">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@item.CarroceriaId"  class="btn btn-danger">Borrar Carrocería</a>
+
                 </td>
             </tr>
         }
     </tbody>
 </table>
-<div class="d-flex justify-content-center mt-4">
-    <a asp-action="Create" class="btn btn-primary btn-custom">Crear una nueva carroceria</a>
-</div>
 
+<div class="d-flex justify-content-center mt-4">
+    <a asp-action="Create" class="btn btn-highlight">Crear una nueva carrocería</a>
+</div>

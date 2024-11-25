@@ -70,33 +70,37 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TiendaAlquiler</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Menu de navegacion">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Menú de navegación">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <!-- ms-auto para alinear a la derecha -->
+                        <!-- Alineación a la derecha con ms-auto -->
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">INICIO</a>
                         </li>
+
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
-                            <li class="nav-item"><a class="nav-link text-dark" asp-controller="Carrocerias" asp-action="Index">CARROCERIAS</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" asp-controller="Carrocerias" asp-action="Index">CARROCERÍAS</a></li>
                             <li class="nav-item"><a class="nav-link text-dark" asp-controller="Colors" asp-action="Index">COLORES</a></li>
                             <li class="nav-item"><a class="nav-link text-dark" asp-controller="Decadas" asp-action="Index">DECADAS</a></li>
-                            <li class="nav-item"><a class="nav-link text-dark" asp-controller="Paises" asp-action="Index">PAIS</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" asp-controller="Paises" asp-action="Index">PAÍS</a></li>
                         }
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Coches" asp-action="Index">COCHES</a>
                         </li>
+
                         @if (!User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item"><a class="nav-link text-dark" asp-controller="Usuario" asp-action="Register">REGISTRO</a></li>
                             <li class="nav-item"><a class="nav-link text-dark" asp-controller="Usuario" asp-action="Login">LOGIN</a></li>
                         }
+
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item"><a href="@Url.Action("Logout", "Usuario")" class="nav-link text-dark">LOG OUT</a></li>
@@ -106,6 +110,7 @@
             </div>
         </nav>
     </header>
+
 
     <div class="container-fluid">
         <main role="main" class="pb-3">

@@ -3,28 +3,32 @@
 @{
     ViewData["Title"] = "Delete";
 }
-<h1>Esta seguro de borrar esta decada?</h1>
-<div class="container mt-4">
+
+<h1 class="text-center mb-4">¿Está seguro de eliminar esta Decada?</h1>
+
+<div class="container bg-white p-4 shadow rounded">
     <div class="row justify-content-center">
-        <div class="col-md-4 detail-card">
-            <h4 class="text-center">Decada</h4>
+        <div class="col-md-6">
+            <h4 class="text-center mb-3">Decada</h4>
             <hr />
 
-            <!-- Tabla de detalles con columnas del mismo ancho -->
-            <table class="table table-borderless text-center">
-                <tr>
-                    <th>Decada:</th>
-                    <td>@Html.DisplayFor(model => model.AnioInicio)</td>
-                </tr>
+            <!-- Tabla de detalles centrada -->
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <th class="text-end">Año de Inicio:</th>
+                        <td class="text-start">@Html.DisplayFor(model => model.AnioInicio)</td>
+                    </tr>
+                </tbody>
             </table>
 
-            <!-- Formulario de eliminación y acciones -->
-            <div class="d-flex justify-content-between mt-3">
-                <form asp-action="Delete" class="w-100 d-flex justify-content-between">
+            <!-- Botones de acción -->
+            <div class="d-flex justify-content-center gap-3 mt-4">
+                <form asp-action="Delete">
                     <input type="hidden" asp-for="DecadaId" />
-                    <button type="submit" class="btn btn-danger w-50 me-2">Eliminar</button>
-                    <a asp-action="Index" class="btn btn-secondary w-50">Volver</a>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
                 </form>
+                <a asp-action="Index" class="btn btn-secondary">Volver</a>
             </div>
         </div>
     </div>

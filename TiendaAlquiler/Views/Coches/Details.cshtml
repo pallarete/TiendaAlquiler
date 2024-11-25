@@ -76,7 +76,7 @@
            asp-action="Create"
            asp-route-cocheId="@Model.CocheId"
            asp-route-usuarioId="@UserManager.GetUserId(User)"
-           class="btn btn-primary btn-custom">
+           class="btn btn-highlight">
             Alquilar este coche
         </a>
     }
@@ -89,7 +89,7 @@
         <p class="text-danger mt-2">Debes iniciar sesión o registrarte para alquilar este coche.</p>
     }
 
-    <a asp-action="Index" class="back-link">
+    <a asp-action="Index" class="btn-secondary">
         Volver al listado
     </a>
 </div>
@@ -111,7 +111,7 @@
             <div class="form-group mb-3 ">
                 <textarea name="Descripcion" class="form-control" placeholder="Escribe una descripción del coche">@Model.Description</textarea>
             </div>
-            <button type="submit" class="btn btn-primary btn-custom">Guardar Descripción</button>
+            <button type="submit" class="btn btn-highlight">Guardar Descripción</button>
         </form>
     }
 </div>

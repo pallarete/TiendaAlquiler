@@ -4,29 +4,25 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Listado de Decadas</h1>
+<h1>Listado de Décadas</h1>
 
-
-<table class="table-m">
+<table class="table">
     <thead>
         <tr>
-            <th colspan="4F">
-                @Html.DisplayNameFor(model => model.AnioInicio)
-            </th>
-
+            <th>@Html.DisplayNameFor(model => model.AnioInicio)</th>
+            <th class="text-end">Acciones</th> <!-- Alineamos la cabecera de "Acciones" a la derecha -->
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AnioInicio)
-                </td>
-                <td class="actions-column">
-                    <a asp-action="Edit" asp-route-id="@item.DecadaId">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.DecadaId">Detalles</a> |
-                    <a asp-action="Delete" asp-route-id="@item.DecadaId">Borrar Decada</a>
+                <td>@Html.DisplayFor(modelItem => item.AnioInicio)</td>
+                <td class="text-end">
+                    <!-- Alineamos las acciones a la derecha -->
+                    <a asp-action="Edit" asp-route-id="@item.DecadaId" class="btn btn-primary">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.DecadaId" class="btn btn-secondary">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@item.DecadaId" class="btn btn-danger">Borrar</a>
                 </td>
             </tr>
         }
@@ -34,8 +30,5 @@
 </table>
 
 <div class="d-flex justify-content-center mt-4">
-
-    <a asp-action="Create" class="btn btn-primary btn-custom">Crear decada</a>
-
+    <a asp-action="Create" class="btn btn-highlight">Crear nueva década</a>
 </div>
-

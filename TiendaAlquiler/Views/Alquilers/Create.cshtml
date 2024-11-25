@@ -56,16 +56,16 @@
                 <input asp-for="CVC" class="form-control" type="text" maxlength="3" />
                 <span asp-validation-for="CVC" class="text-danger"></span>
             </div>
-            <div class="botones">
+            <div class="botones d-flex justify-content-between align-items-center ">
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-custom">Crear Alquiler</button>
+                    <button type="submit" class="btn btn-highlight">Crear Alquiler</button>
                 </div>
-
+                <div class="form-group">
+                    <a asp-action="Index" class="btn btn-secondary">Volver al Listado</a>
+                </div>
             </div>
         </form>
-        <div class="mt-4 w-100 ">
-            <a asp-action="Index" class="btn btn-primary btn-custom">Volver al Listado</a>
-        </div>
+
     </div>
 
     <!-- Fechas de alquiler previas -->

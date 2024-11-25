@@ -39,13 +39,6 @@ html {
     position: relative;
 }
 
-
-/* ESTILO HEADER*/
-header {
-    background-color: var(--color-fondo);
-    color: var(--color-texto);
-    padding: 20px;
-}
 /*ENCABEZADO HOME*/
 .encabezado {
     display: flex;
@@ -72,16 +65,6 @@ section {
 }
 
 /* ESTILO PARA ENLACES EN GENERAL*/
-a {
-    color: var(--color-acento); /* Rojo suave y accesible */
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.8s ease; /* Transición suave al cambiar de color */
-}
-
-    a:hover {
-        color: var(--color-destacado); /* Rosa-rojo suave */
-    }
 
 /* CONTENEDOR PRINCIPAL*/
 main {
@@ -102,225 +85,191 @@ form {
 h1, h2, h3 {
     font-family: 'Roboto', sans-serif;
     text-align: center;
-    margin-top: 5px;
+    margin-top: 25px;
 }
 
 p, label, button {
     font-family: 'Roboto', sans-serif;
 }
 
-/* ESTILOS DE LA NAVBAR */
-.navbar {
-    background-color: var(--color-fondo);
-    color: var(--color-blanco);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    transition: background-color 0.3s ease; /* Transición suave al hacer scroll */
-}
-
-/* Ajustes de la marca */
-.navbar-brand {
-    font-size: 1.5rem;
+/* ESTILOS BOTONES------------------------------------------------ */
+.btn {
+    padding: 10px 15px;
+    border-radius: 6px;
     font-weight: bold;
-    color: var(--color-texto);
     text-transform: uppercase;
-}
-
-/* Icono del toggler */
-.navbar-toggler {
     border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: var(--color-sombra);
 }
 
-/* Ajustes de los elementos del menú */
-.navbar-nav {
-    display: flex;
-    gap: 50px; /* Espaciado horizontal entre elementos */
-    align-items: center;
-    padding: 0;
-    margin: 0 auto;
-    list-style: none;
-    /*text-align: center;*/
+/* Botón primario */
+.btn-primary {
+    background-color: var(--color-primario);
+    color: white;
 }
 
-.navbar-brand {
-    margin-right: auto; /* Empuja el logo hacia la izquierda */
+    .btn-primary:hover {
+        background-color: #5b636b; /* Gris más oscuro */
+        transform: scale(1.05);
+    }
+
+/* Botón secundario */
+.btn-secondary {
+    background-color: var(--color-secundario);
+    color: white;
 }
 
-.navbar-toggler {
-    margin-left: auto; /* Asegura que el botón esté alineado a la derecha */
+    .btn-secondary:hover {
+        background-color: #e59919; /* Naranja más oscuro */
+        transform: scale(1.05);
+    }
+
+/* Botón de acento */
+.btn-accent {
+    background-color: var(--color-acento);
+    color: white;
 }
 
-.navbar.scrolled {
-    background-color: var(--color-primario); /* Cambia a un color sólido */
-    transition: background-color 0.8s ease; /* Transición suave */
+    .btn-accent:hover {
+        background-color: #b0154c; /* Rosa más oscuro */
+        transform: scale(1.05);
+    }
+
+/* Botón de peligro */
+.btn-danger {
+    background-color: #d9534f; /* Rojo */
+    color: white;
 }
 
-/* BOTONES */
-.btn:focus,
-.btn:active:focus,
-.btn-link.nav-link:focus,
-.form-control:focus,
-.form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem var(--color-fondo), 0 0 0 0.25rem var(--color-secundario);
+    .btn-danger:hover {
+        background-color: #c12f2a; /* Rojo más oscuro */
+        transform: scale(1.05);
+    }
+
+/* Botón destacado */
+.btn-highlight {
+    background-color: var(--color-acciones);
+    color: white;
 }
 
-.btn-custom {
-    background-color: var(--color-primario); /* Gris oscuro */
-    color: var(--color-fondo); /* Texto blanco */
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.8s ease, transform 0.8s ease;
-}
-
-    .btn-custom:hover {
-        background-color: var(--color-acciones); /* Rojo suave */
-        transform: scale(1.05); /* Efecto sutil al pasar el cursor */
+    .btn-highlight:hover {
+        background-color: #357ab8; /* Azul más oscuro */
+        transform: scale(1.05);
     }
 
 
-/* COLUMNAS DE ACCIONES */
+/* ESTILOS DE LA NAVBAR ------------------------------------------------------------------------*/
+/* Barra de navegación */
+header {
+    font-family: 'Roboto',sans-serif;
+    font-weight:bold;
+    background-color: var(--color-primario); /* Puedes ajustar el color de fondo */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil para el header */
+}
+
+/* Estilos de la barra de navegación */
+.navbar {
+    font-family: 'Roboto', sans-serif;
+    padding: 1rem 2rem;
+}
+
+    .navbar .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--color-secundario); /* Color para el nombre de la marca */
+    }
+
+    .navbar .navbar-toggler {
+        border-color: var(--color-secundario); /* Toggler (hamburguesa) */
+    }
+
+.navbar-nav .nav-item .nav-link {
+    color: var(--color-texto);
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    text-transform: uppercase;
+}
+
+    .navbar-nav .nav-item .nav-link:hover {
+        background-color: var(--color-secundario);
+        color: white;
+    }
+
+/* Navbar en estado activo (resaltado al pasar el ratón o estar seleccionado) */
+.navbar-nav .nav-item.active .nav-link {
+    background-color: var(--color-acento);
+    color: white;
+}
+
+
+
+
+
+
+/* ESTILOS GENERALES */
+.table {
+    width: 100%;
+    margin: 20px auto;
+    font-size: 1rem;
+    border-collapse: collapse;
+    color: var(--color-texto);
+    table-layout: auto; /* Ajusta el tamaño de las columnas de forma automática */
+}
+
+    .table thead {
+        background-color: var(--color-secundario);
+        color: white;
+        text-transform: uppercase;
+    }
+
+    .table th,
+    .table td {
+        padding: 12px;
+        text-align: left;
+        vertical-align: middle;
+        border-bottom: 1px solid var(--color-sombra);
+    }
+
+    .table tbody tr {
+        background-color: var(--color-fondo);
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+        .table tbody tr:hover {
+            background-color: var(--color-destacado);
+            transform: scale(1.01);
+            box-shadow: 0 2px 6px var(--color-sombra);
+        }
+
+    .table th:first-child,
+    .table td:first-child {
+        border-left-radius: 8px;
+    }
+
+    .table th:last-child,
+    .table td:last-child {
+        border-right-radius: 8px;
+    }
+
+/* COLUMNAS DE ACCIÓN */
 .actions-column {
     text-align: right;
-    color: var(--color-acciones);
-    padding: 8px;
 }
 
     .actions-column a {
-        color: var(--color-acciones);
         margin-left: 10px;
         text-decoration: none;
+        color: var(--color-acciones);
+        transition: color 0.3s;
     }
 
         .actions-column a:hover {
             text-decoration: underline;
-            /*color: var(--color-destacado);*/ /* Color al hacer hover */
+            color: var(--color-destacado);
         }
 
-/* ESTILOS GENERALES DE LAS TABLAS MAESTRAS */
-.table-m {
-    width: 90%;
-    margin: 30px auto;
-    font-size: 1em;
-    border-collapse: separate; /* Separar filas */
-    border-spacing: 0 15px; /* Espaciado vertical entre filas */
-    color: var(--color-texto); /* Color del texto */
-}
 
-    .table-m thead tr {
-        background-color: var(--color-secundario); /* Fondo del encabezado */
-        border-radius: 8px; /* Bordes redondeados */
-        box-shadow: 0 4px 6px var(--color-sombra); /* Sombra del encabezado */
-        color: white; /* Texto blanco */
-    }
-
-    .table-m th,
-    .table-m td {
-        padding: 15px 20px; /* Espaciado interno */
-        text-align: left; /* Texto alineado a la izquierda */
-        vertical-align: middle; /* Centra verticalmente el texto */
-        border: none; /* Sin bordes internos */
-    }
-
-    .table-m tbody tr {
-        background-color: var(--color-fondo); /* Fondo de las filas */
-        border-radius: 8px; /* Bordes redondeados en filas */
-        box-shadow: 0 2px 4px var(--color-sombra); /* Sombra de filas */
-        transition: background-color 0.8s ease, transform 0.8s ease; /* Transición más rápida */
-    }
-
-        .table-m tbody tr:hover {
-            background-color: var(--color-destacado); /* Fondo destacado al pasar el mouse */
-            transform: scale(1.01); /* Efecto de "elevación" */
-            box-shadow: 0 4px 8px var(--color-sombra); /* Sombra más marcada */
-        }
-
-    .table-m td:first-child {
-        font-weight: bold; /* Resalta la primera columna */
-    }
-
-    .table-m thead th:first-child {
-        border-top-left-radius: 8px; /* Esquina superior izquierda */
-    }
-
-    .table-m thead th:last-child {
-        border-top-right-radius: 8px; /* Esquina superior derecha */
-    }
-
-    .table-m tbody tr:last-child td:first-child {
-        border-bottom-left-radius: 8px; /* Esquina inferior izquierda */
-    }
-
-    .table-m tbody tr:last-child td:last-child {
-        border-bottom-right-radius: 8px; /* Esquina inferior derecha */
-    }
-
-    .table-m .actions-column {
-        text-align: right; /* Contenido alineado a la derecha */
-        padding-right: 15px; /* Espaciado interno */
-    }
-
-
-/* ESTILO PARA LA TABLA DE COCHES */
-.table-cars {
-    margin-top: 30px;
-    width: 100%;
-    max-width: 100%;
-    text-align: center;
-    border-collapse: separate; /* Asegura que cada fila esté separada */
-    border-spacing: 0 20px; /* Espacio entre las filas */
-    background-color: transparent; /* Fondo transparente */
-    font-size: 0.95em;
-}
-
-    .table-cars th {
-        color: white;
-        padding: 10px;
-        text-align: center;
-        vertical-align: middle;
-        background-color: var(--color-secundario);
-        text-transform: uppercase;
-    }
-
-    .table-cars tr {
-        font-weight: bold; /* Resaltar la primera columna */
-        background-color: white; /* Fondo blanco para las filas */
-        border: 3px solid black; /* Borde negro alrededor de cada fila */
-        border-radius: 10px; /* Bordes redondeados en las filas */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil para las filas */
-    }
-
-    .table-cars td {
-        padding: 10px;
-        text-align: center;
-        vertical-align: middle;
-        border: none; /* No hay borde en las celdas */
-    }
-
-    /* Añadir sombra cuando se pasa el ratón sobre una fila */
-    .table-cars tbody tr:hover {
-        background-color: var(--color-acento); /* Color de fondo al pasar el ratón sobre la fila */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /*Sombra más intensa al pasar el ratón*/
-    }
-
-    /* Añadir color a las celdas de la columna de acciones */
-    .table-cars td.actions-column {
-        background-color: #f1f1f1; /* Fondo claro para la columna de acciones */
-    }
-
-    .table-cars td:last-child {
-        text-align: end;
-        white-space: nowrap;
-    }
-
-/* Hacer la tabla responsiva */
-.table-m {
-    overflow-x: auto; /* Habilita desplazamiento horizontal en pantallas pequeñas */
-}
 
 /* TABLA DE DETALLES DEL COCHE*/
 .table-details {
@@ -413,14 +362,9 @@ p, label, button {
         color: var(--color-primario); /* Gris oscuro para la descripción */
     }
 
-    .description-section .btn {
-        background-color: var(--color-fondo);
-        transition: background-color 0.8s ease, transform 0.8s ease; /* Transición más rápida */
-    }
 
-        .description-section .btn:hover {
-            background-color: var(--color-acciones);
-        }
+
+
 
 textarea.form-control {
     height: 120px;
@@ -436,26 +380,6 @@ textarea.form-control {
         border-color: var(--color-secundario); /* Borde naranja al hacer focus */
         box-shadow: 0 0 8px var(--color-secundario); /* Sombra suave naranja */
     }
-
-.btn-custom {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    background-color: var(--color-secundario); /* Naranja suave */
-    border-radius: 5px;
-    color: white;
-    border: none;
-    transition: background-color 0.8s ease, transform 0.8s ease; /* Añadida transición para transform */
-}
-
-button.btn-custom:hover {
-    background-color: var(--color-destacado); /* Rosa-rojo en hover */
-    transform: scale(1.05); /* Efecto de agrandamiento suave */
-}
-
-button.btn-custom:focus {
-    outline: none;
-    box-shadow: 0 0 5px var(--color-acento); /* Resaltar el botón con un borde de color acento */
-}
 
 /* CARRUSEL */
 #carouselExampleAutoplaying {
@@ -495,79 +419,7 @@ button.btn-custom:focus {
 
 
 /* BOTENES FINALES DETALLES DEL COCHE*/
-.button-container {
-    margin-top: 20px; /* Añadir espacio entre los botones y el contenido previo */
-    display: flex;
-    flex-direction: column; /* Colocar los botones en una columna */
-    align-items: center; /* Centrar los elementos en el eje horizontal */
-    justify-content: center; /* Centrar los elementos en el eje vertical */
-    text-align: center; /* Centrar el texto dentro de los botones */
-}
 
-    /* Botón "Alquilar este coche" */
-    .button-container .btn-custom {
-        background-color: var(--color-primario); /* Gris oscuro */
-        color: var(--color-fondo); /* Blanco para el texto */
-        padding: 10px 20px;
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.5s ease, transform 0.5s ease;
-        text-decoration: none;
-        margin-bottom: 10px; /* Añadir separación entre los botones */
-        width: 100%; /* Hacer que los botones ocupen el 100% del ancho disponible */
-        max-width: 300px; /* Limitar el ancho máximo del botón */
-    }
-
-        .button-container .btn-custom:hover {
-            background-color: var(--color-acento); /* Rojo suave */
-            transform: scale(1.05); /* Efecto sutil al pasar el ratón */
-        }
-
-        /* Botón "Alquilar este coche" cuando está deshabilitado */
-        .button-container .btn-custom.disabled,
-        .button-container .btn-custom:disabled {
-            background-color: var(--color-primario); /* Gris oscuro */
-            color: var(--color-fondo); /* Blanco */
-            cursor: not-allowed;
-        }
-
-    /* Enlace "Volver al listado" */
-    .button-container .back-link {
-        background-color: var(--color-destacado); /* Rosa-rojo suave */
-        color: var(--color-fondo); /* Blanco para el texto */
-        font-size: 15px;
-        padding: 8px 15px;
-        border-radius: 5px;
-        border: 2px solid var(--color-destacado); /* Misma base que el fondo */
-        font-weight: bold;
-        text-decoration: none;
-        transition: all 0.5s ease;
-        margin-top: 10px; /* Añadir separación entre los botones */
-        width: 100%; /* Hacer que los botones ocupen el 100% del ancho disponible */
-        max-width: 300px; /* Limitar el ancho máximo del botón */
-    }
-
-        .button-container .back-link:hover {
-            background-color: var(--color-secundario); /* Naranja suave */
-            color: var(--color-texto); /* Gris oscuro para el texto */
-            border-color: var(--color-secundario); /* Misma base que el fondo */
-            transform: scale(1.05); /* Pequeño zoom al pasar el ratón */
-            text-shadow: 1px 1px 2px var(--color-sombra); /* Sombra sutil para resaltar */
-        }
-
-    /* Botón "Alquilar este coche" para usuarios no autenticados */
-    .button-container .btn-custom.disabled {
-        cursor: not-allowed;
-        opacity: 0.5; /* Añadido para mayor indicación de que el botón está inactivo */
-    }
-
-    /* Mensaje de advertencia cuando no está autenticado */
-    .button-container .text-danger {
-        font-size: 14px;
-        margin-top: 10px;
-    }
 
 /* ESTILOS PARA LA SECCION DE FECHAS DE COCHE ALQUILADO */
 .rental-dates {
@@ -651,16 +503,7 @@ button.btn-custom:focus {
         font-size: 14px;
     }
 
-    /* Botón para guardar la descripción */
-    .description-section button {
-        background-color: #fd7e14;
-        border-color: #fd7e14;
-    }
 
-        .description-section button:hover {
-            background-color: #e8590c;
-            border-color: #e8590c;
-        }
 
 /* ESTILO GENERAL DEL FORMULARIO DE ALQUILAR */
 .alquiler-form {
@@ -736,19 +579,7 @@ button.btn-custom:focus {
             margin-bottom: 5px;
         }
 
-    /* Estilo para el enlace "Back to List" */
-    .alquiler-form a {
-        text-decoration: none;
-        color: var(--color-acciones); /* Enlace con el color de acción */
-        font-size: 16px;
-        margin-top: 20px;
-        display: inline-block;
-    }
 
-    /* Estilo del botón "Back to List" */
-    .alquiler-form button {
-        color: var(--color-acciones); /* Usamos el color de acción */
-    }
 
     /* Estilo del contenedor que muestra el formulario y las fechas al lado */
     .alquiler-form .row {
@@ -778,57 +609,36 @@ button.btn-custom:focus {
     background-color: var(--color-primario);
 }
 
-/* Estilos para el formulario */
-form {
-    width: 100%; /* Ocupa todo el ancho disponible */
-}
-
-/* Estilo para las columnas dentro del formulario */
-.d-flex-select .col-md-3 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px; /* Espacio entre columnas */
-}
-
-/* Estilo para los labels */
-.d-flex-select label {
-    padding: 8px;
-    background-color: white;
-    font-size: 1rem;
-    margin-bottom: 5px;
-    text-align: center; /* Centrado del texto */
-    width: 100%; /* Los labels ocupan todo el ancho disponible */
-    border-radius: 5px;
-}
-
-/* Estilo para los selects */
-.d-flex-select .form-select {
-    width: 100%; /* Ocupa todo el ancho del contenedor */
-    max-width: 390px; /* Limita el ancho máximo */
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    margin-top: 5px; /* Espacio entre el select y el label */
-}
-
-/* Estilo para el botón */
-.d-flex-select .btn {
-    font-size: 1rem;
-    font-weight: bold;
-    background-color: darkred; /* Color de fondo */
-    color: white; /* Texto blanco */
-    border: none;
-    border-radius: 5px;
-    padding: 0.7rem 1.5rem;
-    transition: background-color 0.5s ease;
-}
-
-    /* Efecto hover del botón */
-    .d-flex-select .btn:hover {
-        background-color: var(--color-acciones); /* Color cuando pasa el ratón */
+    /* Estilo para las columnas dentro del formulario */
+    .d-flex-select .col-md-3 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px; /* Espacio entre columnas */
     }
+
+    /* Estilo para los labels */
+    .d-flex-select label {
+        padding: 8px;
+        background-color: white;
+        font-size: 1rem;
+        margin-bottom: 5px;
+        text-align: center; /* Centrado del texto */
+        width: 100%; /* Los labels ocupan todo el ancho disponible */
+        border-radius: 5px;
+    }
+
+    /* Estilo para los selects */
+    .d-flex-select .form-select {
+        width: 100%; /* Ocupa todo el ancho del contenedor */
+        max-width: 390px; /* Limita el ancho máximo */
+        padding: 0.5rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        margin-top: 5px; /* Espacio entre el select y el label */
+    }
+
 
 
 /*PAGINA DE HOME INICIO*/
@@ -982,44 +792,9 @@ form {
     display: flex;
     justify-content: space-between;
 }
+
 /* Estilo unificado para todos los botones */
-button.btn, a.btn {
-    background-color: var(--color-primario); /* Gris oscuro */
-    color: white;
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 5px;
-    padding: 0.7rem 2rem;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
 
-    /* Efecto al pasar el mouse por encima de los botones */
-    button.btn:hover, a.btn:hover {
-        background-color: var(--color-acciones); /* Color de hover */
-    }
-
-/* Estilo específico para el botón "Borrar" */
-button.btn-danger {
-    background-color: #d9534f; /* Rojo */
-}
-
-    /* Efecto al pasar el mouse por encima del botón "Borrar" */
-    button.btn-danger:hover {
-        background-color: #c9302c;
-    }
-
-/* Estilo específico para el botón "Volver al listado" */
-a.btn-secondary {
-    background-color: var(--color-primario); /* Gris oscuro */
-}
-
-    a.btn-secondary:hover {
-        background-color: var(--color-acciones); /* Color de hover */
-    }
 
 .back-to-top {
     position: fixed;
@@ -1099,156 +874,133 @@ footer {
         }
 }
 
-/*AQUI ES DONDE EMPIEZA A DAR PROBLEMAS*/
-/* Media query para anchos de pantalla entre 768px y 1310px */
-@media (max-width: 1309px) and (min-width: 768px) {
-    .table-cars {
-        width: 100%; /* La tabla ocupa el 100% del contenedor */
-        max-width: 100%; /* Asegura que no haya recortes */
-        font-size: 0.70em; /* Reducir el tamaño de la fuente en pantallas medianas */
-        overflow: visible; /* Evitar que el contenido se recorte */
-    }
 
-    .table-m {
-        overflow-x: auto; /* Añadir scroll horizontal cuando sea necesario */
-    }
+/*---------------------------------------------------------------------------*/
+/* Responsividad */
 
-    /* Reducir el padding de las celdas y encabezados */
-    .table-cars th, .table-cars td {
-        padding: 6px 4px; /* Reducir el padding en las celdas */
-    }
-
-    /* Hacer los encabezados más pequeños */
-    .table-cars th {
-        font-size: 0.9em; /* Reducir el tamaño de los encabezados */
-    }
-
-    /* Ajustar el espaciado entre filas */
-    .table-cars {
-        border-spacing: 0 10px; /* Menos espacio entre filas */
-    }
-
-        /* Ajustar la alineación de las celdas */
-        .table-cars td, .table-cars th {
-            text-align: center; /* Alinear a la izquierda para mayor legibilidad */
-        }
-
-            /* Ajustar enlaces en el último <td> */
-            .table-cars td:last-child a {
-                font-size: 0.7em; /* Reducir el tamaño de la fuente de los enlaces */
-                padding: 4px 8px; /* Reducir el padding interno */
-                margin: 2px; /* Espaciado entre botones */
-            }
-
-            /* Evitar recortes y asegurar que los enlaces no afecten el layout */
-            .table-cars td:last-child {
-                display: flex; /* Cambiar a block para asegurar que los enlaces no se apilen horizontalmente */
-                justify-content: space-evenly;
-                text-align: center; /* Alinear los enlaces al centro */
-                width: 100%; /* Asegurar que la celda ocupe todo el ancho disponible */
-            }
-                /* Evitar que los botones se suban */
-                .table-cars td:last-child a {
-                    flex: 1 1 30%; /* Permitir que los botones crezcan hasta un 30% del ancho disponible, pero sin ocupar más espacio */
-                    text-align: center; /* Asegura que los botones estén centrados */
-                }
-
-        /* Sombra al hacer hover, sin afectar el layout */
-        .table-cars tbody tr:hover {
-            background-color: var(--color-acento); /* Color de fondo al pasar el ratón sobre la fila */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra más intensa al pasar el ratón */
-        }
+/* Asegurar que la tabla no tenga scroll vertical */
+.table {
+    margin-top: 20px; /* Añadir espacio superior a la tabla */
+    border-radius: 10px; /* Redondear las esquinas de la tabla */
+    overflow: hidden; /* Asegura que el contenido no sobresalga de las esquinas redondeadas */
+    border: 1px solid #ddd; /* Opcional: Añadir borde sutil a la tabla */
 }
 
-
-
-/* Estilos generales para la tabla */
-.table-cars {
-    width: 100%;
-    border-collapse: collapse; /* Colapsar bordes */
-}
-
-/* Hacer que las celdas se comporten correctamente en pantallas pequeñas */
-@media (max-width: 768px) {
-    .table-cars {
-        font-size: 0.8em; /* Reducir el tamaño de fuente en pantallas pequeñas */
-    }
-
-        .table-cars th, .table-cars td {
-            display: block; /* Las celdas se convierten en bloques */
-            width: 100%; /* Las celdas ocupan todo el ancho disponible */
-            text-align: left; /* Alineación izquierda para mejor legibilidad */
-            padding: 12px 10px; /* Aumentar el padding en pantallas pequeñas */
-        }
-
-        .table-cars tbody tr {
-            display: block; /* Las filas se comportan como bloques */
-            margin-bottom: 10px; /* Espacio entre filas */
-            border-radius: 5px; /* Redondear bordes de filas */
-            background-color: #f8f9fa; /* Color de fondo para filas */
-        }
-
-        .table-cars td.actions-column {
-            background-color: #fff; /* Color de fondo para la columna de acciones */
-        }
-
-        .table-cars td a {
-            display: inline-block; /* Hacer los botones más fáciles de tocar */
-            width: 100%; /* Los botones ocupan el 100% del ancho */
-            padding: 10px;
-            margin-top: 5px;
-            text-align: center;
-        }
-}
-
-
-
-
-
-
-/* Espaciado dinámico con media queries */
-@media (max-width: 1309px) {
-    .navbar-nav {
-        gap: 30px;
-    }
-}
-
-@media (max-width: 992px) {
-    .navbar-nav {
-        gap: 15px;
-        flex-direction: column; /* Menu vertical en pantallas pequeñas */
-    }
-}
-
-/* Rango entre 575px y 874px */
-@media (max-width: 768px) {
-    .navbar-nav {
-        padding: 10px 5px; /*Menos espcaciado en pantallas pequeñas*/
-        flex-direction: column /*Menu vertical en pantallas pequeñas*/
-    }
-
-    .navbar-brand {
-        font-size: 1.2rem; /* Ajusta el tamaño del logo */
-    }
-
-    .nav-link {
-        font-size: 0.9rem; /* Ajuste del tamaño del texto */
-        padding: 5px; /* Ajuste de padding */
-    }
-}
-
-@media (max-width: 576px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .nav-link {
-        width: 100%;
+    .table th, .table td {
+        padding: 12px;
         text-align: left;
     }
 
-    .navbar-brand {
-        font-size: 1.2rem;
+    .table th {
+        background-color: #f5a623; /* Amarillo para las cabeceras */
+        color: white; /* Texto blanco en las cabeceras */
+    }
+
+    /* Estilos de la tabla */
+    .table tbody tr:nth-child(odd) {
+        background-color: var(--color-fondo); /* Fondo gris cálido para filas impares */
+    }
+
+    .table tbody tr:nth-child(even) {
+        background-color: #f9f9f9; /* Fondo claro para filas pares */
+    }
+
+    .table td {
+        color: var(--color-texto); /* Color del texto */
+    }
+
+    /* Alinear la cabecera de la columna "Acciones" a la derecha */
+    .table th:nth-child(9) {
+        text-align: right; /* Alinea el texto de la cabecera a la derecha */
+    }
+
+    /* Alinear los botones dentro del último td a la derecha */
+    .table td:last-child {
+        text-align: right; /* Alinea el contenido de la última columna a la derecha */
+    }
+
+    .table td a.btn {
+        margin-left: 5px; /* Añadir margen entre los botones */
+    }
+
+
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    .table {
+        font-size: 0.9rem; /* Reducir tamaño de texto */
+    }
+
+        .table th, .table td {
+            padding: 8px;
+        }
+
+        .table thead {
+            display: none; /* Ocultar las cabeceras de las tablas en móviles */
+        }
+
+        .table tr {
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .table td {
+            display: block;
+            text-align: right;
+            padding-left: 50%; /* Crear espacio para etiquetas */
+            position: relative;
+        }
+
+            .table td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                font-weight: bold;
+            }
+
+    /* Botones en móviles */
+    .btn {
+        width: 100%; /* Botones ocupan todo el ancho en móviles */
+        margin-bottom: 10px; /* Añadir espacio entre botones */
+    }
+}
+
+/* Pantallas medianas (tablets) */
+@media (max-width: 1024px) {
+    .table th, .table td {
+        padding: 10px;
+    }
+
+    .table td {
+        font-size: 0.95rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+}
+
+/* Pantallas grandes (pantallas de escritorio y monitores) */
+@media (min-width: 1200px) {
+    .table {
+        font-size: 1.1rem;
+    }
+
+        .table th, .table td {
+            padding: 15px;
+        }
+
+    .btn {
+        font-size: 1rem;
+    }
+}
+
+
+
+/* Navbar para dispositivos pequeños */
+@media (max-width: 576px) {
+    .navbar-nav .nav-item {
+        text-align: center;
     }
 }
