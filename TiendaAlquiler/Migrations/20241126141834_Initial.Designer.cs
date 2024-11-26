@@ -12,7 +12,7 @@ using TiendaAlquiler.Data;
 namespace TiendaAlquiler.Migrations
 {
     [DbContext(typeof(TiendaAlquilerDBContext))]
-    [Migration("20241114131500_Initial")]
+    [Migration("20241126141834_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -425,6 +425,266 @@ namespace TiendaAlquiler.Migrations
                             Modelo = "Mini Cooper",
                             PaisId = 4,
                             PrecioAlquiler = 100m
+                        },
+                        new
+                        {
+                            CocheId = 10,
+                            AnioFabricacion = 1967,
+                            CarroceriaId = 6,
+                            ColorId = 1,
+                            DecadaId = 4,
+                            EstaAlquilado = false,
+                            Marca = "Ford",
+                            Modelo = "Mustang",
+                            PaisId = 6,
+                            PrecioAlquiler = 500m
+                        },
+                        new
+                        {
+                            CocheId = 11,
+                            AnioFabricacion = 1969,
+                            CarroceriaId = 6,
+                            ColorId = 2,
+                            DecadaId = 5,
+                            EstaAlquilado = false,
+                            Marca = "Chevrolet",
+                            Modelo = "Camaro",
+                            PaisId = 6,
+                            PrecioAlquiler = 450m
+                        },
+                        new
+                        {
+                            CocheId = 12,
+                            AnioFabricacion = 1950,
+                            CarroceriaId = 7,
+                            ColorId = 8,
+                            DecadaId = 3,
+                            EstaAlquilado = false,
+                            Marca = "Volkswagen",
+                            Modelo = "Beetle",
+                            PaisId = 5,
+                            PrecioAlquiler = 100m
+                        },
+                        new
+                        {
+                            CocheId = 13,
+                            AnioFabricacion = 1975,
+                            CarroceriaId = 4,
+                            ColorId = 5,
+                            DecadaId = 5,
+                            EstaAlquilado = false,
+                            Marca = "Alfa Romeo",
+                            Modelo = "Giulia",
+                            PaisId = 2,
+                            PrecioAlquiler = 200m
+                        },
+                        new
+                        {
+                            CocheId = 14,
+                            AnioFabricacion = 1992,
+                            CarroceriaId = 5,
+                            ColorId = 4,
+                            DecadaId = 7,
+                            EstaAlquilado = false,
+                            Marca = "Mazda",
+                            Modelo = "RX-7",
+                            PaisId = 7,
+                            PrecioAlquiler = 300m
+                        },
+                        new
+                        {
+                            CocheId = 15,
+                            AnioFabricacion = 1972,
+                            CarroceriaId = 6,
+                            ColorId = 6,
+                            DecadaId = 5,
+                            EstaAlquilado = false,
+                            Marca = "BMW",
+                            Modelo = "2002",
+                            PaisId = 5,
+                            PrecioAlquiler = 220m
+                        },
+                        new
+                        {
+                            CocheId = 16,
+                            AnioFabricacion = 1957,
+                            CarroceriaId = 7,
+                            ColorId = 7,
+                            DecadaId = 4,
+                            EstaAlquilado = false,
+                            Marca = "Citroën",
+                            Modelo = "2CV",
+                            PaisId = 3,
+                            PrecioAlquiler = 120m
+                        },
+                        new
+                        {
+                            CocheId = 17,
+                            AnioFabricacion = 1973,
+                            CarroceriaId = 6,
+                            ColorId = 1,
+                            DecadaId = 5,
+                            EstaAlquilado = false,
+                            Marca = "Lancia",
+                            Modelo = "Stratos",
+                            PaisId = 2,
+                            PrecioAlquiler = 600m
+                        },
+                        new
+                        {
+                            CocheId = 18,
+                            AnioFabricacion = 1968,
+                            CarroceriaId = 7,
+                            ColorId = 2,
+                            DecadaId = 5,
+                            EstaAlquilado = false,
+                            Marca = "Fiat",
+                            Modelo = "500",
+                            PaisId = 2,
+                            PrecioAlquiler = 150m
+                        },
+                        new
+                        {
+                            CocheId = 19,
+                            AnioFabricacion = 1981,
+                            CarroceriaId = 6,
+                            ColorId = 3,
+                            DecadaId = 6,
+                            EstaAlquilado = false,
+                            Marca = "DeLorean",
+                            Modelo = "DMC-12",
+                            PaisId = 6,
+                            PrecioAlquiler = 800m
+                        },
+                        new
+                        {
+                            CocheId = 20,
+                            AnioFabricacion = 1994,
+                            CarroceriaId = 6,
+                            ColorId = 4,
+                            DecadaId = 7,
+                            EstaAlquilado = false,
+                            Marca = "Toyota",
+                            Modelo = "Supra",
+                            PaisId = 7,
+                            PrecioAlquiler = 400m
+                        },
+                        new
+                        {
+                            CocheId = 21,
+                            AnioFabricacion = 1988,
+                            CarroceriaId = 5,
+                            ColorId = 6,
+                            DecadaId = 6,
+                            EstaAlquilado = false,
+                            Marca = "Peugeot",
+                            Modelo = "205 GTI",
+                            PaisId = 3,
+                            PrecioAlquiler = 180m
+                        },
+                        new
+                        {
+                            CocheId = 22,
+                            AnioFabricacion = 1965,
+                            CarroceriaId = 6,
+                            ColorId = 5,
+                            DecadaId = 4,
+                            EstaAlquilado = false,
+                            Marca = "Renault",
+                            Modelo = "Alpine A110",
+                            PaisId = 3,
+                            PrecioAlquiler = 300m
+                        },
+                        new
+                        {
+                            CocheId = 23,
+                            AnioFabricacion = 1932,
+                            CarroceriaId = 6,
+                            ColorId = 3,
+                            DecadaId = 1,
+                            EstaAlquilado = false,
+                            Marca = "Bugatti",
+                            Modelo = "Type 35",
+                            PaisId = 3,
+                            PrecioAlquiler = 1000m
+                        },
+                        new
+                        {
+                            CocheId = 24,
+                            AnioFabricacion = 1969,
+                            CarroceriaId = 6,
+                            ColorId = 1,
+                            DecadaId = 5,
+                            EstaAlquilado = false,
+                            Marca = "Lamborghini",
+                            Modelo = "Miura",
+                            PaisId = 2,
+                            PrecioAlquiler = 2000m
+                        },
+                        new
+                        {
+                            CocheId = 25,
+                            AnioFabricacion = 1998,
+                            CarroceriaId = 5,
+                            ColorId = 4,
+                            DecadaId = 7,
+                            EstaAlquilado = false,
+                            Marca = "Mitsubishi",
+                            Modelo = "Lancer Evolution VI",
+                            PaisId = 7,
+                            PrecioAlquiler = 250m
+                        },
+                        new
+                        {
+                            CocheId = 26,
+                            AnioFabricacion = 1995,
+                            CarroceriaId = 5,
+                            ColorId = 5,
+                            DecadaId = 7,
+                            EstaAlquilado = false,
+                            Marca = "Nissan",
+                            Modelo = "Skyline GT-R",
+                            PaisId = 7,
+                            PrecioAlquiler = 450m
+                        },
+                        new
+                        {
+                            CocheId = 27,
+                            AnioFabricacion = 1959,
+                            CarroceriaId = 3,
+                            ColorId = 7,
+                            DecadaId = 4,
+                            EstaAlquilado = false,
+                            Marca = "Cadillac",
+                            Modelo = "Eldorado",
+                            PaisId = 6,
+                            PrecioAlquiler = 600m
+                        },
+                        new
+                        {
+                            CocheId = 28,
+                            AnioFabricacion = 1961,
+                            CarroceriaId = 6,
+                            ColorId = 3,
+                            DecadaId = 4,
+                            EstaAlquilado = false,
+                            Marca = "Volvo",
+                            Modelo = "P1800",
+                            PaisId = 8,
+                            PrecioAlquiler = 200m
+                        },
+                        new
+                        {
+                            CocheId = 29,
+                            AnioFabricacion = 1991,
+                            CarroceriaId = 6,
+                            ColorId = 1,
+                            DecadaId = 7,
+                            EstaAlquilado = false,
+                            Marca = "Honda",
+                            Modelo = "NSX",
+                            PaisId = 7,
+                            PrecioAlquiler = 350m
                         });
                 });
 
