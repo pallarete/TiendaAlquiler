@@ -462,14 +462,6 @@ textarea.form-control {
     filter: invert(100%); /* Si el fondo es oscuro, los íconos se verán blancos */
 }
 
-
-
-
-
-
-
-
-
 /* ESTILOS PARA LA SECCION DE FECHAS DE COCHE ALQUILADO */
 .rental-dates {
     margin-top: 20px;
@@ -838,8 +830,6 @@ textarea.form-control {
 }
 
 /* Estilo unificado para todos los botones */
-
-
 .back-to-top {
     position: fixed;
     bottom: 20px;
@@ -1115,10 +1105,4 @@ footer {
         overflow-x: auto; /* Permite desplazamiento horizontal */
         -webkit-overflow-scrolling: touch; /* Mejora la experiencia de desplazamiento en iOS */
     }
-
-        /* Hacer que las celdas tengan menos padding en pantallas pequeñas */
-        .table-details th,
-        .table-details td {
-            padding: 10px;
-        }
 }

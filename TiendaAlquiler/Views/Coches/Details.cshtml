@@ -6,34 +6,35 @@
     ViewData["Title"] = "Details";
 }
 <h1>Informacion del coche</h1>
-<div class="container my-4">
-    <table class="table-details">
-        <thead>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Marca)</th>
-                <th>@Html.DisplayNameFor(model => model.Modelo)</th>
-                <th>@Html.DisplayNameFor(model => model.AnioFabricacion)</th>
-                <th>@Html.DisplayNameFor(model => model.PrecioAlquiler)</th>
-                <th>@Html.DisplayNameFor(model => model.Carroceria)</th>
-                <th>@Html.DisplayNameFor(model => model.Color)</th>
-                <th>@Html.DisplayNameFor(model => model.Decada)</th>
-                <th>@Html.DisplayNameFor(model => model.Pais)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>@Html.DisplayFor(model => model.Marca)</td>
-                <td>@Html.DisplayFor(model => model.Modelo)</td>
-                <td>@Html.DisplayFor(model => model.AnioFabricacion)</td>
-                <td>@Html.DisplayFor(model => model.PrecioAlquiler)</td>
-                <td>@Html.DisplayFor(model => model.Carroceria.Tipo)</td>
-                <td>@Html.DisplayFor(model => model.Color.Nombre)</td>
-                <td>@Html.DisplayFor(model => model.Decada.AnioInicio)</td>
-                <td>@Html.DisplayFor(model => model.Pais.Nombre)</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Marca)</th>
+            <th>@Html.DisplayNameFor(model => model.Modelo)</th>
+            <th>@Html.DisplayNameFor(model => model.AnioFabricacion)</th>
+            <th>@Html.DisplayNameFor(model => model.PrecioAlquiler)</th>
+            <th>@Html.DisplayNameFor(model => model.Carroceria)</th>
+            <th>@Html.DisplayNameFor(model => model.Color)</th>
+            <th>@Html.DisplayNameFor(model => model.Decada)</th>
+            <th>@Html.DisplayNameFor(model => model.Pais)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td data-label="Marca">@Html.DisplayFor(model => model.Marca)</td>
+            <td data-label="Modelo">@Html.DisplayFor(model => model.Modelo)</td>
+            <td data-label="Año Fabricacion">@Html.DisplayFor(model => model.AnioFabricacion)</td>
+            <td data-label="Precio">@Html.DisplayFor(model => model.PrecioAlquiler)</td>
+            <td data-label="Carroceria">@Html.DisplayFor(model => model.Carroceria.Tipo)</td>
+            <td data-label="Color">@Html.DisplayFor(model => model.Color.Nombre)</td>
+            <td data-label="Decada">@Html.DisplayFor(model => model.Decada.AnioInicio)</td>
+            <td data-label="Pais">@Html.DisplayFor(model => model.Pais.Nombre)</td>
+        </tr>
+    </tbody>
+</table>
+
+
 
 @* SECCION DE LAS FOTOS*@
 <div class="container-fluid">

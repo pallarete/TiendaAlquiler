@@ -16,16 +16,18 @@ public partial class Alquiler
     public int CocheId { get; set; }
     [Required]
     public string UsuarioId { get; set; }
-
+   
+    [Display(Name ="Fecha de Inicio")]
     [Required(ErrorMessage = "La fecha de inicio es obligatoria")]
     [DataType(DataType.Date)]
     public DateOnly FechaAlquiler { get; set; }
-
+    
+    [Display(Name = "Fecha de Fin")]
     [DataType(DataType.Date)]
     [Required(ErrorMessage = "La fecha de devolucion es obligatoria")]
     public DateOnly FechaDevolucion { get; set; }
 
-    
+    [Display(Name = "Importe")]
     [Range(0, double.MaxValue, ErrorMessage = "El precio final debe ser un valor positivo.")]
     public decimal PrecioFinal { get; set; }
 
@@ -41,8 +43,8 @@ public partial class Alquiler
     public string FechaExpiracion { get; set; }
 
     [NotMapped]
-    [Required(ErrorMessage = "El código CVV es obligatorio")]
-    [StringLength(3, MinimumLength = 3, ErrorMessage = "El código CVV debe tener 3 dígitos")]
+    [Required(ErrorMessage = "El código CVC es obligatorio")]
+    [StringLength(3, MinimumLength = 3, ErrorMessage = "El código CVC debe tener 3 dígitos")]
     public string CVC { get; set; }
 
     public virtual Coche Coche { get; set; }
