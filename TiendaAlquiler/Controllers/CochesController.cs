@@ -141,18 +141,18 @@ namespace TiendaAlquiler.Controllers
                             var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(archivo.FileName);
                             var filePath = Path.Combine("wwwroot/imagenes", uniqueFileName);
 
-                            ////Creamos una imagen redimensionada
-                            //using (var image = Image.FromStream(archivo.OpenReadStream()))
-                            //{
-                            //    //Establecemos el tamaño
-                            //    int width = 900;
-                            //    int height = 400;
-                            //    using (var resizedImage = new Bitmap(image, new Size(width, height)))
-                            //    {
-                            //        //guarda la imagen redimensionada
-                            //        resizedImage.Save(filePath, ImageFormat.Jpeg);
-                            //    }
-                            //}
+                            //Creamos una imagen redimensionada
+                            using (var image = Image.FromStream(archivo.OpenReadStream()))
+                            {
+                                //Establecemos el tamaño
+                                int width = 900;
+                                int height = 400;
+                                using (var resizedImage = new Bitmap(image, new Size(width, height)))
+                                {
+                                    //guarda la imagen redimensionada
+                                    resizedImage.Save(filePath, ImageFormat.Jpeg);
+                                }
+                            }
 
                             //Creamos una nueva foto y la asociamos al coche
 
@@ -240,17 +240,17 @@ namespace TiendaAlquiler.Controllers
                                 var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(archivo.FileName);
                                 var filePath = Path.Combine("wwwroot/imagenes", uniqueFileName);
 
-                                //// Creamos una imagen redimensionada
-                                //using (var image = Image.FromStream(archivo.OpenReadStream()))
-                                //{
-                                //    int width = 500;
-                                //    int height = 300;
-                                //    using (var resizedImage = new Bitmap(image, new Size(width, height)))
-                                //    {
-                                //        // Guardamos la imagen redimensionada
-                                //        resizedImage.Save(filePath, ImageFormat.Jpeg);
-                                //    }
-                                //}
+                                // Creamos una imagen redimensionada
+                                using (var image = Image.FromStream(archivo.OpenReadStream()))
+                                {
+                                    int width = 2500;
+                                    int height = 1600;
+                                    using (var resizedImage = new Bitmap(image, new Size(width, height)))
+                                    {
+                                        // Guardamos la imagen redimensionada
+                                        resizedImage.Save(filePath, ImageFormat.Jpeg);
+                                    }
+                                }
 
                                 // Creamos una nueva foto y la asociamos al coche
                                 Foto foto = new Foto
