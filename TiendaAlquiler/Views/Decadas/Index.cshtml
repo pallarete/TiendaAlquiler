@@ -4,7 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Listado de Décadas</h1>
+<div class="d-flex justify-content-between">
+    <h1>Listado de Décadas</h1>
+    <div class="d-flex justify-content-center mt-4">
+        <a asp-action="Create" class="btn btn-highlight">Crear nueva década</a>
+    </div>
+</div>
 
 <table class="table">
     <thead>
@@ -29,6 +34,4 @@
     </tbody>
 </table>
 
-<div class="d-flex justify-content-center mt-4">
-    <a asp-action="Create" class="btn btn-highlight">Crear nueva década</a>
-</div>
+

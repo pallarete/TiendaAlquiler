@@ -3,8 +3,14 @@
 @{
     ViewData["Title"] = "Index";
 }
+<div class="d-flex justify-content-between">
+    <h1>Listado de Colores</h1>
+    <div class="d-flex justify-content-center mt-4">
+        <a asp-action="Create" class="btn btn-highlight">Crear nuevo color</a>
+    </div>
 
-<h1>Listado de Colores</h1>
+</div>
+
 
 <table class="table">
     <thead>
@@ -28,15 +34,5 @@
     </tbody>
 </table>
 
-@if (User.IsInRole("Admin"))
-{
-    <div class="d-flex justify-content-center mt-4">
-        <a asp-action="Create" class="btn btn-highlight">Crear nuevo color</a>
-    </div>
-}
-else
-{
-    <div class="mt-4">
-        <p>No puedes acceder a la creación de colores.</p>
-    </div>
-}
+
+

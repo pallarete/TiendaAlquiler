@@ -4,7 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Listado de carrocerías</h1>
+<div class="d-flex justify-content-between">
+    <h1>Listado de carrocerías</h1>
+    <div class="d-flex justify-content-center mt-4">
+        <a asp-action="Create" class="btn btn-highlight">Crear una nueva carrocería</a>
+    </div>
+</div>
 
 <table class="table">
     <thead>
@@ -20,9 +25,9 @@
                 <td>@Html.DisplayFor(modelItem => item.Tipo)</td>
                 <td class="text-end">
                     <!-- Alineamos las acciones a la derecha -->
-                    <a asp-action="Edit" asp-route-id="@item.CarroceriaId"    class="btn btn-primary">Editar</a>
+                    <a asp-action="Edit" asp-route-id="@item.CarroceriaId" class="btn btn-primary">Editar</a>
                     <a asp-action="Details" asp-route-id="@item.CarroceriaId" class="btn btn-secondary">Detalles</a>
-                    <a asp-action="Delete" asp-route-id="@item.CarroceriaId"  class="btn btn-danger">Borrar Carrocería</a>
+                    <a asp-action="Delete" asp-route-id="@item.CarroceriaId" class="btn btn-danger">Borrar Carrocería</a>
 
                 </td>
             </tr>
@@ -30,6 +35,4 @@
     </tbody>
 </table>
 
-<div class="d-flex justify-content-center mt-4">
-    <a asp-action="Create" class="btn btn-highlight">Crear una nueva carrocería</a>
-</div>
+

@@ -240,6 +240,11 @@ header {
     height: 2rem;
 }
 
+
+
+
+
+
 /* ESTILOS GENERALES */
 .table {
     width: 100%;
@@ -247,7 +252,10 @@ header {
     font-size: 1rem;
     border-collapse: collapse;
     color: var(--color-texto);
-    table-layout: auto; /* Ajusta el tamaño de las columnas de forma automática */
+    table-layout: auto; /* Ajusta automáticamente el tamaño de las columnas */
+    border-radius: 10px; /* Redondear esquinas */
+    overflow: hidden; /* Evita contenido fuera de bordes redondeados */
+    border: 1px solid #ddd; /* Borde sutil */
 }
 
     .table thead {
@@ -256,8 +264,7 @@ header {
         text-transform: uppercase;
     }
 
-    .table th,
-    .table td {
+    .table th, .table td {
         padding: 12px;
         text-align: left;
         vertical-align: middle;
@@ -265,9 +272,16 @@ header {
     }
 
     .table tbody tr {
-        background-color: var(--color-fondo);
         transition: background-color 0.3s, transform 0.3s;
     }
+
+        .table tbody tr:nth-child(odd) {
+            background-color: var(--color-fondo);
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
 
         .table tbody tr:hover {
             background-color: var(--color-destacado);
@@ -275,17 +289,21 @@ header {
             box-shadow: 0 2px 6px var(--color-sombra);
         }
 
-    .table th:first-child,
-    .table td:first-child {
-        border-left: 2px solid #ddd; /* Aseguramos que haya un borde */
-        border-radius: 8px 0 0 0; /* Redondeamos solo la esquina izquierda */
+    .table th:first-child, .table td:first-child {
+        border-left: 2px solid #ddd;
+        border-radius: 8px 0 0 0;
     }
 
-    .table th:last-child,
-    .table td:last-child {
-        border-right: 2px solid #ddd; /* Asegúrate de que haya un borde */
-        border-radius: 0 8px 0 0; /* Redondear solo la esquina derecha */
+    .table th:last-child, .table td:last-child {
+        border-right: 2px solid #ddd;
+        border-radius: 0 8px 0 0;
+        text-align: right; /* Alinear último td */
     }
+
+    .table td a.btn {
+        margin-left: 5px; /* Espaciado entre botones */
+    }
+
 
 /* COLUMNAS DE ACCIÓN */
 .actions-column {
@@ -397,10 +415,6 @@ header {
         color: var(--color-primario); /* Gris oscuro para la descripción */
     }
 
-
-
-
-
 textarea.form-control {
     height: 120px;
     resize: vertical;
@@ -451,10 +465,6 @@ textarea.form-control {
 .carousel-control-prev, .carousel-control-next {
     filter: invert(100%); /* Si el fondo es oscuro, los íconos se verán blancos */
 }
-
-
-/* BOTENES FINALES DETALLES DEL COCHE*/
-
 
 /* ESTILOS PARA LA SECCION DE FECHAS DE COCHE ALQUILADO */
 .rental-dates {
@@ -694,27 +704,18 @@ textarea.form-control {
     display: block; /* Evita espacios blancos en línea */
 }
 
-/*Publicidad 1 */
-.publicidad1 {
+/*Publicidad General */
+.publicidad1, .publicidad2 {
     display: flex;
     justify-content: space-between; /* Separar los elementos */
-    margin-top: 100px;
-    padding: 20px;
-    justify-content: space-between; /* Separar los elementos a ambos lados */
-    background-color: #f5f5f5;
-    max-width: 100%;
-    border-radius: 10px;
-}
-
-/*Publicidad 2 */
-.publicidad2 {
-    display: flex;
-    justify-content: space-between; /* Separar los elementos */
-    padding: 20px;
     margin-top: 30px;
+    padding: 20px;
     background-color: #f5f5f5;
     max-width: 100%;
     border-radius: 10px;
+    gap: 20px;
+    overflow: hidden;
+    flex-wrap: wrap;
 }
 
 /* Estilo para el texto */
@@ -722,6 +723,7 @@ textarea.form-control {
 .publicidad2-texto {
     overflow: hidden;
     font-family: 'Roboto', sans-serif;
+    flex-basis: 48%;
 }
 
     .publicidad1-texto p,
@@ -736,7 +738,8 @@ textarea.form-control {
     display: flex; /* Habilita el modelo flexbox */
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
-    height: 100%; /* Ajusta el alto del contenedor si es necesario */
+    height: auto; /* Ajusta el alto del contenedor si es necesario */
+    flex-basis: 48%;
 }
 
 /* Imágenes */
@@ -746,6 +749,8 @@ textarea.form-control {
     max-width: 100%; /* Escala la imagen sin salir del contenedor */
     height: auto; /* Mantiene la proporción */
     object-fit: contain; /* Asegura que la imagen se ajuste dentro del contenedor */
+    display: block;
+    max-height: 100%;
 }
 
 
@@ -867,202 +872,224 @@ footer {
 }
 
 
-/*EMPIEZO LAS MEDIA QUERYS*/
-/* Ajustes para pantallas pequeñas */
-@media (max-width: 768px) {
-    .navbar {
-        padding: 0.5rem 1rem; /* Reducir el padding en pantallas pequeñas */
+/*---------------------------------------------------------------------------*/
+/* MEDIA QUERYES */
+/*PAGINA INICIO*/
+/* Para pantallas de 1200px a 1600px */
+@media (min-width: 1200px) and (max-width: 1600px) {
+    .publicidad1, .publicidad2 {
+        flex-direction: row;
+        gap: 20px;
+        padding: 30px;
     }
 
-        .navbar .navbar-toggler {
-            border: none;
-            background-color: var(--color-secundario);
-        }
+    .publicidad1-texto p,
+    .publicidad2-texto p {
+        font-size: 20px;
+    }
 
-    /* El menú de navegación debe ocupar toda la pantalla en móvil */
-    .navbar-collapse {
-        text-align: center;
+    .publicidad1 img,
+    .publicidad2 img {
+        max-width: 100%; /* Las imágenes deben ajustarse completamente */
+    }
+}
+
+/* Para pantallas de 992px a 1199px */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .publicidad1, .publicidad2 {
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    .publicidad1-texto p,
+    .publicidad2-texto p {
+        font-size: 18px;
+    }
+
+    .publicidad1 img,
+    .publicidad2 img {
+        max-width: 90%;
+    }
+}
+
+/* Para pantallas de 768px a 991px */
+@media (min-width: 768px) and (max-width: 991px) {
+    .publicidad1, .publicidad2 {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .publicidad1-texto p,
+    .publicidad2-texto p {
+        font-size: 16px;
+    }
+
+    .publicidad1 img,
+    .publicidad2 img {
+        max-width: 80%;
+    }
+}
+
+/* Para pantallas de 576px a 767px */
+@media (min-width: 576px) and (max-width: 767px) {
+    .publicidad1, .publicidad2 {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .publicidad1-texto p,
+    .publicidad2-texto p {
+        font-size: 14px;
+    }
+
+    .publicidad1 img,
+    .publicidad2 img {
+        max-width: 70%;
+    }
+}
+
+/* Para pantallas de menos de 576px */
+@media (max-width: 575px) {
+    .publicidad1, .publicidad2 {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .publicidad1-texto p,
+    .publicidad2-texto p {
+        font-size: 12px;
+    }
+
+    .publicidad1 img,
+    .publicidad2 img {
+        max-width: 60%; /* Asegura que las imágenes sean más pequeñas */
+    }
+}
+
+
+/*Media queries para la navbar*/
+/* General: Estilo para pantallas grandes */
+@media (min-width: 992px) {
+    .navbar {
+        padding: 1rem 3rem;
+    }
+
+    .navbar-nav .nav-item .nav-link {
+        font-size: 1.2rem;
+    }
+}
+
+/* Pantallas medianas (tablets y similares) */
+@media (max-width: 991px) and (min-width: 768px) {
+    .navbar {
+        padding: 0.8rem 2rem;
+    }
+
+    .navbar-nav .nav-item .nav-link {
+        font-size: 1rem;
+        padding: 0.5rem 0.8rem;
+    }
+
+    .navbar-nav .nav-item {
+        margin-right: 0.5rem;
+    }
+}
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 767px) {
+    .navbar {
+        padding: 0.5rem 1.5rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
     }
 
     .navbar-nav {
-        flex-direction: column; /* Apilar los enlaces en dispositivos móviles */
+        flex-direction: column; /* Pila vertical */
+        align-items: center;
     }
 
         .navbar-nav .nav-item {
-            margin-right: 0; /* Eliminar el margen entre elementos */
-            margin-bottom: 0.5rem; /* Añadir margen entre los elementos */
-        }
-}
-
-
-/*TABLA DE FILTRADO*/
-@media (max-width: 576px) {
-    /* Ajuste para el contenedor general */
-    .d-flex-select {
-        width: 100%;
-        padding: 10px;
-        margin: 0 auto; /* Centra el contenedor */
-        overflow-x: hidden; /* Evita desbordamiento horizontal */
-    }
-
-        /* Asegurarse de que los selects y columnas ocupen todo el espacio disponible */
-        .d-flex-select .col-md-3 {
-            flex: 1 1 auto;
-            width: 100%;
-            padding-left: 0;
-            padding-right: 0; /* Evita márgenes internos */
-            box-sizing: border-box; /* Incluye padding y bordes en el cálculo del ancho */
+            margin-bottom: 0.5rem;
+            margin-right: 0; /* Espaciado horizontal eliminado */
         }
 
-        /* Ajuste de los selects */
-        .d-flex-select .form-select {
-            width: 100%;
-            padding: 0.4rem;
-            box-sizing: border-box;
-        }
-
-        /* Ajuste del botón */
-        .d-flex-select .btn {
-            width: 100%;
-            padding: 0.6rem;
-        }
-
-        /* Ajuste de los labels */
-        .d-flex-select label {
-            font-size: 0.9rem;
-            text-align: center;
-            width: 100%;
-            margin: 0 auto;
-        }
-}
-
-
-/*---------------------------------------------------------------------------*/
-/* Responsividad */
-
-/* Asegurar que la tabla no tenga scroll vertical */
-.table {
-    margin-top: 20px; /* Añadir espacio superior a la tabla */
-    border-radius: 10px; /* Redondear las esquinas de la tabla */
-    overflow: hidden; /* Asegura que el contenido no sobresalga de las esquinas redondeadas */
-    border: 1px solid #ddd; /* Opcional: Añadir borde sutil a la tabla */
-}
-
-    .table th, .table td {
-        padding: 12px;
-        text-align: left;
-    }
-
-    .table th {
-        background-color: var(--color-secundario); /* Amarillo para las cabeceras */
-        color: white; /* Texto blanco en las cabeceras */
-    }
-
-    /* Estilos de la tabla */
-    .table tbody tr:nth-child(odd) {
-        background-color: var(--color-fondo); /* Fondo gris cálido para filas impares */
-    }
-
-    .table tbody tr:nth-child(even) {
-        background-color: #f9f9f9; /* Fondo claro para filas pares */
-    }
-
-    .table td {
-        color: var(--color-texto); /* Color del texto */
-    }
-
-    /* Alinear la cabecera de la columna "Acciones" a la derecha */
-    .table th:nth-child(9) {
-        text-align: right; /* Alinea el texto de la cabecera a la derecha */
-    }
-
-    /* Alinear los botones dentro del último td a la derecha */
-    .table td:last-child {
-        text-align: right; /* Alinea el contenido de la última columna a la derecha */
-    }
-
-    .table td a.btn {
-        margin-left: 5px; /* Añadir margen entre los botones */
-    }
-
-
-
-/* Pantallas pequeñas (móviles) */
-@media (max-width: 768px) {
-    .table {
-        font-size: 0.9rem; /* Reducir tamaño de texto */
-    }
-
-        .table th, .table td {
-            padding: 8px;
-        }
-
-        .table thead {
-            display: none; /* Ocultar las cabeceras de las tablas en móviles */
-        }
-
-        .table tr {
-            display: block;
-            margin-bottom: 15px;
-        }
-
-        .table td {
-            display: block;
-            text-align: right;
-            padding-left: 50%; /* Crear espacio para etiquetas */
-            position: relative;
-        }
-
-            .table td::before {
-                content: attr(data-label);
-                position: absolute;
-                left: 10px;
-                font-weight: bold;
+            .navbar-nav .nav-item .nav-link {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+                text-align: center;
             }
 
-    /* Botones en móviles */
-    .btn {
-        width: 100%; /* Botones ocupan todo el ancho en móviles */
-        margin-bottom: 10px; /* Añadir espacio entre botones */
+    .navbar-toggler {
+        padding: 0.25rem;
     }
 }
 
-/* Pantallas medianas (tablets) */
-@media (max-width: 1024px) {
-    .table th, .table td {
-        padding: 10px;
-    }
-
-    .table td {
-        font-size: 0.95rem;
-    }
-
-    .btn {
-        font-size: 0.9rem;
-        padding: 8px 12px;
-    }
-}
-
-/* Pantallas grandes (pantallas de escritorio y monitores) */
-@media (min-width: 1200px) {
-    .table {
-        font-size: 1.1rem;
-    }
-
-        .table th, .table td {
-            padding: 15px;
-        }
-
-    .btn {
+/* Micro pantallas (menos de 480px) */
+@media (max-width: 479px) {
+    .navbar-brand {
         font-size: 1rem;
     }
+
+    .navbar-nav .nav-item .nav-link {
+        font-size: 0.8rem;
+    }
 }
 
 
-
-/* Navbar para dispositivos pequeños */
-/*@media (max-width: 576px) {
-    .navbar-nav .nav-item {
-        text-align: center;
+/*TABLA COCHES*/
+/* Estilos para pantallas pequeñas (transformar a lista) */
+@media (max-width: 768px) {
+    .table {
+        display: block;
+        border: none;
     }
-}*/
+
+        .table thead {
+            display: none; /* Ocultar cabecera */
+        }
+
+        .table tbody {
+            display: block;
+        }
+        .table td:last-child {
+            display: flex;
+            justify-content: center; /* Centra los botones horizontalmente */
+            align-items: center; /* Centra los botones verticalmente */
+        }
+
+            .table tbody tr {
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 20px;
+                border: 1px solid var(--color-sombra);
+                border-radius: 10px;
+                padding: 10px;
+            }
+
+                .table tbody tr:nth-child(odd) {
+                    background-color: white !important; /* Fondo blanco para las filas impares */
+                }
+
+                .table tbody tr:nth-child(even) {
+                    background-color: white !important; /* Fondo blanco para las filas pares */
+                }
+
+                .table tbody tr td {
+                    display: flex;
+                    justify-content: space-between;
+                    border: none;
+                    padding: 8px 0;
+                }
+
+
+                    .table tbody tr td::before {
+                        content: attr(data-label); /* Añade etiquetas */
+                        font-weight: bold;
+                        margin-right: 10px;
+                        color: var(--color-secundario);
+                        text-transform: uppercase;
+                    }
+}

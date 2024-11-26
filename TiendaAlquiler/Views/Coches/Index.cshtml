@@ -84,14 +84,14 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => item.Marca)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Modelo)</td>
-                    <td>@Html.DisplayFor(modelItem => item.AnioFabricacion)</td>
-                    <td>@Html.DisplayFor(modelItem => item.PrecioAlquiler)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Carroceria.Tipo)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Color.Nombre)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Decada.AnioInicio)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Pais.Nombre)</td>
+                    <td data-label="Marca">@Html.DisplayFor(modelItem => item.Marca)</td>
+                    <td data-label="Modelo">@Html.DisplayFor(modelItem => item.Modelo)</td>
+                    <td data-label="Año Fabricacion">@Html.DisplayFor(modelItem => item.AnioFabricacion)</td>
+                    <td data-label="Precio">@Html.DisplayFor(modelItem => item.PrecioAlquiler)</td>
+                    <td data-label="Carroceria">@Html.DisplayFor(modelItem => item.Carroceria.Tipo)</td>
+                    <td data-label="Color">@Html.DisplayFor(modelItem => item.Color.Nombre)</td>
+                    <td data-label="Decada">@Html.DisplayFor(modelItem => item.Decada.AnioInicio)</td>
+                    <td data-label="Pais">@Html.DisplayFor(modelItem => item.Pais.Nombre)</td>
                     <td>
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
