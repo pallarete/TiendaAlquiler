@@ -36,36 +36,38 @@
 </div>
 
 @* SECCION DE LAS FOTOS*@
-<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        @if (Model.Fotos != null && Model.Fotos.Count > 0)
-        {
-            bool isFirst = true;
-            foreach (var foto in Model.Fotos)
+<div class="container-fluid">
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            @if (Model.Fotos != null && Model.Fotos.Count > 0)
             {
-                <div class="carousel-item @(isFirst ? "active" : "")">
-                    <img src="@Url.Content("~/" + foto.RutaAcceso.Replace("\\", "/"))" class="d-block w-100 img-fluid" alt="Foto del coche">
-                </div>
-                isFirst = false;  // Solo la primera imagen debe ser "active"
+                bool isFirst = true;
+                foreach (var foto in Model.Fotos)
+                {
+                    <div class="carousel-item @(isFirst ? "active" : "")">
+                        <img src="@Url.Content("~/" + foto.RutaAcceso.Replace("\\", "/"))" class="d-block w-100 img-fluid" alt="Foto del coche">
+                    </div>
+                    isFirst = false;  // Solo la primera imagen debe ser "active"
+                }
             }
-        }
-        else
-        {
-            <div class="carousel-item active">
-                <p class="text-center">No hay fotos disponibles para este coche.</p>
-            </div>
-        }
-    </div>
+            else
+            {
+                <div class="carousel-item active">
+                    <p class="text-center">No hay fotos disponibles para este coche.</p>
+                </div>
+            }
+        </div>
 
-    <!-- Controles de navegación del carrusel -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+        <!-- Controles de navegación del carrusel -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 </div>
 
 @* SECCION DE ALQUILER Y VUELTA AL LISTADO*@

@@ -240,11 +240,6 @@ header {
     height: 2rem;
 }
 
-
-
-
-
-
 /* ESTILOS GENERALES */
 .table {
     width: 100%;
@@ -436,11 +431,12 @@ textarea.form-control {
     margin-right: auto; /* Centra el carrusel */
     padding: 0 20px; /* Espacio de 20px solo en los márgenes izquierdo y derecho */
     max-width: 100%; /* Asegura que el carrusel no exceda el ancho de su contenedor */
+    width: 100%;
 }
 
 .carousel-item img {
-    width: 800px;
-    height: 500px;
+    width: 100%;
+    height: auto;
     /*max-height: 500px;*/ /* Limitar la altura máxima */
     object-fit: cover;
     object-position: center;
@@ -453,8 +449,8 @@ textarea.form-control {
     background-color: var(--color-fondo); /* Beige claro */
     position: relative;
     overflow: hidden;
-    width: 800px;
-    height: 500px; /* Mantén la altura fija o cámbiala según sea necesario */
+    width: 100%;
+    height: auto; /* Mantén la altura fija o cámbiala según sea necesario */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
 }
 
@@ -465,6 +461,14 @@ textarea.form-control {
 .carousel-control-prev, .carousel-control-next {
     filter: invert(100%); /* Si el fondo es oscuro, los íconos se verán blancos */
 }
+
+
+
+
+
+
+
+
 
 /* ESTILOS PARA LA SECCION DE FECHAS DE COCHE ALQUILADO */
 .rental-dates {
@@ -1053,45 +1057,68 @@ footer {
         .table tbody {
             display: block;
         }
+
         .table td:last-child {
             display: flex;
             justify-content: center; /* Centra los botones horizontalmente */
             align-items: center; /* Centra los botones verticalmente */
         }
 
-            .table tbody tr {
-                background-color: white;
-                display: flex;
-                flex-direction: column;
-                margin-bottom: 20px;
-                border: 1px solid var(--color-sombra);
-                border-radius: 10px;
-                padding: 10px;
+        .table tbody tr {
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            border: 1px solid var(--color-sombra);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+            .table tbody tr:nth-child(odd) {
+                background-color: white !important; /* Fondo blanco para las filas impares */
             }
 
-                .table tbody tr:nth-child(odd) {
-                    background-color: white !important; /* Fondo blanco para las filas impares */
+            .table tbody tr:nth-child(even) {
+                background-color: white !important; /* Fondo blanco para las filas pares */
+            }
+
+            .table tbody tr td {
+                display: flex;
+                justify-content: space-between;
+                border: none;
+                padding: 8px 0;
+            }
+
+
+                .table tbody tr td::before {
+                    content: attr(data-label); /* Añade etiquetas */
+                    font-weight: bold;
+                    margin-right: 10px;
+                    color: var(--color-secundario);
+                    text-transform: uppercase;
                 }
-
-                .table tbody tr:nth-child(even) {
-                    background-color: white !important; /* Fondo blanco para las filas pares */
-                }
-
-                .table tbody tr td {
-                    display: flex;
-                    justify-content: space-between;
-                    border: none;
-                    padding: 8px 0;
-                }
-
-
-                    .table tbody tr td::before {
-                        content: attr(data-label); /* Añade etiquetas */
-                        font-weight: bold;
-                        margin-right: 10px;
-                        color: var(--color-secundario);
-                        text-transform: uppercase;
-                    }
 }
 
 /*CARRUSEL DE IMAGENES DE COCHE*/
+@media (max-width: 768px) {
+    .carousel-item img {
+        width: 100%; /* Asegura que las imágenes no excedan el ancho en pantallas pequeñas */
+        height: auto; /* Mantén la altura proporcional */
+    }
+}
+
+/**TABLA DE TALLES DEL COCHE*/
+@media (max-width: 768px) {
+    .table-details {
+        width: 100%; /* Asegura que la tabla ocupe todo el ancho en pantallas pequeñas */
+        font-size: 0.9em; /* Ajusta el tamaño de la fuente para pantallas más pequeñas */
+        overflow-x: auto; /* Permite desplazamiento horizontal */
+        -webkit-overflow-scrolling: touch; /* Mejora la experiencia de desplazamiento en iOS */
+    }
+
+        /* Hacer que las celdas tengan menos padding en pantallas pequeñas */
+        .table-details th,
+        .table-details td {
+            padding: 10px;
+        }
+}
