@@ -966,7 +966,7 @@ footer {
     }
 }
 
-
+/*NAVBAR*/
 /*Media queries para la navbar*/
 /* General: Estilo para pantallas grandes */
 @media (min-width: 992px) {
@@ -1093,3 +1093,5 @@ footer {
                         text-transform: uppercase;
                     }
 }
+
+/*CARRUSEL DE IMAGENES DE COCHE*/
