@@ -145,13 +145,23 @@ namespace TiendaAlquiler.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            var cochesAsociados = await _context.Coches.AnyAsync(c => c.CarroceriaId == id);
+
+            if (cochesAsociados)
+            {
+                //Envio un mensaje a Tempdata
+                TempData["ErrorMessage"] = "No se puede eliminar esta carrocería porque hay coches asociados a ella. Por favor, modifíquela o cree una nueva.";
+                return RedirectToAction("Delete", new { id });
+            }
+            //Elimino la carroceria si no hay coches asociados
+
             var carroceria = await _context.Carroceria.FindAsync(id);
             if (carroceria != null)
             {
                 _context.Carroceria.Remove(carroceria);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

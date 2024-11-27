@@ -14,7 +14,7 @@
 <h1>¿Qué coche buscas? Aquí los tienes todos...</h1>
 
 <!-- Formulario de Filtros -->
-<div class="container">
+
     <div class="d-flex-select justify-content-center">
         <form asp-action="Index" method="get" class="row g-3 align-items-end">
             <div class="col-md-3 col-sm-6 col-12 text-center">
@@ -62,7 +62,7 @@
             </div>
         </form>
     </div>
-</div>
+
 
 <!-- Tabla de Coches -->
 <div class="table-responsive">
@@ -97,7 +97,7 @@
                         {
                             <a asp-action="Edit" asp-route-id="@item.CocheId" class="btn btn-primary">Editar</a>
                         }
-                        <a asp-action="Details" asp-route-id="@item.CocheId" class="btn btn-secondary">Ver</a>
+                        <a asp-action="Details" asp-route-id="@item.CocheId" class="btn btn-secondary">Ver Coche</a>
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
                             <a asp-action="Delete" asp-route-id="@item.CocheId" class="btn btn-danger">Borrar</a>
