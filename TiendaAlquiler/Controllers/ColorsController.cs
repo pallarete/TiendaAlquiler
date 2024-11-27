@@ -144,13 +144,22 @@ namespace TiendaAlquiler.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            var cochesAsociados = await _context.Coches.AnyAsync(c => c.ColorId == id);
+            if (cochesAsociados)
+            {
+                //Envio el mensaje a TempData
+                TempData["ErrorMessage"] = "No se puede borrar este color porque hay coches asociados a él. Por favor, modifíquelo o cree un color nuevo.";
+                return RedirectToAction("Delete", new { id });
+            }
+
+            //eloimino el Color si no hay coches asociados
             var color = await _context.Colors.FindAsync(id);
             if (color != null)
             {
                 _context.Colors.Remove(color);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

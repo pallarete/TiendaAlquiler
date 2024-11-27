@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using TiendaAlquiler.Models;
 using TiendaAlquiler.Data;
 using Microsoft.AspNetCore.Authorization;
+using System.Reflection.Metadata.Ecma335;
 
 
 namespace TiendaAlquiler.Controllers
@@ -142,16 +143,25 @@ namespace TiendaAlquiler.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            var cochesAsociados = await _context.Coches.AnyAsync(c => c.DecadaId == id);
+
+            if (cochesAsociados)
+            {
+                //si la decada esta asociada a algun coche o a vario, me da igual
+                TempData["ErrorMessage"] = "No se puede eliminar esta década porque está asociada a uno o varios coches.Por favor, modifíquela o cree una nueva.";
+                return RedirectToAction("Delete", new { id });
+            }
+
+            //Si no hay coches asociados a esa carroceria la elimino
             var decada = await _context.Decada.FindAsync(id);
             if (decada != null)
             {
                 _context.Decada.Remove(decada);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool DecadaExists(int id)
         {
             return _context.Decada.Any(e => e.DecadaId == id);

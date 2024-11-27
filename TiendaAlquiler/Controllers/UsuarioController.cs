@@ -73,7 +73,7 @@ namespace TiendaAlquiler.Controllers
             }
             return View(usuario);
         }
-            
+
         // GET: Usuario/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
@@ -146,7 +146,7 @@ namespace TiendaAlquiler.Controllers
                     // Verificar si es el primer usuario
                     var usersCount = await _userManager.Users.CountAsync();
 
-                    if (usersCount ==1) // Si es el primer usuario
+                    if (usersCount == 1) // Si es el primer usuario
                     {
                         // Verificar si el rol Admin existe, si no, crear el rol
                         var roleExists = await _roleManager.RoleExistsAsync("Admin");
@@ -170,7 +170,6 @@ namespace TiendaAlquiler.Controllers
                 }
             }
             return View(model);
-
         }
 
         // GET: Usuario/Login
@@ -190,14 +189,13 @@ namespace TiendaAlquiler.Controllers
 
                 if (usuario == null)
                 {
-                    ModelState.AddModelError(string.Empty, "El usuario no existe");
-
+                    //Creo el menasje de error que s emostrarar en la vista de Login
+                    TempData["ErrorMessage"] = "El usuario no está registrado. Por favor, regístrese para disfrutar de nuestros vehículos.";
+                    return RedirectToAction("login");
                 }
                 else
-
                 {
                     var result = await _signInManager.PasswordSignInAsync(usuario, model.Password, false, false);
-
                     if (result.Succeeded)
                     {
                         // Redirigir dependiendo del rol, por ejemplo
@@ -206,7 +204,6 @@ namespace TiendaAlquiler.Controllers
                             return RedirectToAction("Index", "Home"); // o lo que sea tu página de Admin
                         }
                         return RedirectToAction("Index", "Home");
-
                     }
                     else
                     {
@@ -236,5 +233,5 @@ namespace TiendaAlquiler.Controllers
             return View(); // Asegúrate de tener una vista AccessDenied.cshtml
         }
     }
-   
+
 }

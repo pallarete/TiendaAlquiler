@@ -3,8 +3,11 @@
 @{
     ViewData["Title"] = "Login";
 }
-<form asp-controller="Usuario" asp-action="Login" method="post" style="margin-top:100px">
-    <div class="container">
+@{
+    var errorMessage = TempData["ErrorMessage"] as string;
+}
+<div class="col-md-4 mx-auto ">
+    <form asp-controller="Usuario" asp-action="Login" method="post" style="margin-top:100px">
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="form-group">
@@ -24,8 +27,27 @@
                 </div>
             </div>
         </div>
+    </form>
+</div>
+<div id="modalAdvertencia">
+    <div class="modalDentro">
+        <h5>Advertencia</h5>
+        <p id="modalMensaje">@TempData["ErrorMessage"]</p>
+        <button onclick="closeModal()">Cerrar </button>
     </div>
-</form>
+</div>
+<script>
+     // Mostrar el modal solo si hay un mensaje de error
+    let mensaje = '@TempData["ErrorMessage"]';
+    if (mensaje) {
+        document.getElementById('modalAdvertencia').style.display = 'block'; // Mostrar modal
+    }
+
+    // Función para cerrar el modal
+    function closeModal() {
+        document.getElementById('modalAdvertencia').style.display = 'none'; // Ocultar modal
+    }
+</script>
 
 @section Scripts {
     @{

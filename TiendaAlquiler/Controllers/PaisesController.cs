@@ -140,13 +140,20 @@ namespace TiendaAlquiler.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            var cochesAsociados = await _context.Coches.AnyAsync(c => c.PaisId == id);
+
+            if (cochesAsociados)
+            {
+                TempData["ErrorMessage"] = "No se puede borrar este país porque hay coches asociados a él. Por favor, cree un nuevo país o modifíquelo";
+                return RedirectToAction("Delete", new { id });
+            }
             var pais = await _context.Paises.FindAsync(id);
             if (pais != null)
             {
                 _context.Paises.Remove(pais);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

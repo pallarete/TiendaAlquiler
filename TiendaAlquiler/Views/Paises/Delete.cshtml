@@ -3,6 +3,9 @@
 @{
     ViewData["Title"] = "Delete";
 }
+@{
+    var errorMessage = TempData["ErrorMessage"] as string;
+}
 
 <h1 class="text-center mb-4">¿Está seguro de eliminar este pais?</h1>
 
@@ -33,3 +36,28 @@
         </div>
     </div>
 </div>
+
+@* Modal de advertencia *@
+
+<div id="modalAdvertencia">
+    <div class="modalDentro">
+        <h5>Advertencia</h5>
+        <p id="modalMensaje">@TempData["ErrorMessage"]</p>
+        <button onclick="closeModal()">Cerrar</button>
+    </div>
+</div>
+
+<script>
+    //muestro el modal solo si hay mensaje de error
+    var mensaje ='@TempData["ErrorMessage"]';
+    if(mensaje){
+    document.getElementById('modalAdvertencia').style.display = 'block';
+    }
+
+    //Funcion para cerrar el modal
+
+    function closeModal() {
+        document.getElementById('modalAdvertencia').style.display ='none';
+    }
+
+</script>

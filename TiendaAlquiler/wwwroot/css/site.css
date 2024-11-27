@@ -25,10 +25,11 @@ html, body {
     display: flex;
     flex-direction: column;
     line-height: 1.6;
-    /* background-size: cover;
+    background-image: url('/imagenes/F405.jpg');
+    background-size: cover;
     background-position: center center;
     background-attachment: fixed;
-    background-repeat: no-repeat;*/
+    background-repeat: no-repeat;
     background-color: var(--color-fondo);
     color: var(--color-primario);
     font-family: 'Roboto', sans-serif;
@@ -38,8 +39,13 @@ html {
     position: relative;
 }
 
+body {
+    padding-top: 100px; /* Ajusta este valor según la altura de tu header */
+}
+
 /*ENCABEZADO HOME*/
 .encabezado {
+    color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -85,6 +91,7 @@ h1, h2, h3 {
     font-family: 'Roboto', sans-serif;
     text-align: center;
     margin-top: 25px;
+    color: white;
 }
 
 p, label, button {
@@ -156,6 +163,9 @@ p, label, button {
 
 /* Botón destacado */
 .btn-highlight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--color-acciones);
     color: white;
 }
@@ -167,77 +177,107 @@ p, label, button {
 
 
 /* ESTILOS DE LA NAVBAR ------------------------------------------------------------------------*/
-/* Estilos para el header */
+/* Estilos del header */
 header {
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
-    background-color: var(--color-primario); /* Ajusta el color de fondo */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Sombra sutil para el header */
+    background-color: var(--color-primario);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    opacity: 0.85;
+    padding: 0 10px;
+    z-index: 1000;
+    overflow: hidden;
+    display: flex; /* Activa flexbox */
+    align-items: center; /* Centra verticalmente */
+    justify-content: space-between; /* Espacio entre elementos */
+    transition: opacity 0.4s ease;
 }
 
-/* Estilos de la barra de navegación */
+    header:hover {
+        opacity: 1;
+    }
+
+/* Navbar estilos */
 .navbar {
     font-family: 'Roboto', sans-serif;
-    padding: 1rem 2rem;
+    padding: 0.5rem 1rem;
+}
+
+/* Centrado del menú */
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem; /* Espacio uniforme entre elementos */
+}
+
+/* Marca (logo o texto principal) */
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-secundario);
+}
+
+/* Toggler (hamburguesa) */
+.navbar-toggler {
+    border-color: var(--color-secundario);
+}
+
+.navbar-toggler-icon {
+    width: 2rem;
+    height: 2rem;
+}
+
+/* Navbar estilos */
+/* Navbar estilos */
+.navbar-nav .nav-item .nav-link {
+    position: relative;
+    padding: 0.3rem 1rem;
+    color: black; /* Color inicial */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 1rem;
+    text-transform: capitalize; /* Texto normal */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+    /* Línea subrayada */
+    .navbar-nav .nav-item .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: white;
+        transition: width 0.3s ease;
+    }
+
+    /* Hover */
+    .navbar-nav .nav-item .nav-link:hover {
+        color: white; /* Cambia el texto a blanco */
+        transform: scale(1.1); /* Suave aumento */
+    }
+
+        .navbar-nav .nav-item .nav-link:hover::after {
+            width: 100%; /* Línea se extiende completamente */
+        }
+
+
+.container {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.50);
 }
 
 /* Contenedor centrado */
 .container-fluid {
     display: flex;
     justify-content: center; /* Centra la barra de navegación horizontalmente */
-}
-
-/* El menú de navegación debe estar centrado */
-.navbar-nav {
-    display: flex;
-    justify-content: center; /* Centra los elementos dentro de la barra */
-}
-
-/* Estilos de la marca */
-.navbar .navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--color-secundario); /* Color para el nombre de la marca */
-}
-
-/* Estilos para el toggler (hamburguesa) */
-.navbar .navbar-toggler {
-    border-color: var(--color-secundario); /* Toggler (hamburguesa) */
-}
-
-/* Estilos de los enlaces de la barra de navegación */
-.navbar-nav .nav-item .nav-link {
-    color: var(--color-texto);
-    font-size: 1rem;
-    padding: 0.75rem 1rem;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease, color 0.3s ease, border-radius 0.3s ease; /* Suaviza la transición */
-}
-
-    /* Efecto hover en los enlaces */
-    .navbar-nav .nav-item .nav-link:hover {
-        background-color: var(--color-secundario);
-        color: white;
-        border-radius: 20px; /* Borde redondeado */
-        padding-left: 1rem; /* Ajuste de padding para no "salir" del borde */
-        padding-right: 1rem; /* Ajuste de padding para no "salir" del borde */
-    }
-
-/* Navbar en estado activo (resaltado al pasar el ratón o estar seleccionado) */
-.navbar-nav .nav-item.active .nav-link {
-    background-color: var(--color-acento);
-    color: white;
-}
-
-/* Espaciado entre los elementos de la navbar */
-.navbar-nav .nav-item {
-    margin-right: 1rem; /* Espacio entre los elementos */
-}
-
-/* Toggler en móviles */
-.navbar-toggler-icon {
-    width: 2rem;
-    height: 2rem;
+    opacity: 1;
 }
 
 /* ESTILOS GENERALES */
@@ -251,6 +291,7 @@ header {
     border-radius: 10px; /* Redondear esquinas */
     overflow: hidden; /* Evita contenido fuera de bordes redondeados */
     border: 1px solid #ddd; /* Borde sutil */
+    opacity: 0.85
 }
 
     .table thead {
@@ -648,6 +689,7 @@ textarea.form-control {
     padding: 20px;
     border-radius: 10px;
     background-color: var(--color-primario);
+    opacity: 0.85
 }
 
     /* Estilo para las columnas dentro del formulario */
@@ -704,7 +746,7 @@ textarea.form-control {
 .publicidad1, .publicidad2 {
     display: flex;
     justify-content: space-between; /* Separar los elementos */
-    margin-top: 30px;
+    margin-top: 800px;
     padding: 20px;
     background-color: #f5f5f5;
     max-width: 100%;
@@ -712,7 +754,19 @@ textarea.form-control {
     gap: 20px;
     overflow: hidden;
     flex-wrap: wrap;
+    opacity: 0.85;
 }
+
+.publicidad2 {
+    margin-top: 20px;
+}
+
+    .publicidad1:hover, .publicidad2:hover {
+        transition: ease 0.9s;
+        opacity: 1;
+    }
+
+
 
 /* Estilo para el texto */
 .publicidad1-texto,
@@ -760,6 +814,7 @@ textarea.form-control {
     margin-bottom: 20px; /* Espacio inferior */
     background-color: #f0f0f0; /* Fondo suave en caso de que el mapa no se cargue */
     margin-bottom: 100px;
+    opacity: 0.85
 }
 
 /* Si el mapa está en un contenedor, asegúrate de que no se deforme */
@@ -853,6 +908,42 @@ textarea.form-control {
         background-color: var(--color-secundario); /* Color más destacado al pasar el ratón */
         transform: scale(1.1); /* Efecto de zoom al hacer hover */
     }
+
+/*Modales de aviso de */
+#modalAdvertencia {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 1000; /* Asegura que quede encima */
+}
+
+.modalDentro {
+    background-color: #f44336;
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+}
+
+    .modalDentro button {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 3px;
+        margin-top: 10px;
+    }
+
+        .modalDentro button:hover {
+            background-color: blue; /* Un tono más oscuro al pasar el mouse */
+        }
+
 
 
 /* FOOTER */
@@ -1097,7 +1188,7 @@ footer {
     }
 }
 
-/**TABLA DE TALLES DEL COCHE*/
+/**TABLA DETALLES DEL COCHE*/
 @media (max-width: 768px) {
     .table-details {
         width: 100%; /* Asegura que la tabla ocupe todo el ancho en pantallas pequeñas */

@@ -145,8 +145,8 @@ namespace TiendaAlquiler.Controllers
                             using (var image = Image.FromStream(archivo.OpenReadStream()))
                             {
                                 //Establecemos el tamaño
-                                int width = 900;
-                                int height = 400;
+                                int width = 1200;
+                                int height = 800;
                                 using (var resizedImage = new Bitmap(image, new Size(width, height)))
                                 {
                                     //guarda la imagen redimensionada
@@ -243,8 +243,8 @@ namespace TiendaAlquiler.Controllers
                                 // Creamos una imagen redimensionada
                                 using (var image = Image.FromStream(archivo.OpenReadStream()))
                                 {
-                                    int width = 2500;
-                                    int height = 1600;
+                                    int width = 1200;
+                                    int height = 800;
                                     using (var resizedImage = new Bitmap(image, new Size(width, height)))
                                     {
                                         // Guardamos la imagen redimensionada
