@@ -1,0 +1,102 @@
+﻿@model TiendaAlquiler.Models.Alquiler
+
+@{
+    ViewData["Title"] = "Crear Alquiler";
+}
+
+<h1 class="mb-4">Alquilar este coche</h1>
+<h4>Por favor, introduzca sus datos:</h4>
+
+<div class="row">
+    <!-- Formulario de Alquiler -->
+    <div class="col-md-6">
+        <form asp-action="Create" method="post" class="alquiler-form">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
+
+            <!-- Coche -->
+            <div class="form-group">
+                <label class="control-label">Coche</label>
+                @* Mostrar la marca del coche en lugar de hacer un cast explícito *@
+                <p>@ViewData["CocheMarca"]</p>
+            </div>
+
+            <!-- Usuario -->
+            <div class="form-group">
+                <label class="control-label">Usuario</label>
+                @* Mostrar el nombre de usuario en lugar de hacer un cast explícito *@
+                <p>@ViewData["UsuarioNombre"]</p>
+            </div>
+
+            <!-- Fecha de Alquiler -->
+            <div class="form-group">
+                <label asp-for="FechaAlquiler" class="control-label">Fecha de Alquiler</label>
+                <input asp-for="FechaAlquiler" class="form-control" type="date" required />
+                <span asp-validation-for="FechaAlquiler" class="text-danger"></span>
+            </div>
+
+            <!-- Fecha de Devolución -->
+            <div class="form-group">
+                <label asp-for="FechaDevolucion" class="control-label">Fecha de Devolución</label>
+                <input asp-for="FechaDevolucion" class="form-control" type="date" required />
+                <span asp-validation-for="FechaDevolucion" class="text-danger"></span>
+            </div>
+
+            <!-- Número de Tarjeta -->
+            <div class="form-group">
+                <label asp-for="NumeroTarjeta" class="control-label">Número de Tarjeta</label>
+                <input asp-for="NumeroTarjeta" class="form-control" type="text" maxlength="16" required />
+                <span asp-validation-for="NumeroTarjeta" class="text-danger"></span>
+            </div>
+
+            <!-- Fecha de Expiración -->
+            <div class="form-group">
+                <label asp-for="FechaExpiracion" class="control-label">Fecha de Expiración (MM/AA)</label>
+                <input asp-for="FechaExpiracion" class="form-control" type="text" maxlength="5" placeholder="MM/AA" required />
+                <span asp-validation-for="FechaExpiracion" class="text-danger"></span>
+            </div>
+
+            <!-- CVC -->
+            <div class="form-group">
+                <label asp-for="CVC" class="control-label">CVC</label>
+                <input asp-for="CVC" class="form-control" type="text" maxlength="3" required />
+                <span asp-validation-for="CVC" class="text-danger"></span>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="botones d-flex justify-content-between align-items-center">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-highlight">Crear Alquiler</button>
+                </div>
+                <div class="form-group">
+                    <a asp-action="Index" class="btn btn-secondary">Volver al Listado</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Fechas de alquiler previas -->
+    <div class="col-md-6">
+        <div class="rental-dates mt-4">
+            @if (ViewData["Alquilers"] != null && ((List<TiendaAlquiler.Models.Alquiler>)ViewData["Alquilers"]).Any())
+            {
+                <h3>Fechas de Alquiler Anteriores</h3>
+                <ul class="list-group">
+                    @foreach (var alquiler in (List<TiendaAlquiler.Models.Alquiler>)ViewData["Alquilers"])
+                    {
+                        <li class="list-group-item">
+                            Desde: @alquiler.FechaAlquiler.ToShortDateString() - Hasta: @alquiler.FechaDevolucion.ToShortDateString()
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>No hay alquileres previos para este coche</p>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Html.RenderPartialAsync("_ValidationScriptsPartial")
+}

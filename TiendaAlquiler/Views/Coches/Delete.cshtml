@@ -1,0 +1,46 @@
+﻿@model TiendaAlquiler.Models.Coche
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+    <h1>Borrar coche</h1>
+
+    <h3>¿Está seguro de eliminar este coche?</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Marca)</th>
+                <th>@Html.DisplayNameFor(model => model.Modelo)</th>
+                <th>@Html.DisplayNameFor(model => model.AnioFabricacion)</th>
+                <th>@Html.DisplayNameFor(model => model.PrecioAlquiler)</th>
+                <th>@Html.DisplayNameFor(model => model.Carroceria)</th>
+                <th>@Html.DisplayNameFor(model => model.Color)</th>
+                <th>@Html.DisplayNameFor(model => model.Decada)</th>
+                <th>@Html.DisplayNameFor(model => model.Pais)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.Marca)</td>
+                <td>@Html.DisplayFor(model => model.Modelo)</td>
+                <td>@Html.DisplayFor(model => model.AnioFabricacion)</td>
+                <td>@Html.DisplayFor(model => model.PrecioAlquiler)</td>
+                <td>@Html.DisplayFor(model => model.Carroceria.Tipo)</td>
+                <td>@Html.DisplayFor(model => model.Color.Nombre)</td>
+                <td>@Html.DisplayFor(model => model.Decada.AnioInicio)</td>
+                <td>@Html.DisplayFor(model => model.Pais.Nombre)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="form-actions">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="CocheId" />
+            <button type="submit" class="btn btn-danger">Borrar</button>
+            <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
+        </form>
+    </div>
+

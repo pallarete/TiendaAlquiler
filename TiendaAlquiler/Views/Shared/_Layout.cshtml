@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TiendaAlquiler</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg-RAkBxdrQNSJap_mqLOgWC9e1gyLNLU&callback=initMap" async defer>  </script>
+    <script>
+        function initMap() {
+            // Ubicación: Ajusta la latitud y longitud a la ubicación deseada
+            const location = { lat: 43.370947, lng: -8.395835 }; // Ejemplo: La Coruña
+
+            // Crea el mapa centrado en la ubicación
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 18,
+                center: location,
+            });
+
+            // Agrega un marcador en la ubicación
+            const marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                title: "Lugar de recogida de coches",
+            });
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const navbar = document.querySelector(".navbar");
+
+            window.addEventListener("scroll", function () {
+                if (window.scrollY > 100) { // Cambia el valor según cuándo quieres que se active
+                    navbar.classList.add("scrolled");
+                } else {
+                    navbar.classList.remove("scrolled");
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const backToTopButton = document.getElementById("backToTop");
+
+            // Mostrar/ocultar el botón al hacer scroll
+            window.addEventListener("scroll", function () {
+                if (window.scrollY > 200) { // Umbral para mostrar el botón
+                    backToTopButton.style.display = "block";
+                } else {
+                    backToTopButton.style.display = "none";
+                }
+            });
+
+            // Scroll suave hacia arriba al hacer clic
+            backToTopButton.addEventListener("click", function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth" // Scroll animado
+                });
+            });
+        });
+    </script>
+
+    <link rel="stylesheet" href="~/TiendaAlquiler.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">TiendaAlquiler</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Menú de navegación">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <!-- Menú de navegación principal -->
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <span class="nav-link">Hola, @User.Identity.Name</span>
+                            </li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item"><a class="nav-link" asp-controller="Carrocerias" asp-action="Index" data-text="Carrocerias">Carrocerias</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-controller="Colors" asp-action="Index" data-text="Colores">Colores</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-controller="Decadas" asp-action="Index" data-text="Decadas">Decadas</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-controller="Paises" asp-action="Index" data-text="Paises">Paises</a></li>
+                            }
+                            <!-- Solo muestra este enlace "Coches" para usuarios autenticados que no son admins -->
+                            <li class="nav-item"><a class="nav-link" asp-controller="Coches" asp-action="Index" data-text="Coches">Coches</a></li>
+                            <li class="nav-item"><a href="@Url.Action("Logout", "Usuario")" class="nav-link text-dark">Logout</a></li>
+                        }
+                        else
+                        {
+                            <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index" data-text="Inicio">Inicio</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Usuario" asp-action="Register" data-text="Registro">Registro</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Usuario" asp-action="Login" data-text="Login">Login</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Coches" asp-action="Index" data-text="Coches">Coches</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Botón de volver arriba -->
+    <button id="backToTop" class="back-to-top" title="Volver arriba">UP</button>
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script> <!-- Asegúrate de cargar jQuery antes de Bootstrap -->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <footer class="border-top footer text-muted">
+        &copy; 2024 - TiendaAlquiler - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </footer>
+</body>
+</html>

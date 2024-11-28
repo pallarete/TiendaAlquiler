@@ -1,0 +1,996 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-primario: #6c757d;
+    --color-secundario: #f5a623;
+    --color-acento: #D81B60;
+    --color-texto: #333333;
+    --color-destacado: #D81B60;
+    --color-fondo: #C2C2C2;
+    --color-acciones: #4A90E2;
+    --color-sombra: rgba(0, 0, 0, 0.15);
+}
+
+/* CONFIGURACION BASICA */
+html, body {
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+    background-image: url('/imagenes/F405.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-color: var(--color-fondo);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+html {
+    position: relative;
+}
+
+body {
+    padding-top: 100px; /* Ajusta este valor según la altura de tu header */
+}
+
+/*ENCABEZADO HOME*/
+.encabezado {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.locate {
+    margin-top: 90px;
+}
+
+/* ESTILO PARA SECCIONES DE CONTENIDO */
+section {
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: var(--color-fondo);
+    box-shadow: 0 4px 8px var(--color-sombra);
+    color: var(--color-texto);
+    border-radius: 10px;
+}
+
+/* CONTENEDOR PRINCIPAL*/
+main {
+    flex: 1;
+    margin: 0 auto; /* Ajuste para compensar la navbar fija */
+    max-width: 100%;
+    padding: 0 10px;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/* Si Falla se quita!!!!!!!!! */
+
+/*ENCABEZADOS*/
+h1, h2, h3 {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    margin-top: 25px;
+    color: white;
+}
+
+p, label, button {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* ESTILOS BOTONES------------------------------------------------ */
+.button-container {
+    display: flex;
+    flex-direction: column; /* Coloca los botones en una columna */
+    align-items: center; /* Centra los botones horizontalmente */
+    gap: 20px; /* Espaciado entre los elementos dentro del contenedor */
+    margin-top: 20px; /* Separación superior del contenedor respecto a los elementos de arriba */
+}
+
+.btn {
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: var(--color-sombra);
+}
+
+/* Botón primario */
+.btn-primary {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+    .btn-primary:hover {
+        background-color: #5b636b; /* Gris más oscuro */
+        transform: scale(1.05);
+    }
+
+/* Botón secundario */
+.btn-secondary {
+    background-color: var(--color-secundario);
+    color: white;
+}
+
+    .btn-secondary:hover {
+        background-color: #e59919; /* Naranja más oscuro */
+        transform: scale(1.05);
+    }
+
+/* Botón de acento */
+.btn-accent {
+    background-color: var(--color-acento);
+    color: white;
+}
+
+    .btn-accent:hover {
+        background-color: #b0154c; /* Rosa más oscuro */
+        transform: scale(1.05);
+    }
+
+/* Botón de peligro */
+.btn-danger {
+    background-color: var(--color-acento); /* Rojo */
+    color: white;
+}
+
+    .btn-danger:hover {
+        background-color: #c12f2a; /* Rojo más oscuro */
+        transform: scale(1.05);
+    }
+
+/* Botón destacado */
+.btn-highlight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-acciones);
+    color: white;
+}
+
+    .btn-highlight:hover {
+        background-color: #357ab8; /* Azul más oscuro */
+        transform: scale(1.05);
+    }
+/*Este es el boton de volver arribaF*/
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: none; /* Oculto inicialmente */
+    background-color: var(--color-primario); /* Cambia al color que prefieras */
+    color: var(--color-blanco);
+    border: none;
+    border-radius: 50%; /* Hace que sea redondo */
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px var(--color-sombra); /* Añade una sombra */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
+
+    .back-to-top:hover {
+        background-color: var(--color-secundario); /* Color más destacado al pasar el ratón */
+        transform: scale(1.1); /* Efecto de zoom al hacer hover */
+    }
+
+
+/* ESTILOS DE LA NAVBAR ------------------------------------------------------------------------*/
+/* Estilos del header */
+header {
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    background-color: var(--color-primario);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    opacity: 0.85;
+    padding: 0 10px;
+    z-index: 1000;
+    overflow: hidden;
+    display: flex; /* Activa flexbox */
+    align-items: center; /* Centra verticalmente */
+    justify-content: space-between; /* Espacio entre elementos */
+    transition: opacity 0.4s ease;
+}
+
+    header:hover {
+        opacity: 1;
+    }
+
+/* Navbar estilos */
+.navbar {
+    font-family: 'Roboto', sans-serif;
+    padding: 0.5rem 1rem;
+}
+
+/* Centrado del menú */
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem; /* Espacio uniforme entre elementos */
+}
+
+/* Marca (logo o texto principal) */
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-secundario);
+}
+
+/* Toggler (hamburguesa) */
+.navbar-toggler {
+    border-color: var(--color-secundario);
+}
+
+.navbar-toggler-icon {
+    width: 2rem;
+    height: 2rem;
+}
+
+/* Navbar estilos */
+.navbar-nav .nav-item .nav-link {
+    position: relative;
+    padding: 0.3rem 1rem;
+    color: black; /* Color inicial */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 1rem;
+    text-transform: capitalize; /* Texto normal */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+    /* Línea subrayada */
+    .navbar-nav .nav-item .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: white;
+        transition: width 0.3s ease;
+    }
+
+    /* Hover */
+    .navbar-nav .nav-item .nav-link:hover {
+        color: white; /* Cambia el texto a blanco */
+        transform: scale(1.1); /* Suave aumento */
+    }
+
+        .navbar-nav .nav-item .nav-link:hover::after {
+            width: 100%; /* Línea se extiende completamente */
+        }
+
+
+.container {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.50);
+}
+
+/* Contenedor centrado */
+.container-fluid {
+    display: flex;
+    justify-content: center; /* Centra la barra de navegación horizontalmente */
+    opacity: 1;
+}
+
+/* ESTILOS GENERALES */
+.table {
+    width: 100%;
+    margin: 20px auto;
+    font-weight: bold;
+    font-size: 1rem;
+    border-collapse: collapse;
+    color: var(--color-texto);
+    table-layout: auto; /* Ajusta automáticamente el tamaño de las columnas */
+    border-radius: 10px; /* Redondear esquinas */
+    overflow: hidden; /* Evita contenido fuera de bordes redondeados */
+    opacity: 0.85
+}
+
+    .table thead {
+        background-color: var(--color-secundario);
+        color: white;
+        text-transform: uppercase;
+    }
+
+    .table th, .table td {
+        padding: 12px;
+        text-align: left;
+        vertical-align: middle;
+        border-bottom: 1px solid var(--color-sombra);
+    }
+
+    .table tbody tr {
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+        .table tbody tr:nth-child(odd) {
+            background-color: var(--color-fondo);
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .table tbody tr:hover {
+            background-color: var(--color-destacado);
+            transform: scale(1.01);
+            box-shadow: 0 2px 6px var(--color-sombra);
+        }
+
+    .table th:first-child, .table td:first-child {
+        border-left: 2px solid #ddd;
+        border-radius: 8px 0 0 0;
+    }
+
+    .table th:last-child, .table td:last-child {
+        border-right: 2px solid #ddd;
+        border-radius: 0 8px 0 0;
+        text-align: right; /* Alinear último td */
+    }
+
+    .table td a.btn {
+        margin-left: 5px; /* Espaciado entre botones */
+    }
+
+
+/* COLUMNAS DE ACCIÓN */
+.actions-column {
+    text-align: right;
+}
+
+    .actions-column a {
+        margin-left: 10px;
+        text-decoration: none;
+        color: var(--color-acciones);
+        transition: color 0.3s;
+    }
+
+        .actions-column a:hover {
+            text-decoration: underline;
+            color: var(--color-destacado);
+        }
+
+/*ESTILOS DE VER COCHE-------------------------------------------------------------------------------------*/
+
+/* CARRUSEL */
+#carouselExampleAutoplaying {
+    margin-left: auto; /* Centra el carrusel */
+    margin-right: auto; /* Centra el carrusel */
+    padding: 0 20px; /* Espacio de 20px solo en los márgenes izquierdo y derecho */
+    max-width: 100%; /* Asegura que el carrusel no exceda el ancho de su contenedor */
+    width: 100%;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    /*max-height: 500px;*/ /* Limitar la altura máxima */
+    object-fit: cover;
+    object-position: center;
+}
+
+.carousel-inner {
+    margin-top: 30px;
+    border: 3px solid var(--color-destacado); /* Puedes quitar o ajustar el borde */
+    border-radius: 10px;
+    background-color: var(--color-fondo); /* Beige claro */
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: auto; /* Mantén la altura fija o cámbiala según sea necesario */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: var(--color-acento); /* Azul brillante */
+}
+
+.carousel-control-prev, .carousel-control-next {
+    filter: invert(100%); /* Si el fondo es oscuro, los íconos se verán blancos */
+}
+
+
+/*DESCRIPCION DEL COCHE*/
+.description-section {
+    background-color: var(--color-fondo); /* Fondo gris claro */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--color-sombra); /* Sombra suave */
+}
+
+    .description-section h4 {
+        font-size: 2rem;
+        color: var(--color-texto); /* Gris oscuro para los títulos */
+        margin-bottom: 1rem; /* Espaciado inferior */
+    }
+
+    .description-section .text-muted {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: var(--color-primario); /* Gris oscuro para la descripción */
+    }
+
+textarea.form-control {
+    height: 120px;
+    resize: vertical;
+    border-radius: 8px;
+    border: 1px solid var(--color-primario); /* Borde gris oscuro */
+    background-color: var(--color-fondo); /* Fondo gris claro */
+    box-shadow: 0 2px 5px var(--color-sombra); /* Sombra suave */
+    color: var(--color-texto); /* Gris muy oscuro para el texto */
+}
+
+    textarea.form-control:focus {
+        border-color: var(--color-secundario); /* Borde naranja al hacer focus */
+        box-shadow: 0 0 8px var(--color-secundario); /* Sombra suave naranja */
+    }
+
+/* ESTILOS PARA LA SECCION DE ALQUILAR COCHE---------------------------------------------------------------- */
+
+/* Estilos generales */
+
+.alquiler-form, .rental-dates {
+    background-color: rgba(255, 255, 255, 0.5); /* Blanco con 80% de opacidad */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Formulario de alquiler */
+.alquiler-form {
+    margin-top: 20px;
+}
+
+    .alquiler-form .form-group {
+        margin-bottom: 15px;
+    }
+
+    .alquiler-form label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .alquiler-form input[type="text"],
+    .alquiler-form input[type="date"],
+    .alquiler-form select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+
+
+    .alquiler-form .text-danger {
+        color: #e74c3c;
+    }
+
+/* Fechas de alquiler previas */
+.rental-dates {
+    background-color: rgba(255, 255, 255, 0.5); /* Blanco con 80% de opacidad */
+    border: 2px solid red;
+    border-radius: 5px;
+}
+
+    .rental-dates h3 {
+        color: #007bff;
+        font-weight: bold;
+        font-size: 22px;
+    }
+
+    .rental-dates ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .rental-dates li {
+        background-color: #e6f3ff;
+        color: #0056b3;
+        margin: 5px 0;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 16px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .rental-dates .not-rented {
+        color: #dc3545;
+        font-style: italic;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+
+/*ESTILOS DE FILTRADO Y MAESTROS*/
+.d-flex-select {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(var(--color-primario-rgb), 0.7); /* Opacidad del 70% */
+}
+
+    /* Estilo para las columnas dentro del formulario */
+    .d-flex-select .col-md-3 {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px; /* Espacio entre columnas */
+    }
+
+    /* Estilo para los labels */
+    .d-flex-select label {
+        color: black;
+        padding: 8px;
+        background-color: white;
+        font-size: 1rem;
+        margin-bottom: 5px;
+        text-align: center; /* Centrado del texto */
+        width: 100%; /* Los labels ocupan todo el ancho disponible */
+        border-radius: 5px;
+    }
+
+    /* Estilo para los selects */
+    .d-flex-select .form-select {
+        width: 100%; /* Ocupa todo el ancho del contenedor */
+        max-width: 100%; /* Limita el ancho máximo */
+        padding: 0.5rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        margin-top: 5px; /* Espacio entre el select y el label */
+    }
+
+/*PAGINA DE HOME INICIO*/
+.publicidad-video {
+    width: 50%; /* Dos tercios del ancho de la pantalla */
+    margin: 50px auto; /* Centrar horizontalmente el div */
+    position: relative; /* Para posicionamiento interno */
+    border: 5px solid #3498db; /* Borde color azul */
+    border-radius: 15px; /* Bordes redondeados */
+    overflow: hidden; /* Evita que el video sobresalga de los bordes */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para un efecto elegante */
+}
+
+/* Estilo del video */
+.video-background {
+    width: 100%; /* Ajusta el ancho del video al contenedor */
+    height: auto; /* Mantén la proporción del video */
+    display: block; /* Evita espacios blancos en línea */
+}
+
+/*Publicidad General */
+.publicidad1, .publicidad2 {
+    display: flex;
+    justify-content: space-between; /* Separar los elementos */
+    margin-top: 800px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    max-width: 100%;
+    border-radius: 10px;
+    gap: 20px;
+    overflow: hidden;
+    flex-wrap: wrap;
+    opacity: 0.85;
+}
+
+.publicidad2 {
+    margin-top: 20px;
+}
+
+    .publicidad1:hover, .publicidad2:hover {
+        transition: ease 0.9s;
+        opacity: 1;
+    }
+
+/* Estilo para el texto */
+.publicidad1-texto,
+.publicidad2-texto {
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    flex-basis: 48%;
+}
+
+    .publicidad1-texto p,
+    .publicidad2-texto p {
+        font-size: 20px;
+        line-height: 1.4;
+    }
+
+/* Contenedores de imagen */
+.publicidad1-foto,
+.publicidad2-foto {
+    display: flex; /* Habilita el modelo flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: auto; /* Ajusta el alto del contenedor si es necesario */
+    flex-basis: 48%;
+}
+
+/* Imágenes */
+.publicidad1 img,
+.publicidad2 img {
+    border-radius: 10px;
+    max-width: 100%; /* Escala la imagen sin salir del contenedor */
+    height: auto; /* Mantiene la proporción */
+    object-fit: contain; /* Asegura que la imagen se ajuste dentro del contenedor */
+    display: block;
+    max-height: 100%;
+}
+
+
+/*GOOGLE MAPS*/
+#map {
+    height: 400px; /* Altura del mapa */
+    width: 100%; /* Ancho del mapa */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+    margin-top: 20px; /* Espacio superior */
+    margin-bottom: 20px; /* Espacio inferior */
+    background-color: #f0f0f0; /* Fondo suave en caso de que el mapa no se cargue */
+    margin-bottom: 100px;
+    opacity: 0.85
+}
+
+/* Si el mapa está en un contenedor, asegúrate de que no se deforme */
+#map-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 0 auto;
+    max-width: 1200px; /* Opcional: Limitar el tamaño máximo */
+    box-sizing: border-box;
+}
+/* Contenedor principal de la página */
+.delete-container {
+    background-color: #f4f4f4;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 3rem auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+}
+
+/* PAGINA DE BORRAR COCHE */
+
+/* Estilo del div de borrar */
+.form-actions {
+    background-color: rgba(255, 255, 255, 0.2); /* Blanco con opacidad del 80% */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 10px;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+    .form-actions button, .form-actions a {
+        margin: 0 10px; /* Esto agregará un margen horizontal a cada elemento */
+    }
+
+/*MODALES ADVERTENCIA */
+#modalAdvertencia {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 1000; /* Asegura que quede encima */
+}
+
+.modalDentro {
+    background-color: #f44336;
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+}
+
+    .modalDentro button {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 3px;
+        margin-top: 10px;
+    }
+
+        .modalDentro button:hover {
+            background-color: blue; /* Un tono más oscuro al pasar el mouse */
+        }
+
+
+
+/* FOOTER */
+footer {
+    position: relative; /*Asegura que el footer no se quede fijo */
+    width: 100%; /*Asegura que el footer ocupe todo el ancho */
+    background-color: #333; /*Ejemplo de color de fondo */
+    color: white; /*Color del texto */
+    padding: 10px; /*Espaciado del footer*/
+    margin-top: 20px; /*Espaciado por encima del footer */
+}
+
+
+/*---------------------------------------------------------------------------*/
+/* MEDIA QUERYES */
+/*PAGINA INICIO*/
+/* Para pantallas de 1200px a 1600px */
+@media (min-width: 1200px) and (max-width: 1600px) {
+    .publicidad1, .publicidad2 {
+        flex-direction: row;
+        gap: 20px;
+        padding: 30px;
+    }
+
+    .publicidad1-texto p,
+    .publicidad2-texto p {
+        font-size: 20px;
+    }
+
+    .publicidad1 img,
+    .publicidad2 img {
+        max-width: 100%; /* Las imágenes deben ajustarse completamente */
+    }
+}
+
+/* Para pantallas de 992px a 1199px */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .publicidad1, .publicidad2 {
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    .publicidad1-texto p,
+    .publicidad2-texto p {
+        font-size: 18px;
+    }
+
+    .publicidad1 img,
+    .publicidad2 img {
+        max-width: 90%;
+    }
+}
+
+/* Para pantallas de 768px a 991px */
+@media (min-width: 768px) and (max-width: 991px) {
+    .publicidad1, .publicidad2 {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .publicidad1-texto p,
+    .publicidad2-texto p {
+        font-size: 16px;
+    }
+
+    .publicidad1 img,
+    .publicidad2 img {
+        max-width: 80%;
+    }
+}
+
+/* Para pantallas de 576px a 767px */
+@media (min-width: 576px) and (max-width: 767px) {
+    .publicidad1, .publicidad2 {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .publicidad1-texto p,
+    .publicidad2-texto p {
+        font-size: 14px;
+    }
+
+    .publicidad1 img,
+    .publicidad2 img {
+        max-width: 70%;
+    }
+}
+
+/* Para pantallas de menos de 576px */
+@media (max-width: 575px) {
+    .publicidad1, .publicidad2 {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .publicidad1-texto p,
+    .publicidad2-texto p {
+        font-size: 12px;
+    }
+
+    .publicidad1 img,
+    .publicidad2 img {
+        max-width: 60%; /* Asegura que las imágenes sean más pequeñas */
+    }
+}
+
+/*NAVBAR*/
+/*Media queries para la navbar*/
+/* General: Estilo para pantallas grandes */
+@media (min-width: 992px) {
+    .navbar {
+        padding: 1rem 3rem;
+    }
+
+    .navbar-nav .nav-item .nav-link {
+        font-size: 1.2rem;
+    }
+}
+
+/* Pantallas medianas (tablets y similares) */
+@media (max-width: 991px) and (min-width: 768px) {
+    .navbar {
+        padding: 0.8rem 2rem;
+    }
+
+    .navbar-nav .nav-item .nav-link {
+        font-size: 1rem;
+        padding: 0.5rem 0.8rem;
+    }
+
+    .navbar-nav .nav-item {
+        margin-right: 0.5rem;
+    }
+}
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 767px) {
+    .navbar {
+        padding: 0.5rem 1.5rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .navbar-nav {
+        flex-direction: column; /* Pila vertical */
+        align-items: center;
+    }
+
+        .navbar-nav .nav-item {
+            margin-bottom: 0.5rem;
+            margin-right: 0; /* Espaciado horizontal eliminado */
+        }
+
+            .navbar-nav .nav-item .nav-link {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+                text-align: center;
+            }
+
+    .navbar-toggler {
+        padding: 0.25rem;
+    }
+}
+
+/* Micro pantallas (menos de 480px) */
+@media (max-width: 479px) {
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    .navbar-nav .nav-item .nav-link {
+        font-size: 0.8rem;
+    }
+}
+
+
+/*TABLA COCHES*/
+/* Estilos para pantallas pequeñas (transformar a lista) */
+@media (max-width: 768px) {
+    .table {
+        display: block;
+        border: none;
+    }
+
+        .table thead {
+            display: none; /* Ocultar cabecera */
+        }
+
+        .table tbody {
+            display: block;
+        }
+
+        .table td:last-child {
+            display: flex;
+            justify-content: center; /* Centra los botones horizontalmente */
+            align-items: center; /* Centra los botones verticalmente */
+        }
+
+        .table tbody tr {
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            border: 1px solid var(--color-sombra);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+            .table tbody tr:nth-child(odd) {
+                background-color: white !important; /* Fondo blanco para las filas impares */
+            }
+
+            .table tbody tr:nth-child(even) {
+                background-color: white !important; /* Fondo blanco para las filas pares */
+            }
+
+            .table tbody tr td {
+                display: flex;
+                justify-content: space-between;
+                border: none;
+                padding: 8px 0;
+            }
+
+
+                .table tbody tr td::before {
+                    content: attr(data-label); /* Añade etiquetas */
+                    font-weight: bold;
+                    margin-right: 10px;
+                    color: var(--color-secundario);
+                    text-transform: uppercase;
+                }
+}
+
+/*CARRUSEL DE IMAGENES DE COCHE*/
+@media (max-width: 768px) {
+    .carousel-item img {
+        width: 100%; /* Asegura que las imágenes no excedan el ancho en pantallas pequeñas */
+        height: auto; /* Mantén la altura proporcional */
+    }
+}
+
+/**TABLA DETALLES DEL COCHE*/
+@media (max-width: 768px) {
+    .table-details {
+        width: 100%; /* Asegura que la tabla ocupe todo el ancho en pantallas pequeñas */
+        font-size: 0.9em; /* Ajusta el tamaño de la fuente para pantallas más pequeñas */
+        overflow-x: auto; /* Permite desplazamiento horizontal */
+        -webkit-overflow-scrolling: touch; /* Mejora la experiencia de desplazamiento en iOS */
+    }
+}

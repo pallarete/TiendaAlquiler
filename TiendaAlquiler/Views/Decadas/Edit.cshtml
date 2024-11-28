@@ -1,0 +1,40 @@
+﻿@model TiendaAlquiler.Models.Decada
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-center my-4">Editar Decada</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Decada</h4>
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <input type="hidden" asp-for="DecadaId" />
+
+                        <div class="mb-3">
+                            <label asp-for="AnioInicio" class="form-label"></label>
+                            <input asp-for="AnioInicio" class="form-control" />
+                            <span asp-validation-for="AnioInicio" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-center gap-3">
+                            <input type="submit" value="Guardar Cambios" class="btn btn-highlight" />
+                            <a asp-action="Index" class="btn btn-secondary">Volver al Listado</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,58 @@
+﻿@model TiendaAlquiler.Models.Color
+
+@{
+    ViewData["Title"] = "Delete";
+}
+@{
+    var errorMessage = TempData["ErrorMessage"] as string;
+}
+
+<h1 class="text-center mb-4">¿Está seguro de eliminar este color?</h1>
+
+<div class="container bg-white p-4 shadow rounded">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h4 class="text-center mb-3">Color</h4>
+            <hr />
+
+            <!-- Tabla de detalles centrada -->
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <th class="text-end">Tipo:</th>
+                        <td class="text-start">@Html.DisplayFor(model => model.Nombre)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Botones de acción -->
+            <div class="d-flex justify-content-center gap-3 mt-4">
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="ColorId" />
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+                <a asp-action="Index" class="btn btn-secondary">Volver</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalAdvertencia">
+    <div class="modalDentro">
+        <h5>Advertencia</h5>
+        <p id="modalMensaje">@TempData["ErrorMessage"]</p>
+        <button onclick="closeModal()">Cerrar</button>
+    </div>
+</div>
+<script>
+    //muestro el modal si hay mensaje de error
+    var mensaje ='@TempData["ErrorMessage"]';
+    if(mensaje) {
+    document.getElementById('modalAdvertencia').style.display='block';
+    }
+    //Funcion que se llamara al hacer click sobre el boton de cerrar al modal
+    function closeModal () {
+        document.getElementById('modalAdvertencia').style.display='none';
+    }
+
+</script>
