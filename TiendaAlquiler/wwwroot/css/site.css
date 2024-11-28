@@ -31,7 +31,7 @@ html, body {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-color: var(--color-fondo);
-    color: var(--color-primario);
+    color: white;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -358,113 +358,7 @@ header {
             color: var(--color-destacado);
         }
 
-
-
-/* TABLA DE DETALLES DEL COCHE*/
-.table-details {
-    width: 90%; /* Ancho de la tabla */
-    margin: 30px auto; /* Centrado horizontal */
-    font-size: 1em; /* Tamaño de fuente estándar */
-    border-collapse: separate; /* Separar filas */
-    border-spacing: 0 15px; /* Espaciado vertical entre filas */
-    color: var(--color-texto); /* Color del texto */
-}
-
-    /* Estilo para el encabezado */
-    .table-details thead tr {
-        background-color: var(--color-secundario); /* Fondo del encabezado */
-        border-radius: 8px; /* Bordes redondeados */
-        box-shadow: 0 4px 6px var(--color-sombra); /* Sombra del encabezado */
-        color: white; /* Texto blanco */
-    }
-
-    /* Estilo de celdas del encabezado y contenido */
-    .table-details th,
-    .table-details td {
-        padding: 15px 20px; /* Espaciado interno */
-        text-align: left; /* Alineación del texto a la izquierda */
-        vertical-align: middle; /* Centrado vertical del texto */
-        border: none; /* Sin bordes internos */
-    }
-
-    /* Estilo de las filas del cuerpo */
-    .table-details tbody tr {
-        background-color: var(--color-fondo); /* Fondo de las filas */
-        border-radius: 8px; /* Bordes redondeados en filas */
-        box-shadow: 0 2px 4px var(--color-sombra); /* Sombra de filas */
-        transition: background-color 0.8s ease, transform 0.8s ease; /* Transición rápida */
-    }
-
-        /* Efecto hover en las filas */
-        .table-details tbody tr:hover {
-            background-color: var(--color-destacado); /* Fondo destacado al pasar el mouse */
-            transform: scale(1.02); /* Efecto de "elevación" */
-            box-shadow: 0 4px 8px var(--color-sombra); /* Sombra más marcada */
-        }
-
-    /* Resaltar la primera columna */
-    .table-details td:first-child {
-        font-weight: bold; /* Resaltar la primera columna */
-    }
-
-    /* Bordes redondeados para las esquinas de la tabla */
-    .table-details thead th:first-child {
-        border-top-left-radius: 8px; /* Esquina superior izquierda */
-    }
-
-    .table-details thead th:last-child {
-        border-top-right-radius: 8px; /* Esquina superior derecha */
-    }
-
-    .table-details tbody tr:last-child td:first-child {
-        border-bottom-left-radius: 8px; /* Esquina inferior izquierda */
-    }
-
-    .table-details tbody tr:last-child td:last-child {
-        border-bottom-right-radius: 8px; /* Esquina inferior derecha */
-    }
-
-    /* Estilo para la columna de acciones (si la tienes) */
-    .table-details .actions-column {
-        text-align: right; /* Alineación a la derecha */
-        padding-right: 15px; /* Espaciado a la derecha */
-    }
-
-
-/*DESCRIPCION DEL COCHE*/
-.description-section {
-    background-color: var(--color-fondo); /* Fondo gris claro */
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px var(--color-sombra); /* Sombra suave */
-}
-
-    .description-section h4 {
-        font-size: 2rem;
-        color: var(--color-texto); /* Gris oscuro para los títulos */
-        margin-bottom: 1rem; /* Espaciado inferior */
-    }
-
-    .description-section .text-muted {
-        font-size: 1rem;
-        line-height: 1.6;
-        color: var(--color-primario); /* Gris oscuro para la descripción */
-    }
-
-textarea.form-control {
-    height: 120px;
-    resize: vertical;
-    border-radius: 8px;
-    border: 1px solid var(--color-primario); /* Borde gris oscuro */
-    background-color: var(--color-fondo); /* Fondo gris claro */
-    box-shadow: 0 2px 5px var(--color-sombra); /* Sombra suave */
-    color: var(--color-texto); /* Gris muy oscuro para el texto */
-}
-
-    textarea.form-control:focus {
-        border-color: var(--color-secundario); /* Borde naranja al hacer focus */
-        box-shadow: 0 0 8px var(--color-secundario); /* Sombra suave naranja */
-    }
+/*ESTILOS DE VER COCHE-------------------------------------------------------------------------------------*/
 
 /* CARRUSEL */
 #carouselExampleAutoplaying {
@@ -503,25 +397,97 @@ textarea.form-control {
     filter: invert(100%); /* Si el fondo es oscuro, los íconos se verán blancos */
 }
 
-/* ESTILOS PARA LA SECCION DE FECHAS DE COCHE ALQUILADO */
-.rental-dates {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #f1f8ff; /* Color de fondo suave */
-    border: 2px solid #007bff; /* Borde azul para resaltar */
+
+/*DESCRIPCION DEL COCHE*/
+.description-section {
+    background-color: var(--color-fondo); /* Fondo gris claro */
+    padding: 2rem;
     border-radius: 8px;
-    margin-bottom: 20px;
+    box-shadow: 0 2px 8px var(--color-sombra); /* Sombra suave */
 }
 
-    /* Título de la sección */
+    .description-section h4 {
+        font-size: 2rem;
+        color: var(--color-texto); /* Gris oscuro para los títulos */
+        margin-bottom: 1rem; /* Espaciado inferior */
+    }
+
+    .description-section .text-muted {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: var(--color-primario); /* Gris oscuro para la descripción */
+    }
+
+textarea.form-control {
+    height: 120px;
+    resize: vertical;
+    border-radius: 8px;
+    border: 1px solid var(--color-primario); /* Borde gris oscuro */
+    background-color: var(--color-fondo); /* Fondo gris claro */
+    box-shadow: 0 2px 5px var(--color-sombra); /* Sombra suave */
+    color: var(--color-texto); /* Gris muy oscuro para el texto */
+}
+
+    textarea.form-control:focus {
+        border-color: var(--color-secundario); /* Borde naranja al hacer focus */
+        box-shadow: 0 0 8px var(--color-secundario); /* Sombra suave naranja */
+    }
+
+/* ESTILOS PARA LA SECCION DE ALQUILAR COCHE---------------------------------------------------------------- */
+
+/* Estilos generales */
+
+.alquiler-form, .rental-dates {
+    background-color: rgba(255, 255, 255, 0.5); /* Blanco con 80% de opacidad */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Formulario de alquiler */
+.alquiler-form {
+    margin-top: 20px;
+}
+
+    .alquiler-form .form-group {
+        margin-bottom: 15px;
+    }
+
+    .alquiler-form label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .alquiler-form input[type="text"],
+    .alquiler-form input[type="date"],
+    .alquiler-form select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+  
+
+    .alquiler-form .text-danger {
+        color: #e74c3c;
+    }
+
+/* Fechas de alquiler previas */
+.rental-dates {
+    background-color: rgba(255, 255, 255, 0.5); /* Blanco con 80% de opacidad */
+    border: 2px solid red;
+    border-radius: 5px;
+}
+
     .rental-dates h3 {
         color: #007bff;
         font-weight: bold;
         font-size: 22px;
-        margin-bottom: 10px;
     }
 
-    /* Lista de fechas de alquiler */
     .rental-dates ul {
         list-style: none;
         padding-left: 0;
@@ -538,7 +504,6 @@ textarea.form-control {
         justify-content: space-between;
     }
 
-    /* Texto de "no alquilado" */
     .rental-dates .not-rented {
         color: #dc3545;
         font-style: italic;
@@ -546,137 +511,6 @@ textarea.form-control {
         margin-top: 10px;
     }
 
-/* CONTENEDOR GENERAL DE LA DESCRIPCION */
-.description-section {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #f8f9fa; /* Gris suave*/
-    border: 2px solid var(--color-primario); /* Borde amarillo */
-    border-radius: 8px;
-}
-
-    /* Título de la descripción */
-    .description-section h4 {
-        color: #fd7e14; /* Color del título */
-        font-weight: bold;
-        font-size: 20px;
-        margin-bottom: 10px;
-    }
-
-    /* Texto de la descripción */
-    .description-section p {
-        font-size: 16px;
-        color: #6c757d;
-        padding: 10px;
-        background-color: #fff3cd;
-        border-radius: 5px;
-    }
-
-    /* Estilo del formulario de edición */
-    .description-section .form-group {
-        margin-top: 15px;
-    }
-
-    .description-section textarea {
-        resize: vertical;
-        padding: 10px;
-        border: 1px solid #ced4da;
-        border-radius: 5px;
-        font-size: 14px;
-    }
-
-
-
-/* ESTILO GENERAL DEL FORMULARIO DE ALQUILAR */
-.alquiler-form {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-    /* Estilo para cada grupo de campos */
-    .alquiler-form .form-group {
-        margin-bottom: 15px;
-    }
-
-    /* Estilo para las etiquetas dentro del formulario */
-    .alquiler-form label {
-        font-weight: bold;
-        color: #333;
-    }
-
-    /* Estilo para los campos de texto y selección dentro del formulario */
-    .alquiler-form input[type="text"],
-    .alquiler-form input[type="date"],
-    .alquiler-form select {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-
-    /* Estilo para el botón de envío dentro del formulario */
-    .alquiler-form input[type="submit"] {
-        background-color: var(--color-primario); /* Usamos el gris de la paleta */
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-        transition: background-color 0.5s ease;
-    }
-
-        /* Efecto al pasar el mouse por encima del botón */
-        .alquiler-form input[type="submit"]:hover {
-            background-color: var(--color-acciones); /* Hover usa el color de acción */
-        }
-
-    /* Estilo para los mensajes de error de validación */
-    .alquiler-form .text-danger {
-        color: #e74c3c;
-    }
-
-    /* Estilo para el contenedor de fechas previas de alquiler */
-    .alquiler-form .rental-dates {
-        background-color: #f1f1f1;
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin-top: 20px;
-    }
-
-        /* Estilo para la lista de fechas de alquiler previas */
-        .alquiler-form .rental-dates ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .alquiler-form .rental-dates li {
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 5px;
-        }
-
-
-
-    /* Estilo del contenedor que muestra el formulario y las fechas al lado */
-    .alquiler-form .row {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-    }
-
-    .alquiler-form .col-md-4 {
-        flex: 0 0 48%;
-    }
-
-    .alquiler-form .col-md-8 {
-        flex: 0 0 48%;
-    }
 
 /*ESTILOS DE FILTRADO Y MAESTROS*/
 .d-flex-select {
@@ -722,8 +556,6 @@ textarea.form-control {
         margin-top: 5px; /* Espacio entre el select y el label */
     }
 
-
-
 /*PAGINA DE HOME INICIO*/
 .publicidad-video {
     width: 50%; /* Dos tercios del ancho de la pantalla */
@@ -765,8 +597,6 @@ textarea.form-control {
         transition: ease 0.9s;
         opacity: 1;
     }
-
-
 
 /* Estilo para el texto */
 .publicidad1-texto,

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using TiendaAlquiler.Models;
 using TiendaAlquiler.Data;
-using Microsoft.AspNetCore.Authorization;
-using System.Reflection.Metadata.Ecma335;
+using TiendaAlquiler.Models;
 
 
 namespace TiendaAlquiler.Controllers

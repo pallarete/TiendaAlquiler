@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using TiendaAlquiler.Models;
 using TiendaAlquiler.Data;
+using TiendaAlquiler.Models;
 
 
 namespace TiendaAlquiler.Controllers
@@ -152,6 +150,11 @@ namespace TiendaAlquiler.Controllers
                     CargarListas(alquiler);
                     return View(alquiler);
                 }
+                if (!ModelState.IsValid)
+                {
+                    CargarListas(alquiler);
+                    return View(alquiler);
+                }
 
                 // Calcular el número de días de alquiler
                 var diasAlquiler = (fechaDevolucion - fechaAlquiler).Days;
@@ -176,6 +179,11 @@ namespace TiendaAlquiler.Controllers
             // Obtener el coche y usuario previamente seleccionado
             ViewData["CocheId"] = new SelectList(_context.Coches, "CocheId", "Marca", alquiler.CocheId);
             ViewData["UsuarioId"] = new SelectList(_userManager.Users, "Id", "UserName", alquiler.UsuarioId);
+
+            // Cargar las fechas de alquiler previas para el coche seleccionado
+            ViewData["Alquilers"] = _context.Alquilers
+                .Where(a => a.CocheId == alquiler.CocheId)
+                .ToList();
         }
 
 

@@ -70,9 +70,9 @@
 
     <!-- Fechas de alquiler previas -->
     <div class="col-md-6">
-        @if (ViewData["Alquilers"] != null && ((List<TiendaAlquiler.Models.Alquiler>)ViewData["Alquilers"]).Any())
-        {
-            <div class="rental-dates mt-4">
+        <div class="rental-dates mt-4">
+            @if (ViewData["Alquilers"] != null && ((List<TiendaAlquiler.Models.Alquiler>)ViewData["Alquilers"]).Any())
+            {
                 <h3>Fechas de Alquiler Anteriores</h3>
                 <ul class="list-group">
                     @foreach (var alquiler in (List<TiendaAlquiler.Models.Alquiler>)ViewData["Alquilers"])
@@ -80,8 +80,12 @@
                         <li class="list-group-item">Desde: @alquiler.FechaAlquiler.ToShortDateString() - Hasta: @alquiler.FechaDevolucion.ToShortDateString()</li>
                     }
                 </ul>
-            </div>
-        }
+            }
+            else
+            {
+                <p>No hay alquileres previos para este coche</p>
+            }
+        </div>
     </div>
 </div>
 

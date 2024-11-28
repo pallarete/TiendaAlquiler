@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.IO;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using TiendaAlquiler.Models;
 using System.Drawing; // Asegúrate de incluir este espacio de nombres
 using System.Drawing.Imaging;
 using TiendaAlquiler.Data;
-using Microsoft.AspNetCore.Authorization;
+using TiendaAlquiler.Models;
 
 
 namespace TiendaAlquiler.Controllers
