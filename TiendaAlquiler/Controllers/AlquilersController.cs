@@ -23,21 +23,38 @@ namespace TiendaAlquiler.Controllers
         }
 
         // GET: Alquilers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? cocheId = null, string usuarioId = null)
         {
-            var ultimoAlquiler = await _context.Alquilers
+            var query = _context.Alquilers
                 .Include(a => a.Coche)
                 .Include(a => a.Usuario)
-                .OrderByDescending(a => a.FechaAlquiler) // Ordena por fecha más reciente
-                .FirstOrDefaultAsync(); // Obtiene el último alquiler
+                .AsQueryable();
+
+            // Filtrar por coche y usuario si se proporcionan
+            if (cocheId.HasValue)
+            {
+                query = query.Where(a => a.CocheId == cocheId);
+            }
+
+            if (!string.IsNullOrEmpty(usuarioId))
+            {
+                query = query.Where(a => a.UsuarioId == usuarioId);
+            }
+
+            // Ordenar por fecha más reciente y obtener el último alquiler
+            var ultimoAlquiler = await query
+                .OrderByDescending(a => a.FechaAlquiler)
+                .FirstOrDefaultAsync();
 
             if (ultimoAlquiler == null)
             {
-                return View(new List<Alquiler>()); // Devuelve una lista vacía si no hay alquileres
+                return View(new List<Alquiler>()); // Lista vacía si no hay resultados
             }
 
-            return View(new List<Alquiler> { ultimoAlquiler }); // Envía el alquiler como una lista
+            return View(new List<Alquiler> { ultimoAlquiler }); // Devolver una lista con el alquiler encontrado
         }
+
+
 
         // GET: Alquilers/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -170,8 +187,28 @@ namespace TiendaAlquiler.Controllers
 
             // Si el modelo no es válido, recargar las listas y devolver la vista
             CargarListas(alquiler);
+            // Redirigir a una acción para mostrar el último alquiler creado
             return View(alquiler);
         }
+
+        public async Task<IActionResult> DetalleUltimoAlquiler(int cocheId)
+        {
+            // Obtener el último alquiler para el coche dado
+            var ultimoAlquiler = await _context.Alquilers
+                .Where(a => a.CocheId == cocheId)
+                .OrderByDescending(a => a.AlquilerId)
+                .FirstOrDefaultAsync();
+
+            // Validar si existe un alquiler
+            if (ultimoAlquiler == null)
+            {
+                return NotFound("No se encontró ningún alquiler para este coche.");
+            }
+
+            // Pasar el alquiler a la vista
+            return View(new List<Alquiler> { ultimoAlquiler });
+        }
+
 
         // Método para cargar las listas necesarias para la vista
         private void CargarListas(Alquiler alquiler)

@@ -78,16 +78,19 @@
                         <!-- Menú de navegación principal -->
                         @if (User.Identity.IsAuthenticated)
                         {
+                            <li class="nav-item">
+                                <span class="nav-link">Hola, @User.Identity.Name</span>
+                            </li>
                             @if (User.IsInRole("Admin"))
                             {
-                                <li class="nav-item"><a class="nav-link" asp-controller="Coches" asp-action="Index" data-text="Coches">Coches</a></li>
                                 <li class="nav-item"><a class="nav-link" asp-controller="Carrocerias" asp-action="Index" data-text="Carrocerias">Carrocerias</a></li>
                                 <li class="nav-item"><a class="nav-link" asp-controller="Colors" asp-action="Index" data-text="Colores">Colores</a></li>
                                 <li class="nav-item"><a class="nav-link" asp-controller="Decadas" asp-action="Index" data-text="Decadas">Decadas</a></li>
                                 <li class="nav-item"><a class="nav-link" asp-controller="Paises" asp-action="Index" data-text="Paises">Paises</a></li>
                             }
-                            <li class="nav-item"><a href="@Url.Action("Logout", "Usuario")" class="nav-link text-dark">Logout</a></li>
+                            <!-- Solo muestra este enlace "Coches" para usuarios autenticados que no son admins -->
                             <li class="nav-item"><a class="nav-link" asp-controller="Coches" asp-action="Index" data-text="Coches">Coches</a></li>
+                            <li class="nav-item"><a href="@Url.Action("Logout", "Usuario")" class="nav-link text-dark">Logout</a></li>
                         }
                         else
                         {
@@ -95,7 +98,6 @@
                             <li class="nav-item"><a class="nav-link" asp-controller="Usuario" asp-action="Register" data-text="Registro">Registro</a></li>
                             <li class="nav-item"><a class="nav-link" asp-controller="Usuario" asp-action="Login" data-text="Login">Login</a></li>
                             <li class="nav-item"><a class="nav-link" asp-controller="Coches" asp-action="Index" data-text="Coches">Coches</a></li>
-
                         }
                     </ul>
                 </div>
