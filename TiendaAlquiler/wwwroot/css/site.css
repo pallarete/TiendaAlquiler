@@ -69,8 +69,6 @@ section {
     border-radius: 10px;
 }
 
-/* ESTILO PARA ENLACES EN GENERAL*/
-
 /* CONTENEDOR PRINCIPAL*/
 main {
     flex: 1;
@@ -83,9 +81,7 @@ main {
     justify-content: space-between;
 }
 /* Si Falla se quita!!!!!!!!! */
-form {
-    width: 100%; /* Asegúrate de que el formulario se adapte al contenedor */
-}
+
 /*ENCABEZADOS*/
 h1, h2, h3 {
     font-family: 'Roboto', sans-serif;
@@ -174,6 +170,30 @@ p, label, button {
         background-color: #357ab8; /* Azul más oscuro */
         transform: scale(1.05);
     }
+/*Este es el boton de volver arribaF*/
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: none; /* Oculto inicialmente */
+    background-color: var(--color-primario); /* Cambia al color que prefieras */
+    color: var(--color-blanco);
+    border: none;
+    border-radius: 50%; /* Hace que sea redondo */
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px var(--color-sombra); /* Añade una sombra */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
+
+    .back-to-top:hover {
+        background-color: var(--color-secundario); /* Color más destacado al pasar el ratón */
+        transform: scale(1.1); /* Efecto de zoom al hacer hover */
+    }
 
 
 /* ESTILOS DE LA NAVBAR ------------------------------------------------------------------------*/
@@ -234,7 +254,6 @@ header {
 }
 
 /* Navbar estilos */
-/* Navbar estilos */
 .navbar-nav .nav-item .nav-link {
     position: relative;
     padding: 0.3rem 1rem;
@@ -284,13 +303,13 @@ header {
 .table {
     width: 100%;
     margin: 20px auto;
+    font-weight: bold;
     font-size: 1rem;
     border-collapse: collapse;
     color: var(--color-texto);
     table-layout: auto; /* Ajusta automáticamente el tamaño de las columnas */
     border-radius: 10px; /* Redondear esquinas */
     overflow: hidden; /* Evita contenido fuera de bordes redondeados */
-    border: 1px solid #ddd; /* Borde sutil */
     opacity: 0.85
 }
 
@@ -469,7 +488,7 @@ textarea.form-control {
         box-sizing: border-box;
     }
 
-  
+
 
     .alquiler-form .text-danger {
         color: #e74c3c;
@@ -522,12 +541,12 @@ textarea.form-control {
     margin: auto;
     padding: 20px;
     border-radius: 10px;
-    background-color: var(--color-primario);
-    opacity: 0.85
+    background-color: rgba(var(--color-primario-rgb), 0.7); /* Opacidad del 70% */
 }
 
     /* Estilo para las columnas dentro del formulario */
     .d-flex-select .col-md-3 {
+        max-width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -537,6 +556,7 @@ textarea.form-control {
 
     /* Estilo para los labels */
     .d-flex-select label {
+        color: black;
         padding: 8px;
         background-color: white;
         font-size: 1rem;
@@ -549,7 +569,7 @@ textarea.form-control {
     /* Estilo para los selects */
     .d-flex-select .form-select {
         width: 100%; /* Ocupa todo el ancho del contenedor */
-        max-width: 390px; /* Limita el ancho máximo */
+        max-width: 100%; /* Limita el ancho máximo */
         padding: 0.5rem;
         font-size: 1rem;
         border-radius: 5px;
@@ -669,77 +689,24 @@ textarea.form-control {
 }
 
 /* PAGINA DE BORRAR COCHE */
-.page-title {
-    font-size: 2.5rem;
-    color: #333;
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
 
-/* Texto de confirmación */
-.confirmation-text {
-    font-size: 1.5rem;
-    color: #444;
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-/* Estilo para el detalle del coche */
-.car-details {
-    margin-bottom: 2rem;
-}
-
-/* Título de detalles del coche */
-.car-detail-title {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 1rem;
-}
-
-/* Lista de detalles */
-.car-detail-list dt {
-    font-weight: bold;
-    color: #555;
-}
-
-.car-detail-list dd {
-    font-size: 1.1rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-}
-
-/* Estilo del boton de borrar */
+/* Estilo del div de borrar */
 .form-actions {
+    background-color: rgba(255, 255, 255, 0.2); /* Blanco con opacidad del 80% */
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 10px;
+    margin: auto;
+    box-sizing: border-box;
 }
 
-/* Estilo unificado para todos los botones */
-.back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-    display: none; /* Oculto inicialmente */
-    background-color: var(--color-primario); /* Cambia al color que prefieras */
-    color: var(--color-blanco);
-    border: none;
-    border-radius: 50%; /* Hace que sea redondo */
-    width: 50px;
-    height: 50px;
-    font-size: 18px;
-    text-align: center;
-    cursor: pointer;
-    box-shadow: 0px 4px 6px var(--color-sombra); /* Añade una sombra */
-    transition: opacity 0.3s ease, transform 0.3s ease; /* Transición suave */
-}
-
-    .back-to-top:hover {
-        background-color: var(--color-secundario); /* Color más destacado al pasar el ratón */
-        transform: scale(1.1); /* Efecto de zoom al hacer hover */
+    .form-actions button, .form-actions a {
+        margin: 0 10px; /* Esto agregará un margen horizontal a cada elemento */
     }
 
-/*Modales de aviso de */
+/*MODALES ADVERTENCIA */
 #modalAdvertencia {
     display: none; /* Oculto por defecto */
     position: fixed;

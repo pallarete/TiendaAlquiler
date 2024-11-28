@@ -85,11 +85,18 @@
     }
     else
     {
-        <a class="btn btn-primary btn-custom disabled"
+        <a class="btn btn-highlight"
            title="Inicia sesión para poder alquilar este coche">
             Alquilar este coche
         </a>
-        <p class="text-danger mt-2">Debes iniciar sesión o registrarte para alquilar este coche.</p>
+        <p class="text-danger mt-2"
+           style="background-color: #f8f9fa;
+           font-weight: bold;
+           border: 3px solid green;
+           padding: 10px;
+           border-radius: 8px;">
+            Debes iniciar sesión o registrarte para alquilar este coche.
+        </p>
     }
 
     <a asp-action="Index" class="btn btn-secondary">
