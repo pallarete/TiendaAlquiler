@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TiendaAlquiler.Models;
 using Newtonsoft.Json;
+using TiendaAlquiler.Models;
 
 namespace TiendaAlquiler.Controllers
 {
