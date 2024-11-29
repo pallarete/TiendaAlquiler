@@ -59,28 +59,29 @@ namespace TiendaAlquiler.Controllers
         [HttpGet]
         public async Task<IActionResult> Create(int cocheId, string usuarioId)
         {
-            // Verificar si el coche existe en la base de datos
-            var coche = await _context.Coches
-                .FirstOrDefaultAsync(c => c.CocheId == cocheId); // Obtiene el coche por su ID
+            //Verifico si el coche existe en la Database
+            var coche = await _context.Coches.FirstOrDefaultAsync(c => c.CocheId == cocheId);
 
-            // Verificar si el usuario existe usando UserManager
+            //Verifico que el usuario exista con userManager
             var usuario = await _userManager.FindByIdAsync(usuarioId);
+
+            //Vuelvo a comprobar si existen esos datos
 
             if (coche == null || usuario == null)
             {
-                return NotFound(); // Si no se encuentra el coche o el usuario, devolver 404
+                return NotFound();
             }
 
-            // Crear una instancia de Alquiler con el coche y el usuario seleccionados
             var alquiler = new Alquiler
             {
                 CocheId = cocheId,
-                UsuarioId = usuarioId,
+                UsuarioId = usuarioId
             };
 
             // Pasar solo el nombre del usuario y la marca del coche a la vista
             ViewData["CocheMarca"] = coche.Marca;
             ViewData["UsuarioNombre"] = usuario.UserName;
+
             // Cargar los alquileres previos de este coche, si existen
             ViewData["Alquilers"] = await _context.Alquilers
                 .Where(a => a.CocheId == cocheId)  // Filtrar por el CocheId del coche seleccionado
@@ -92,15 +93,20 @@ namespace TiendaAlquiler.Controllers
         }
 
 
-
         // POST: Alquilers/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AlquilerId,CocheId,UsuarioId,FechaAlquiler,FechaDevolucion,NumeroTarjeta,FechaExpiracion,CVC")] Alquiler alquiler)
         {
+            // Revisar los errores de validación del modelo
+            if (!ModelState.IsValid)
+            {
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    Console.WriteLine(error.ErrorMessage);  // Depuración
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 // Obtener el coche desde la base de datos utilizando el CocheId
@@ -110,7 +116,6 @@ namespace TiendaAlquiler.Controllers
                 if (coche == null)
                 {
                     ModelState.AddModelError("", "El coche no existe");
-                    CargarListas(alquiler); // Método para recargar los datos necesarios en caso de error
                     return View(alquiler);
                 }
 
@@ -118,30 +123,28 @@ namespace TiendaAlquiler.Controllers
                 DateTime fechaAlquiler = alquiler.FechaAlquiler.ToDateTime(new TimeOnly());
                 DateTime fechaDevolucion = alquiler.FechaDevolucion.ToDateTime(new TimeOnly());
 
+                // Depuración de las fechas
+                Console.WriteLine($"Fecha Alquiler: {alquiler.FechaAlquiler}, Fecha Devolución: {alquiler.FechaDevolucion}");
+
                 // Validar que la fecha de devolución es posterior a la fecha de alquiler
                 if (fechaDevolucion <= fechaAlquiler)
                 {
                     ModelState.AddModelError("", "La fecha de devolución debe ser posterior a la fecha de alquiler.");
-                    CargarListas(alquiler);
                     return View(alquiler);
                 }
 
                 // Verificar si ya existe un alquiler para el mismo coche en el rango de fechas
-                var alquileresCoche = await _context.Alquilers
-                    .Where(a => a.CocheId == alquiler.CocheId)
-                    .ToListAsync();
-
-                bool fechasSolapadas = alquileresCoche
-                    .Any(a =>
-                        (fechaAlquiler >= a.FechaAlquiler.ToDateTime(new TimeOnly()) && fechaAlquiler < a.FechaDevolucion.ToDateTime(new TimeOnly())) ||
-                        (fechaDevolucion > a.FechaAlquiler.ToDateTime(new TimeOnly()) && fechaDevolucion <= a.FechaDevolucion.ToDateTime(new TimeOnly())) ||
-                        (fechaAlquiler <= a.FechaAlquiler.ToDateTime(new TimeOnly()) && fechaDevolucion >= a.FechaDevolucion.ToDateTime(new TimeOnly()))
-                    );
+                bool fechasSolapadas = await _context.Alquilers.AnyAsync(a =>
+                    a.CocheId == alquiler.CocheId &&
+                    (
+                        // Verificar si las fechas se solapan en cualquier punto
+                        (fechaAlquiler < a.FechaDevolucion.ToDateTime(new TimeOnly()) && fechaDevolucion > a.FechaAlquiler.ToDateTime(new TimeOnly()))
+                    )
+                );
 
                 if (fechasSolapadas)
                 {
                     ModelState.AddModelError("", "Este coche ya está alquilado en el rango de fechas seleccionado.");
-                    CargarListas(alquiler);
                     return View(alquiler);
                 }
 
@@ -149,12 +152,6 @@ namespace TiendaAlquiler.Controllers
                 if (!ValidarTarjeta(alquiler))
                 {
                     ModelState.AddModelError("", "Los datos de la tarjeta no son válidos.");
-                    CargarListas(alquiler);
-                    return View(alquiler);
-                }
-                if (!ModelState.IsValid)
-                {
-                    CargarListas(alquiler);
                     return View(alquiler);
                 }
 
@@ -163,27 +160,30 @@ namespace TiendaAlquiler.Controllers
                 alquiler.PrecioFinal = coche.PrecioAlquiler * diasAlquiler;
 
                 // Guardar el alquiler en la base de datos
-                _context.Add(alquiler);
-                await _context.SaveChangesAsync();
+                try
+                {
+                    _context.Add(alquiler);
+                    await _context.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", $"Error al guardar el alquiler: {ex.Message}");
+                    return View(alquiler);
+                }
 
                 // Redirigir a la lista de alquileres o donde se desee
                 return RedirectToAction(nameof(Index));
             }
 
-            // Si el modelo no es válido, recargar las listas y devolver la vista
-            CargarListas(alquiler);
-            // Redirigir a una acción para mostrar el último alquiler creado
+            // Si el modelo no es válido, cargar los alquileres previos de este coche, si existen
+            ViewData["Alquilers"] = await _context.Alquilers
+                .Where(a => a.CocheId == alquiler.CocheId)
+                .ToListAsync();
+
             return View(alquiler);
         }
 
-
-
-
-
-
-
-
-
+   
 
 
 
@@ -204,22 +204,6 @@ namespace TiendaAlquiler.Controllers
             // Pasar el alquiler a la vista
             return View(new List<Alquiler> { ultimoAlquiler });
         }
-
-
-        // Método para cargar las listas necesarias para la vista
-        private void CargarListas(Alquiler alquiler)
-        {
-            // Obtener el coche y usuario previamente seleccionado
-            ViewData["CocheId"] = new SelectList(_context.Coches, "CocheId", "Marca", alquiler.CocheId);
-            ViewData["UsuarioId"] = new SelectList(_userManager.Users, "Id", "UserName", alquiler.UsuarioId);
-
-            // Cargar las fechas de alquiler previas para el coche seleccionado
-            ViewData["Alquilers"] = _context.Alquilers
-                .Where(a => a.CocheId == alquiler.CocheId)
-                .ToList();
-        }
-
-
 
         // Método para simular la validación de la tarjeta
         private bool ValidarTarjeta(Alquiler alquiler)
