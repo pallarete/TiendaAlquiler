@@ -10,14 +10,9 @@ using TiendaAlquiler.Models;
 
 namespace TiendaAlquiler.Controllers
 {
-    public class CochesController : Controller
+    public class CochesController(TiendaAlquilerDBContext context) : Controller
     {
-        private readonly TiendaAlquilerDBContext _context;
-
-        public CochesController(TiendaAlquilerDBContext context)
-        {
-            _context = context;
-        }
+        private readonly TiendaAlquilerDBContext _context = context;
 
         // GET: Coches
         public async Task<IActionResult> Index(int? paisId, int? decadaId, int? colorId, int? carroceriaId)
@@ -128,7 +123,7 @@ namespace TiendaAlquiler.Controllers
                 await _context.SaveChangesAsync();
 
                 //Procesamos las fotos solo si se han cargado archivos
-                if (archivos != null && archivos.Any())
+                if (archivos != null && archivos.Length != 0)
                 {
 
                     foreach (var archivo in archivos)
@@ -145,16 +140,14 @@ namespace TiendaAlquiler.Controllers
                                 //Establecemos el tamaño
                                 int width = 1200;
                                 int height = 800;
-                                using (var resizedImage = new Bitmap(image, new Size(width, height)))
-                                {
-                                    //guarda la imagen redimensionada
-                                    resizedImage.Save(filePath, ImageFormat.Jpeg);
-                                }
+                                using var resizedImage = new Bitmap(image, new Size(width, height));
+                                //guarda la imagen redimensionada
+                                resizedImage.Save(filePath, ImageFormat.Jpeg);
                             }
 
                             //Creamos una nueva foto y la asociamos al coche
 
-                            Foto foto = new Foto
+                            Foto foto = new()
                             {
                                 CocheId = coche.CocheId, //Asigno el CocheId a la foto
                                 RutaAcceso = Path.Combine("imagenes", uniqueFileName)
@@ -228,7 +221,7 @@ namespace TiendaAlquiler.Controllers
                     await _context.SaveChangesAsync();
 
                     // Procesamos las fotos solo si se han cargado archivos
-                    if (archivos != null && archivos.Any())
+                    if (archivos != null && archivos.Length != 0)
                     {
                         foreach (var archivo in archivos)
                         {
@@ -243,15 +236,13 @@ namespace TiendaAlquiler.Controllers
                                 {
                                     int width = 1200;
                                     int height = 800;
-                                    using (var resizedImage = new Bitmap(image, new Size(width, height)))
-                                    {
-                                        // Guardamos la imagen redimensionada
-                                        resizedImage.Save(filePath, ImageFormat.Jpeg);
-                                    }
+                                    using var resizedImage = new Bitmap(image, new Size(width, height));
+                                    // Guardamos la imagen redimensionada
+                                    resizedImage.Save(filePath, ImageFormat.Jpeg);
                                 }
 
                                 // Creamos una nueva foto y la asociamos al coche
-                                Foto foto = new Foto
+                                Foto foto = new()
                                 {
                                     CocheId = coche.CocheId,
                                     RutaAcceso = Path.Combine("imagenes", uniqueFileName)

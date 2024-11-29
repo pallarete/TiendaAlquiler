@@ -1,4 +1,6 @@
 ﻿@model TiendaAlquiler.Models.Alquiler
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<Usuario> UserManager
 
 @{
     ViewData["Title"] = "Crear Alquiler";
@@ -14,17 +16,17 @@
             <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
 
             <!-- Coche -->
+            @Html.HiddenFor(x => x.Coche.Marca)
             <div class="form-group">
                 <label class="control-label">Coche</label>
-                @* Mostrar la marca del coche en lugar de hacer un cast explícito *@
-                <p>@ViewData["CocheMarca"]</p>
+                <p>@ViewData["CocheMarca"] - @ViewData["CocheModelo"]</p> <!-- Mostrar marca y modelo del coche -->
             </div>
 
             <!-- Usuario -->
+            @Html.HiddenFor(x => x.Usuario.UserName)
             <div class="form-group">
                 <label class="control-label">Usuario</label>
-                @* Mostrar el nombre de usuario en lugar de hacer un cast explícito *@
-                <p>@ViewData["UsuarioNombre"]</p>
+                <p>@ViewData["UsuarioNombre"]</p> <!-- Mostrar nombre del usuario -->
             </div>
 
             <!-- Fecha de Alquiler -->

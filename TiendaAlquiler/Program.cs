@@ -8,7 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 builder.Logging.SetMinimumLevel(LogLevel.Debug); // Opcional: más detalles en los logs
-builder.Logging.SetMinimumLevel(LogLevel.Trace); // O LogLevel.Debug si prefieres menos detallado
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -16,7 +15,6 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<TiendaAlquilerDBContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionSqlServer")));
 
-//builder.Services.AddDefaultIdentity<Usuario>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<TiendaAlquilerDBContext>();
 
 builder.Services.AddIdentity<Usuario, IdentityRole>(options =>
    options.SignIn.RequireConfirmedAccount = false)
@@ -68,7 +66,7 @@ static async Task CreateRolesAsync(IServiceProvider services)
     using var scope = services.CreateScope();
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-    string[] roles = { "Admin", "User" };
+    string[] roles = ["Admin", "User"];
 
     foreach (var role in roles)
     {

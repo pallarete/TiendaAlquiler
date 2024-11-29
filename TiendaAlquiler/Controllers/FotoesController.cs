@@ -11,16 +11,10 @@ using TiendaAlquiler.Models;
 namespace TiendaAlquiler.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class FotoesController : Controller
+    public class FotoesController(TiendaAlquilerDBContext context, IWebHostEnvironment hostingEnvironment) : Controller
     {
-        private readonly TiendaAlquilerDBContext _context;
-        private readonly IWebHostEnvironment _hostingEnvironment;
-
-        public FotoesController(TiendaAlquilerDBContext context, IWebHostEnvironment hostingEnvironment)
-        {
-            _context = context;
-            _hostingEnvironment = hostingEnvironment;
-        }
+        private readonly TiendaAlquilerDBContext _context = context;
+        private readonly IWebHostEnvironment _hostingEnvironment = hostingEnvironment;
 
         // GET: Fotoes
         public async Task<IActionResult> Index()
@@ -76,11 +70,10 @@ namespace TiendaAlquiler.Controllers
                     //Le digo que tamaño quiero
                     int width = 300;
                     int height = 300;
-                    using (var resizedImage = new Bitmap(image, new Size(width, height)))
-                    {
-                        //guarda la imagen redimensionada
-                        resizedImage.Save(filePath, ImageFormat.Jpeg);
-                    }
+                    Bitmap bitmap = new(image, new Size(width, height));
+                    using var resizedImage = bitmap;
+                    //guarda la imagen redimensionada
+                    resizedImage.Save(filePath, ImageFormat.Jpeg);
                 }
                 foto.RutaAcceso = Path.Combine("imagenes", uniqueFileName);
 

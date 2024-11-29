@@ -9,7 +9,7 @@ namespace TiendaAlquiler.Models
         [Required]
         [Display(Name = "Número de Tarjeta")]
         [CreditCard] // Validación para asegurarse de que el formato de la tarjeta sea válido
-        public string NumeroTarjeta { get; set; }
+        public string  NumeroTarjeta { get; set; }
 
         [Required]
         [Display(Name = "Nombre del Titular")]
