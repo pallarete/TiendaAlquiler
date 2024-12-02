@@ -1,20 +1,15 @@
 ﻿@model IEnumerable<TiendaAlquiler.Models.Coche>
-
 @{
     ViewData["Title"] = "Index";
 }
-
 @if (User.Identity  !=null &&User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 {
     <div class="d-flex justify-content-center mt-4">
         <a asp-action="Create" class="btn btn-highlight">Crear nuevo coche</a>
     </div>
 }
-
 <h1>¿Qué coche buscas? Aquí los tienes todos...</h1>
-
 <!-- Formulario de Filtros -->
-
 <div class="d-flex-select justify-content-center">
     <form asp-action="Index" method="get" class="row g-3 align-items-end">
         <div class="col-md-3 col-sm-6 col-12 text-center">
@@ -62,8 +57,6 @@
         </div>
     </form>
 </div>
-
-
 
 <!-- Tabla de Coches -->
 <div class="table-responsive">

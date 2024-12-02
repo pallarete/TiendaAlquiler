@@ -14,49 +14,42 @@
     <div class="col-md-6">
         <form asp-action="Create" method="post" class="alquiler-form">
             <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
-
             <!-- Coche -->
             <div class="form-group">
                 <label class="control-label">Coche</label>
                 <input type="hidden" name="CocheId" value="@Model.CocheId" />
                 <p>@Model.Coche?.Marca</p>
             </div>
-
             <!-- Usuario -->
             <div class="form-group">
                 <label class="control-label">Usuario</label>
                 <input type="hidden" name="UsuarioId" value="@Model.UsuarioId" />
                 <p>@Model.Usuario?.UserName</p>
             </div>
-
             <!-- Fecha de Alquiler -->
             <div class="form-group">
                 <label asp-for="FechaAlquiler" class="control-label">Fecha de Alquiler</label>
                 <input asp-for="FechaAlquiler" class="form-control" type="date" required />
                 <span asp-validation-for="FechaAlquiler" class="text-danger"></span>
             </div>
-
             <!-- Fecha de Devolución -->
             <div class="form-group">
                 <label asp-for="FechaDevolucion" class="control-label">Fecha de Devolución</label>
                 <input asp-for="FechaDevolucion" class="form-control" type="date" required />
                 <span asp-validation-for="FechaDevolucion" class="text-danger"></span>
             </div>
-
             <!-- Número de Tarjeta -->
             <div class="form-group">
                 <label asp-for="NumeroTarjeta" class="control-label">Número de Tarjeta</label>
                 <input asp-for="NumeroTarjeta" class="form-control" type="text" maxlength="16" required />
                 <span asp-validation-for="NumeroTarjeta" class="text-danger"></span>
             </div>
-
             <!-- Fecha de Expiración -->
             <div class="form-group">
                 <label asp-for="FechaExpiracion" class="control-label">Fecha de Expiración (MM/AA)</label>
                 <input asp-for="FechaExpiracion" class="form-control" type="text" maxlength="5" placeholder="MM/AA" required />
                 <span asp-validation-for="FechaExpiracion" class="text-danger"></span>
             </div>
-
             <!-- CVC -->
             <div class="form-group">
                 <label asp-for="CVC" class="control-label">CVC</label>

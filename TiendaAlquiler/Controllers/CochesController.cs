@@ -162,7 +162,6 @@ namespace TiendaAlquiler.Controllers
             }
 
             //En caso de error muestro formulario de creacion
-
             ViewBag.CarroceriaId = new SelectList(_context.Carroceria.OrderBy(c => c.Tipo), "CarroceriaId", "Tipo", coche.CarroceriaId);
             ViewBag.ColorId = new SelectList(_context.Colors.OrderBy(c => c.Nombre), "ColorId", "Nombre", coche.ColorId);
             ViewBag.DecadaId = new SelectList(_context.Decada.OrderBy(c => c.AnioInicio), "DecadaId", "AnioInicio", coche.DecadaId);
