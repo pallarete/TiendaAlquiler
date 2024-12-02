@@ -1,13 +1,10 @@
 ﻿@model TiendaAlquiler.Models.Coche
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<Usuario> UserManager
-
 @{
     ViewData["Title"] = "Detalles del Coche";
 }
-
 <h1>Información del coche</h1>
-
 <table class="table">
     <thead>
         <tr>
@@ -34,7 +31,6 @@
         </tr>
     </tbody>
 </table>
-
 <!-- SECCIÓN DE FOTOS -->
 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
@@ -67,15 +63,12 @@
         <span class="visually-hidden">Siguiente</span>
     </button>
 </div>
-
 <!-- SECCIÓN DE ALQUILER Y VUELTA AL LISTADO -->
 <div class="button-container mt-3">
     @if (User.Identity.IsAuthenticated)
     {
-
         var userId = (UserManager.GetUserId(User) ?? string.Empty).Trim();
         userId = userId ?? string.Empty;
-
         <a asp-controller="Alquilers"
            asp-action="Create"
            asp-route-cocheId="@Model.CocheId"
@@ -93,13 +86,10 @@
             Debes iniciar sesión o registrarte para alquilar este coche.
         </p>
     }
-
     <a asp-action="Index" class="btn btn-secondary">
         Volver al listado
     </a>
 </div>
-
-
 <!-- SECCIÓN DE LA DESCRIPCIÓN -->
 <div class="description-section container my-4">
     @if (!string.IsNullOrEmpty(Model.Description))
@@ -107,7 +97,6 @@
         <h4 class="mb-3">Descripción</h4>
         <p class="text-muted">@Model.Description</p>
     }
-
     @if (User.IsInRole("Admin"))
     {
         <h4 class="mt-4">Agregar o Editar Descripción</h4>
