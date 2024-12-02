@@ -3,11 +3,9 @@
 @{
     ViewData["Title"] = "Edit";
 }
-
 <h1>Editar datos coche</h1>
 <div class="container">
     <div class="row justify-content-center table">
-
         <div class="col-md-6 col-lg-4 detail-card">
             <form asp-action="Edit" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -72,9 +70,6 @@
         </div>
     </div>
 </div>
-
-
-
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
