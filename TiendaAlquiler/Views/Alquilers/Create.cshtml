@@ -16,17 +16,17 @@
             <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
 
             <!-- Coche -->
-            @Html.HiddenFor(x => x.Coche.Marca)
             <div class="form-group">
                 <label class="control-label">Coche</label>
-                <p>@ViewData["CocheMarca"] - @ViewData["CocheModelo"]</p> <!-- Mostrar marca y modelo del coche -->
+                <input type="hidden" name="CocheId" value="@Model.CocheId" />
+                <p>@Model.Coche?.Marca</p>
             </div>
 
             <!-- Usuario -->
-            @Html.HiddenFor(x => x.Usuario.UserName)
             <div class="form-group">
                 <label class="control-label">Usuario</label>
-                <p>@ViewData["UsuarioNombre"]</p> <!-- Mostrar nombre del usuario -->
+                <input type="hidden" name="UsuarioId" value="@Model.UsuarioId" />
+                <p>@Model.Usuario?.UserName</p>
             </div>
 
             <!-- Fecha de Alquiler -->
@@ -79,11 +79,11 @@
     <!-- Fechas de alquiler previas -->
     <div class="col-md-6">
         <div class="rental-dates mt-4">
-            @if (ViewData["Alquilers"] != null && ((List<TiendaAlquiler.Models.Alquiler>)ViewData["Alquilers"]).Any())
+            @if (ViewData["Alquilers"] is List<TiendaAlquiler.Models.Alquiler> alquileres && alquileres.Any())
             {
                 <h3>Fechas de Alquiler Anteriores</h3>
                 <ul class="list-group">
-                    @foreach (var alquiler in (List<TiendaAlquiler.Models.Alquiler>)ViewData["Alquilers"])
+                    @foreach (var alquiler in alquileres)
                     {
                         <li class="list-group-item">
                             Desde: @alquiler.FechaAlquiler.ToShortDateString() - Hasta: @alquiler.FechaDevolucion.ToShortDateString()

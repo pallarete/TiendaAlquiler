@@ -8,16 +8,11 @@ using TiendaAlquiler.Models;
 namespace TiendaAlquiler.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class CarroceriasController : Controller
+    public class CarroceriasController(TiendaAlquilerDBContext context) : Controller
     {
-        private readonly TiendaAlquilerDBContext _context;
+        private readonly TiendaAlquilerDBContext _context = context;
 
-        public CarroceriasController(TiendaAlquilerDBContext context)
-        {
-            _context = context;
-        }
-
-        // GET: Carrocerias
+        // GET Indice Carrocerias
         public async Task<IActionResult> Index()
         {
             var carroceriasOrdenadas = await _context.Carroceria
@@ -26,7 +21,7 @@ namespace TiendaAlquiler.Controllers
             return View(carroceriasOrdenadas);
         }
 
-        // GET: Carrocerias/Details/5
+        // GET: Detalles Carrocerias
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,15 +39,13 @@ namespace TiendaAlquiler.Controllers
             return View(carroceria);
         }
 
-        // GET: Carrocerias/Create
+        // GET: Crear Carrocerias
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Carrocerias/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Crear Carrocerias
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CarroceriaId,Tipo")] Carroceria carroceria)
@@ -66,7 +59,7 @@ namespace TiendaAlquiler.Controllers
             return View(carroceria);
         }
 
-        // GET: Carrocerias/Edit/5
+        // GET: Editar Carroceria
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,9 +75,8 @@ namespace TiendaAlquiler.Controllers
             return View(carroceria);
         }
 
-        // POST: Carrocerias/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Editar Carroceria
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CarroceriaId,Tipo")] Carroceria carroceria)
@@ -117,7 +109,7 @@ namespace TiendaAlquiler.Controllers
             return View(carroceria);
         }
 
-        // GET: Carrocerias/Delete/5
+        // GET: Borrar Carroceria
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,7 +127,7 @@ namespace TiendaAlquiler.Controllers
             return View(carroceria);
         }
 
-        // POST: Carrocerias/Delete/5
+        // POST: Borrar Carroceria
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

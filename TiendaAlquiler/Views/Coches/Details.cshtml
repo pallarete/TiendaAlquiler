@@ -72,11 +72,15 @@
 <div class="button-container mt-3">
     @if (User.Identity.IsAuthenticated)
     {
+
+        var userId = (UserManager.GetUserId(User) ?? string.Empty).Trim();
+        userId = userId ?? string.Empty;
+
         <a asp-controller="Alquilers"
            asp-action="Create"
            asp-route-cocheId="@Model.CocheId"
-           asp-route-usuarioId="@UserManager.GetUserId(User)"
-           class="btn btn-highlight">
+           asp-route-usuarioId="@userId"
+       class="btn btn-highlight">
             Alquilar este coche
         </a>
     }
@@ -94,6 +98,7 @@
         Volver al listado
     </a>
 </div>
+
 
 <!-- SECCIÓN DE LA DESCRIPCIÓN -->
 <div class="description-section container my-4">

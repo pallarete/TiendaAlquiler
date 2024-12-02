@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+@if (User.Identity  !=null &&User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 {
     <div class="d-flex justify-content-center mt-4">
         <a asp-action="Create" class="btn btn-highlight">Crear nuevo coche</a>

@@ -8,22 +8,17 @@ using TiendaAlquiler.Models;
 namespace TiendaAlquiler.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class DecadasController : Controller
+    public class DecadasController(TiendaAlquilerDBContext context) : Controller
     {
-        private readonly TiendaAlquilerDBContext _context;
+        private readonly TiendaAlquilerDBContext _context = context;
 
-        public DecadasController(TiendaAlquilerDBContext context)
-        {
-            _context = context;
-        }
-
-        // GET: Decadas
+        // GET: Indice de Decadas
         public async Task<IActionResult> Index()
         {
             return View(await _context.Decada.ToListAsync());
         }
 
-        // GET: Decadas/Details/5
+        // GET: Detalles Decadas
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -41,15 +36,13 @@ namespace TiendaAlquiler.Controllers
             return View(decada);
         }
 
-        // GET: Decadas/Create
+        // GET: Crear una nueva decada (Vista)
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Decadas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Crear una nueva decada (Vista) Confirmar
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("DecadaId,AnioInicio")] Decada decada)
@@ -63,7 +56,7 @@ namespace TiendaAlquiler.Controllers
             return View(decada);
         }
 
-        // GET: Decadas/Edit/5
+        // GET: Editar una Decada (Vista)
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,9 +72,7 @@ namespace TiendaAlquiler.Controllers
             return View(decada);
         }
 
-        // POST: Decadas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Editar una Decada (Vista) Confirmar
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("DecadaId,AnioInicio")] Decada decada)
@@ -114,7 +105,7 @@ namespace TiendaAlquiler.Controllers
             return View(decada);
         }
 
-        // GET: Decadas/Delete/5
+        // GET: Borrar una decada (Vista)
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -132,7 +123,7 @@ namespace TiendaAlquiler.Controllers
             return View(decada);
         }
 
-        // POST: Decadas/Delete/5
+        // POST: Borrar una decada (Vista) Confirmacion
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

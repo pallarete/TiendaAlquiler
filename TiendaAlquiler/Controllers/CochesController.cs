@@ -14,27 +14,27 @@ namespace TiendaAlquiler.Controllers
     {
         private readonly TiendaAlquilerDBContext _context = context;
 
-        // GET: Coches
+        // GET: Indice de Coches (Listado)
         public async Task<IActionResult> Index(int? paisId, int? decadaId, int? colorId, int? carroceriaId)
         {
-            // Ordena los filtros alfabéticamente
+            // Ordeno todos y cada uno de los filtros alfabéticamente
             ViewBag.Paises = _context.Paises
-                .OrderBy(p => p.Nombre) // Ordena los países alfabéticamente
+                .OrderBy(p => p.Nombre)
                 .Select(p => new SelectListItem { Value = p.PaisId.ToString(), Text = p.Nombre })
                 .ToList();
 
             ViewBag.Decadas = _context.Decada
-                .OrderBy(d => d.AnioInicio) // Ordena las décadas alfabéticamente por el año de inicio
+                .OrderBy(d => d.AnioInicio)
                 .Select(d => new SelectListItem { Value = d.DecadaId.ToString(), Text = d.AnioInicio.ToString() })
                 .ToList();
 
             ViewBag.Colores = _context.Colors
-                .OrderBy(c => c.Nombre) // Ordena los colores alfabéticamente
+                .OrderBy(c => c.Nombre)
                 .Select(c => new SelectListItem { Value = c.ColorId.ToString(), Text = c.Nombre })
                 .ToList();
 
             ViewBag.Carrocerias = _context.Carroceria
-                .OrderBy(car => car.Tipo) // Ordena las carrocerías alfabéticamente
+                .OrderBy(car => car.Tipo)
                 .Select(car => new SelectListItem { Value = car.CarroceriaId.ToString(), Text = car.Tipo })
                 .ToList();
 
@@ -63,13 +63,13 @@ namespace TiendaAlquiler.Controllers
                 coches = coches.Where(c => c.CarroceriaId == carroceriaId.Value);
             }
 
-            // Ordenar por marca alfabéticamente
+            // Ordenar por marca alfabéticamente  dentro de la tabla
             coches = coches.OrderBy(c => c.Marca);
 
             return View(await coches.ToListAsync());
         }
 
-        // GET: Coches/Details/5
+        // GET: Obtengo la vista de los detalles de cada coche
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -95,11 +95,11 @@ namespace TiendaAlquiler.Controllers
             return View(coche);
         }
 
-        // GET: Coches/Create
+        // GET: Crear un coche solo si eres "Admin"
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
-            // Ordenar por el campo correspondiente para cada lista desplegable
+            // Ordeno por el campo correspondiente para cada lista desplegable
             ViewData["CarroceriaId"] = new SelectList(_context.Carroceria.OrderBy(c => c.Tipo), "CarroceriaId", "Tipo");
             ViewData["ColorId"] = new SelectList(_context.Colors.OrderBy(c => c.Nombre), "ColorId", "Nombre");
             ViewData["DecadaId"] = new SelectList(_context.Decada.OrderBy(c => c.AnioInicio), "DecadaId", "AnioInicio");
@@ -108,9 +108,7 @@ namespace TiendaAlquiler.Controllers
             return View();
         }
 
-        // POST: Coches/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Crear un coche solo si eres "Admin"
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
@@ -173,7 +171,7 @@ namespace TiendaAlquiler.Controllers
             return View(coche);
         }
 
-        // EDIT: Coches/Edit/5
+        // EDIT: Edito el coche una vez creado
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -196,7 +194,6 @@ namespace TiendaAlquiler.Controllers
         }
 
         // EDITO LOS COCHES EN EL POST
-        // POST: Coches/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
@@ -211,7 +208,7 @@ namespace TiendaAlquiler.Controllers
             {
                 try
                 {
-                    // Actualizamos los datos del coche en la base de datos
+                    // Actualizo los datos del coche en la base de datos
                     _context.Update(coche);
                     await _context.SaveChangesAsync();
 
@@ -220,40 +217,40 @@ namespace TiendaAlquiler.Controllers
                     _context.Fotos.RemoveRange(fotosExistentes);
                     await _context.SaveChangesAsync();
 
-                    // Procesamos las fotos solo si se han cargado archivos
+                    // Proceso las fotos solo si se han cargado archivos
                     if (archivos != null && archivos.Length != 0)
                     {
                         foreach (var archivo in archivos)
                         {
                             if (archivo.Length > 0)
                             {
-                                // Generamos un nombre único para el archivo
+                                // Genero un nombre único para el archivo
                                 var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(archivo.FileName);
                                 var filePath = Path.Combine("wwwroot/imagenes", uniqueFileName);
 
-                                // Creamos una imagen redimensionada
+                                // Creo una imagen redimensionada
                                 using (var image = Image.FromStream(archivo.OpenReadStream()))
                                 {
                                     int width = 1200;
                                     int height = 800;
                                     using var resizedImage = new Bitmap(image, new Size(width, height));
-                                    // Guardamos la imagen redimensionada
+                                    // Guardola imagen redimensionada
                                     resizedImage.Save(filePath, ImageFormat.Jpeg);
                                 }
 
-                                // Creamos una nueva foto y la asociamos al coche
+                                // Creo una nueva foto y la asocio al coche
                                 Foto foto = new()
                                 {
                                     CocheId = coche.CocheId,
                                     RutaAcceso = Path.Combine("imagenes", uniqueFileName)
                                 };
 
-                                // Agregamos la foto al contexto
+                                // Agrego la foto al contexto
                                 _context.Fotos.Add(foto);
                             }
                         }
 
-                        // Guardamos las fotos en la base de datos
+                        // Guardo las fotos en la base de datos
                         await _context.SaveChangesAsync();
                     }
                 }
@@ -271,7 +268,7 @@ namespace TiendaAlquiler.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            // Si hay errores, volvemos a cargar los datos relacionados
+            // Si hay errores, vuelvo a cargar los datos relacionados
             ViewBag.CarroceriaId = new SelectList(_context.Carroceria.OrderBy(c => c.Tipo), "CarroceriaId", "Tipo", coche.CarroceriaId);
             ViewBag.ColorId = new SelectList(_context.Colors.OrderBy(c => c.Nombre), "ColorId", "Nombre", coche.ColorId);
             ViewBag.DecadaId = new SelectList(_context.Decada.OrderBy(c => c.AnioInicio), "DecadaId", "AnioInicio", coche.DecadaId);
@@ -280,7 +277,7 @@ namespace TiendaAlquiler.Controllers
             return View(coche);
         }
 
-        // GET: Coches/Delete/5
+        // GET: Borrar Coche Vista
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -303,11 +300,10 @@ namespace TiendaAlquiler.Controllers
             return View(coche);
         }
 
-        // POST: Coches/Delete/5
+        // POST: Borrar Coche Vista  Confirmacion
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var coche = await _context.Coches.FindAsync(id);
@@ -325,26 +321,7 @@ namespace TiendaAlquiler.Controllers
             return _context.Coches.Any(e => e.CocheId == id);
         }
 
-        //Vamos a crear una accion para obtener la disponibilidad del coche
-        public async Task<IActionResult> ObtenerDisponibilidad(int cocheId)
-        {
-            // Obtener los alquileres para un coche específico
-            var alquileres = await _context.Alquilers
-                .Where(a => a.CocheId == cocheId)
-                .Select(a => new
-                {
-                    title = "Coche no disponible", // Puedes personalizar el título como desees
-                    start = a.FechaAlquiler.ToString("yyyy-MM-dd"), // Fecha de inicio
-                    end = a.FechaDevolucion.ToString("yyyy-MM-dd"), // Fecha de finalización
-                    description = "Alquiler del coche" // Puedes agregar más detalles si es necesario
-                })
-                .ToListAsync();
-
-            // Retornar los datos como JSON
-
-            return Json(alquileres);
-
-        }
+        //Puedo cambiar La descripcion Del coche
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ActualizarDescripcion(int CocheId, string Descripcion)

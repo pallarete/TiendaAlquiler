@@ -7,16 +7,11 @@ using TiendaAlquiler.Models;
 namespace TiendaAlquiler.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class ColorsController : Controller
+    public class ColorsController(TiendaAlquilerDBContext context) : Controller
     {
-        private readonly TiendaAlquilerDBContext _context;
+        private readonly TiendaAlquilerDBContext _context = context;
 
-        public ColorsController(TiendaAlquilerDBContext context)
-        {
-            _context = context;
-        }
-
-        // GET: Colors
+        // GET:Lista de Lso colores
         public async Task<IActionResult> Index()
         {
             var coloresOrdenados = await _context.Colors
@@ -25,7 +20,7 @@ namespace TiendaAlquiler.Controllers
             return View(coloresOrdenados);
         }
 
-        // GET: Colors/Details/5
+        // GET: Detalles De cada color
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,15 +38,14 @@ namespace TiendaAlquiler.Controllers
             return View(color);
         }
 
-        // GET: Colors/Create
+        // GET: Crear un nuevo color (Vista)
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Colors/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Crear un nuevo color
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ColorId,Nombre")] Color color)
@@ -65,7 +59,7 @@ namespace TiendaAlquiler.Controllers
             return View(color);
         }
 
-        // GET: Colors/Edit/5
+        // GET: Editar color (Vista)
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,9 +75,7 @@ namespace TiendaAlquiler.Controllers
             return View(color);
         }
 
-        // POST: Colors/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Editar color (Vista)
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ColorId,Nombre")] Color color)
@@ -116,7 +108,7 @@ namespace TiendaAlquiler.Controllers
             return View(color);
         }
 
-        // GET: Colors/Delete/5
+        // GET: Borra color (Vista)
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +126,7 @@ namespace TiendaAlquiler.Controllers
             return View(color);
         }
 
-        // POST: Colors/Delete/5
+        // POST: Borra color (Vista)
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -1,6 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
 namespace TiendaAlquiler.Migrations
 {
@@ -298,7 +301,7 @@ namespace TiendaAlquiler.Migrations
 
             migrationBuilder.InsertData(
                 table: "Carroceria",
-                columns: ["CarroceriaId", "Tipo"],
+                columns: new[] { "CarroceriaId", "Tipo" },
                 values: new object[,]
                 {
                     { 1, "Coupe" },
@@ -313,7 +316,7 @@ namespace TiendaAlquiler.Migrations
 
             migrationBuilder.InsertData(
                 table: "Color",
-                columns: ["ColorId", "Nombre"],
+                columns: new[] { "ColorId", "Nombre" },
                 values: new object[,]
                 {
                     { 1, "Rojo Ferrari" },
@@ -328,7 +331,7 @@ namespace TiendaAlquiler.Migrations
 
             migrationBuilder.InsertData(
                 table: "Decada",
-                columns: ["DecadaId", "AnioInicio"],
+                columns: new[] { "DecadaId", "AnioInicio" },
                 values: new object[,]
                 {
                     { 1, 1930 },
@@ -343,7 +346,7 @@ namespace TiendaAlquiler.Migrations
 
             migrationBuilder.InsertData(
                 table: "Pais",
-                columns: ["PaisId", "Nombre"],
+                columns: new[] { "PaisId", "Nombre" },
                 values: new object[,]
                 {
                     { 1, "España" },
@@ -361,7 +364,7 @@ namespace TiendaAlquiler.Migrations
 
             migrationBuilder.InsertData(
                 table: "Coche",
-                columns: ["CocheId", "AnioFabricacion", "CarroceriaId", "ColorId", "DecadaId", "Description", "EstaAlquilado", "Marca", "Modelo", "PaisId", "PrecioAlquiler"],
+                columns: new[] { "CocheId", "AnioFabricacion", "CarroceriaId", "ColorId", "DecadaId", "Description", "EstaAlquilado", "Marca", "Modelo", "PaisId", "PrecioAlquiler" },
                 values: new object[,]
                 {
                     { 1, 1984, 4, 1, 6, null, false, "Ferrari", "F40", 2, 1500m },
