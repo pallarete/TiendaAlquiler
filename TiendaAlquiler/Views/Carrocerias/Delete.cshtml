@@ -14,7 +14,6 @@
         <div class="col-md-6">
             <h4 class="text-center mb-3">Carrocería</h4>
             <hr />
-
             <!-- Tabla de detalles centrada -->
             <table class="table table-borderless">
                 <tbody>
@@ -24,7 +23,6 @@
                     </tr>
                 </tbody>
             </table>
-
             <!-- Botones de acción -->
             <div class="d-flex justify-content-center gap-3 mt-4">
                 <form asp-action="Delete">
@@ -52,7 +50,6 @@
     if (mensaje) {
         document.getElementById('modalAdvertencia').style.display = 'block'; // Mostrar modal
     }
-
     // Función para cerrar el modal
     function closeModal() {
         document.getElementById('modalAdvertencia').style.display = 'none'; // Ocultar modal
