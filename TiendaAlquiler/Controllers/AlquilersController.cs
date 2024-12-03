@@ -8,10 +8,15 @@ using TiendaAlquiler.Models;
 
 namespace TiendaAlquiler.Controllers
 {
-    public class AlquilersController(TiendaAlquilerDBContext context, UserManager<Usuario> userManager) : Controller
+    public class AlquilersController : Controller
     {
-        private readonly TiendaAlquilerDBContext _context = context;
-        private readonly UserManager<Usuario> _userManager = userManager;
+        private readonly TiendaAlquilerDBContext _context;
+        private readonly UserManager<Usuario> _userManager;
+        public AlquilersController(TiendaAlquilerDBContext context, UserManager<Usuario> userManager)
+        {
+            _context = context;
+            _userManager = userManager;
+        }
         //Indice de Alquileres
         public async Task<IActionResult> Index(int? cocheId = null, string? usuarioId = null)
         {
