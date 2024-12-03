@@ -10,16 +10,14 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg-RAkBxdrQNSJap_mqLOgWC9e1gyLNLU&callback=initMap" async defer>  </script>
     <script>
         function initMap() {
-            // Ubicación: Ajusta la latitud y longitud a la ubicación deseada
+            // Latitud y Longitud
             const location = { lat: 43.370947, lng: -8.395835 }; // Ejemplo: La Coruña
-
-            // Crea el mapa centrado en la ubicación
+            // Creo el mapa con este punto de referencia
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 18,
                 center: location,
             });
-
-            // Agrega un marcador en la ubicación
+            // Agrega el marcador/localizador
             const marker = new google.maps.Marker({
                 position: location,
                 map: map,
@@ -30,9 +28,8 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const navbar = document.querySelector(".navbar");
-
             window.addEventListener("scroll", function () {
-                if (window.scrollY > 100) { // Cambia el valor según cuándo quieres que se active
+                if (window.scrollY > 100) { // A partir de cuanto scroll se activa
                     navbar.classList.add("scrolled");
                 } else {
                     navbar.classList.remove("scrolled");
@@ -43,22 +40,16 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const backToTopButton = document.getElementById("backToTop");
-
-            // Mostrar/ocultar el botón al hacer scroll
             window.addEventListener("scroll", function () {
-                if (window.scrollY > 200) { // Umbral para mostrar el botón
+                if (window.scrollY > 200) { // A partir de cuanto scroll se activa
                     backToTopButton.style.display = "block";
                 } else {
                     backToTopButton.style.display = "none";
                 }
             });
 
-            // Scroll suave hacia arriba al hacer clic
             backToTopButton.addEventListener("click", function () {
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth" // Scroll animado
-                });
+                window.scrollTo({top: 0,behavior: "smooth"});
             });
         });
     </script>
@@ -75,7 +66,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto">
-                        <!-- Menú de navegación principal -->
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
@@ -88,7 +78,7 @@
                                 <li class="nav-item"><a class="nav-link" asp-controller="Decadas" asp-action="Index" data-text="Decadas">Decadas</a></li>
                                 <li class="nav-item"><a class="nav-link" asp-controller="Paises" asp-action="Index" data-text="Paises">Paises</a></li>
                             }
-                            <!-- Solo muestra este enlace "Coches" para usuarios autenticados que no son admins -->
+
                             <li class="nav-item"><a class="nav-link" asp-controller="Coches" asp-action="Index" data-text="Coches">Coches</a></li>
                             <li class="nav-item"><a href="@Url.Action("Logout", "Usuario")" class="nav-link text-dark">Logout</a></li>
                         }
@@ -115,7 +105,7 @@
     <button id="backToTop" class="back-to-top" title="Volver arriba">IR ARRIBA</button>
 
     <!-- Scripts -->
-    <script src="~/lib/jquery/dist/jquery.min.js"></script> <!-- Asegúrate de cargar jQuery antes de Bootstrap -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script> 
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
