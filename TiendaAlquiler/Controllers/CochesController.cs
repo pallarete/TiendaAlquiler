@@ -305,14 +305,31 @@ namespace TiendaAlquiler.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var coche = await _context.Coches.FindAsync(id);
-            if (coche != null)
+            try
             {
-                _context.Coches.Remove(coche);
-            }
+                var cocheAlquilado = await _context.Alquilers.AnyAsync(c => c.CocheId == id);
+                if (cocheAlquilado)
+                {
+                    //Envio un mensaje a TemdData
+                    TempData["ErrorMessage"] = "No se puede eliminar este coche porque tiene alquileres asociados";
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+                    return RedirectToAction("Delete", new { id });
+                }
+                var coche = await _context.Coches.FindAsync(id);
+                if (coche != null)
+                {
+                    _context.Coches.Remove(coche);
+                    await _context.SaveChangesAsync();
+                }
+
+                return RedirectToAction(nameof(Index));
+
+            }
+            catch (Exception)
+            {
+                return RedirectToAction(nameof(Index));
+
+            }
         }
 
         private bool CocheExists(int id)

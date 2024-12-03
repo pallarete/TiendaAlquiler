@@ -12,11 +12,9 @@ namespace TiendaAlquiler.Controllers
     {
         private readonly TiendaAlquilerDBContext _context = context;
         private readonly UserManager<Usuario> _userManager = userManager;
-                    
         //Indice de Alquileres
         public async Task<IActionResult> Index(int? cocheId = null, string? usuarioId = null)
         {
-
             var query = _context.Alquilers
                 .Include(a => a.Coche)
                 .Include(a => a.Usuario)
@@ -43,8 +41,7 @@ namespace TiendaAlquiler.Controllers
 
             return View(new List<Alquiler> { ultimoAlquiler });
         }
-
-        // GET Create
+        // GET Vista creacion alquiler
         public async Task<IActionResult> Create(int cocheId, string usuarioId)
         {
 
@@ -72,7 +69,7 @@ namespace TiendaAlquiler.Controllers
             return View(alquiler);
         }
 
-        // POST Create
+        // POST Vista creacion Alquiler
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AlquilerId,CocheId,UsuarioId,FechaAlquiler,FechaDevolucion,NumeroTarjeta,FechaExpiracion,CVC")] Alquiler alquiler)
@@ -142,8 +139,6 @@ namespace TiendaAlquiler.Controllers
             await RecargaDatos(alquiler);
             return View(alquiler);
         }
-
-
 
         private async Task RecargaDatos(Alquiler alquiler)
         {
