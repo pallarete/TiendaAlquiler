@@ -74,11 +74,6 @@ namespace TiendaAlquiler.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AlquilerId,CocheId,UsuarioId,FechaAlquiler,FechaDevolucion,NumeroTarjeta,FechaExpiracion,CVC")] Alquiler alquiler)
         {
-            if (alquiler == null)
-            {
-                return BadRequest("El alquiler no puede ser null");
-            }
-
             if (ModelState.IsValid)
             {
                 try
