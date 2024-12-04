@@ -14,7 +14,7 @@ namespace TiendaAlquiler.Controllers
         {
             _context = context;
         }
-        // GET:Lista de Lso colores
+        // GET:Lista de Colores ordenada
         public async Task<IActionResult> Index()
         {
             var coloresOrdenados = await _context.Colors
@@ -41,14 +41,13 @@ namespace TiendaAlquiler.Controllers
             return View(color);
         }
 
-        // GET: Crear un nuevo color (Vista)
+        // GET: Me da la vista para crear un nuevo Color
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Crear un nuevo color
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ColorId,Nombre")] Color color)
@@ -62,7 +61,7 @@ namespace TiendaAlquiler.Controllers
             return View(color);
         }
 
-        // GET: Editar color (Vista)
+        // GET: Me da la vista para editar un nuevo Color
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)

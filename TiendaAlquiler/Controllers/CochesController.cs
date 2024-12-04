@@ -67,7 +67,7 @@ namespace TiendaAlquiler.Controllers
                 coches = coches.Where(c => c.CarroceriaId == carroceriaId.Value);
             }
 
-            // Ordenar por marca alfabéticamente  dentro de la tabla
+            // Ordenar por marca alfabéticamente dentro de la tabla
             coches = coches.OrderBy(c => c.Marca);
 
             return View(await coches.ToListAsync());

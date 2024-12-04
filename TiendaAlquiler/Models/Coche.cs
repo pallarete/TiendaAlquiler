@@ -51,10 +51,10 @@ public partial class Coche
     [Required]
     public virtual ICollection<Alquiler> Alquilers { get; set; } = new List<Alquiler>();
 
-    public virtual Carroceria Carroceria { get; set; }
-    public virtual Color Color { get; set; }
-    public virtual Decada Decada { get; set; }
-    public virtual Pais Pais { get; set; }
+    public virtual Carroceria? Carroceria { get; set; }
+    public virtual Color? Color { get; set; }
+    public virtual Decada? Decada { get; set; }
+    public virtual Pais? Pais { get; set; }
 
     public virtual ICollection<Foto> Fotos { get; set; } = new List<Foto>();
 

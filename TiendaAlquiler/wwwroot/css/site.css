@@ -317,7 +317,7 @@ header {
     font-weight: bold;
     font-size: 1rem;
     border-collapse: collapse;
-    color: var(--color-texto);
+    color: white;
     table-layout: auto;
     border-radius: 10px;
     overflow: hidden;
