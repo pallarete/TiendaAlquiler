@@ -178,23 +178,7 @@ namespace TiendaAlquiler.Controllers
             alquiler.Coche = await _context.Coches.FirstOrDefaultAsync(c => c.CocheId == alquiler.CocheId);
             alquiler.Usuario = await _userManager.FindByIdAsync(alquiler.UsuarioId);
 
-            if (alquiler.Coche != null)
-            {
-                ViewData["CocheMarca"] = alquiler.Coche.Marca;
-            }
-            else
-            {
-                ViewData["CocheMarca"] = "Coche no encontrado"; // O cualquier mensaje de error que desees
-            }
-
-            if (alquiler.Usuario != null)
-            {
-                ViewData["UsuarioNombre"] = alquiler.Usuario.UserName;
-            }
-            else
-            {
-                ViewData["UsuarioNombre"] = "Usuario no encontrado"; // O cualquier mensaje de error que desees
-            }
+           
 
             // Asigna la lista de alquileres relacionados, si es necesario
             ViewData["Alquilers"] = await _context.Alquilers.Where(a => a.CocheId == alquiler.CocheId).ToListAsync();
