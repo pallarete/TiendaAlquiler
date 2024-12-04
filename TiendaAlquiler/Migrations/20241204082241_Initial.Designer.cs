@@ -12,7 +12,7 @@ using TiendaAlquiler.Data;
 namespace TiendaAlquiler.Migrations
 {
     [DbContext(typeof(TiendaAlquilerDBContext))]
-    [Migration("20241203152920_Initial")]
+    [Migration("20241204082241_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

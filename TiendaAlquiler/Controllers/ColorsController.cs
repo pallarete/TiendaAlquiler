@@ -7,10 +7,13 @@ using TiendaAlquiler.Models;
 namespace TiendaAlquiler.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class ColorsController(TiendaAlquilerDBContext context) : Controller
+    public class ColorsController : Controller
     {
-        private readonly TiendaAlquilerDBContext _context = context;
-
+        private readonly TiendaAlquilerDBContext _context;
+        public ColorsController(TiendaAlquilerDBContext context)
+        {
+            _context = context;
+        }
         // GET:Lista de Lso colores
         public async Task<IActionResult> Index()
         {

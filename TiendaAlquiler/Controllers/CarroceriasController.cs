@@ -8,9 +8,15 @@ using TiendaAlquiler.Models;
 namespace TiendaAlquiler.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class CarroceriasController(TiendaAlquilerDBContext context) : Controller
+    public class CarroceriasController : Controller
     {
-        private readonly TiendaAlquilerDBContext _context = context;
+
+        private readonly TiendaAlquilerDBContext _context;
+
+        public CarroceriasController(TiendaAlquilerDBContext context)
+        {
+            _context = context;
+        }
 
         // GET Indice Carrocerias
         public async Task<IActionResult> Index()

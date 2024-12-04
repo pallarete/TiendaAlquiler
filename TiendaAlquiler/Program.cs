@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Configurar logging para la consola
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
+builder.Logging.AddDebug();
 builder.Logging.SetMinimumLevel(LogLevel.Debug); // Opcional: más detalles en los logs
 
 // Add services to the container.
@@ -21,14 +22,7 @@ builder.Services.AddIdentity<Usuario, IdentityRole>(options =>
 .AddEntityFrameworkStores<TiendaAlquilerDBContext>()
 .AddDefaultTokenProviders();
 
-// Agregar soporte para sesiones
-builder.Services.AddDistributedMemoryCache();  // Necesario para la memoria de sesiones
-builder.Services.AddSession(options =>
-{
-    options.IdleTimeout = TimeSpan.FromMinutes(30);  // Duración de la sesión
-    options.Cookie.HttpOnly = true;  // Seguridad adicional
-    options.Cookie.IsEssential = true;  // Asegura que la cookie esté disponible
-});
+
 
 var app = builder.Build();
 
@@ -46,7 +40,6 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseSession();
 
 app.UseAuthentication();
 

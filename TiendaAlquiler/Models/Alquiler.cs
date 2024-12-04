@@ -13,7 +13,7 @@ public partial class Alquiler
     [Required]
     public int CocheId { get; set; }
     [Required]
-    public string UsuarioId { get; set; }
+    public required string UsuarioId { get; set; }
    
     [Display(Name ="Fecha de Inicio")]
     [Required(ErrorMessage = "La fecha de inicio es obligatoria")]
@@ -33,21 +33,21 @@ public partial class Alquiler
     [NotMapped]
     [Required(ErrorMessage = "El número de tarjeta es obligatorio")]
     [StringLength(16, MinimumLength = 16, ErrorMessage = "El número de tarjeta debe tener 16 dígitos")]
-    public string NumeroTarjeta { get; set; }
+    public string? NumeroTarjeta { get; set; }
 
     [NotMapped]
     [Required(ErrorMessage = "La fecha de expiración es obligatoria")]
     [RegularExpression(@"^(0[1-9]|1[0-2])\/([0-9]{2})$", ErrorMessage = "Formato inválido. Utilice MM/AA")]
-    public string FechaExpiracion { get; set; }
+    public string? FechaExpiracion { get; set; }
 
     [NotMapped]
     [Required(ErrorMessage = "El código CVC es obligatorio")]
     [StringLength(3, MinimumLength = 3, ErrorMessage = "El código CVC debe tener 3 dígitos")]
-    public string CVC { get; set; }
+    public string? CVC { get; set; }
 
-    public virtual Coche Coche { get; set; }
+    public virtual Coche? Coche { get; set; }
 
-    public virtual Usuario Usuario { get; set; }
+    public virtual Usuario? Usuario { get; set; }
     public Alquiler()
     {
         FechaAlquiler = DateOnly.FromDateTime(DateTime.Now);

@@ -8,9 +8,13 @@ using TiendaAlquiler.Models;
 namespace TiendaAlquiler.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class DecadasController(TiendaAlquilerDBContext context) : Controller
+    public class DecadasController : Controller
     {
-        private readonly TiendaAlquilerDBContext _context = context;
+        private readonly TiendaAlquilerDBContext _context;
+        public DecadasController(TiendaAlquilerDBContext context)
+        {
+            _context = context;
+        }
 
         // GET: Indice de Decadas
         public async Task<IActionResult> Index()
