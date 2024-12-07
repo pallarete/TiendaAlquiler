@@ -31,6 +31,33 @@
         </tr>
     </tbody>
 </table>
+<!-- SECCIÓN DE ALQUILER Y VUELTA AL LISTADO -->
+<div class="button-container mt-3">
+    @if (User.Identity.IsAuthenticated)
+    {
+        var userId = (UserManager.GetUserId(User) ?? string.Empty).Trim();
+        userId = userId ?? string.Empty;
+        <a asp-controller="Alquilers"
+           asp-action="Create"
+           asp-route-cocheId="@Model.CocheId"
+           asp-route-usuarioId="@userId"
+           class="btn btn-highlight">
+            Alquilar este coche
+        </a>
+    }
+    else
+    {
+        <a class="btn btn-highlight" title="Inicia sesión para poder alquilar este coche">
+            Alquilar este coche
+        </a>
+        <p class="text-danger mt-2" style="background-color: #f8f9fa; font-weight: bold; border: 3px solid green; padding: 10px; border-radius: 8px;">
+            Debes iniciar sesión o registrarte para alquilar este coche.
+        </p>
+    }
+    <a asp-action="Index" class="btn btn-secondary">
+        Volver al listado
+    </a>
+</div>
 <!-- SECCIÓN DE FOTOS -->
 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
@@ -63,33 +90,7 @@
         <span class="visually-hidden">Siguiente</span>
     </button>
 </div>
-<!-- SECCIÓN DE ALQUILER Y VUELTA AL LISTADO -->
-<div class="button-container mt-3">
-    @if (User.Identity.IsAuthenticated)
-    {
-        var userId = (UserManager.GetUserId(User) ?? string.Empty).Trim();
-        userId = userId ?? string.Empty;
-        <a asp-controller="Alquilers"
-           asp-action="Create"
-           asp-route-cocheId="@Model.CocheId"
-           asp-route-usuarioId="@userId"
-       class="btn btn-highlight">
-            Alquilar este coche
-        </a>
-    }
-    else
-    {
-        <a class="btn btn-highlight" title="Inicia sesión para poder alquilar este coche">
-            Alquilar este coche
-        </a>
-        <p class="text-danger mt-2" style="background-color: #f8f9fa; font-weight: bold; border: 3px solid green; padding: 10px; border-radius: 8px;">
-            Debes iniciar sesión o registrarte para alquilar este coche.
-        </p>
-    }
-    <a asp-action="Index" class="btn btn-secondary">
-        Volver al listado
-    </a>
-</div>
+
 <!-- SECCIÓN DE LA DESCRIPCIÓN -->
 <div class="description-section container my-4">
     @if (!string.IsNullOrEmpty(Model.Description))

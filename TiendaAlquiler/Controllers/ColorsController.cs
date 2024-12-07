@@ -7,11 +7,14 @@ using TiendaAlquiler.Models;
 namespace TiendaAlquiler.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class ColorsController(TiendaAlquilerDBContext context) : Controller
+    public class ColorsController : Controller
     {
-        private readonly TiendaAlquilerDBContext _context = context;
-
-        // GET:Lista de Lso colores
+        private readonly TiendaAlquilerDBContext _context;
+        public ColorsController(TiendaAlquilerDBContext context)
+        {
+            _context = context;
+        }
+        // GET:Lista de Colores ordenada
         public async Task<IActionResult> Index()
         {
             var coloresOrdenados = await _context.Colors
@@ -38,14 +41,13 @@ namespace TiendaAlquiler.Controllers
             return View(color);
         }
 
-        // GET: Crear un nuevo color (Vista)
+        // GET: Me da la vista para crear un nuevo Color
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Crear un nuevo color
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ColorId,Nombre")] Color color)
@@ -59,7 +61,7 @@ namespace TiendaAlquiler.Controllers
             return View(color);
         }
 
-        // GET: Editar color (Vista)
+        // GET: Me da la vista para editar un nuevo Color
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)

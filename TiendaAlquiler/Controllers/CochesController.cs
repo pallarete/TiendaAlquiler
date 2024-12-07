@@ -10,11 +10,15 @@ using TiendaAlquiler.Models;
 
 namespace TiendaAlquiler.Controllers
 {
-    public class CochesController(TiendaAlquilerDBContext context) : Controller
+    public class CochesController : Controller
     {
-        private readonly TiendaAlquilerDBContext _context = context;
+        private readonly TiendaAlquilerDBContext _context;
 
-        // GET: Indice de Coches (Listado)
+        public CochesController(TiendaAlquilerDBContext context)
+        {
+            _context = context;
+        }
+        
         public async Task<IActionResult> Index(int? paisId, int? decadaId, int? colorId, int? carroceriaId)
         {
             // Ordeno todos y cada uno de los filtros alfabéticamente
@@ -63,7 +67,7 @@ namespace TiendaAlquiler.Controllers
                 coches = coches.Where(c => c.CarroceriaId == carroceriaId.Value);
             }
 
-            // Ordenar por marca alfabéticamente  dentro de la tabla
+            // Ordenar por marca alfabéticamente dentro de la tabla
             coches = coches.OrderBy(c => c.Marca);
 
             return View(await coches.ToListAsync());
@@ -89,8 +93,7 @@ namespace TiendaAlquiler.Controllers
             {
                 return NotFound();
             }
-            // Guardar el CocheId en la sesión para usarlo más tarde
-            HttpContext.Session.SetInt32("CocheId", coche.CocheId);
+
 
             return View(coche);
         }
