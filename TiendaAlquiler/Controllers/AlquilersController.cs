@@ -13,12 +13,16 @@ namespace TiendaAlquiler.Controllers
         private readonly TiendaAlquilerDBContext _context;
         private readonly UserManager<Usuario> _userManager;
         private readonly ILogger<AlquilersController> _logger;
+        
+        //Constructor Principal Alquileres
         public AlquilersController(TiendaAlquilerDBContext context, UserManager<Usuario> userManager, ILogger<AlquilersController> logger)
         {
             _context = context;
             _userManager = userManager;
             _logger = logger;
         }
+
+
         //Indice de Alquileres
         public async Task<IActionResult> Index(int? cocheId = null, string? usuarioId = null)
         {
@@ -48,18 +52,17 @@ namespace TiendaAlquiler.Controllers
 
             return View(new List<Alquiler> { ultimoAlquiler });
         }
+        
         // GET Vista creacion alquiler
         public async Task<IActionResult> Create(int cocheId, string usuarioId)
         {
             _logger.LogInformation("Entrando al método Create");
             var coche = await _context.Coches.FirstOrDefaultAsync(c => c.CocheId == cocheId);
             var usuario = await _userManager.FindByIdAsync(usuarioId);
-
             if (coche == null || usuario == null)
             {
                 return NotFound();
             }
-
             var alquiler = new Alquiler
             {
                 CocheId = cocheId,
@@ -67,12 +70,9 @@ namespace TiendaAlquiler.Controllers
                 Coche = coche,
                 Usuario = usuario
             };
-
             ViewData["CocheMarca"] = alquiler.Coche?.Marca;
             ViewData["UsuarioNombre"] = alquiler.Usuario?.UserName;
-
             ViewData["Alquilers"] = await _context.Alquilers.Where(a => a.CocheId == cocheId).ToListAsync();
-
             return View(alquiler);
         }
 
@@ -85,7 +85,6 @@ namespace TiendaAlquiler.Controllers
             // Logging al inicio del método
             Console.WriteLine("Entrando al método Create");
             Console.WriteLine($"Datos recibidos: CocheId={alquiler.CocheId}, UsuarioId={alquiler.UsuarioId}, FechaAlquiler={alquiler.FechaAlquiler}, FechaDevolucion={alquiler.FechaDevolucion}");
-
             if (ModelState.IsValid)
             {
                 try
@@ -93,11 +92,9 @@ namespace TiendaAlquiler.Controllers
                     // Buscar coche
                     var coche = await _context.Coches.FindAsync(alquiler.CocheId);
                     Console.WriteLine(coche == null ? "Coche no encontrado" : $"Coche encontrado: {coche.Marca}, PrecioAlquiler: {coche.PrecioAlquiler}");
-
                     // Buscar usuario
                     var usuario = await _userManager.FindByIdAsync(alquiler.UsuarioId);
                     Console.WriteLine(usuario == null ? "Usuario no encontrado" : $"Usuario encontrado: {usuario.UserName}");
-
                     // Validación: coche no encontrado
                     if (coche == null)
                     {
@@ -105,7 +102,6 @@ namespace TiendaAlquiler.Controllers
                         await RecargaDatos(alquiler);
                         return View(alquiler);
                     }
-
                     // Validar fechas
                     if (alquiler.FechaDevolucion <= alquiler.FechaAlquiler)
                     {
@@ -114,12 +110,10 @@ namespace TiendaAlquiler.Controllers
                         await RecargaDatos(alquiler);
                         return View(alquiler);
                     }
-
                     // Verificar solapamiento de fechas
                     bool fechasSolapadas = await _context.Alquilers.AnyAsync(a =>
                         a.CocheId == alquiler.CocheId &&
                         (alquiler.FechaAlquiler < a.FechaDevolucion && alquiler.FechaDevolucion > a.FechaAlquiler));
-
                     if (fechasSolapadas)
                     {
                         Console.WriteLine("Error: Fechas de alquiler solapadas.");
@@ -127,7 +121,6 @@ namespace TiendaAlquiler.Controllers
                         await RecargaDatos(alquiler);
                         return View(alquiler);
                     }
-
                     // Validar tarjeta
                     if (!ValidarTarjeta(alquiler))
                     {
@@ -136,17 +129,14 @@ namespace TiendaAlquiler.Controllers
                         await RecargaDatos(alquiler);
                         return View(alquiler);
                     }
-
                     // Calcular precio final
                     var diasAlquiler = (alquiler.FechaDevolucion.ToDateTime(TimeOnly.MinValue) - alquiler.FechaAlquiler.ToDateTime(TimeOnly.MinValue)).Days;
                     alquiler.PrecioFinal = coche.PrecioAlquiler * diasAlquiler;
                     Console.WriteLine($"Precio final calculado: {alquiler.PrecioFinal}");
-
                     // Guardar alquiler
                     _context.Add(alquiler);
                     await _context.SaveChangesAsync();
                     Console.WriteLine("Alquiler guardado correctamente en la base de datos.");
-
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
@@ -154,21 +144,17 @@ namespace TiendaAlquiler.Controllers
                     // Logging de errores
                     Console.WriteLine($"Excepción capturada: {ex.Message}");
                     Console.WriteLine($"StackTrace: {ex.StackTrace}");
-
                     ModelState.AddModelError("", $"Error inesperado: {ex.Message}");
                     await RecargaDatos(alquiler);
                     return View(alquiler);
                 }
             }
-            
-
             // Si el modelo no es válido, loggear los errores
             Console.WriteLine("ModelState inválido. Errores:");
             foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
             {
                 Console.WriteLine($"- {error.ErrorMessage}");
             }
-
             await RecargaDatos(alquiler);
             return View(alquiler);
         }
@@ -177,13 +163,9 @@ namespace TiendaAlquiler.Controllers
         {
             alquiler.Coche = await _context.Coches.FirstOrDefaultAsync(c => c.CocheId == alquiler.CocheId);
             alquiler.Usuario = await _userManager.FindByIdAsync(alquiler.UsuarioId);
-
-           
-
             // Asigna la lista de alquileres relacionados, si es necesario
             ViewData["Alquilers"] = await _context.Alquilers.Where(a => a.CocheId == alquiler.CocheId).ToListAsync();
         }
-
         // Método validacion tarjeta
         private static bool ValidarTarjeta(Alquiler alquiler)
         {
@@ -191,13 +173,11 @@ namespace TiendaAlquiler.Controllers
             {
                 return false;
             }
-
             var fechaExpiracion = alquiler.FechaExpiracion.Split('/');
             if (fechaExpiracion.Length != 2)
             {
                 return false;
             }
-
             if (int.TryParse(fechaExpiracion[0], out int mesExpiracion) && int.TryParse(fechaExpiracion[1], out int anioExpiracion))
             {
                 if (mesExpiracion < 1 || mesExpiracion > 12)
@@ -209,30 +189,23 @@ namespace TiendaAlquiler.Controllers
                 {
                     return false;
                 }
-
                 return true;
             }
-
             return false;
         }
-
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
             var alquiler = await _context.Alquilers.FindAsync(id);
             if (alquiler == null)
             {
                 return NotFound();
             }
-
-
             ViewData["CocheId"] = new SelectList(_context.Coches, "CocheId", "Marca", alquiler.CocheId);
             ViewData["UsuarioId"] = new SelectList(await _userManager.Users.ToListAsync(), "Id", "Rol");
-
             return View(alquiler);
         }
         [HttpPost]
@@ -243,15 +216,12 @@ namespace TiendaAlquiler.Controllers
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-
                     _context.Update(alquiler);
                     await _context.SaveChangesAsync();
-
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -268,7 +238,6 @@ namespace TiendaAlquiler.Controllers
             }
             return View(alquiler);
         }
-
         private bool AlquilerExists(int id)
         {
             return _context.Alquilers.Any(e => e.AlquilerId == id);

@@ -136,12 +136,12 @@ namespace TiendaAlquiler.Controllers
 
             if (cochesAsociados)
             {
-                //si la decada esta asociada a algun coche o a vario, me da igual
+                //Si la decada esta asociada a algun coche o a varios no se puede borrar
                 TempData["ErrorMessage"] = "No se puede eliminar esta década porque está asociada a uno o varios coches.Por favor, modifíquela o cree una nueva.";
                 return RedirectToAction("Delete", new { id });
             }
 
-            //Si no hay coches asociados a esa carroceria la elimino
+            //Si no hay coches asociados a esa carroceria se peude borrar
             var decada = await _context.Decada.FindAsync(id);
             if (decada != null)
             {

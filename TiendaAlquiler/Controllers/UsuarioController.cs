@@ -22,13 +22,13 @@ namespace TiendaAlquiler.Controllers
             _roleManager = roleManager;
         }
 
-        // GET: Usuario
+        // GET: Usuario Indice
         public async Task<IActionResult> Index()
         {
             return View(await _context.Usuarios.ToListAsync());
         }
 
-        // GET: Usuario/Details/5
+        // GET: Usuario Detalles
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -44,7 +44,7 @@ namespace TiendaAlquiler.Controllers
 
             var model = new Usuario
             {
-                Id = usuario.Id ?? "",  // Asegúrate de que no sea nulo
+                Id = usuario.Id ?? "",  // Me aseguro que existe
                 UserName = usuario.UserName ?? "",
                 Email = usuario.Email ?? "", // Lo mismo con Email si es opcional
             };
@@ -52,7 +52,7 @@ namespace TiendaAlquiler.Controllers
             return View(model);
         }
 
-        // GET: Usuario/Edit/5
+        // GET: Usuario Editar, este metodo no se usa
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -68,7 +68,7 @@ namespace TiendaAlquiler.Controllers
             return View(usuario);
         }
 
-        // GET: Usuario/Delete/5
+        // GET: Usuario Borrar, este metodo no se usa
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -93,7 +93,7 @@ namespace TiendaAlquiler.Controllers
             return View(model);
         }
 
-        // POST: Usuario/Delete/5
+        // POST: Usuario Borrar, este metodo no se usa
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
@@ -119,13 +119,13 @@ namespace TiendaAlquiler.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //GET: Usuario/Registro
+        //GET: Usuario Registro
         public IActionResult Register()
         {
             return View();
         }
 
-        //POST: Usuario/Registro
+        //POST: Usuario Registro
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
@@ -166,13 +166,13 @@ namespace TiendaAlquiler.Controllers
             return View(model);
         }
 
-        // GET: Usuario/Login
+        // GET: Usuario Login
         public IActionResult Login()
         {
             return View();
         }
 
-        // POST: Usuario/Login
+        // POST: Usuario Login
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind("UsuarioNombre,Password")] LoginViewModel model)
@@ -209,7 +209,7 @@ namespace TiendaAlquiler.Controllers
             return View(model);
         }
 
-        //LOGOUT
+        // Logout
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync(); //AQUI CIERRO LA SESION
@@ -224,7 +224,7 @@ namespace TiendaAlquiler.Controllers
         // Acción para manejar el acceso denegado
         public IActionResult AccessDenied()
         {
-            return View(); // Asegúrate de tener una vista AccessDenied.cshtml
+            return View(); 
         }
     }
 
