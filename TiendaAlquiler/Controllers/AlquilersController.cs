@@ -88,21 +88,24 @@ namespace TiendaAlquiler.Controllers
                     var coche = await _context.Coches.FindAsync(alquiler.CocheId);
                     // Buscar usuario
                     var usuario = await _userManager.FindByIdAsync(alquiler.UsuarioId);
-                    // Validación: coche no encontrado
+                    
+                    // Validación de coche no encontrado
                     if (coche == null)
                     {
                         ModelState.AddModelError("", "El coche no existe");
                         await RecargaDatos(alquiler);
                         return View(alquiler);
                     }
-                    // Validar fechas
+                    
+                    // Validacion de fechas
                     if (alquiler.FechaDevolucion <= alquiler.FechaAlquiler)
                     {
                         ModelState.AddModelError("", "La fecha de devolución debe ser posterior a la fecha de alquiler.");
                         await RecargaDatos(alquiler);
                         return View(alquiler);
                     }
-                    // Verificar solapamiento de fechas
+                    
+                    // Validacion de solapamiento de fechas
                     bool fechasSolapadas = await _context.Alquilers.AnyAsync(a =>
                         a.CocheId == alquiler.CocheId &&
                         (alquiler.FechaAlquiler < a.FechaDevolucion && alquiler.FechaDevolucion > a.FechaAlquiler));
@@ -112,13 +115,16 @@ namespace TiendaAlquiler.Controllers
                         await RecargaDatos(alquiler);
                         return View(alquiler);
                     }
-                    // Validar tarjeta
+                    
+                    // Validacion de tarjeta
                     if (!ValidarTarjeta(alquiler))
                     {
                         ModelState.AddModelError("", "Los datos de la tarjeta no son válidos.");
                         await RecargaDatos(alquiler);
                         return View(alquiler);
                     }
+                    
+                    //SI TODO HA IDO BIEN:
                     // Calcular precio final
                     var diasAlquiler = (alquiler.FechaDevolucion.ToDateTime(TimeOnly.MinValue) - alquiler.FechaAlquiler.ToDateTime(TimeOnly.MinValue)).Days;
                     alquiler.PrecioFinal = coche.PrecioAlquiler * diasAlquiler;
