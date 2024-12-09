@@ -14,6 +14,7 @@ namespace TiendaAlquiler.Controllers
         {
             _context = context;
         }
+
         // GET:Lista de Colores (alfabeticamente)
         public async Task<IActionResult> Index()
         {

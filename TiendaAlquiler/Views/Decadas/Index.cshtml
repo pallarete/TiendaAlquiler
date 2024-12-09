@@ -15,7 +15,7 @@
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(model => model.AnioInicio)</th>
-            <th class="text-end">Acciones</th> <!-- Alineamos la cabecera de "Acciones" a la derecha -->
+            <th class="text-end">Acciones</th> 
         </tr>
     </thead>
     <tbody>
@@ -24,7 +24,6 @@
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.AnioInicio)</td>
                 <td class="text-end">
-                    <!-- Alineamos las acciones a la derecha -->
                     <a asp-action="Edit" asp-route-id="@item.DecadaId" class="btn btn-primary">Editar</a>
                     <a asp-action="Details" asp-route-id="@item.DecadaId" class="btn btn-secondary">Detalles</a>
                     <a asp-action="Delete" asp-route-id="@item.DecadaId" class="btn btn-danger">Borrar</a>

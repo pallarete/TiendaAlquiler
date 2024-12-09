@@ -15,7 +15,8 @@ namespace TiendaAlquiler.Controllers
         {
             _context = context;
         }
-        // GET Indice Carrocerias
+
+        // GET Indice Carrocerias (alfabeticamente)
         public async Task<IActionResult> Index()
         {
             var carroceriasOrdenadas = await _context.Carroceria
@@ -23,6 +24,7 @@ namespace TiendaAlquiler.Controllers
                 .ToListAsync();
             return View(carroceriasOrdenadas);
         }
+
         // GET: Detalles Carrocerias
         public async Task<IActionResult> Details(int? id)
         {

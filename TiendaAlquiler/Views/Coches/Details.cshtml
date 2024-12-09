@@ -31,7 +31,8 @@
         </tr>
     </tbody>
 </table>
-<!-- SECCIÓN DE ALQUILER Y VUELTA AL LISTADO -->
+
+@* SECCIÓN DE ALQUILER Y VUELTA AL LISTADO *@
 <div class="button-container mt-3">
     @if (User.Identity.IsAuthenticated)
     {
@@ -58,7 +59,8 @@
         Volver al listado
     </a>
 </div>
-<!-- SECCIÓN DE FOTOS -->
+
+@* SECCIÓN DE FOTOS *@
 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         @if (Model.Fotos != null && Model.Fotos.Count > 0)
@@ -80,7 +82,7 @@
         }
     </div>
 
-    <!-- Controles de navegación del carrusel -->
+    @* CONTROLES DE NAVEGACION DEL CARRUSEL *@
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Anterior</span>
@@ -91,7 +93,7 @@
     </button>
 </div>
 
-<!-- SECCIÓN DE LA DESCRIPCIÓN -->
+@* SECCIÓN DE LA DESCRIPCIÓN  *@
 <div class="description-section container my-4">
     @if (!string.IsNullOrEmpty(Model.Description))
     {

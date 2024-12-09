@@ -21,8 +21,8 @@ namespace TiendaAlquiler.Controllers
             _signInManager = signInManager;
             _roleManager = roleManager;
         }
+        
         // Este metodo no se usa
-
         // GET: Usuario Indice
         public async Task<IActionResult> Index()
         {

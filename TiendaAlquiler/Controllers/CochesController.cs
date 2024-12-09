@@ -17,6 +17,7 @@ namespace TiendaAlquiler.Controllers
         {
             _context = context;
         }
+
         //GET Lista de Coches
         public async Task<IActionResult> Index(int? paisId, int? decadaId, int? colorId, int? carroceriaId)
         {
@@ -319,6 +320,7 @@ namespace TiendaAlquiler.Controllers
 
             }
         }
+
         private bool CocheExists(int id)
         {
             return _context.Coches.Any(e => e.CocheId == id);

@@ -46,14 +46,14 @@
     </div>
 </div>
 <script>
-    //mostrar el Modal solo si hay un mensaje de error
+    //Mostrar el Modal solo si hay un mensaje de error
     var mensaje = '@TempData["ErrorMessage"]';
     if(mensaje){
-        document.getElementById('modalAdvertencia').style.display='block';
+        document.getElementById('modalAdvertencia').style.display='block'; //Se Ve
 
     }
     function closeModal() {
-        document.getElementById('modalAdvertencia').style.display= 'none';
+        document.getElementById('modalAdvertencia').style.display= 'none';// No se ve
     }
 </script>
 

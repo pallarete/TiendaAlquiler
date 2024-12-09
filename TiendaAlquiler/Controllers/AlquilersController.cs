@@ -21,9 +21,11 @@ namespace TiendaAlquiler.Controllers
             _userManager = userManager;
             _logger = logger;
         }
+        
         //Get Lista de Alquileres (Solo Mostrara el alquiler que se acaba de realizar para info de usuario (cliente))
         public async Task<IActionResult> Index(int? cocheId = null, string? usuarioId = null)
         {
+            //Accedo a los datos de la Database para trabajar con ellos dentro del metodo
             var query = _context.Alquilers
                 .Include(a => a.Coche)
                 .Include(a => a.Usuario)
@@ -54,7 +56,6 @@ namespace TiendaAlquiler.Controllers
         // GET Creacion alquiler
         public async Task<IActionResult> Create(int cocheId, string usuarioId)
         {
-            _logger.LogInformation("Entrando al método Create");
             var coche = await _context.Coches.FirstOrDefaultAsync(c => c.CocheId == cocheId);
             var usuario = await _userManager.FindByIdAsync(usuarioId);
             if (coche == null || usuario == null)
@@ -140,7 +141,7 @@ namespace TiendaAlquiler.Controllers
             return View(alquiler);
         }
         
-        //Metodo para recargar datos despues de validar si la validacion es incorrecta
+        //Metodo para recargar datos despues de validar si la validacion es incorrecta que se llama en el post
         private async Task RecargaDatos(Alquiler alquiler)
         {
             alquiler.Coche = await _context.Coches.FirstOrDefaultAsync(c => c.CocheId == alquiler.CocheId);
@@ -177,6 +178,7 @@ namespace TiendaAlquiler.Controllers
             }
             return false;
         }
+
         //Get Editar alquiler (No se usa de momento)
         public async Task<IActionResult> Edit(int? id)
         {
@@ -193,6 +195,7 @@ namespace TiendaAlquiler.Controllers
             ViewData["UsuarioId"] = new SelectList(await _userManager.Users.ToListAsync(), "Id", "Rol");
             return View(alquiler);
         }
+
         //POST Editar alquiler (No se usa de momento)
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -224,6 +227,7 @@ namespace TiendaAlquiler.Controllers
             }
             return View(alquiler);
         }
+
         private bool AlquilerExists(int id)
         {
             return _context.Alquilers.Any(e => e.AlquilerId == id);

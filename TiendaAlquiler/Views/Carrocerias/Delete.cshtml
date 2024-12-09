@@ -14,7 +14,8 @@
         <div class="col-md-6">
             <h4 class="text-center mb-3">Carrocería</h4>
             <hr />
-            <!-- Tabla de detalles centrada -->
+            
+            @* TABLA CENTRADA*@
             <table class="table table-borderless">
                 <tbody>
                     <tr>
@@ -23,7 +24,8 @@
                     </tr>
                 </tbody>
             </table>
-            <!-- Botones de acción -->
+            
+            @*BOTONES DE ACCION*@
             <div class="d-flex justify-content-center gap-3 mt-4">
                 <form asp-action="Delete">
                     <input type="hidden" asp-for="CarroceriaId" />
@@ -31,11 +33,12 @@
                 </form>
                 <a asp-action="Index" class="btn btn-secondary">Volver</a>
             </div>
+
         </div>
     </div>
 </div>
 
-<!-- Modal de Advertencia -->
+@* Modal de Advertencia  *@
 <div id="modalAdvertencia">
     <div class="modalDentro">
         <h5>Advertencia</h5>
