@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 builder.Logging.AddDebug();
-builder.Logging.SetMinimumLevel(LogLevel.Debug); // Opcional: más detalles en los logs
+builder.Logging.SetMinimumLevel(LogLevel.Debug); // Opcional
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -55,7 +55,7 @@ await app.RunAsync();
 
 static async Task CreateRolesAsync(IServiceProvider services)
 {
-    // Crear un scope para la resolución de servicios scoped
+   
     using var scope = services.CreateScope();
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
