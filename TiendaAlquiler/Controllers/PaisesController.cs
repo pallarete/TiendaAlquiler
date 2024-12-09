@@ -17,7 +17,7 @@ namespace TiendaAlquiler.Controllers
             _context = context;
         }
 
-        // GET: PaisFabricacions
+        // GET: Lista de Paises
         public async Task<IActionResult> Index()
         {
             var paisesOrdenados = await _context.Paises
@@ -26,7 +26,7 @@ namespace TiendaAlquiler.Controllers
             return View(paisesOrdenados);
         }
 
-        // GET: PaisFabricacions/Details/5
+        // GET: Paises
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,14 +44,13 @@ namespace TiendaAlquiler.Controllers
             return View(pais);
         }
 
-        // GET: PaisFabricacions/Create
+        // GET: Crear Pais
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: PaisFabricacions/Create
-       
+        // POST: Crear Pais
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PaisId,Nombre")] Pais pais)
@@ -65,7 +64,7 @@ namespace TiendaAlquiler.Controllers
             return View(pais);
         }
 
-        // GET: PaisFabricacions/Edit/5
+        // GET: Editar Pais
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,9 +80,7 @@ namespace TiendaAlquiler.Controllers
             return View(pais);
         }
 
-        // POST: PaisFabricacions/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Editar Pais
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("PaisId,Nombre")] Pais pais)
@@ -116,7 +113,7 @@ namespace TiendaAlquiler.Controllers
             return View(pais);
         }
 
-        // GET: PaisFabricacions/Delete/5
+        // GET: Borrar Pais
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +131,7 @@ namespace TiendaAlquiler.Controllers
             return View(pais);
         }
 
-        // POST: PaisFabricacions/Delete/5
+        // POST: Borrar Pais
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

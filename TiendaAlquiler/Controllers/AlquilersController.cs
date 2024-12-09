@@ -82,21 +82,15 @@ namespace TiendaAlquiler.Controllers
         public async Task<IActionResult> Create([Bind("AlquilerId,CocheId,UsuarioId,FechaAlquiler,FechaDevolucion,NumeroTarjeta,FechaExpiracion,CVC")] Alquiler alquiler)
         {
             _logger.LogInformation("Entrando al método Create");
-            // Logging al inicio del método
-            Console.WriteLine("Entrando al método Create");
-            Console.WriteLine($"Datos recibidos: CocheId={alquiler.CocheId}, UsuarioId={alquiler.UsuarioId}, FechaAlquiler={alquiler.FechaAlquiler}, FechaDevolucion={alquiler.FechaDevolucion}");
-
             if (ModelState.IsValid)
             {
                 try
                 {
                     // Buscar coche
                     var coche = await _context.Coches.FindAsync(alquiler.CocheId);
-                    Console.WriteLine(coche == null ? "Coche no encontrado" : $"Coche encontrado: {coche.Marca}, PrecioAlquiler: {coche.PrecioAlquiler}");
 
                     // Buscar usuario
                     var usuario = await _userManager.FindByIdAsync(alquiler.UsuarioId);
-                    Console.WriteLine(usuario == null ? "Usuario no encontrado" : $"Usuario encontrado: {usuario.UserName}");
 
                     // Validación: coche no encontrado
                     if (coche == null)
@@ -109,7 +103,6 @@ namespace TiendaAlquiler.Controllers
                     // Validar fechas
                     if (alquiler.FechaDevolucion <= alquiler.FechaAlquiler)
                     {
-                        Console.WriteLine("Error: Fecha de devolución anterior o igual a la fecha de alquiler.");
                         ModelState.AddModelError("", "La fecha de devolución debe ser posterior a la fecha de alquiler.");
                         await RecargaDatos(alquiler);
                         return View(alquiler);
@@ -122,7 +115,6 @@ namespace TiendaAlquiler.Controllers
 
                     if (fechasSolapadas)
                     {
-                        Console.WriteLine("Error: Fechas de alquiler solapadas.");
                         ModelState.AddModelError("", "Este coche ya está alquilado en el rango de fechas seleccionado.");
                         await RecargaDatos(alquiler);
                         return View(alquiler);
@@ -131,7 +123,6 @@ namespace TiendaAlquiler.Controllers
                     // Validar tarjeta
                     if (!ValidarTarjeta(alquiler))
                     {
-                        Console.WriteLine("Error: Datos de la tarjeta inválidos.");
                         ModelState.AddModelError("", "Los datos de la tarjeta no son válidos.");
                         await RecargaDatos(alquiler);
                         return View(alquiler);
@@ -140,34 +131,21 @@ namespace TiendaAlquiler.Controllers
                     // Calcular precio final
                     var diasAlquiler = (alquiler.FechaDevolucion.ToDateTime(TimeOnly.MinValue) - alquiler.FechaAlquiler.ToDateTime(TimeOnly.MinValue)).Days;
                     alquiler.PrecioFinal = coche.PrecioAlquiler * diasAlquiler;
-                    Console.WriteLine($"Precio final calculado: {alquiler.PrecioFinal}");
 
                     // Guardar alquiler
                     _context.Add(alquiler);
                     await _context.SaveChangesAsync();
-                    Console.WriteLine("Alquiler guardado correctamente en la base de datos.");
 
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-                    // Logging de errores
-                    Console.WriteLine($"Excepción capturada: {ex.Message}");
-                    Console.WriteLine($"StackTrace: {ex.StackTrace}");
-
                     ModelState.AddModelError("", $"Error inesperado: {ex.Message}");
                     await RecargaDatos(alquiler);
                     return View(alquiler);
                 }
             }
-            
 
-            // Si el modelo no es válido, loggear los errores
-            Console.WriteLine("ModelState inválido. Errores:");
-            foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-            {
-                Console.WriteLine($"- {error.ErrorMessage}");
-            }
 
             await RecargaDatos(alquiler);
             return View(alquiler);
@@ -178,9 +156,7 @@ namespace TiendaAlquiler.Controllers
             alquiler.Coche = await _context.Coches.FirstOrDefaultAsync(c => c.CocheId == alquiler.CocheId);
             alquiler.Usuario = await _userManager.FindByIdAsync(alquiler.UsuarioId);
 
-           
-
-            // Asigna la lista de alquileres relacionados, si es necesario
+            // Recargo la lista de alquileres relacionados
             ViewData["Alquilers"] = await _context.Alquilers.Where(a => a.CocheId == alquiler.CocheId).ToListAsync();
         }
 

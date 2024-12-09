@@ -18,7 +18,6 @@ namespace TiendaAlquiler.Controllers
         {
             _context = context;
         }
-        
         public async Task<IActionResult> Index(int? paisId, int? decadaId, int? colorId, int? carroceriaId)
         {
             // Ordeno todos y cada uno de los filtros alfabéticamente
@@ -173,7 +172,7 @@ namespace TiendaAlquiler.Controllers
             return View(coche);
         }
 
-        // EDIT: Edito el coche una vez creado
+        // GET: Edito el coche una vez creado
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -195,7 +194,7 @@ namespace TiendaAlquiler.Controllers
             return View(coche);
         }
 
-        // EDITO LOS COCHES EN EL POST
+        // POST: EDITO LOS COCHES EN EL POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
