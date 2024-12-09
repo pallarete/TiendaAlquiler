@@ -23,7 +23,7 @@ public partial class Coche
 
     [DisplayName("Precio por dia")]
     [Required(ErrorMessage = "El precio por dia es obligatorio")]
-    [Range(0.01, double.MaxValue, ErrorMessage = "El precio de alquiler debe ser mayor a cero.")]
+    [Range(0.01, (double)decimal.MaxValue, ErrorMessage = "El precio de alquiler debe ser mayor a cero.")]
     [Column(TypeName = "decimal(18,2)")]
     public required decimal PrecioAlquiler { get; set; }
 

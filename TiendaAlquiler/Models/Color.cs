@@ -12,7 +12,7 @@ public partial class Color
     public int ColorId { get; set; }
 
     [Required(ErrorMessage = "El nombre del color es obligatorio.")]
-    [StringLength(50, ErrorMessage = "El nombre del color no puede tener más de 50 caracteres.")]
+    [StringLength(200, ErrorMessage = "El nombre del color no puede tener más de 200 caracteres.")]
     [RegularExpression(@"^[A-Za-zÁáÉéÍíÓóÚúÑñ\s]+$", ErrorMessage = "El tipo de color solo puede contener letras y espacios.")]
 
     public string Nombre { get; set; }
