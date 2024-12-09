@@ -7,25 +7,25 @@
     <div class="row justify-content-center">
         <div class="col-md-4 detail-card">
 
-            @* Formulario de creación *@
+            @*FORMULARIO DE CREACION*@
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-                @* Campo Tipo *@
+                @*CAMPO TIPO*@
                 <div class="form-group mb-3">
                     <label asp-for="Tipo" class="control-label font-weight-bold text-center w-100"></label>
                     <input asp-for="Tipo" class="form-control" />
                     <span asp-validation-for="Tipo" class="text-danger"></span>
                 </div>
 
-                @* Botón de creación  *@
+                @*BOTON CREAR*@
                 <div class="form-group mb-3">
                     <button type="submit" class="btn btn-highlight w-100">Crear</button>
                 </div>
 
             </form>
 
-            @* Botón para volver al listado *@
+            @*BOTON VOLVER LISTADO*@
             <div class="form-group">
                 <a asp-action="Index" class="btn btn-secondary w-100">Volver al listado de carrocerías</a>
             </div>

@@ -15,7 +15,7 @@
             <h4 class="text-center mb-3">Pais</h4>
             <hr />
 
-            <!-- Tabla de detalles centrada -->
+            @*TABLA CENTRADA*@
             <table class="table table-borderless">
                 <tbody>
                     <tr>
@@ -25,7 +25,7 @@
                 </tbody>
             </table>
 
-            <!-- Botones de acción -->
+            @*BOTON DE ELIMINAR*@
             <div class="d-flex justify-content-center gap-3 mt-4">
                 <form asp-action="Delete">
                     <input type="hidden" asp-for="PaisId" />
@@ -37,8 +37,7 @@
     </div>
 </div>
 
-@* Modal de advertencia *@
-
+@*MODAL DE ADVERTENCIA*@
 <div id="modalAdvertencia">
     <div class="modalDentro">
         <h5>Advertencia</h5>
@@ -48,16 +47,16 @@
 </div>
 
 <script>
-    //muestro el modal solo si hay mensaje de error
+    // Mostrar el modal solo si hay un mensaje de error
     var mensaje ='@TempData["ErrorMessage"]';
     if(mensaje){
-    document.getElementById('modalAdvertencia').style.display = 'block';
+    document.getElementById('modalAdvertencia').style.display = 'block';//Mostrar el modal
     }
 
     //Funcion para cerrar el modal
 
     function closeModal() {
-        document.getElementById('modalAdvertencia').style.display ='none';
+        document.getElementById('modalAdvertencia').style.display ='none';//ocultar modal
     }
 
 </script>

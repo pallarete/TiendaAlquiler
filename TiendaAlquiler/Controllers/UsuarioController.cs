@@ -147,7 +147,7 @@ namespace TiendaAlquiler.Controllers
 
                     if (usersCount == 1) // Si es el primer usuario
                     {
-                        // Verifico si el rol Admin existe, si no, se crea el rol porque el proigrama esta configurado
+                        // Verifico si el rol Admin existe, si no, se crea el rol porque el programa esta configurado asi
                         var roleExists = await _roleManager.RoleExistsAsync("Admin");
                         if (!roleExists)
                         {
@@ -157,7 +157,6 @@ namespace TiendaAlquiler.Controllers
                         // Se asigna el rol de Admin al primer usuario
                         await _userManager.AddToRoleAsync(usuario, "Admin");
                     }
-
                     // Iniciar sesión automáticamente
                     await _signInManager.SignInAsync(usuario, isPersistent: false);
                     return RedirectToAction("Index", "Home"); // Redirigir después de registro

@@ -15,7 +15,7 @@
             <h4 class="text-center mb-3">Carrocería</h4>
             <hr />
             
-            @* TABLA CENTRADA*@
+            @*TABLA CENTRADA*@
             <table class="table table-borderless">
                 <tbody>
                     <tr>
@@ -25,7 +25,7 @@
                 </tbody>
             </table>
             
-            @*BOTONES DE ACCION*@
+            @*BOTON DE ELIMINAR*@
             <div class="d-flex justify-content-center gap-3 mt-4">
                 <form asp-action="Delete">
                     <input type="hidden" asp-for="CarroceriaId" />
@@ -38,7 +38,7 @@
     </div>
 </div>
 
-@* Modal de Advertencia  *@
+@*MODAL DE ADVERTENCIA*@
 <div id="modalAdvertencia">
     <div class="modalDentro">
         <h5>Advertencia</h5>
@@ -53,7 +53,7 @@
     if (mensaje) {
         document.getElementById('modalAdvertencia').style.display = 'block'; // Mostrar modal
     }
-    // Función para cerrar el modal
+    //Funcion que se llamara al hacer click sobre el boton de cerrar al modal
     function closeModal() {
         document.getElementById('modalAdvertencia').style.display = 'none'; // Ocultar modal
     }

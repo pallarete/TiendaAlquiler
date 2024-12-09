@@ -25,7 +25,7 @@
                 </tbody>
             </table>
 
-            @*BOTONES DE ACCION*@
+            @*BOTONES DE ELIMINAR*@
             <div class="d-flex justify-content-center gap-3 mt-4">
                 <form asp-action="Delete">
                     <input type="hidden" asp-for="ColorId" />
@@ -37,7 +37,7 @@
     </div>
 </div>
 
-@* MODAL DE ERROR *@
+@*MODAL DE ADVERTENCIA*@
 <div id="modalAdvertencia">
     <div class="modalDentro">
         <h5>Advertencia</h5>
@@ -46,7 +46,7 @@
     </div>
 </div>
 <script>
-    //muestro el modal si hay mensaje de error
+    // Mostrar el modal solo si hay un mensaje de error
     var mensaje ='@TempData["ErrorMessage"]';
     if(mensaje) {
     document.getElementById('modalAdvertencia').style.display='block';//MOSTRADO
