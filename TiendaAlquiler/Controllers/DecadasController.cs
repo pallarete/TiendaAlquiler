@@ -16,7 +16,7 @@ namespace TiendaAlquiler.Controllers
             _context = context;
         }
 
-        // GET: Lista de decadas
+        // GET: Lista de decadas (alfabeticamente)
         public async Task<IActionResult> Index()
         {
             return View(await _context.Decada.ToListAsync());
@@ -46,7 +46,7 @@ namespace TiendaAlquiler.Controllers
             return View();
         }
 
-        // POST: Crear decada 
+        // POST: Crear Decada 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("DecadaId,AnioInicio")] Decada decada)

@@ -17,7 +17,7 @@ namespace TiendaAlquiler.Controllers
             _context = context;
         }
 
-        // GET: Lista de Paises
+        // GET: Lista de Paises (alfabeticamente)
         public async Task<IActionResult> Index()
         {
             var paisesOrdenados = await _context.Paises
@@ -26,7 +26,7 @@ namespace TiendaAlquiler.Controllers
             return View(paisesOrdenados);
         }
 
-        // GET: Paises Detalles
+        // GET: Pais Detalles
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -42,13 +42,13 @@ namespace TiendaAlquiler.Controllers
             return View(pais);
         }
 
-        // GET: Crear Paises
+        // GET: Crear Pais
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Crear Paises
+        // POST: Crear Pais
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PaisId,Nombre")] Pais pais)
         {
@@ -77,7 +77,7 @@ namespace TiendaAlquiler.Controllers
             return View(pais);
         }
 
-        // POST: Editar Paises
+        // POST: Editar Pais
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("PaisId,Nombre")] Pais pais)
@@ -128,7 +128,7 @@ namespace TiendaAlquiler.Controllers
             return View(pais);
         }
 
-        // POST: Borrar Paises
+        // POST: Borrar Pais
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

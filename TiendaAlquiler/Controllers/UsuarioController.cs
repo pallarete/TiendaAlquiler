@@ -21,6 +21,7 @@ namespace TiendaAlquiler.Controllers
             _signInManager = signInManager;
             _roleManager = roleManager;
         }
+        // Este metodo no se usa
 
         // GET: Usuario Indice
         public async Task<IActionResult> Index()
@@ -53,8 +54,8 @@ namespace TiendaAlquiler.Controllers
             return View(model);
         }
 
-        // GET: Editar usuario
         // Este metodo no se usa
+        // GET: Editar usuario
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -71,7 +72,7 @@ namespace TiendaAlquiler.Controllers
         }
 
         // Este metodo no se usa
-        // GET: Usuario Borrar, este metodo no se usa
+        // GET: Borrar Usuario
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -96,10 +97,8 @@ namespace TiendaAlquiler.Controllers
             return View(model);
         }
 
-        // POST: Borrar usuario
         // Este metodo no se usa
-
-        // POST: Usuario Borrar, este metodo no se usa
+        // POST: Borrar Usuario
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
@@ -125,13 +124,13 @@ namespace TiendaAlquiler.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //GET: Usuario Registro
+        //GET: Registrar usuario
         public IActionResult Register()
         {
             return View();
         }
 
-        //POST: Usuario Registro
+        //POST: Registrar usuario
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
@@ -172,14 +171,13 @@ namespace TiendaAlquiler.Controllers
             return View(model);
         }
 
-        // GET: Usuario Login
+        // GET: Loguear Usuario
         public IActionResult Login()
         {
             return View();
         }
 
-        // POST: Usuario Logueo
-        // POST: Usuario Login
+        // POST:Loguear Usuario
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind("UsuarioNombre,Password")] LoginViewModel model)
@@ -222,7 +220,6 @@ namespace TiendaAlquiler.Controllers
             await _signInManager.SignOutAsync(); //AQUI CIERRO LA SESION
             return RedirectToAction("Index", "Home");//REDIRIGO AL PRINCIPIO
         }
-
 
         private bool UsuarioExists(string id)
         {

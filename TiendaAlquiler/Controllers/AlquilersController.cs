@@ -13,7 +13,7 @@ namespace TiendaAlquiler.Controllers
         private readonly TiendaAlquilerDBContext _context;
         private readonly UserManager<Usuario> _userManager;
         private readonly ILogger<AlquilersController> _logger;
-        
+
         //Constructor Principal Alquileres
         public AlquilersController(TiendaAlquilerDBContext context, UserManager<Usuario> userManager, ILogger<AlquilersController> logger)
         {
@@ -21,9 +21,7 @@ namespace TiendaAlquiler.Controllers
             _userManager = userManager;
             _logger = logger;
         }
-
-
-        //Indice de Alquileres
+        //Get Lista de Alquileres (Solo Mostrara el alquiler que se acaba de realizar para info de usuario (cliente))
         public async Task<IActionResult> Index(int? cocheId = null, string? usuarioId = null)
         {
             var query = _context.Alquilers
@@ -52,8 +50,8 @@ namespace TiendaAlquiler.Controllers
 
             return View(new List<Alquiler> { ultimoAlquiler });
         }
-        
-        // GET Vista creacion alquiler
+
+        // GET Creacion alquiler
         public async Task<IActionResult> Create(int cocheId, string usuarioId)
         {
             _logger.LogInformation("Entrando al método Create");
@@ -76,7 +74,7 @@ namespace TiendaAlquiler.Controllers
             return View(alquiler);
         }
 
-        // POST Vista creacion Alquiler
+        // POST Creacion Alquiler
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AlquilerId,CocheId,UsuarioId,FechaAlquiler,FechaDevolucion,NumeroTarjeta,FechaExpiracion,CVC")] Alquiler alquiler)
@@ -137,11 +135,12 @@ namespace TiendaAlquiler.Controllers
                     return View(alquiler);
                 }
             }
-            
+
             await RecargaDatos(alquiler);
             return View(alquiler);
         }
-
+        
+        //Metodo para recargar datos despues de validar si la validacion es incorrecta
         private async Task RecargaDatos(Alquiler alquiler)
         {
             alquiler.Coche = await _context.Coches.FirstOrDefaultAsync(c => c.CocheId == alquiler.CocheId);
@@ -150,7 +149,8 @@ namespace TiendaAlquiler.Controllers
             // Recargo la lista de alquileres relacionados
             ViewData["Alquilers"] = await _context.Alquilers.Where(a => a.CocheId == alquiler.CocheId).ToListAsync();
         }
-        // Método validacion tarjeta
+        
+        // Método para validar la tarjeta
         private static bool ValidarTarjeta(Alquiler alquiler)
         {
             if (alquiler.NumeroTarjeta.Length != 16)
@@ -177,6 +177,7 @@ namespace TiendaAlquiler.Controllers
             }
             return false;
         }
+        //Get Editar alquiler (No se usa de momento)
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -192,6 +193,7 @@ namespace TiendaAlquiler.Controllers
             ViewData["UsuarioId"] = new SelectList(await _userManager.Users.ToListAsync(), "Id", "Rol");
             return View(alquiler);
         }
+        //POST Editar alquiler (No se usa de momento)
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("AlquilerId,CocheId,UsuarioId,FechaAlquiler,FechaDevolucion,NumeroTarjeta,FechaExpiracion,CVC,PrecioFinal")] Alquiler alquiler)

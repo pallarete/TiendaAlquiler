@@ -17,6 +17,7 @@ namespace TiendaAlquiler.Controllers
         {
             _context = context;
         }
+        //GET Lista de Coches
         public async Task<IActionResult> Index(int? paisId, int? decadaId, int? colorId, int? carroceriaId)
         {
             // Ordeno todos y cada uno de los filtros alfabéticamente
@@ -69,6 +70,7 @@ namespace TiendaAlquiler.Controllers
             coches = coches.OrderBy(c => c.Marca);
             return View(await coches.ToListAsync());
         }
+
         // GET: Obtengo la vista de los detalles de cada coche
         public async Task<IActionResult> Details(int? id)
         {
@@ -90,6 +92,7 @@ namespace TiendaAlquiler.Controllers
             }
             return View(coche);
         }
+
         // GET: Crear un coche solo si eres "Admin"
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
@@ -101,6 +104,7 @@ namespace TiendaAlquiler.Controllers
             ViewData["PaisId"] = new SelectList(_context.Paises.OrderBy(c => c.Nombre), "PaisId", "Nombre");
             return View();
         }
+
         // POST: Crear un coche solo si eres "Admin"
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -180,7 +184,7 @@ namespace TiendaAlquiler.Controllers
             return View(coche);
         }
 
-        // POST: EDITO LOS COCHES EN EL POST
+        // POST: Edito el coche una vez creado
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
@@ -261,7 +265,7 @@ namespace TiendaAlquiler.Controllers
             return View(coche);
         }
 
-        // GET: Borrar Coche Vista
+        // GET: Borrar Coche
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -283,7 +287,7 @@ namespace TiendaAlquiler.Controllers
             return View(coche);
         }
 
-        // POST: Borrar Coche Vista  Confirmacion
+        // POST: Borrar Coche Vista
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]

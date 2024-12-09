@@ -44,6 +44,7 @@ namespace TiendaAlquiler.Controllers
         {
             return View();
         }
+
         // POST: Crear Carrocerias
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -57,6 +58,7 @@ namespace TiendaAlquiler.Controllers
             }
             return View(carroceria);
         }
+
         // GET: Editar Carroceria
         public async Task<IActionResult> Edit(int? id)
         {
@@ -71,6 +73,7 @@ namespace TiendaAlquiler.Controllers
             }
             return View(carroceria);
         }
+
         // POST: Editar Carroceria
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -102,6 +105,7 @@ namespace TiendaAlquiler.Controllers
             }
             return View(carroceria);
         }
+
         // GET: Borrar Carroceria
         public async Task<IActionResult> Delete(int? id)
         {
@@ -118,6 +122,7 @@ namespace TiendaAlquiler.Controllers
 
             return View(carroceria);
         }
+
         // POST: Borrar Carroceria
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -140,6 +145,7 @@ namespace TiendaAlquiler.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
         private bool CarroceriaExists(int id)
         {
             return _context.Carroceria.Any(e => e.CarroceriaId == id);
