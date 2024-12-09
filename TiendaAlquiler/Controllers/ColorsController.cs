@@ -23,7 +23,7 @@ namespace TiendaAlquiler.Controllers
             return View(coloresOrdenados);
         }
 
-        // GET: Detalles De cada color
+        // GET: Detalles de color
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -41,7 +41,7 @@ namespace TiendaAlquiler.Controllers
             return View(color);
         }
 
-        // GET: Me da la vista para crear un nuevo Color
+        // GET: Crear Color
         public IActionResult Create()
         {
             return View();
@@ -61,7 +61,7 @@ namespace TiendaAlquiler.Controllers
             return View(color);
         }
 
-        // GET: Me da la vista para editar un nuevo Color
+        // GET: Editar Color
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,7 +77,7 @@ namespace TiendaAlquiler.Controllers
             return View(color);
         }
 
-        // POST: Editar color (Vista)
+        // POST: Editar color
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ColorId,Nombre")] Color color)
@@ -110,7 +110,7 @@ namespace TiendaAlquiler.Controllers
             return View(color);
         }
 
-        // GET: Borra color (Vista)
+        // GET: Borra color 
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

@@ -16,7 +16,7 @@ namespace TiendaAlquiler.Controllers
             _context = context;
         }
 
-        // GET: Indice de Decadas
+        // GET: Lista de decadas
         public async Task<IActionResult> Index()
         {
             return View(await _context.Decada.ToListAsync());
@@ -40,13 +40,13 @@ namespace TiendaAlquiler.Controllers
             return View(decada);
         }
 
-        // GET: Crear una nueva decada (Vista)
+        // GET: Crear Decada
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Crear una nueva decada (Vista) Confirmar
+        // POST: Crear decada 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("DecadaId,AnioInicio")] Decada decada)
@@ -60,7 +60,7 @@ namespace TiendaAlquiler.Controllers
             return View(decada);
         }
 
-        // GET: Editar una Decada (Vista)
+        // GET: Editar decada
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -76,7 +76,7 @@ namespace TiendaAlquiler.Controllers
             return View(decada);
         }
 
-        // POST: Editar una Decada (Vista) Confirmar
+        // POST: Editar decada
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("DecadaId,AnioInicio")] Decada decada)
@@ -109,7 +109,7 @@ namespace TiendaAlquiler.Controllers
             return View(decada);
         }
 
-        // GET: Borrar una decada (Vista)
+        // GET: Borrar una decada
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -127,7 +127,7 @@ namespace TiendaAlquiler.Controllers
             return View(decada);
         }
 
-        // POST: Borrar una decada (Vista) Confirmacion
+        // POST: Borrar decada
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -136,7 +136,7 @@ namespace TiendaAlquiler.Controllers
 
             if (cochesAsociados)
             {
-                //si la decada esta asociada a algun coche o a vario, me da igual
+                // Si la decada esta asociada a algun coche o a varios
                 TempData["ErrorMessage"] = "No se puede eliminar esta década porque está asociada a uno o varios coches.Por favor, modifíquela o cree una nueva.";
                 return RedirectToAction("Delete", new { id });
             }

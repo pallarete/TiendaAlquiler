@@ -72,7 +72,6 @@ namespace TiendaAlquiler.Controllers
             {
                 return NotFound();
             }
-
             var carroceria = await _context.Carroceria.FindAsync(id);
             if (carroceria == null)
             {
@@ -82,7 +81,6 @@ namespace TiendaAlquiler.Controllers
         }
 
         // POST: Editar Carroceria
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CarroceriaId,Tipo")] Carroceria carroceria)
@@ -122,7 +120,6 @@ namespace TiendaAlquiler.Controllers
             {
                 return NotFound();
             }
-
             var carroceria = await _context.Carroceria
                 .FirstOrDefaultAsync(m => m.CarroceriaId == id);
             if (carroceria == null)

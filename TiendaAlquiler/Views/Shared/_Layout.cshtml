@@ -13,16 +13,9 @@
             // Latitud y Longitud
             const location = { lat: 43.370947, lng: -8.395835 }; // Ejemplo: La Coruña
             // Creo el mapa con este punto de referencia
-            const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 18,
-                center: location,
-            });
+            const map = new google.maps.Map(document.getElementById("map"), { zoom: 18, center: location,});
             // Agrega el marcador/localizador
-            const marker = new google.maps.Marker({
-                position: location,
-                map: map,
-                title: "Lugar de recogida de coches",
-            });
+            const marker = new google.maps.Marker({position: location, map: map, title: "Lugar de recogida de coches", });
         }
     </script>
     <script>
@@ -105,7 +98,7 @@
     <button id="backToTop" class="back-to-top" title="Volver arriba">IR ARRIBA</button>
 
     <!-- Scripts -->
-    <script src="~/lib/jquery/dist/jquery.min.js"></script> 
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 

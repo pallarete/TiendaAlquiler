@@ -28,7 +28,8 @@ namespace TiendaAlquiler.Controllers
             return View(await _context.Usuarios.ToListAsync());
         }
 
-        // GET: Usuario/Details/5
+        // GET: Detalles  de usuario
+        // Este metodo no se usa
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -44,15 +45,16 @@ namespace TiendaAlquiler.Controllers
 
             var model = new Usuario
             {
-                Id = usuario.Id ?? "",  // Asegúrate de que no sea nulo
+                Id = usuario.Id ?? "",  // Confirmo que no sea nulo
                 UserName = usuario.UserName ?? "",
-                Email = usuario.Email ?? "", // Lo mismo con Email si es opcional
+                Email = usuario.Email ?? "", // el email tambien
             };
 
             return View(model);
         }
 
-        // GET: Usuario/Edit/5
+        // GET: Editar usuario
+        // Este metodo no se usa
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -68,7 +70,8 @@ namespace TiendaAlquiler.Controllers
             return View(usuario);
         }
 
-        // GET: Usuario/Delete/5
+        // GET: Borrar usuario
+        // Este metodo no se usa
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -84,7 +87,7 @@ namespace TiendaAlquiler.Controllers
 
             var model = new Usuario
             {
-                Id = usuario.Id ?? "",  // Usamos ?? para asegurarnos de que no sea null
+                Id = usuario.Id ?? "",  
                 UserName = usuario.UserName ?? "",
                 Email = usuario.Email ?? "",
 
@@ -93,7 +96,9 @@ namespace TiendaAlquiler.Controllers
             return View(model);
         }
 
-        // POST: Usuario/Delete/5
+        // POST: Borrar usuario
+        // Este metodo no se usa
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
@@ -119,13 +124,13 @@ namespace TiendaAlquiler.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //GET: Usuario/Registro
+        //GET: Registrar usuario
         public IActionResult Register()
         {
             return View();
         }
 
-        //POST: Usuario/Registro
+        //POST: Registrar usuario
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
@@ -137,19 +142,19 @@ namespace TiendaAlquiler.Controllers
 
                 if (result.Succeeded)
                 {
-                    // Verificar si es el primer usuario
+                    // Verifico si es el primer usuario
                     var usersCount = await _userManager.Users.CountAsync();
 
                     if (usersCount == 1) // Si es el primer usuario
                     {
-                        // Verificar si el rol Admin existe, si no, crear el rol
+                        // Verifico si el rol Admin existe, si no, se crea el rol porque el proigrama esta configurado
                         var roleExists = await _roleManager.RoleExistsAsync("Admin");
                         if (!roleExists)
                         {
                             await _roleManager.CreateAsync(new IdentityRole("Admin"));
                         }
 
-                        // Asignar el rol de Admin al primer usuario
+                        // Se asigna el rol de Admin al primer usuario
                         await _userManager.AddToRoleAsync(usuario, "Admin");
                     }
 
@@ -166,13 +171,13 @@ namespace TiendaAlquiler.Controllers
             return View(model);
         }
 
-        // GET: Usuario/Login
+        // GET: Usuario Logueo
         public IActionResult Login()
         {
             return View();
         }
 
-        // POST: Usuario/Login
+        // POST: Usuario Logueo
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind("UsuarioNombre,Password")] LoginViewModel model)
@@ -183,7 +188,7 @@ namespace TiendaAlquiler.Controllers
 
                 if (usuario == null)
                 {
-                    //Creo el menasje de error que s emostrarar en la vista de Login
+                    //Creo el menasje de error para el modal
                     TempData["ErrorMessage"] = "El usuario no está registrado. Por favor, regístrese para disfrutar de nuestros vehículos.";
                     return RedirectToAction("login");
                 }
@@ -192,10 +197,10 @@ namespace TiendaAlquiler.Controllers
                     var result = await _signInManager.PasswordSignInAsync(usuario, model.Password, false, false);
                     if (result.Succeeded)
                     {
-                        // Redirigir dependiendo del rol, por ejemplo
+                        // Redirigo dependiendo del rol
                         if (await _userManager.IsInRoleAsync(usuario, "Admin"))
                         {
-                            return RedirectToAction("Index", "Home"); // o lo que sea tu página de Admin
+                            return RedirectToAction("Index", "Home");
                         }
                         return RedirectToAction("Index", "Home");
                     }
@@ -224,7 +229,7 @@ namespace TiendaAlquiler.Controllers
         // Acción para manejar el acceso denegado
         public IActionResult AccessDenied()
         {
-            return View(); // Asegúrate de tener una vista AccessDenied.cshtml
+            return View(); 
         }
     }
 
