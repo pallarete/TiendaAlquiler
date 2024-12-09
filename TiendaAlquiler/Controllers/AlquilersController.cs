@@ -81,10 +81,6 @@ namespace TiendaAlquiler.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AlquilerId,CocheId,UsuarioId,FechaAlquiler,FechaDevolucion,NumeroTarjeta,FechaExpiracion,CVC")] Alquiler alquiler)
         {
-            _logger.LogInformation("Entrando al método Create");
-            // Logging al inicio del método
-            Console.WriteLine("Entrando al método Create");
-            Console.WriteLine($"Datos recibidos: CocheId={alquiler.CocheId}, UsuarioId={alquiler.UsuarioId}, FechaAlquiler={alquiler.FechaAlquiler}, FechaDevolucion={alquiler.FechaDevolucion}");
             if (ModelState.IsValid)
             {
                 try
@@ -132,29 +128,20 @@ namespace TiendaAlquiler.Controllers
                     _context.Add(alquiler);
                     await _context.SaveChangesAsync();
 
-                    Console.WriteLine($"Precio final calculado: {alquiler.PrecioFinal}");
                     // Guardar alquiler
                     _context.Add(alquiler);
                     await _context.SaveChangesAsync();
-                    Console.WriteLine("Alquiler guardado correctamente en la base de datos.");
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
                     // Logging de errores
-                    Console.WriteLine($"Excepción capturada: {ex.Message}");
-                    Console.WriteLine($"StackTrace: {ex.StackTrace}");
                     ModelState.AddModelError("", $"Error inesperado: {ex.Message}");
                     await RecargaDatos(alquiler);
                     return View(alquiler);
                 }
             }
-            // Si el modelo no es válido, loggear los errores
-            Console.WriteLine("ModelState inválido. Errores:");
-            foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-            {
-                Console.WriteLine($"- {error.ErrorMessage}");
-            }
+            
             await RecargaDatos(alquiler);
             return View(alquiler);
         }
