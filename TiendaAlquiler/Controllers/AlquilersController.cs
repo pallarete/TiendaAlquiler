@@ -82,29 +82,17 @@ namespace TiendaAlquiler.Controllers
         public async Task<IActionResult> Create([Bind("AlquilerId,CocheId,UsuarioId,FechaAlquiler,FechaDevolucion,NumeroTarjeta,FechaExpiracion,CVC")] Alquiler alquiler)
         {
             _logger.LogInformation("Entrando al método Create");
-<<<<<<< HEAD
-=======
             // Logging al inicio del método
             Console.WriteLine("Entrando al método Create");
             Console.WriteLine($"Datos recibidos: CocheId={alquiler.CocheId}, UsuarioId={alquiler.UsuarioId}, FechaAlquiler={alquiler.FechaAlquiler}, FechaDevolucion={alquiler.FechaDevolucion}");
->>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
             if (ModelState.IsValid)
             {
                 try
                 {
                     // Buscar coche
                     var coche = await _context.Coches.FindAsync(alquiler.CocheId);
-<<<<<<< HEAD
-
                     // Buscar usuario
                     var usuario = await _userManager.FindByIdAsync(alquiler.UsuarioId);
-
-=======
-                    Console.WriteLine(coche == null ? "Coche no encontrado" : $"Coche encontrado: {coche.Marca}, PrecioAlquiler: {coche.PrecioAlquiler}");
-                    // Buscar usuario
-                    var usuario = await _userManager.FindByIdAsync(alquiler.UsuarioId);
-                    Console.WriteLine(usuario == null ? "Usuario no encontrado" : $"Usuario encontrado: {usuario.UserName}");
->>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
                     // Validación: coche no encontrado
                     if (coche == null)
                     {
@@ -139,45 +127,34 @@ namespace TiendaAlquiler.Controllers
                     // Calcular precio final
                     var diasAlquiler = (alquiler.FechaDevolucion.ToDateTime(TimeOnly.MinValue) - alquiler.FechaAlquiler.ToDateTime(TimeOnly.MinValue)).Days;
                     alquiler.PrecioFinal = coche.PrecioAlquiler * diasAlquiler;
-<<<<<<< HEAD
 
                     // Guardar alquiler
                     _context.Add(alquiler);
                     await _context.SaveChangesAsync();
 
-=======
                     Console.WriteLine($"Precio final calculado: {alquiler.PrecioFinal}");
                     // Guardar alquiler
                     _context.Add(alquiler);
                     await _context.SaveChangesAsync();
                     Console.WriteLine("Alquiler guardado correctamente en la base de datos.");
->>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-<<<<<<< HEAD
-=======
                     // Logging de errores
                     Console.WriteLine($"Excepción capturada: {ex.Message}");
                     Console.WriteLine($"StackTrace: {ex.StackTrace}");
->>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
                     ModelState.AddModelError("", $"Error inesperado: {ex.Message}");
                     await RecargaDatos(alquiler);
                     return View(alquiler);
                 }
             }
-<<<<<<< HEAD
-
-
-=======
             // Si el modelo no es válido, loggear los errores
             Console.WriteLine("ModelState inválido. Errores:");
             foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
             {
                 Console.WriteLine($"- {error.ErrorMessage}");
             }
->>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
             await RecargaDatos(alquiler);
             return View(alquiler);
         }
@@ -186,12 +163,8 @@ namespace TiendaAlquiler.Controllers
         {
             alquiler.Coche = await _context.Coches.FirstOrDefaultAsync(c => c.CocheId == alquiler.CocheId);
             alquiler.Usuario = await _userManager.FindByIdAsync(alquiler.UsuarioId);
-<<<<<<< HEAD
 
             // Recargo la lista de alquileres relacionados
-=======
-            // Asigna la lista de alquileres relacionados, si es necesario
->>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
             ViewData["Alquilers"] = await _context.Alquilers.Where(a => a.CocheId == alquiler.CocheId).ToListAsync();
         }
         // Método validacion tarjeta

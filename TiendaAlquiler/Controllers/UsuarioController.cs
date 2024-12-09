@@ -28,12 +28,8 @@ namespace TiendaAlquiler.Controllers
             return View(await _context.Usuarios.ToListAsync());
         }
 
-<<<<<<< HEAD
-        // GET: Detalles  de usuario
         // Este metodo no se usa
-=======
         // GET: Usuario Detalles
->>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -49,11 +45,7 @@ namespace TiendaAlquiler.Controllers
 
             var model = new Usuario
             {
-<<<<<<< HEAD
-                Id = usuario.Id ?? "",  // Confirmo que no sea nulo
-=======
                 Id = usuario.Id ?? "",  // Me aseguro que existe
->>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
                 UserName = usuario.UserName ?? "",
                 Email = usuario.Email ?? "", // el email tambien
             };
@@ -61,12 +53,8 @@ namespace TiendaAlquiler.Controllers
             return View(model);
         }
 
-<<<<<<< HEAD
         // GET: Editar usuario
         // Este metodo no se usa
-=======
-        // GET: Usuario Editar, este metodo no se usa
->>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -82,12 +70,8 @@ namespace TiendaAlquiler.Controllers
             return View(usuario);
         }
 
-<<<<<<< HEAD
-        // GET: Borrar usuario
         // Este metodo no se usa
-=======
         // GET: Usuario Borrar, este metodo no se usa
->>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -112,13 +96,10 @@ namespace TiendaAlquiler.Controllers
             return View(model);
         }
 
-<<<<<<< HEAD
         // POST: Borrar usuario
         // Este metodo no se usa
 
-=======
         // POST: Usuario Borrar, este metodo no se usa
->>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
@@ -144,21 +125,13 @@ namespace TiendaAlquiler.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-<<<<<<< HEAD
-        //GET: Registrar usuario
-=======
         //GET: Usuario Registro
->>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
         public IActionResult Register()
         {
             return View();
         }
 
-<<<<<<< HEAD
-        //POST: Registrar usuario
-=======
         //POST: Usuario Registro
->>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
@@ -199,21 +172,14 @@ namespace TiendaAlquiler.Controllers
             return View(model);
         }
 
-<<<<<<< HEAD
-        // GET: Usuario Logueo
-=======
         // GET: Usuario Login
->>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
         public IActionResult Login()
         {
             return View();
         }
 
-<<<<<<< HEAD
         // POST: Usuario Logueo
-=======
         // POST: Usuario Login
->>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind("UsuarioNombre,Password")] LoginViewModel model)
