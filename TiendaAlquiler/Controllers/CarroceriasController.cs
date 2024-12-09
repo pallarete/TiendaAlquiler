@@ -10,14 +10,11 @@ namespace TiendaAlquiler.Controllers
     [Authorize(Roles = "Admin")]
     public class CarroceriasController : Controller
     {
-
         private readonly TiendaAlquilerDBContext _context;
-
         public CarroceriasController(TiendaAlquilerDBContext context)
         {
             _context = context;
         }
-
         // GET Indice Carrocerias
         public async Task<IActionResult> Index()
         {
@@ -26,7 +23,6 @@ namespace TiendaAlquiler.Controllers
                 .ToListAsync();
             return View(carroceriasOrdenadas);
         }
-
         // GET: Detalles Carrocerias
         public async Task<IActionResult> Details(int? id)
         {
@@ -34,14 +30,12 @@ namespace TiendaAlquiler.Controllers
             {
                 return NotFound();
             }
-
             var carroceria = await _context.Carroceria
                 .FirstOrDefaultAsync(m => m.CarroceriaId == id);
             if (carroceria == null)
             {
                 return NotFound();
             }
-
             return View(carroceria);
         }
 
@@ -50,7 +44,6 @@ namespace TiendaAlquiler.Controllers
         {
             return View();
         }
-
         // POST: Crear Carrocerias
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -64,7 +57,6 @@ namespace TiendaAlquiler.Controllers
             }
             return View(carroceria);
         }
-
         // GET: Editar Carroceria
         public async Task<IActionResult> Edit(int? id)
         {
@@ -79,7 +71,6 @@ namespace TiendaAlquiler.Controllers
             }
             return View(carroceria);
         }
-
         // POST: Editar Carroceria
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -89,7 +80,6 @@ namespace TiendaAlquiler.Controllers
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
@@ -112,7 +102,6 @@ namespace TiendaAlquiler.Controllers
             }
             return View(carroceria);
         }
-
         // GET: Borrar Carroceria
         public async Task<IActionResult> Delete(int? id)
         {
@@ -129,14 +118,12 @@ namespace TiendaAlquiler.Controllers
 
             return View(carroceria);
         }
-
         // POST: Borrar Carroceria
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var cochesAsociados = await _context.Coches.AnyAsync(c => c.CarroceriaId == id);
-
             if (cochesAsociados)
             {
                 //Envio un mensaje a Tempdata
@@ -144,7 +131,6 @@ namespace TiendaAlquiler.Controllers
                 return RedirectToAction("Delete", new { id });
             }
             //Elimino la carroceria si no hay coches asociados
-
             var carroceria = await _context.Carroceria.FindAsync(id);
             if (carroceria != null)
             {
@@ -154,7 +140,6 @@ namespace TiendaAlquiler.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
         private bool CarroceriaExists(int id)
         {
             return _context.Carroceria.Any(e => e.CarroceriaId == id);

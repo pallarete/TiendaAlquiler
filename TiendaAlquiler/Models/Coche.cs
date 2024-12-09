@@ -55,7 +55,6 @@ public partial class Coche
     public virtual Color? Color { get; set; }
     public virtual Decada? Decada { get; set; }
     public virtual Pais? Pais { get; set; }
-
     public virtual ICollection<Foto> Fotos { get; set; } = new List<Foto>();
 
 }

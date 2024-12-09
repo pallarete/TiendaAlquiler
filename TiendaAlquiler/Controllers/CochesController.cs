@@ -13,7 +13,6 @@ namespace TiendaAlquiler.Controllers
     public class CochesController : Controller
     {
         private readonly TiendaAlquilerDBContext _context;
-
         public CochesController(TiendaAlquilerDBContext context)
         {
             _context = context;
@@ -68,10 +67,8 @@ namespace TiendaAlquiler.Controllers
 
             // Ordenar por marca alfabéticamente dentro de la tabla
             coches = coches.OrderBy(c => c.Marca);
-
             return View(await coches.ToListAsync());
         }
-
         // GET: Obtengo la vista de los detalles de cada coche
         public async Task<IActionResult> Details(int? id)
         {
@@ -79,7 +76,6 @@ namespace TiendaAlquiler.Controllers
             {
                 return NotFound();
             }
-
             var coche = await _context.Coches
                 .Include(c => c.Carroceria)
                 .Include(c => c.Color)
@@ -92,11 +88,8 @@ namespace TiendaAlquiler.Controllers
             {
                 return NotFound();
             }
-
-
             return View(coche);
         }
-
         // GET: Crear un coche solo si eres "Admin"
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
@@ -106,10 +99,8 @@ namespace TiendaAlquiler.Controllers
             ViewData["ColorId"] = new SelectList(_context.Colors.OrderBy(c => c.Nombre), "ColorId", "Nombre");
             ViewData["DecadaId"] = new SelectList(_context.Decada.OrderBy(c => c.AnioInicio), "DecadaId", "AnioInicio");
             ViewData["PaisId"] = new SelectList(_context.Paises.OrderBy(c => c.Nombre), "PaisId", "Nombre");
-
             return View();
         }
-
         // POST: Crear un coche solo si eres "Admin"
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -121,11 +112,9 @@ namespace TiendaAlquiler.Controllers
                 //Guardamos el coche en la base de datos
                 _context.Add(coche);
                 await _context.SaveChangesAsync();
-
                 //Procesamos las fotos solo si se han cargado archivos
                 if (archivos != null && archivos.Length != 0)
                 {
-
                     foreach (var archivo in archivos)
                     {
                         if (archivo.Length > 0)
@@ -162,13 +151,11 @@ namespace TiendaAlquiler.Controllers
                 //Redirigo al listado de cohes
                 return RedirectToAction(nameof(Index));
             }
-
             //En caso de error muestro formulario de creacion
             ViewBag.CarroceriaId = new SelectList(_context.Carroceria.OrderBy(c => c.Tipo), "CarroceriaId", "Tipo", coche.CarroceriaId);
             ViewBag.ColorId = new SelectList(_context.Colors.OrderBy(c => c.Nombre), "ColorId", "Nombre", coche.ColorId);
             ViewBag.DecadaId = new SelectList(_context.Decada.OrderBy(c => c.AnioInicio), "DecadaId", "AnioInicio", coche.DecadaId);
             ViewBag.PaisId = new SelectList(_context.Paises.OrderBy(c => c.Nombre), "PaisId", "Nombre", coche.PaisId);
-
             return View(coche);
         }
 
@@ -190,7 +177,6 @@ namespace TiendaAlquiler.Controllers
             ViewBag.ColorId = new SelectList(_context.Colors.OrderBy(c => c.Nombre), "ColorId", "Nombre", coche.ColorId);
             ViewBag.DecadaId = new SelectList(_context.Decada.OrderBy(c => c.AnioInicio), "DecadaId", "AnioInicio", coche.DecadaId);
             ViewBag.PaisId = new SelectList(_context.Paises.OrderBy(c => c.Nombre), "PaisId", "Nombre", coche.PaisId);
-
             return View(coche);
         }
 
@@ -204,7 +190,6 @@ namespace TiendaAlquiler.Controllers
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
@@ -268,13 +253,11 @@ namespace TiendaAlquiler.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-
             // Si hay errores, vuelvo a cargar los datos relacionados
             ViewBag.CarroceriaId = new SelectList(_context.Carroceria.OrderBy(c => c.Tipo), "CarroceriaId", "Tipo", coche.CarroceriaId);
             ViewBag.ColorId = new SelectList(_context.Colors.OrderBy(c => c.Nombre), "ColorId", "Nombre", coche.ColorId);
             ViewBag.DecadaId = new SelectList(_context.Decada.OrderBy(c => c.AnioInicio), "DecadaId", "AnioInicio", coche.DecadaId);
             ViewBag.PaisId = new SelectList(_context.Paises.OrderBy(c => c.Nombre), "PaisId", "Nombre", coche.PaisId);
-
             return View(coche);
         }
 
@@ -286,7 +269,6 @@ namespace TiendaAlquiler.Controllers
             {
                 return NotFound();
             }
-
             var coche = await _context.Coches
                 .Include(c => c.Carroceria)
                 .Include(c => c.Color)
@@ -333,7 +315,6 @@ namespace TiendaAlquiler.Controllers
 
             }
         }
-
         private bool CocheExists(int id)
         {
             return _context.Coches.Any(e => e.CocheId == id);

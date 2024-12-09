@@ -17,7 +17,11 @@ namespace TiendaAlquiler.Controllers
             _context = context;
         }
 
+<<<<<<< HEAD
         // GET: Lista de Paises
+=======
+        // GET: Indice de Paises
+>>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
         public async Task<IActionResult> Index()
         {
             var paisesOrdenados = await _context.Paises
@@ -26,31 +30,41 @@ namespace TiendaAlquiler.Controllers
             return View(paisesOrdenados);
         }
 
+<<<<<<< HEAD
         // GET: Paises
+=======
+        // GET: Paises Detalles
+>>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
             var pais = await _context.Paises
                 .FirstOrDefaultAsync(m => m.PaisId == id);
             if (pais == null)
             {
                 return NotFound();
             }
-
             return View(pais);
         }
 
+<<<<<<< HEAD
         // GET: Crear Pais
+=======
+        // GET: Crear Paises
+>>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
         public IActionResult Create()
         {
             return View();
         }
 
+<<<<<<< HEAD
         // POST: Crear Pais
+=======
+        // POST: Crear Paises
+>>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PaisId,Nombre")] Pais pais)
@@ -64,7 +78,11 @@ namespace TiendaAlquiler.Controllers
             return View(pais);
         }
 
+<<<<<<< HEAD
         // GET: Editar Pais
+=======
+        // GET: Editar Paises
+>>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,7 +98,11 @@ namespace TiendaAlquiler.Controllers
             return View(pais);
         }
 
+<<<<<<< HEAD
         // POST: Editar Pais
+=======
+        // POST: Editar Paises
+>>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("PaisId,Nombre")] Pais pais)
@@ -113,7 +135,11 @@ namespace TiendaAlquiler.Controllers
             return View(pais);
         }
 
+<<<<<<< HEAD
         // GET: Borrar Pais
+=======
+        // GET: Borrar Paises
+>>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -131,7 +157,11 @@ namespace TiendaAlquiler.Controllers
             return View(pais);
         }
 
+<<<<<<< HEAD
         // POST: Borrar Pais
+=======
+        // POST: Borrar Paises
+>>>>>>> 723036fc6c72f1f1efc89c67b4c29c37151db85a
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
