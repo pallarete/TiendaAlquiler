@@ -124,11 +124,7 @@ namespace TiendaAlquiler.Controllers
                     var diasAlquiler = (alquiler.FechaDevolucion.ToDateTime(TimeOnly.MinValue) - alquiler.FechaAlquiler.ToDateTime(TimeOnly.MinValue)).Days;
                     alquiler.PrecioFinal = coche.PrecioAlquiler * diasAlquiler;
 
-                    // Guardar alquiler
-                    _context.Add(alquiler);
-                    await _context.SaveChangesAsync();
-
-                    // Guardar alquiler
+                    // Guardar alquiler y redirigir a indice de alquileres
                     _context.Add(alquiler);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
