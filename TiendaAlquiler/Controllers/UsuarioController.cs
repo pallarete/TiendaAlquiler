@@ -130,6 +130,7 @@ namespace TiendaAlquiler.Controllers
             return View();
         }
 
+        
         //POST: Registrar usuario
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -142,7 +143,7 @@ namespace TiendaAlquiler.Controllers
 
                 if (result.Succeeded)
                 {
-                    // Verifico si es el primer usuario
+                    // Cuento los usuarios
                     var usersCount = await _userManager.Users.CountAsync();
 
                     if (usersCount == 1) // Si es el primer usuario
@@ -154,7 +155,7 @@ namespace TiendaAlquiler.Controllers
                             await _roleManager.CreateAsync(new IdentityRole("Admin"));
                         }
 
-                        // Se asigna el rol de Admin al primer usuario
+                        // Le asigno el rol de Admin al primer usuario
                         await _userManager.AddToRoleAsync(usuario, "Admin");
                     }
                     // Iniciar sesión automáticamente
@@ -220,6 +221,7 @@ namespace TiendaAlquiler.Controllers
             return RedirectToAction("Index", "Home");//REDIRIGO AL PRINCIPIO
         }
 
+        //Este metodo no se usa, lo gestiona todo userManager
         private bool UsuarioExists(string id)
         {
             return _context.Usuarios.Any(e => e.Id == id);
