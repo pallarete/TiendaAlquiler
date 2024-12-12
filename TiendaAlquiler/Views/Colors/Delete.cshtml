@@ -15,7 +15,7 @@
             <h4 class="text-center mb-3">Color</h4>
             <hr />
 
-            @* TABLA CENTRADA*@
+            @* TABLA CENTRADA *@
             <table class="table table-borderless">
                 <tbody>
                     <tr>
@@ -25,7 +25,7 @@
                 </tbody>
             </table>
 
-            @*BOTONES DE ELIMINAR*@
+            @* BOTONES DE ELIMINAR O VOLVER *@
             <div class="d-flex justify-content-center gap-3 mt-4">
                 <form asp-action="Delete">
                     <input type="hidden" asp-for="ColorId" />
@@ -45,6 +45,7 @@
         <button onclick="closeModal()">Cerrar</button>
     </div>
 </div>
+@* JAVASCRIPT QUE CONTROLA EL MODAL *@
 <script>
     // Mostrar el modal solo si hay un mensaje de error
     var mensaje ='@TempData["ErrorMessage"]';
@@ -55,5 +56,4 @@
     function closeModal () {
         document.getElementById('modalAdvertencia').style.display='none';//OCULTO
     }
-
 </script>

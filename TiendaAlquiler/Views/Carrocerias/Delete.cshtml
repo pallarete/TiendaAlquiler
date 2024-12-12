@@ -10,12 +10,15 @@
 <h1 class="text-center mb-4">¿Está seguro de eliminar esta carrocería?</h1>
 
 <div class="container bg-white p-4 shadow rounded">
+    
     <div class="row justify-content-center">
+    
         <div class="col-md-6">
+        
             <h4 class="text-center mb-3">Carrocería</h4>
             <hr />
             
-            @*TABLA CENTRADA*@
+            @* TABLA CENTRADA *@
             <table class="table table-borderless">
                 <tbody>
                     <tr>
@@ -25,7 +28,7 @@
                 </tbody>
             </table>
             
-            @*BOTON DE ELIMINAR*@
+            @* BOTON DE ELIMINAR *@
             <div class="d-flex justify-content-center gap-3 mt-4">
                 <form asp-action="Delete">
                     <input type="hidden" asp-for="CarroceriaId" />
@@ -38,7 +41,7 @@
     </div>
 </div>
 
-@*MODAL DE ADVERTENCIA*@
+@* MODAL DE ADVERTENCIA f*@
 <div id="modalAdvertencia">
     <div class="modalDentro">
         <h5>Advertencia</h5>

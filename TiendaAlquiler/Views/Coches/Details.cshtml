@@ -71,7 +71,7 @@
                 <div class="carousel-item @(isFirst ? "active" : "")">
                     <img src="@Url.Content("~/" + foto.RutaAcceso.Replace("\\", "/"))" class="d-block w-100 img-fluid" alt="Foto del coche">
                 </div>
-                isFirst = false;  // Solo la primera imagen debe ser "active"
+                isFirst = false;
             }
         }
         else
@@ -87,10 +87,12 @@
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Anterior</span>
     </button>
+    
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Siguiente</span>
     </button>
+
 </div>
 
 @* SECCIÓN DE LA DESCRIPCIÓN  *@

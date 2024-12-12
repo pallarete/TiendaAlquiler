@@ -5,7 +5,9 @@
 }
 <h1>Borrar coche</h1>
 <h3>¿Está seguro de eliminar este coche?</h3>
+
 <table class="table">
+
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(model => model.Marca)</th>
@@ -18,6 +20,7 @@
             <th>@Html.DisplayNameFor(model => model.Pais)</th>
         </tr>
     </thead>
+
     <tbody>
         <tr>
             <td>@Html.DisplayFor(model => model.Marca)</td>
@@ -30,7 +33,10 @@
             <td>@Html.DisplayFor(model => model.Pais.Nombre)</td>
         </tr>
     </tbody>
+
 </table>
+
+@* BOTON DE BORRAR Y BOTON DE VOLVER AL LISTADO *@
 <div class="form-actions">
     <form asp-action="Delete">
         <input type="hidden" asp-for="CocheId" />
@@ -38,6 +44,8 @@
         <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
     </form>
 </div>
+
+@* MODAL DE ADVERTENCIA *@
 <div id="modalAdvertencia">
     <div class="modalDentro">
         <h5>Advertencia</h5>
@@ -45,6 +53,8 @@
         <button onclick="closeModal()">Cerrar</button>
     </div>
 </div>
+
+@* JAVASCRIPT QUE CONTROLA EL MODAL *@
 <script>
     //Mostrar el Modal solo si hay un mensaje de error
     var mensaje = '@TempData["ErrorMessage"]';

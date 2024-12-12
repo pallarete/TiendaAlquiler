@@ -7,12 +7,12 @@
     <div class="row justify-content-center">
 
         <div class="col-md-4 detail-card">
-            @* FORMULARIO DE CREACION*@
+            @* FORMULARIO DE CREACION *@
             <form asp-action="Create">
 
                 <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-                @*CAMPO AÑO INICIO*@
+                @* CAMPO AÑO INICIO *@
                 <div class="form-group mb-3">
                     <label asp-for="AnioInicio" class="control-label font-weight-bold text-center w-100"></label>
                     <select asp-for="AnioInicio" class="form-control">
@@ -25,14 +25,13 @@
                     <span asp-validation-for="AnioInicio" class="text-danger"></span>
                 </div>
 
-                @*BOTON CREAR*@
+                @* BOTON CREAR *@
                 <div class="form-group mb-3">
                     <button type="submit" class="btn btn-highlight w-100">Crear</button>
                 </div>
-            
             </form>
 
-            @*BOTON VOLVER LISTADO*@
+            @* BOTON VOLVER LISTADO *@
             <div class="form-group">
                 <a asp-action="Index" class="btn btn-secondary w-100">Volver al listado de años</a>
             </div>

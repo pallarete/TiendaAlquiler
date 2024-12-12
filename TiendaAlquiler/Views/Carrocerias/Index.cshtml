@@ -12,19 +12,21 @@
 </div>
 
 <table class="table">
+
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(model => model.Tipo)</th>
             <th class="text-end">Acciones</th>
         </tr>
     </thead>
+
     <tbody>
+
         @foreach (var item in Model)
         {
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.Tipo)</td>
                 <td class="text-end">
-                    
                     <a asp-action="Edit" asp-route-id="@item.CarroceriaId" class="btn btn-primary">Editar</a>
                     <a asp-action="Details" asp-route-id="@item.CarroceriaId" class="btn btn-secondary">Detalles</a>
                     <a asp-action="Delete" asp-route-id="@item.CarroceriaId" class="btn btn-danger">Borrar Carrocería</a>
@@ -32,6 +34,7 @@
                 </td>
             </tr>
         }
+
     </tbody>
 </table>
 

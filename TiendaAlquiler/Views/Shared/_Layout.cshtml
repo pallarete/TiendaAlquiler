@@ -7,11 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    @* <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg-RAkBxdrQNSJap_mqLOgWC9e1gyLNLU&callback=initMap" async defer>  </script> *@
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg-RAkBxdrQNSJap_mqLOgWC9e1gyLNLU&callback=initMap" async defer>  </script>
     <script>
         function initMap() {
             // Latitud y Longitud
-            const location = { lat: 43.370947, lng: -8.395835 }; // Ejemplo: La Coruña 
+            const location = { lat: 43.370947, lng: -8.395835 }; // Ejemplo: La Coruña
             // Creo el mapa con este punto de referencia
             const map = new google.maps.Map(document.getElementById("map"), { zoom: 18, center: location,});
             // Agrega el marcador/localizador

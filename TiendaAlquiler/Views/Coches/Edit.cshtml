@@ -14,69 +14,81 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="CocheId" />
             
+                @* MARCA *@
                 <div class="form-group mb-3">
                     <label asp-for="Marca" class="control-label"></label>
                     <input asp-for="Marca" class="form-control" />
                     <span asp-validation-for="Marca" class="text-danger"></span>
                 </div>
                 
+                @* MODELO *@
                 <div class="form-group mb-3">
                     <label asp-for="Modelo" class="control-label"></label>
                     <input asp-for="Modelo" class="form-control" />
                     <span asp-validation-for="Modelo" class="text-danger"></span>
                 </div>
                 
+                @* AÑO FABRICACION *@
                 <div class="form-group mb-3">
                     <label asp-for="AnioFabricacion" class="control-label"></label>
                     <input asp-for="AnioFabricacion" class="form-control" />
                     <span asp-validation-for="AnioFabricacion" class="text-danger"></span>
                 </div>
                 
+                @* PRECIO POR DIA *@
                 <div class="form-group mb-3">
                     <label asp-for="PrecioAlquiler" class="control-label"></label>
                     <input asp-for="PrecioAlquiler" class="form-control" type="number" step="0.01"  />
                     <span asp-validation-for="PrecioAlquiler" class="text-danger"></span>
                 </div>
 
+                @* LISTA DE COLORES *@
                 <div class="form-group mb-3">
                     <label asp-for="ColorId" class="control-label"></label>
                     <select asp-for="ColorId" class="form-control" asp-items="ViewBag.ColorId"></select>
                     <span asp-validation-for="ColorId" class="text-danger"></span>
                 </div>
                 
+                @* LISTA DE CAROCERIAS *@
                 <div class="form-group mb-3">
                     <label asp-for="CarroceriaId" class="control-label"></label>
                     <select asp-for="CarroceriaId" class="form-control" asp-items="ViewBag.CarroceriaId"></select>
                     <span asp-validation-for="CarroceriaId" class="text-danger"></span>
                 </div>
                 
+                @* LISTA DE DE DECADAS *@
                 <div class="form-group mb-3">
                     <label asp-for="DecadaId" class="control-label"></label>
                     <select asp-for="DecadaId" class="form-control" asp-items="ViewBag.DecadaId"></select>
                     <span asp-validation-for="DecadaId" class="text-danger"></span>
                 </div>
                 
+                @* LISTA DE PAISES *@
                 <div class="form-group mb-3">
                     <label asp-for="PaisId" class="control-label"></label>
                     <select asp-for="PaisId" class="form-control" asp-items="ViewBag.PaisId"></select>
                     <span asp-validation-for="PaisId" class="text-danger"></span>
                 </div>
                 
+                @* DESCRIPCION *@
                 <div class="form-group mb-3">
                     <label asp-for="Description" class="control-label"></label>
                     <input asp-for="Description" class="form-control" />
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
                 
+                @* FOTOS *@
                 <div class="form-group">
                     <label for="archivos">Seleccionar fotos del coche</label>
                     <input type="file" name="archivos" multiple accept="image/*" />
                 </div>
                 
+                @* BOTON GUARDAR *@
                 <div class="form-group mb-3">
                     <input type="submit" value="Guardar" class="btn btn-highlight w-100"/>
                 </div>
                 
+                @* BOTON VOLVER AL LISTADO *@
                 <div class="form-group mb-3">
                     <a asp-action="Index" class="btn btn-secondary  w-100">Volver al listado</a>
                 </div>
