@@ -14,8 +14,6 @@ public partial class Foto
 
     [Required(ErrorMessage = " El id del coche es obligatorio.")]
     public int CocheId { get; set; }
-
     public string RutaAcceso { get; set; }
-
     public virtual Coche Coche { get; set; }
 }

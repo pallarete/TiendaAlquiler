@@ -16,6 +16,5 @@ public partial class Decada
     [Required(ErrorMessage = "El año de inicio es obligatorio.")]
     [Range(1900, 2100, ErrorMessage = "El año de inicio debe estar entre 1900 y 2100 y ser un numero de 4 caracteres.")]
     public int AnioInicio { get; set; }
-
     public virtual ICollection<Coche> Coches { get; set; } = new List<Coche>();
 }

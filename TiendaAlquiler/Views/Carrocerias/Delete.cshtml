@@ -10,11 +10,15 @@
 <h1 class="text-center mb-4">¿Está seguro de eliminar esta carrocería?</h1>
 
 <div class="container bg-white p-4 shadow rounded">
+    
     <div class="row justify-content-center">
+    
         <div class="col-md-6">
+        
             <h4 class="text-center mb-3">Carrocería</h4>
             <hr />
-            <!-- Tabla de detalles centrada -->
+            
+            @* TABLA CENTRADA *@
             <table class="table table-borderless">
                 <tbody>
                     <tr>
@@ -23,7 +27,8 @@
                     </tr>
                 </tbody>
             </table>
-            <!-- Botones de acción -->
+            
+            @* BOTON DE ELIMINAR *@
             <div class="d-flex justify-content-center gap-3 mt-4">
                 <form asp-action="Delete">
                     <input type="hidden" asp-for="CarroceriaId" />
@@ -31,11 +36,12 @@
                 </form>
                 <a asp-action="Index" class="btn btn-secondary">Volver</a>
             </div>
+
         </div>
     </div>
 </div>
 
-<!-- Modal de Advertencia -->
+@* MODAL DE ADVERTENCIA f*@
 <div id="modalAdvertencia">
     <div class="modalDentro">
         <h5>Advertencia</h5>
@@ -50,7 +56,7 @@
     if (mensaje) {
         document.getElementById('modalAdvertencia').style.display = 'block'; // Mostrar modal
     }
-    // Función para cerrar el modal
+    //Funcion que se llamara al hacer click sobre el boton de cerrar al modal
     function closeModal() {
         document.getElementById('modalAdvertencia').style.display = 'none'; // Ocultar modal
     }

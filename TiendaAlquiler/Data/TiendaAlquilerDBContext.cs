@@ -60,7 +60,7 @@ public class TiendaAlquilerDBContext : IdentityDbContext<Usuario>
 
             entity.Property(e => e.Tipo)
                 .IsRequired()
-                .HasMaxLength(30);
+                .HasMaxLength(50);
         });
 
         modelBuilder.Entity<Coche>(entity =>
@@ -106,7 +106,7 @@ public class TiendaAlquilerDBContext : IdentityDbContext<Usuario>
 
             entity.Property(e => e.Nombre)
                 .IsRequired()
-                .HasMaxLength(20);
+                .HasMaxLength(50);
         });
 
         modelBuilder.Entity<Decada>(entity =>

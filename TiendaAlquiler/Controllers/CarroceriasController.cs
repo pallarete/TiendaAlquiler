@@ -10,15 +10,13 @@ namespace TiendaAlquiler.Controllers
     [Authorize(Roles = "Admin")]
     public class CarroceriasController : Controller
     {
-
         private readonly TiendaAlquilerDBContext _context;
-
         public CarroceriasController(TiendaAlquilerDBContext context)
         {
             _context = context;
         }
 
-        // GET Indice Carrocerias
+        // GET Indice Carrocerias (alfabeticamente)
         public async Task<IActionResult> Index()
         {
             var carroceriasOrdenadas = await _context.Carroceria
@@ -34,14 +32,12 @@ namespace TiendaAlquiler.Controllers
             {
                 return NotFound();
             }
-
             var carroceria = await _context.Carroceria
                 .FirstOrDefaultAsync(m => m.CarroceriaId == id);
             if (carroceria == null)
             {
                 return NotFound();
             }
-
             return View(carroceria);
         }
 
@@ -89,7 +85,6 @@ namespace TiendaAlquiler.Controllers
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
@@ -136,7 +131,6 @@ namespace TiendaAlquiler.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var cochesAsociados = await _context.Coches.AnyAsync(c => c.CarroceriaId == id);
-
             if (cochesAsociados)
             {
                 //Envio un mensaje a Tempdata
@@ -144,7 +138,6 @@ namespace TiendaAlquiler.Controllers
                 return RedirectToAction("Delete", new { id });
             }
             //Elimino la carroceria si no hay coches asociados
-
             var carroceria = await _context.Carroceria.FindAsync(id);
             if (carroceria != null)
             {

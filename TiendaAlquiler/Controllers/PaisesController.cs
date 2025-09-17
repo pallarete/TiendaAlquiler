@@ -17,7 +17,7 @@ namespace TiendaAlquiler.Controllers
             _context = context;
         }
 
-        // GET: Lista de Paises
+        // GET: Lista de Paises (alfabeticamente)
         public async Task<IActionResult> Index()
         {
             var paisesOrdenados = await _context.Paises
@@ -26,21 +26,19 @@ namespace TiendaAlquiler.Controllers
             return View(paisesOrdenados);
         }
 
-        // GET: Paises
+        // GET: Pais Detalles
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
             var pais = await _context.Paises
                 .FirstOrDefaultAsync(m => m.PaisId == id);
             if (pais == null)
             {
                 return NotFound();
             }
-
             return View(pais);
         }
 
@@ -51,7 +49,6 @@ namespace TiendaAlquiler.Controllers
         }
 
         // POST: Crear Pais
-        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PaisId,Nombre")] Pais pais)
         {

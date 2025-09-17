@@ -21,15 +21,16 @@ namespace TiendaAlquiler.Controllers
             _signInManager = signInManager;
             _roleManager = roleManager;
         }
-
-        // GET: Usuario
+        
+        // Este metodo no se usa
+        // GET: Usuario Indice
         public async Task<IActionResult> Index()
         {
             return View(await _context.Usuarios.ToListAsync());
         }
 
-        // GET: Detalles  de usuario
         // Este metodo no se usa
+        // GET: Usuario Detalles
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -45,7 +46,7 @@ namespace TiendaAlquiler.Controllers
 
             var model = new Usuario
             {
-                Id = usuario.Id ?? "",  // Confirmo que no sea nulo
+                Id = usuario.Id ?? "",  // Me aseguro que existe
                 UserName = usuario.UserName ?? "",
                 Email = usuario.Email ?? "", // el email tambien
             };
@@ -53,8 +54,8 @@ namespace TiendaAlquiler.Controllers
             return View(model);
         }
 
-        // GET: Editar usuario
         // Este metodo no se usa
+        // GET: Editar usuario
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -70,8 +71,8 @@ namespace TiendaAlquiler.Controllers
             return View(usuario);
         }
 
-        // GET: Borrar usuario
         // Este metodo no se usa
+        // GET: Borrar Usuario
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -96,9 +97,8 @@ namespace TiendaAlquiler.Controllers
             return View(model);
         }
 
-        // POST: Borrar usuario
         // Este metodo no se usa
-
+        // POST: Borrar Usuario
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
@@ -130,6 +130,7 @@ namespace TiendaAlquiler.Controllers
             return View();
         }
 
+        
         //POST: Registrar usuario
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -142,22 +143,21 @@ namespace TiendaAlquiler.Controllers
 
                 if (result.Succeeded)
                 {
-                    // Verifico si es el primer usuario
+                    // Cuento los usuarios
                     var usersCount = await _userManager.Users.CountAsync();
 
                     if (usersCount == 1) // Si es el primer usuario
                     {
-                        // Verifico si el rol Admin existe, si no, se crea el rol porque el proigrama esta configurado
+                        // Verifico si el rol Admin existe, si no, se crea el rol porque el programa esta configurado asi
                         var roleExists = await _roleManager.RoleExistsAsync("Admin");
                         if (!roleExists)
                         {
                             await _roleManager.CreateAsync(new IdentityRole("Admin"));
                         }
 
-                        // Se asigna el rol de Admin al primer usuario
+                        // Le asigno el rol de Admin al primer usuario
                         await _userManager.AddToRoleAsync(usuario, "Admin");
                     }
-
                     // Iniciar sesión automáticamente
                     await _signInManager.SignInAsync(usuario, isPersistent: false);
                     return RedirectToAction("Index", "Home"); // Redirigir después de registro
@@ -171,13 +171,13 @@ namespace TiendaAlquiler.Controllers
             return View(model);
         }
 
-        // GET: Usuario Logueo
+        // GET: Loguear Usuario
         public IActionResult Login()
         {
             return View();
         }
 
-        // POST: Usuario Logueo
+        // POST:Loguear Usuario
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind("UsuarioNombre,Password")] LoginViewModel model)
@@ -214,14 +214,14 @@ namespace TiendaAlquiler.Controllers
             return View(model);
         }
 
-        //LOGOUT
+        // Logout
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync(); //AQUI CIERRO LA SESION
             return RedirectToAction("Index", "Home");//REDIRIGO AL PRINCIPIO
         }
 
-
+        //Este metodo no se usa, lo gestiona todo userManager
         private bool UsuarioExists(string id)
         {
             return _context.Usuarios.Any(e => e.Id == id);

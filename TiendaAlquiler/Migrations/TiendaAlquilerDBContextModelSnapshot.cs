@@ -199,8 +199,8 @@ namespace TiendaAlquiler.Migrations
 
                     b.Property<string>("Tipo")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("CarroceriaId")
                         .HasName("PK__Carrocer__EBEFDD7F34F2C214");
@@ -695,8 +695,8 @@ namespace TiendaAlquiler.Migrations
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("ColorId")
                         .HasName("PK__Color__8DA7674D8D39398E");

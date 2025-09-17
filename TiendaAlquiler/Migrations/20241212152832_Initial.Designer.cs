@@ -12,7 +12,7 @@ using TiendaAlquiler.Data;
 namespace TiendaAlquiler.Migrations
 {
     [DbContext(typeof(TiendaAlquilerDBContext))]
-    [Migration("20241204121205_Initial")]
+    [Migration("20241212152832_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -202,8 +202,8 @@ namespace TiendaAlquiler.Migrations
 
                     b.Property<string>("Tipo")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("CarroceriaId")
                         .HasName("PK__Carrocer__EBEFDD7F34F2C214");
@@ -698,8 +698,8 @@ namespace TiendaAlquiler.Migrations
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("ColorId")
                         .HasName("PK__Color__8DA7674D8D39398E");

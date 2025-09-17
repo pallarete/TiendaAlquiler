@@ -208,7 +208,6 @@ p, label, button {
         transform: scale(1.1);
     }
 
-
 /* ESTILOS DE LA NAVBAR ------------------------------------------------------------------------*/
 header {
     height: 60px;
@@ -297,7 +296,6 @@ header {
         .navbar-nav .nav-item .nav-link:hover::after {
             width: 100%; /* Línea se extiende completamente */
         }
-
 
 .container {
     border: none;
@@ -637,7 +635,6 @@ textarea.form-control {
     max-height: 100%;
 }
 
-
 /*GOOGLE MAPS*/
 #map {
     height: 400px; 
@@ -723,7 +720,6 @@ footer {
     padding: 10px;
     margin-top: 20px;
 }
-
 
 /*---------------------------------------------------------------------------*/
 /* MEDIA QUERYES */
@@ -966,7 +962,6 @@ footer {
 }
 
 
-/*ESCRITORIO*/
 /* ESCRITORIO */
 @media only screen and (max-width: 1024px) and (max-height: 768px) {
     .publicidad1, .publicidad2 {

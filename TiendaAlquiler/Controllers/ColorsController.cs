@@ -14,7 +14,8 @@ namespace TiendaAlquiler.Controllers
         {
             _context = context;
         }
-        // GET:Lista de Colores ordenada
+
+        // GET:Lista de Colores (alfabeticamente)
         public async Task<IActionResult> Index()
         {
             var coloresOrdenados = await _context.Colors
@@ -23,7 +24,7 @@ namespace TiendaAlquiler.Controllers
             return View(coloresOrdenados);
         }
 
-        // GET: Detalles de color
+        // GET: Detalles de Color
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -47,7 +48,7 @@ namespace TiendaAlquiler.Controllers
             return View();
         }
 
-        // POST: Crear un nuevo color
+        // POST: Crear Color
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ColorId,Nombre")] Color color)
@@ -77,7 +78,7 @@ namespace TiendaAlquiler.Controllers
             return View(color);
         }
 
-        // POST: Editar color
+        // POST: Editar Color
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ColorId,Nombre")] Color color)
@@ -86,7 +87,6 @@ namespace TiendaAlquiler.Controllers
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
@@ -110,7 +110,7 @@ namespace TiendaAlquiler.Controllers
             return View(color);
         }
 
-        // GET: Borra color 
+        // GET: Borra Color 
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -128,7 +128,7 @@ namespace TiendaAlquiler.Controllers
             return View(color);
         }
 
-        // POST: Borra color (Vista)
+        // POST: Borra Color
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

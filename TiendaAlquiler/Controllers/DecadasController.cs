@@ -16,7 +16,7 @@ namespace TiendaAlquiler.Controllers
             _context = context;
         }
 
-        // GET: Lista de decadas
+        // GET: Lista de decadas (alfabeticamente)
         public async Task<IActionResult> Index()
         {
             return View(await _context.Decada.ToListAsync());
@@ -46,7 +46,7 @@ namespace TiendaAlquiler.Controllers
             return View();
         }
 
-        // POST: Crear decada 
+        // POST: Crear Decada 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("DecadaId,AnioInicio")] Decada decada)
@@ -136,12 +136,12 @@ namespace TiendaAlquiler.Controllers
 
             if (cochesAsociados)
             {
-                // Si la decada esta asociada a algun coche o a varios
+                //Si la decada esta asociada a algun coche o a varios no se puede borrar
                 TempData["ErrorMessage"] = "No se puede eliminar esta década porque está asociada a uno o varios coches.Por favor, modifíquela o cree una nueva.";
                 return RedirectToAction("Delete", new { id });
             }
 
-            //Si no hay coches asociados a esa carroceria la elimino
+            //Si no hay coches asociados a esa carroceria se peude borrar
             var decada = await _context.Decada.FindAsync(id);
             if (decada != null)
             {

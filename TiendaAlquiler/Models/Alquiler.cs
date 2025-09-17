@@ -10,16 +10,18 @@ public partial class Alquiler
 {
     [Key]
     public int AlquilerId { get; set; }
+
     [Required]
     public int CocheId { get; set; }
+
     [Required]
     public required string UsuarioId { get; set; }
-   
-    [Display(Name ="Fecha de Inicio")]
+
+    [Display(Name = "Fecha de Inicio")]
     [Required(ErrorMessage = "La fecha de inicio es obligatoria")]
     [DataType(DataType.Date)]
     public DateOnly FechaAlquiler { get; set; }
-    
+
     [Display(Name = "Fecha de Fin")]
     [DataType(DataType.Date)]
     [Required(ErrorMessage = "La fecha de devolucion es obligatoria")]
