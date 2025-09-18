@@ -94,6 +94,8 @@ namespace TiendaAlquiler.Controllers
             {
                 return NotFound();
             }
+            // Guardar el CocheId en la sesión para usarlo más tarde
+            HttpContext.Session.SetInt32("CocheId", coche.CocheId);
 
             return View(coche);
         }

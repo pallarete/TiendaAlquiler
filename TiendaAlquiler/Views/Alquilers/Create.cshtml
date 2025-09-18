@@ -1,26 +1,45 @@
 ﻿@model TiendaAlquiler.Models.Alquiler
 
 @{
+<<<<<<< HEAD
     ViewData["Title"] = "Create";
 }
 
 <h1 class="mb-4">Alquilar este coche</h1>
 <h4>Por favor introduzca sus datos:</h4>
+=======
+    ViewData["Title"] = "Crear Alquiler";
+}
+
+<h1 class="mb-4">Alquilar este coche</h1>
+<h4>Por favor, introduzca sus datos:</h4>
+>>>>>>> dede3b7 (un tiro en la cabeza)
 
 <div class="row">
     <!-- Formulario de Alquiler -->
     <div class="col-md-6">
+<<<<<<< HEAD
         <form asp-action="Create" class="alquiler-form">
+=======
+        <form asp-action="Create" method="post" class="alquiler-form">
+>>>>>>> dede3b7 (un tiro en la cabeza)
             <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
 
             <!-- Coche -->
             <div class="form-group">
+<<<<<<< HEAD
                 <label asp-for="CocheId" class="control-label">Coche</label>
                 <select asp-for="CocheId" class="form-control" asp-items="ViewBag.CocheId"></select>
+=======
+                <label class="control-label">Coche</label>
+                @* Mostrar la marca del coche en lugar de hacer un cast explícito *@
+                <p>@ViewData["CocheMarca"]</p>
+>>>>>>> dede3b7 (un tiro en la cabeza)
             </div>
 
             <!-- Usuario -->
             <div class="form-group">
+<<<<<<< HEAD
                 <label asp-for="UsuarioId" class="control-label">Usuario</label>
                 <select asp-for="UsuarioId" class="form-control" asp-items="ViewBag.UsuarioId"></select>
             </div>
@@ -57,6 +76,50 @@
                 <span asp-validation-for="CVC" class="text-danger"></span>
             </div>
             <div class="botones d-flex justify-content-between align-items-center ">
+=======
+                <label class="control-label">Usuario</label>
+                @* Mostrar el nombre de usuario en lugar de hacer un cast explícito *@
+                <p>@ViewData["UsuarioNombre"]</p>
+            </div>
+
+            <!-- Fecha de Alquiler -->
+            <div class="form-group">
+                <label asp-for="FechaAlquiler" class="control-label">Fecha de Alquiler</label>
+                <input asp-for="FechaAlquiler" class="form-control" type="date" required />
+                <span asp-validation-for="FechaAlquiler" class="text-danger"></span>
+            </div>
+
+            <!-- Fecha de Devolución -->
+            <div class="form-group">
+                <label asp-for="FechaDevolucion" class="control-label">Fecha de Devolución</label>
+                <input asp-for="FechaDevolucion" class="form-control" type="date" required />
+                <span asp-validation-for="FechaDevolucion" class="text-danger"></span>
+            </div>
+
+            <!-- Número de Tarjeta -->
+            <div class="form-group">
+                <label asp-for="NumeroTarjeta" class="control-label">Número de Tarjeta</label>
+                <input asp-for="NumeroTarjeta" class="form-control" type="text" maxlength="16" required />
+                <span asp-validation-for="NumeroTarjeta" class="text-danger"></span>
+            </div>
+
+            <!-- Fecha de Expiración -->
+            <div class="form-group">
+                <label asp-for="FechaExpiracion" class="control-label">Fecha de Expiración (MM/AA)</label>
+                <input asp-for="FechaExpiracion" class="form-control" type="text" maxlength="5" placeholder="MM/AA" required />
+                <span asp-validation-for="FechaExpiracion" class="text-danger"></span>
+            </div>
+
+            <!-- CVC -->
+            <div class="form-group">
+                <label asp-for="CVC" class="control-label">CVC</label>
+                <input asp-for="CVC" class="form-control" type="text" maxlength="3" required />
+                <span asp-validation-for="CVC" class="text-danger"></span>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="botones d-flex justify-content-between align-items-center">
+>>>>>>> dede3b7 (un tiro en la cabeza)
                 <div class="form-group">
                     <button type="submit" class="btn btn-highlight">Crear Alquiler</button>
                 </div>
@@ -65,7 +128,10 @@
                 </div>
             </div>
         </form>
+<<<<<<< HEAD
 
+=======
+>>>>>>> dede3b7 (un tiro en la cabeza)
     </div>
 
     <!-- Fechas de alquiler previas -->
@@ -77,7 +143,13 @@
                 <ul class="list-group">
                     @foreach (var alquiler in (List<TiendaAlquiler.Models.Alquiler>)ViewData["Alquilers"])
                     {
+<<<<<<< HEAD
                         <li class="list-group-item">Desde: @alquiler.FechaAlquiler.ToShortDateString() - Hasta: @alquiler.FechaDevolucion.ToShortDateString()</li>
+=======
+                        <li class="list-group-item">
+                            Desde: @alquiler.FechaAlquiler.ToShortDateString() - Hasta: @alquiler.FechaDevolucion.ToShortDateString()
+                        </li>
+>>>>>>> dede3b7 (un tiro en la cabeza)
                     }
                 </ul>
             }
@@ -89,7 +161,10 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> dede3b7 (un tiro en la cabeza)
 @section Scripts {
     @Html.RenderPartialAsync("_ValidationScriptsPartial")
 }

@@ -80,33 +80,29 @@ namespace TiendaAlquiler.Controllers
         [HttpGet]
         public async Task<IActionResult> Create(int cocheId, string usuarioId)
         {
+            // Verificar si el coche existe en la base de datos
+            var coche = await _context.Coches
+                .FirstOrDefaultAsync(c => c.CocheId == cocheId); // Obtiene el coche por su ID
 
-            // Verificar si el coche y el usuario existen
-            var coche = await _context.Coches.FindAsync(cocheId);
             var usuario = await _userManager.FindByIdAsync(usuarioId);
 
             if (coche == null || usuario == null)
             {
-                return NotFound();
             }
 
-            // Crear una instancia de Alquiler prellenada con el coche y el usuario seleccionados
             var alquiler = new Alquiler
             {
                 CocheId = cocheId,
                 UsuarioId = usuarioId,
             };
 
-            ViewData["CocheId"] = new SelectList(_context.Coches, "CocheId", "Marca", alquiler.CocheId);
-            ViewData["UsuarioId"] = new SelectList(await _userManager.Users.ToListAsync(), "Id", "UserName", alquiler.UsuarioId);
-            // Cargar los alquileres previos del coche si ya existe uno
-            ViewData["Alquilers"] = _context.Alquilers
-                .Where(a => a.CocheId == cocheId)  // Reemplazar con el CocheId del coche que se pasa al crear el alquiler
-                .ToList();
 
+            // Retornar la vista con la instancia de alquiler creada
             return View(alquiler);
 
         }
+
+
 
         // POST: Alquilers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -190,6 +186,17 @@ namespace TiendaAlquiler.Controllers
             // Redirigir a una acción para mostrar el último alquiler creado
             return View(alquiler);
         }
+
+
+
+
+
+
+
+
+
+
+
 
         public async Task<IActionResult> DetalleUltimoAlquiler(int cocheId)
         {
