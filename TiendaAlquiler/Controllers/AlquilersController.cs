@@ -24,12 +24,13 @@ namespace TiendaAlquiler.Controllers
             _logger = logger;
         }
 
-        
+
         //Get Lista de Alquileres (Solo Mostrara el alquiler que se acaba de realizar para info de usuario (cliente))
         public async Task<IActionResult> Index(int? cocheId = null, string? usuarioId = null)
         {
             //Accedo a los datos de la Database para trabajar con ellos dentro del metodo
 
+        }
 
         // GET: Alquilers
         public async Task<IActionResult> Index(int? cocheId = null, string usuarioId = null)
