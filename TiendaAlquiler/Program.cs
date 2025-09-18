@@ -48,10 +48,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-<<<<<<< HEAD
-=======
+
 app.UseSession();
->>>>>>> temporal
+
 
 app.UseAuthentication();
 

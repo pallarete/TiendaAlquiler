@@ -3,12 +3,6 @@
 #nullable disable
 
 using Microsoft.AspNetCore.Mvc.Rendering;
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> temporal
 namespace TiendaAlquiler.Areas.Identity.Pages.Account.Manage
 {
     /// <summary>

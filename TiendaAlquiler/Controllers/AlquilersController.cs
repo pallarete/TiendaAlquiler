@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 ﻿using Microsoft.AspNetCore.Identity;
-=======
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
-using Microsoft.AspNetCore.Identity;
->>>>>>> temporal
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -27,27 +23,26 @@ namespace TiendaAlquiler.Controllers
             _userManager = userManager;
             _logger = logger;
         }
-<<<<<<< HEAD
+
         
         //Get Lista de Alquileres (Solo Mostrara el alquiler que se acaba de realizar para info de usuario (cliente))
         public async Task<IActionResult> Index(int? cocheId = null, string? usuarioId = null)
         {
             //Accedo a los datos de la Database para trabajar con ellos dentro del metodo
-=======
+
 
         // GET: Alquilers
         public async Task<IActionResult> Index(int? cocheId = null, string usuarioId = null)
         {
->>>>>>> temporal
+
             var query = _context.Alquilers
                 .Include(a => a.Coche)
                 .Include(a => a.Usuario)
                 .AsQueryable();
 
-<<<<<<< HEAD
-=======
+
             // Filtrar por coche y usuario si se proporcionan
->>>>>>> temporal
+
             if (cocheId.HasValue)
             {
                 query = query.Where(a => a.CocheId == cocheId);
@@ -58,17 +53,16 @@ namespace TiendaAlquiler.Controllers
                 query = query.Where(a => a.UsuarioId == usuarioId);
             }
 
-<<<<<<< HEAD
-=======
+
             // Ordenar por fecha más reciente y obtener el último alquiler
->>>>>>> temporal
+
             var ultimoAlquiler = await query
                 .OrderByDescending(a => a.FechaAlquiler)
                 .FirstOrDefaultAsync();
 
             if (ultimoAlquiler == null)
             {
-<<<<<<< HEAD
+
                 return View(new List<Alquiler>());
             }
 
@@ -79,7 +73,7 @@ namespace TiendaAlquiler.Controllers
         public async Task<IActionResult> Create(int cocheId, string usuarioId)
         {
             var coche = await _context.Coches.FirstOrDefaultAsync(c => c.CocheId == cocheId);
-=======
+
                 return View(new List<Alquiler>()); // Lista vacía si no hay resultados
             }
 
@@ -116,15 +110,12 @@ namespace TiendaAlquiler.Controllers
             var coche = await _context.Coches
                 .FirstOrDefaultAsync(c => c.CocheId == cocheId); // Obtiene el coche por su ID
 
->>>>>>> temporal
+
             var usuario = await _userManager.FindByIdAsync(usuarioId);
             if (coche == null || usuario == null)
             {
             }
-<<<<<<< HEAD
-=======
 
->>>>>>> temporal
             var alquiler = new Alquiler
             {
                 CocheId = cocheId,
@@ -132,28 +123,28 @@ namespace TiendaAlquiler.Controllers
                 Coche = coche,
                 Usuario = usuario
             };
-<<<<<<< HEAD
+
             ViewData["CocheMarca"] = alquiler.Coche?.Marca;
             ViewData["UsuarioNombre"] = alquiler.Usuario?.UserName;
             ViewData["Alquilers"] = await _context.Alquilers.Where(a => a.CocheId == cocheId).ToListAsync();
-=======
+
 
 
             // Retornar la vista con la instancia de alquiler creada
->>>>>>> temporal
+
             return View(alquiler);
         }
 
-<<<<<<< HEAD
+
         // POST Creacion Alquiler
-=======
+
 
 
         // POST: Alquilers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 
->>>>>>> temporal
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AlquilerId,CocheId,UsuarioId,FechaAlquiler,FechaDevolucion,NumeroTarjeta,FechaExpiracion,CVC")] Alquiler alquiler)
@@ -219,7 +210,7 @@ namespace TiendaAlquiler.Controllers
                     await RecargaDatos(alquiler);
                     return View(alquiler);
                 }
-<<<<<<< HEAD
+
             }
 
             await RecargaDatos(alquiler);
@@ -234,7 +225,7 @@ namespace TiendaAlquiler.Controllers
 
             // Recargo la lista de alquileres relacionados
             ViewData["Alquilers"] = await _context.Alquilers.Where(a => a.CocheId == alquiler.CocheId).ToListAsync();
-=======
+
 
                 // Convertir las fechas de DateOnly a DateTime para poder realizar la operación de días
                 DateTime fechaAlquiler = alquiler.FechaAlquiler.ToDateTime(new TimeOnly());

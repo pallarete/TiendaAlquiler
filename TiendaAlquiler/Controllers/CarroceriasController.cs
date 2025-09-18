@@ -131,10 +131,7 @@ namespace TiendaAlquiler.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var cochesAsociados = await _context.Coches.AnyAsync(c => c.CarroceriaId == id);
-<<<<<<< HEAD
-=======
 
->>>>>>> temporal
             if (cochesAsociados)
             {
                 //Envio un mensaje a Tempdata
@@ -142,10 +139,7 @@ namespace TiendaAlquiler.Controllers
                 return RedirectToAction("Delete", new { id });
             }
             //Elimino la carroceria si no hay coches asociados
-<<<<<<< HEAD
-=======
 
->>>>>>> temporal
             var carroceria = await _context.Carroceria.FindAsync(id);
             if (carroceria != null)
             {

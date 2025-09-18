@@ -91,12 +91,11 @@ namespace TiendaAlquiler.Controllers
             {
                 return NotFound();
             }
-<<<<<<< HEAD
-=======
+
             // Guardar el CocheId en la sesión para usarlo más tarde
             HttpContext.Session.SetInt32("CocheId", coche.CocheId);
 
->>>>>>> temporal
+
             return View(coche);
         }
 
@@ -140,17 +139,16 @@ namespace TiendaAlquiler.Controllers
                                 //Establecemos el tamaño
                                 int width = 1200;
                                 int height = 800;
-<<<<<<< HEAD
+
                                 using var resizedImage = new Bitmap(image, new Size(width, height));
                                 //guarda la imagen redimensionada
                                 resizedImage.Save(filePath, ImageFormat.Jpeg);
-=======
+
                                 using (var resizedImage = new Bitmap(image, new Size(width, height)))
                                 {
                                     //guarda la imagen redimensionada
                                     resizedImage.Save(filePath, ImageFormat.Jpeg);
                                 }
->>>>>>> temporal
                             }
 
                             //Creamos una nueva foto y la asociamos al coche
@@ -233,26 +231,26 @@ namespace TiendaAlquiler.Controllers
                                 var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(archivo.FileName);
                                 var filePath = Path.Combine("wwwroot/imagenes", uniqueFileName);
 
-<<<<<<< HEAD
+
                                 // Creo una imagen redimensionada
-=======
+
                                 // Creamos una imagen redimensionada
->>>>>>> temporal
+
                                 using (var image = Image.FromStream(archivo.OpenReadStream()))
                                 {
                                     int width = 1200;
                                     int height = 800;
-<<<<<<< HEAD
+
                                     using var resizedImage = new Bitmap(image, new Size(width, height));
                                     // Guardola imagen redimensionada
                                     resizedImage.Save(filePath, ImageFormat.Jpeg);
-=======
+
                                     using (var resizedImage = new Bitmap(image, new Size(width, height)))
                                     {
                                         // Guardamos la imagen redimensionada
                                         resizedImage.Save(filePath, ImageFormat.Jpeg);
                                     }
->>>>>>> temporal
+
                                 }
 
                                 // Creo una nueva foto y la asocio al coche

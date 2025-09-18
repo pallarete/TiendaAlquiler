@@ -71,12 +71,12 @@ namespace TiendaAlquiler.Controllers
             return View(usuario);
         }
 
-<<<<<<< HEAD
+
         // Este metodo no se usa
         // GET: Borrar Usuario
-=======
+
         // GET: Usuario/Delete/5
->>>>>>> temporal
+
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -192,11 +192,9 @@ namespace TiendaAlquiler.Controllers
 
                 if (usuario == null)
                 {
-<<<<<<< HEAD
+
                     //Creo el menasje de error para el modal
-=======
-                    //Creo el menasje de error que s emostrarar en la vista de Login
->>>>>>> temporal
+
                     TempData["ErrorMessage"] = "El usuario no está registrado. Por favor, regístrese para disfrutar de nuestros vehículos.";
                     return RedirectToAction("login");
                 }

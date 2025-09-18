@@ -2,26 +2,14 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-<<<<<<< HEAD
-=======
-
->>>>>>> temporal
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-<<<<<<< HEAD
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
-=======
-
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Text.Encodings.Web;
-
->>>>>>> temporal
 using TiendaAlquiler.Models;
 
 namespace TiendaAlquiler.Areas.Identity.Pages.Account

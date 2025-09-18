@@ -4,10 +4,6 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-<<<<<<< HEAD
-=======
-
->>>>>>> temporal
 
 namespace TiendaAlquiler.Areas.Identity.Pages.Account.Manage
 {
