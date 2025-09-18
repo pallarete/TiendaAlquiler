@@ -139,13 +139,6 @@ namespace TiendaAlquiler.Controllers
 
         // POST Creacion Alquiler
 
-
-
-        // POST: Alquilers/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AlquilerId,CocheId,UsuarioId,FechaAlquiler,FechaDevolucion,NumeroTarjeta,FechaExpiracion,CVC")] Alquiler alquiler)
@@ -289,18 +282,6 @@ namespace TiendaAlquiler.Controllers
             // Redirigir a una acción para mostrar el último alquiler creado
             return View(alquiler);
         }
-
-
-
-
-
-
-
-
-
-
-
-
         public async Task<IActionResult> DetalleUltimoAlquiler(int cocheId)
         {
             // Obtener el último alquiler para el coche dado
