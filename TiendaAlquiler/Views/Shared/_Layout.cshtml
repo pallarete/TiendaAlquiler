@@ -10,12 +10,30 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg-RAkBxdrQNSJap_mqLOgWC9e1gyLNLU&callback=initMap" async defer>  </script>
     <script>
         function initMap() {
+<<<<<<< HEAD
             // Latitud y Longitud
             const location = { lat: 43.370947, lng: -8.395835 }; // Ejemplo: La Coruña
             // Creo el mapa con este punto de referencia
             const map = new google.maps.Map(document.getElementById("map"), { zoom: 18, center: location,});
             // Agrega el marcador/localizador
             const marker = new google.maps.Marker({position: location, map: map, title: "Lugar de recogida de coches", });
+=======
+            // Ubicación: Ajusta la latitud y longitud a la ubicación deseada
+            const location = { lat: 43.370947, lng: -8.395835 }; // Ejemplo: La Coruña
+
+            // Crea el mapa centrado en la ubicación
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 18,
+                center: location,
+            });
+
+            // Agrega un marcador en la ubicación
+            const marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                title: "Lugar de recogida de coches",
+            });
+>>>>>>> temporal
         }
     </script>
     <script>
@@ -59,6 +77,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto">
+<<<<<<< HEAD
+=======
+                        <!-- Menú de navegación principal -->
+>>>>>>> temporal
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
@@ -71,7 +93,11 @@
                                 <li class="nav-item"><a class="nav-link" asp-controller="Decadas" asp-action="Index" data-text="Decadas">Decadas</a></li>
                                 <li class="nav-item"><a class="nav-link" asp-controller="Paises" asp-action="Index" data-text="Paises">Paises</a></li>
                             }
+<<<<<<< HEAD
 
+=======
+                            <!-- Solo muestra este enlace "Coches" para usuarios autenticados que no son admins -->
+>>>>>>> temporal
                             <li class="nav-item"><a class="nav-link" asp-controller="Coches" asp-action="Index" data-text="Coches">Coches</a></li>
                             <li class="nav-item"><a href="@Url.Action("Logout", "Usuario")" class="nav-link text-dark">Logout</a></li>
                         }
@@ -93,12 +119,21 @@
             @RenderBody()
         </main>
     </div>
+<<<<<<< HEAD
 
     @*BOTON DE VOLVER ARRIBA*@
     <button id="backToTop" class="back-to-top" title="Volver arriba">IR ARRIBA</button>
 
     @*SCRIPTS*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+=======
+
+    <!-- Botón de volver arriba -->
+    <button id="backToTop" class="back-to-top" title="Volver arriba">UP</button>
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script> <!-- Asegúrate de cargar jQuery antes de Bootstrap -->
+>>>>>>> temporal
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 

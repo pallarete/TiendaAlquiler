@@ -8,10 +8,18 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+<<<<<<< HEAD
+=======
+
+>>>>>>> temporal
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
+<<<<<<< HEAD
+=======
+
+>>>>>>> temporal
 using TiendaAlquiler.Models;
 
 namespace TiendaAlquiler.Areas.Identity.Pages.Account

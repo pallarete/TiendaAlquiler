@@ -37,7 +37,10 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 @*MODAL DE ADVERTENCIA*@
+=======
+>>>>>>> temporal
 <div id="modalAdvertencia">
     <div class="modalDentro">
         <h5>Advertencia</h5>
@@ -45,6 +48,7 @@
         <button onclick="closeModal()">Cerrar</button>
     </div>
 </div>
+<<<<<<< HEAD
 @* JAVASCRIPT QUE CONTROLA EL MODAL *@
 <script>
     // Mostrar el modal solo si hay un mensaje de error
@@ -56,4 +60,17 @@
     function closeModal () {
         document.getElementById('modalAdvertencia').style.display='none';//OCULTO
     }
+=======
+<script>
+    //muestro el modal si hay mensaje de error
+    var mensaje ='@TempData["ErrorMessage"]';
+    if(mensaje) {
+    document.getElementById('modalAdvertencia').style.display='block';
+    }
+    //Funcion que se llamara al hacer click sobre el boton de cerrar al modal
+    function closeModal () {
+        document.getElementById('modalAdvertencia').style.display='none';
+    }
+
+>>>>>>> temporal
 </script>

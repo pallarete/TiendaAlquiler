@@ -53,7 +53,11 @@ html {
 }
 
 body {
+<<<<<<< HEAD
     padding-top: 100px;
+=======
+    padding-top: 100px; /* Ajusta este valor según la altura de tu header */
+>>>>>>> temporal
 }
 
 /*ENCABEZADO HOME*/
@@ -93,7 +97,11 @@ main {
     flex-direction: column;
     justify-content: space-between;
 }
+<<<<<<< HEAD
 
+=======
+/* Si Falla se quita!!!!!!!!! */
+>>>>>>> temporal
 
 /*ENCABEZADOS*/
 h1, h2, h3 {
@@ -182,7 +190,32 @@ p, label, button {
         background-color: #357ab8; /* Azul más oscuro */
         transform: scale(1.05);
     }
+/*Este es el boton de volver arribaF*/
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: none; /* Oculto inicialmente */
+    background-color: var(--color-primario); /* Cambia al color que prefieras */
+    color: var(--color-blanco);
+    border: none;
+    border-radius: 50%; /* Hace que sea redondo */
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px var(--color-sombra); /* Añade una sombra */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
 
+    .back-to-top:hover {
+        background-color: var(--color-secundario); /* Color más destacado al pasar el ratón */
+        transform: scale(1.1); /* Efecto de zoom al hacer hover */
+    }
+
+<<<<<<< HEAD
 /*Este es el boton de volver arribaF*/
 .back-to-top {
     position: fixed;
@@ -229,6 +262,31 @@ header {
     transition: opacity 0.4s ease;
 }
 
+=======
+
+/* ESTILOS DE LA NAVBAR ------------------------------------------------------------------------*/
+/* Estilos del header */
+header {
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    background-color: var(--color-primario);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    opacity: 0.85;
+    padding: 0 10px;
+    z-index: 1000;
+    overflow: hidden;
+    display: flex; /* Activa flexbox */
+    align-items: center; /* Centra verticalmente */
+    justify-content: space-between; /* Espacio entre elementos */
+    transition: opacity 0.4s ease;
+}
+
+>>>>>>> temporal
     header:hover {
         opacity: 1;
     }
@@ -244,7 +302,11 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+<<<<<<< HEAD
     gap: 1rem;
+=======
+    gap: 1rem; /* Espacio uniforme entre elementos */
+>>>>>>> temporal
 }
 
 /* Marca (logo o texto principal) */
@@ -268,10 +330,17 @@ header {
 .navbar-nav .nav-item .nav-link {
     position: relative;
     padding: 0.3rem 1rem;
+<<<<<<< HEAD
     color: black;
     text-decoration: none;
     font-size: 1rem;
     text-transform: capitalize;
+=======
+    color: black; /* Color inicial */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 1rem;
+    text-transform: capitalize; /* Texto normal */
+>>>>>>> temporal
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -297,15 +366,26 @@ header {
             width: 100%; /* Línea se extiende completamente */
         }
 
+<<<<<<< HEAD
 .container {
     border: none;
     background-color: rgba(255, 255, 255, 0.0);
+=======
+
+.container {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.50);
+>>>>>>> temporal
 }
 
 /* Contenedor centrado */
 .container-fluid {
     display: flex;
+<<<<<<< HEAD
     justify-content: center;
+=======
+    justify-content: center; /* Centra la barra de navegación horizontalmente */
+>>>>>>> temporal
     opacity: 1;
 }
 
@@ -316,10 +396,17 @@ header {
     font-weight: bold;
     font-size: 1rem;
     border-collapse: collapse;
+<<<<<<< HEAD
     color: black;
     table-layout: auto;
     border-radius: 10px;
     overflow: hidden;
+=======
+    color: var(--color-texto);
+    table-layout: auto; /* Ajusta automáticamente el tamaño de las columnas */
+    border-radius: 10px; /* Redondear esquinas */
+    overflow: hidden; /* Evita contenido fuera de bordes redondeados */
+>>>>>>> temporal
     opacity: 0.85
 }
 
@@ -366,8 +453,33 @@ header {
     }
 
     .table td a.btn {
+<<<<<<< HEAD
         margin-left: 5px;
     }
+=======
+        margin-left: 5px; /* Espaciado entre botones */
+    }
+
+
+/* COLUMNAS DE ACCIÓN */
+.actions-column {
+    text-align: right;
+}
+
+    .actions-column a {
+        margin-left: 10px;
+        text-decoration: none;
+        color: var(--color-acciones);
+        transition: color 0.3s;
+    }
+
+        .actions-column a:hover {
+            text-decoration: underline;
+            color: var(--color-destacado);
+        }
+
+/*ESTILOS DE VER COCHE-------------------------------------------------------------------------------------*/
+>>>>>>> temporal
 
 /*ESTILOS DETALLES COCHE-------------------------------------------------------------------------------------*/
 /* CARRUSEL */
@@ -406,30 +518,50 @@ header {
     filter: invert(100%);
 }
 
+<<<<<<< HEAD
 /*DESCRIPCION DEL COCHE*/
 .description-section {
     background-color: var(--color-fondo);
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 8px var(--color-sombra);
+=======
+
+/*DESCRIPCION DEL COCHE*/
+.description-section {
+    background-color: var(--color-fondo); /* Fondo gris claro */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--color-sombra); /* Sombra suave */
+>>>>>>> temporal
 }
 
     .description-section h4 {
         font-size: 2rem;
+<<<<<<< HEAD
         color: var(--color-texto);
         margin-bottom: 1rem;
+=======
+        color: var(--color-texto); /* Gris oscuro para los títulos */
+        margin-bottom: 1rem; /* Espaciado inferior */
+>>>>>>> temporal
     }
 
     .description-section .text-muted {
         font-size: 1rem;
         line-height: 1.6;
+<<<<<<< HEAD
         color: var(--color-primario);
+=======
+        color: var(--color-primario); /* Gris oscuro para la descripción */
+>>>>>>> temporal
     }
 
 textarea.form-control {
     height: 120px;
     resize: vertical;
     border-radius: 8px;
+<<<<<<< HEAD
     border: 1px solid var(--color-primario);
     background-color: var(--color-fondo);
     box-shadow: 0 2px 5px var(--color-sombra);
@@ -444,6 +576,25 @@ textarea.form-control {
 /* ESTILOS PARA LA SECCION DE ALQUILAR COCHE---------------------------------------------------------------- */
 .alquiler-form, .rental-dates {
     background-color: rgba(255, 255, 255, 0.5);
+=======
+    border: 1px solid var(--color-primario); /* Borde gris oscuro */
+    background-color: var(--color-fondo); /* Fondo gris claro */
+    box-shadow: 0 2px 5px var(--color-sombra); /* Sombra suave */
+    color: var(--color-texto); /* Gris muy oscuro para el texto */
+}
+
+    textarea.form-control:focus {
+        border-color: var(--color-secundario); /* Borde naranja al hacer focus */
+        box-shadow: 0 0 8px var(--color-secundario); /* Sombra suave naranja */
+    }
+
+/* ESTILOS PARA LA SECCION DE ALQUILAR COCHE---------------------------------------------------------------- */
+
+/* Estilos generales */
+
+.alquiler-form, .rental-dates {
+    background-color: rgba(255, 255, 255, 0.5); /* Blanco con 80% de opacidad */
+>>>>>>> temporal
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -474,13 +625,22 @@ textarea.form-control {
         box-sizing: border-box;
     }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> temporal
     .alquiler-form .text-danger {
         color: #e74c3c;
     }
 
 /* Fechas de alquiler previas */
 .rental-dates {
+<<<<<<< HEAD
     background-color: rgba(255, 255, 255, 0.5);
+=======
+    background-color: rgba(255, 255, 255, 0.5); /* Blanco con 80% de opacidad */
+>>>>>>> temporal
     border: 2px solid red;
     border-radius: 5px;
 }
@@ -514,6 +674,10 @@ textarea.form-control {
         margin-top: 10px;
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> temporal
 /*ESTILOS DE FILTRADO Y MAESTROS*/
 .d-flex-select {
     display: flex;
@@ -524,7 +688,11 @@ textarea.form-control {
     margin: auto;
     padding: 20px;
     border-radius: 10px;
+<<<<<<< HEAD
     background-color: rgba(var(--color-primario-rgb), 0.7);
+=======
+    background-color: rgba(var(--color-primario-rgb), 0.7); /* Opacidad del 70% */
+>>>>>>> temporal
 }
 
     /* Estilo para las columnas dentro del formulario */
@@ -551,8 +719,13 @@ textarea.form-control {
 
     /* Estilo para los selects */
     .d-flex-select .form-select {
+<<<<<<< HEAD
         width: 100%;
         max-width: 100%; 
+=======
+        width: 100%; /* Ocupa todo el ancho del contenedor */
+        max-width: 100%; /* Limita el ancho máximo */
+>>>>>>> temporal
         padding: 0.5rem;
         font-size: 1rem;
         border-radius: 5px;
@@ -580,7 +753,11 @@ textarea.form-control {
 /*Publicidad General */
 .publicidad1, .publicidad2 {
     display: flex;
+<<<<<<< HEAD
     justify-content: space-between;
+=======
+    justify-content: space-between; /* Separar los elementos */
+>>>>>>> temporal
     margin-top: 800px;
     padding: 20px;
     background-color: #f5f5f5;
@@ -601,6 +778,10 @@ textarea.form-control {
         opacity: 1;
     }
 
+<<<<<<< HEAD
+=======
+/* Estilo para el texto */
+>>>>>>> temporal
 .publicidad1-texto,
 .publicidad2-texto {
     overflow: hidden;
@@ -659,9 +840,17 @@ textarea.form-control {
     box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 /* Estilo del div de borrar */
 .form-actions {
     background-color: rgba(255, 255, 255, 0.2); 
+=======
+/* PAGINA DE BORRAR COCHE */
+
+/* Estilo del div de borrar */
+.form-actions {
+    background-color: rgba(255, 255, 255, 0.2); /* Blanco con opacidad del 80% */
+>>>>>>> temporal
     display: flex;
     justify-content: center;
     align-items: center;
@@ -672,20 +861,34 @@ textarea.form-control {
 }
 
     .form-actions button, .form-actions a {
+<<<<<<< HEAD
         margin: 0 10px;
+=======
+        margin: 0 10px; /* Esto agregará un margen horizontal a cada elemento */
+>>>>>>> temporal
     }
 
 /*MODALES ADVERTENCIA */
 #modalAdvertencia {
+<<<<<<< HEAD
     display: none;
     position: fixed;
     top: 56%;
+=======
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 50%;
+>>>>>>> temporal
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.5);
     padding: 20px;
     border-radius: 5px;
+<<<<<<< HEAD
     z-index: 1000;
+=======
+    z-index: 1000; /* Asegura que quede encima */
+>>>>>>> temporal
 }
 
 .modalDentro {
@@ -699,8 +902,12 @@ textarea.form-control {
     .modalDentro button {
         background-color: #f44336;
         color: white;
+<<<<<<< HEAD
         border: 3px solid black;
         border-radius: 3px;
+=======
+        border: none;
+>>>>>>> temporal
         padding: 10px 20px;
         cursor: pointer;
         border-radius: 3px;
@@ -708,8 +915,15 @@ textarea.form-control {
     }
 
         .modalDentro button:hover {
+<<<<<<< HEAD
             background-color: blue;
         }
+=======
+            background-color: blue; /* Un tono más oscuro al pasar el mouse */
+        }
+
+
+>>>>>>> temporal
 
 /* FOOTER */
 footer {

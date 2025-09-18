@@ -10,6 +10,10 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
+<<<<<<< HEAD
+=======
+
+>>>>>>> temporal
 using TiendaAlquiler.Models;
 
 namespace TiendaAlquiler.Areas.Identity.Pages.Account.Manage

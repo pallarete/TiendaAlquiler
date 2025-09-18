@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text;
+<<<<<<< HEAD
+=======
+
+>>>>>>> temporal
 using TiendaAlquiler.Models;
 
 namespace TiendaAlquiler.Areas.Identity.Pages.Account

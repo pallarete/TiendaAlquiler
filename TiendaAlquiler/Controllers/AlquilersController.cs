@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 ﻿using Microsoft.AspNetCore.Identity;
+=======
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+using Microsoft.AspNetCore.Identity;
+>>>>>>> temporal
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -21,16 +27,27 @@ namespace TiendaAlquiler.Controllers
             _userManager = userManager;
             _logger = logger;
         }
+<<<<<<< HEAD
         
         //Get Lista de Alquileres (Solo Mostrara el alquiler que se acaba de realizar para info de usuario (cliente))
         public async Task<IActionResult> Index(int? cocheId = null, string? usuarioId = null)
         {
             //Accedo a los datos de la Database para trabajar con ellos dentro del metodo
+=======
+
+        // GET: Alquilers
+        public async Task<IActionResult> Index(int? cocheId = null, string usuarioId = null)
+        {
+>>>>>>> temporal
             var query = _context.Alquilers
                 .Include(a => a.Coche)
                 .Include(a => a.Usuario)
                 .AsQueryable();
 
+<<<<<<< HEAD
+=======
+            // Filtrar por coche y usuario si se proporcionan
+>>>>>>> temporal
             if (cocheId.HasValue)
             {
                 query = query.Where(a => a.CocheId == cocheId);
@@ -41,12 +58,17 @@ namespace TiendaAlquiler.Controllers
                 query = query.Where(a => a.UsuarioId == usuarioId);
             }
 
+<<<<<<< HEAD
+=======
+            // Ordenar por fecha más reciente y obtener el último alquiler
+>>>>>>> temporal
             var ultimoAlquiler = await query
                 .OrderByDescending(a => a.FechaAlquiler)
                 .FirstOrDefaultAsync();
 
             if (ultimoAlquiler == null)
             {
+<<<<<<< HEAD
                 return View(new List<Alquiler>());
             }
 
@@ -57,11 +79,52 @@ namespace TiendaAlquiler.Controllers
         public async Task<IActionResult> Create(int cocheId, string usuarioId)
         {
             var coche = await _context.Coches.FirstOrDefaultAsync(c => c.CocheId == cocheId);
-            var usuario = await _userManager.FindByIdAsync(usuarioId);
-            if (coche == null || usuario == null)
+=======
+                return View(new List<Alquiler>()); // Lista vacía si no hay resultados
+            }
+
+            return View(new List<Alquiler> { ultimoAlquiler }); // Devolver una lista con el alquiler encontrado
+        }
+
+
+
+        // GET: Alquilers/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
             {
                 return NotFound();
             }
+
+            var alquiler = await _context.Alquilers
+                .Include(a => a.Coche)
+                .Include(a => a.Usuario)
+                .FirstOrDefaultAsync(m => m.AlquilerId == id);
+            if (alquiler == null)
+            {
+                return NotFound();
+            }
+
+            return View(alquiler);
+        }
+
+        // GET: Alquilers/Create
+        [HttpGet]
+        public async Task<IActionResult> Create(int cocheId, string usuarioId)
+        {
+            // Verificar si el coche existe en la base de datos
+            var coche = await _context.Coches
+                .FirstOrDefaultAsync(c => c.CocheId == cocheId); // Obtiene el coche por su ID
+
+>>>>>>> temporal
+            var usuario = await _userManager.FindByIdAsync(usuarioId);
+            if (coche == null || usuario == null)
+            {
+            }
+<<<<<<< HEAD
+=======
+
+>>>>>>> temporal
             var alquiler = new Alquiler
             {
                 CocheId = cocheId,
@@ -69,13 +132,28 @@ namespace TiendaAlquiler.Controllers
                 Coche = coche,
                 Usuario = usuario
             };
+<<<<<<< HEAD
             ViewData["CocheMarca"] = alquiler.Coche?.Marca;
             ViewData["UsuarioNombre"] = alquiler.Usuario?.UserName;
             ViewData["Alquilers"] = await _context.Alquilers.Where(a => a.CocheId == cocheId).ToListAsync();
+=======
+
+
+            // Retornar la vista con la instancia de alquiler creada
+>>>>>>> temporal
             return View(alquiler);
         }
 
+<<<<<<< HEAD
         // POST Creacion Alquiler
+=======
+
+
+        // POST: Alquilers/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+>>>>>>> temporal
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AlquilerId,CocheId,UsuarioId,FechaAlquiler,FechaDevolucion,NumeroTarjeta,FechaExpiracion,CVC")] Alquiler alquiler)
@@ -141,6 +219,7 @@ namespace TiendaAlquiler.Controllers
                     await RecargaDatos(alquiler);
                     return View(alquiler);
                 }
+<<<<<<< HEAD
             }
 
             await RecargaDatos(alquiler);
@@ -155,6 +234,112 @@ namespace TiendaAlquiler.Controllers
 
             // Recargo la lista de alquileres relacionados
             ViewData["Alquilers"] = await _context.Alquilers.Where(a => a.CocheId == alquiler.CocheId).ToListAsync();
+=======
+
+                // Convertir las fechas de DateOnly a DateTime para poder realizar la operación de días
+                DateTime fechaAlquiler = alquiler.FechaAlquiler.ToDateTime(new TimeOnly());
+                DateTime fechaDevolucion = alquiler.FechaDevolucion.ToDateTime(new TimeOnly());
+
+                // Validar que la fecha de devolución es posterior a la fecha de alquiler
+                if (fechaDevolucion <= fechaAlquiler)
+                {
+                    ModelState.AddModelError("", "La fecha de devolución debe ser posterior a la fecha de alquiler.");
+                    CargarListas(alquiler);
+                    return View(alquiler);
+                }
+
+                // Verificar si ya existe un alquiler para el mismo coche en el rango de fechas
+                var alquileresCoche = await _context.Alquilers
+                    .Where(a => a.CocheId == alquiler.CocheId)
+                    .ToListAsync();
+
+                bool fechasSolapadas = alquileresCoche
+                    .Any(a =>
+                        (fechaAlquiler >= a.FechaAlquiler.ToDateTime(new TimeOnly()) && fechaAlquiler < a.FechaDevolucion.ToDateTime(new TimeOnly())) ||
+                        (fechaDevolucion > a.FechaAlquiler.ToDateTime(new TimeOnly()) && fechaDevolucion <= a.FechaDevolucion.ToDateTime(new TimeOnly())) ||
+                        (fechaAlquiler <= a.FechaAlquiler.ToDateTime(new TimeOnly()) && fechaDevolucion >= a.FechaDevolucion.ToDateTime(new TimeOnly()))
+                    );
+
+                if (fechasSolapadas)
+                {
+                    ModelState.AddModelError("", "Este coche ya está alquilado en el rango de fechas seleccionado.");
+                    CargarListas(alquiler);
+                    return View(alquiler);
+                }
+
+                // Validar los datos de la tarjeta (simulación)
+                if (!ValidarTarjeta(alquiler))
+                {
+                    ModelState.AddModelError("", "Los datos de la tarjeta no son válidos.");
+                    CargarListas(alquiler);
+                    return View(alquiler);
+                }
+                if (!ModelState.IsValid)
+                {
+                    CargarListas(alquiler);
+                    return View(alquiler);
+                }
+
+                // Calcular el número de días de alquiler
+                var diasAlquiler = (fechaDevolucion - fechaAlquiler).Days;
+                alquiler.PrecioFinal = coche.PrecioAlquiler * diasAlquiler;
+
+                // Guardar el alquiler en la base de datos
+                _context.Add(alquiler);
+                await _context.SaveChangesAsync();
+
+                // Redirigir a la lista de alquileres o donde se desee
+                return RedirectToAction(nameof(Index));
+            }
+
+            // Si el modelo no es válido, recargar las listas y devolver la vista
+            CargarListas(alquiler);
+            // Redirigir a una acción para mostrar el último alquiler creado
+            return View(alquiler);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        public async Task<IActionResult> DetalleUltimoAlquiler(int cocheId)
+        {
+            // Obtener el último alquiler para el coche dado
+            var ultimoAlquiler = await _context.Alquilers
+                .Where(a => a.CocheId == cocheId)
+                .OrderByDescending(a => a.AlquilerId)
+                .FirstOrDefaultAsync();
+
+            // Validar si existe un alquiler
+            if (ultimoAlquiler == null)
+            {
+                return NotFound("No se encontró ningún alquiler para este coche.");
+            }
+
+            // Pasar el alquiler a la vista
+            return View(new List<Alquiler> { ultimoAlquiler });
+        }
+
+
+        // Método para cargar las listas necesarias para la vista
+        private void CargarListas(Alquiler alquiler)
+        {
+            // Obtener el coche y usuario previamente seleccionado
+            ViewData["CocheId"] = new SelectList(_context.Coches, "CocheId", "Marca", alquiler.CocheId);
+            ViewData["UsuarioId"] = new SelectList(_userManager.Users, "Id", "UserName", alquiler.UsuarioId);
+
+            // Cargar las fechas de alquiler previas para el coche seleccionado
+            ViewData["Alquilers"] = _context.Alquilers
+                .Where(a => a.CocheId == alquiler.CocheId)
+                .ToList();
+>>>>>>> temporal
         }
         
         // Método para validar la tarjeta
